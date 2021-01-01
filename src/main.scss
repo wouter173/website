@@ -1,0 +1,142 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+	font-family: 'Nunito', sans-serif;
+	color: #2C2C2C;
+}
+
+body {
+	overflow-x: hidden;
+
+	&.modal-open {
+		overflow: hidden;
+
+		.overlay {
+			background-color: rgba(0,0,0,0.4);
+		}
+	}
+}
+
+.overlay {
+	position: fixed;
+	z-index: 10;
+
+	width: 100vw;
+	height: 100vh;
+
+	pointer-events: none;
+	transition: 0.2s;
+}
+
+.content {
+	width: 80%;
+	min-height: 80vh;
+
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 120px;
+
+	padding-top: 160px;
+
+	h3 {
+		width: 200px;
+
+		margin-bottom: 120px;
+		margin-left: auto;
+		margin-right: auto;
+
+		text-align: center;
+		padding-bottom: 1em;
+		border-bottom: 2px solid #cc452e;
+	}
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+h1 {
+	font-weight: 700;
+	font-size: 2.8em;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+h2 {
+	font-weight: 300;
+	font-size: 1.2em;
+}
+
+h3 {
+	font-weight: 300;
+	font-size: 1.8em;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+h4 {
+	font-weight: 300;
+	font-size: 1.4em;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+a {
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+form {
+	.group {
+		display: flex;
+	}
+
+	p {
+		width: 100%;
+		margin: 12px;
+		margin-left: 0px;
+
+		label,
+		input,
+		button {
+			display: block;
+
+			font-size: 1em;
+		}
+
+		input, textarea, button {
+			width: 100%;
+
+			padding: 0.4em 0.8em;
+
+			border: rgba(0, 0, 0, 0.1) 1px solid;
+			border-radius: 8pt;
+			background: rgba(0, 0, 0, 0.05);
+
+			&:focus {
+				outline: none;
+				border-color: rgba(0, 0, 0, 0.4);
+			}
+		}
+
+		textarea {
+			resize: none;
+		}
+
+		button {
+			margin-top: 2em;
+			background: #cc452e;
+			color: white;
+
+			&:focus {
+				border-color: #8a2817;
+			}
+		}
+
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+}

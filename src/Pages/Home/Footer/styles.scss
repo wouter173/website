@@ -1,0 +1,55 @@
+footer {
+	min-height: 600px;
+	height: 80vh;
+	overflow: hidden;
+
+	.wave {
+		height: 340px;
+		background: url("./waves.svg");
+		background-position: left bottom;
+	}
+
+	.footer-content {
+		height: 80vh;
+		background: #cc452e;
+		text-align: center;
+
+		h3 {
+			color: white;
+		}
+
+		a {
+			display: inline-block;
+
+			margin-top: 2vh;
+			padding: 0.6em 1em;
+
+			color: white;
+			text-decoration: none;
+
+			background: rgba(0,0,0,0.2);
+			border-radius: 8pt;
+
+			transition: 0.2s;
+
+			&:hover {
+				filter: brightness(0.8)
+			}
+		}
+
+		.icons {
+			padding-top: 16vh;
+
+			a {
+				margin: 0px 20px;
+				padding: 0px;
+
+				background: none;
+			}
+
+			path {
+				color: white;
+			}
+		}
+	}
+}

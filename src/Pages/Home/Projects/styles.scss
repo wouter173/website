@@ -1,0 +1,11 @@
+section#Projects {
+	background-color: white;
+
+	.content .projects {
+		display: grid;
+		grid-gap: 2em 2em;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+		margin-top: 60px;
+	}
+}

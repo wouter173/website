@@ -1,0 +1,42 @@
+.Modal {
+	position: relative;
+	height: 80vh;
+	width: 82vw;
+
+	margin-top: 16px;
+	margin-left: auto;
+	margin-right: auto;
+
+	background: white;
+	border-radius: 16pt;
+
+	pointer-events: all;
+	overflow: scroll;
+
+	.close-btn {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+	}
+
+	.title {
+		width: 10ch;
+
+		margin-left: 10%;
+
+		padding-top: 3em;
+
+		border-bottom: 2px solid #cc452e;
+	}
+
+	.content {
+		width: 80%;
+		min-height: auto;
+		
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: auto;
+
+		padding-top: 3em;
+	}
+}
