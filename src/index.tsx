@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, RouteProps } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Contact from './Pages/Contact';
-import Nav from './Shared/Nav';
+import Project from './Pages/Project';
+import Overlay from './Shared/Overlay';
 
 import "./main.scss";
 
@@ -14,22 +15,23 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <div className="overlay">
-            <Nav />
-          </div>
+          <Overlay nav/>
           <Home />
         </Route>
-        <Route path="/project/:id">
-          <div className="overlay">
-            <Nav />
-          </div>
-          <Home />
-        </Route>
+        <Route path="/project/:id" render={(props: RouteProps) => {
+          return (
+            <>
+              <Overlay>
+                <Project routeProps={props} />
+              </Overlay>
+              <Home />
+            </>
+          );
+          }} />
         <Route path="/contact">
-          <div className="overlay">
-            <Nav />
-            <Contact />
-          </div>
+          <Overlay>
+            <Contact/>
+          </Overlay>
           <Home />
         </Route>
       </Switch>

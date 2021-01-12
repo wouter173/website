@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { ReactNode } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import './styles.scss';
 
 interface props {
@@ -10,7 +11,13 @@ interface props {
 }
 
 export default function Scroller(props: props) {
+	const location = useLocation();
+	const history = useHistory();
+
 	const scrollTo = () => {
+		(() => location.pathname !== "/" ? history.push("/") : "")();
+		// I am fucking proud of how extremely shit the line above is
+
 		let offsetTop = document.getElementById(props.to)!.offsetTop;
 
 		scroll({

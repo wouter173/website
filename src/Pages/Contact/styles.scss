@@ -1,4 +1,18 @@
 #ContactPage {
+	.title {
+		width: 10ch;
+
+		margin-left: 0px;
+		margin-bottom: 4%;
+
+		padding-top: 1em;
+		padding-bottom: 0px;
+
+		border-bottom: 2px solid #cc452e;
+
+		text-align: left;
+	}
+
 	textarea {
 		height: calc(80vh - 28em);
 	}
