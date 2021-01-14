@@ -1,0 +1,22 @@
+#Overlay {
+	position: fixed;
+	z-index: 10;
+
+	width: 100vw;
+	height: 100vh;
+
+	pointer-events: none;
+	transition: background 0.2s;
+
+	.background {
+		z-index: -1;
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+
+		background-color: rgba(0,0,0,0.2);
+
+		pointer-events: all;
+		cursor: pointer;
+	}
+}

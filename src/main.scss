@@ -18,17 +18,6 @@ body {
 	}
 }
 
-.overlay {
-	position: fixed;
-	z-index: 10;
-
-	width: 100vw;
-	height: 100vh;
-
-	pointer-events: none;
-	transition: 0.2s;
-}
-
 .content {
 	width: 80%;
 	min-height: 80vh;
@@ -85,58 +74,5 @@ a {
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
-	}
-}
-
-form {
-	.group {
-		display: flex;
-	}
-
-	p {
-		width: 100%;
-		margin: 12px;
-		margin-left: 0px;
-
-		label,
-		input,
-		button {
-			display: block;
-
-			font-size: 1em;
-		}
-
-		input, textarea, button {
-			width: 100%;
-
-			padding: 0.4em 0.8em;
-
-			border: rgba(0, 0, 0, 0.1) 1px solid;
-			border-radius: 8pt;
-			background: rgba(0, 0, 0, 0.05);
-
-			&:focus {
-				outline: none;
-				border-color: rgba(0, 0, 0, 0.4);
-			}
-		}
-
-		textarea {
-			resize: none;
-		}
-
-		button {
-			margin-top: 2em;
-			background: #cc452e;
-			color: white;
-
-			&:focus {
-				border-color: #8a2817;
-			}
-		}
-
-		&:last-child {
-			margin-right: 0px;
-		}
 	}
 }

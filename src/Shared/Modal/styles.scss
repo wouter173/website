@@ -10,24 +10,8 @@
 	background: white;
 	border-radius: 16pt;
 
-	pointer-events: all;
 	overflow: scroll;
-
-	.close-btn {
-		position: absolute;
-		top: 16px;
-		right: 16px;
-	}
-
-	.title {
-		width: 10ch;
-
-		margin-left: 10%;
-
-		padding-top: 3em;
-
-		border-bottom: 2px solid #cc452e;
-	}
+	pointer-events: all;
 
 	.content {
 		width: 80%;
@@ -37,6 +21,10 @@
 		margin-right: auto;
 		margin-bottom: auto;
 
-		padding-top: 3em;
+		padding-top: 2%;
+
+		textarea {
+			min-height: 200px;
+		}
 	}
 }
