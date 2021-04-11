@@ -1,0 +1,69 @@
+section#contact {
+    background: url("wave.svg"), #070707;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-height: 100vh;
+
+    form {
+        display: grid;
+
+        grid-gap: 1.4em;
+
+        grid-template-rows: 60px 1fr 60px;
+        grid-template-columns: 1fr 1fr;
+
+        height: 60vh;
+
+        p {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: 10pt;
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+
+            input,
+            textarea,
+            button {
+                padding: 0.6em 0.8em;
+
+                background: #303030;
+                border: none;
+                border-radius: 4pt;
+
+                font-size: 12pt;
+
+                transition: 0.1s;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0px 0px 0px 2px #808080;
+                }
+
+                &.red {
+                    box-shadow: 0px 0px 0px 2px red;
+                }
+            }
+
+            textarea {
+                height: 100%;
+                resize: none;
+            }
+
+            button {
+                color: white;
+                background: var(--gradient);
+            }
+
+            button:focus, button:hover {
+                box-shadow: 0px 0px 0px 2px white;
+            }
+        }
+
+        p.message, p.submit {
+            grid-column: 1/3;
+        }
+    }
+}

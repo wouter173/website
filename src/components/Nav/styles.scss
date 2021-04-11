@@ -1,0 +1,25 @@
+nav {
+    position: fixed;
+    z-index: 10;
+
+    width: 200px;
+    right: 5vw;
+    top: 5vh;
+
+    ul {
+        display: flex;
+
+        list-style: none;
+
+        li {
+            display: inline-block;
+            width: 33%;
+
+            text-align: center;
+
+            a {
+                font-size: 12pt;
+            }
+        }
+    }
+}

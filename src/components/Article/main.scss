@@ -1,0 +1,30 @@
+#Article {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    overflow-y: scroll;
+
+    .bg {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.2);
+    }
+
+    main {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 101;
+
+        width: 65vw;
+        height: 100vh;
+
+        margin-top: 40px;
+        margin-bottom: 40px;
+
+        background: rgb(241, 229, 206);
+        border-radius: 12pt;
+    }
+}

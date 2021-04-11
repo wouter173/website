@@ -1,0 +1,105 @@
+header {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+    background: 
+        linear-gradient(#070707, rgba(2, 0, 36, 0.8)),
+        linear-gradient(-30deg, #02c75e, rgba(7,7,7,0.2)),
+        linear-gradient(30deg, red, rgba(7,7,7,0.2));
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .background {
+        .elem {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .one {
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+
+            background: linear-gradient(-45deg, rgb(16, 8, 8), black);
+        }
+
+        .two {
+            bottom: 200px;
+            right: 100px;
+
+            width: 200px;
+            height: 200px;
+
+            background: linear-gradient(45deg, rgb(16, 8, 16), black);
+        }
+
+        .three {
+            bottom: 100px;
+            left: 200px;
+
+            width: 300px;
+            height: 300px;
+
+            background: linear-gradient(120deg, rgb(8, 16, 16), black);
+        }
+    }
+
+    .heading {
+        position: absolute;
+        z-index: 3;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        text-align: center;
+    }
+
+    .scroller {
+        position: absolute;
+        z-index: 2;
+
+        top: 80%;
+        left: 50%;
+
+        width: 20px;
+        height: 30px;
+
+        transform: translate(-50%, -50%);
+
+        text-align: center;
+
+        .icon {
+            animation: bop 3s infinite;
+        }
+    }
+}
+
+@keyframes bop {
+    0% {
+        transform: translateY(0px);
+    }
+
+    10% {
+        transform: translateY(12px);
+    }
+
+    20% {
+        transform: translateY(0px);
+    }
+
+    30% {
+        transform: translateY(12px);
+    }
+
+    40% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}

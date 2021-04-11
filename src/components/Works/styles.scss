@@ -1,0 +1,12 @@
+section#works {
+    position: relative;
+    z-index: 3;
+
+    background-image: var(--gradient);
+
+    .projects {
+        width: 100%;
+        padding-top: 3em;
+        padding-bottom: 3em;
+    }
+}

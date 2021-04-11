@@ -1,0 +1,24 @@
+li.tag {
+    cursor: pointer;
+
+    a {
+        display: block;
+        margin: 2px;
+        padding: 0px 10px;
+
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10pt;
+
+        color: black;
+        line-height: 26px;
+        font-size: 10pt;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        span {
+            margin-right: 2px;
+        }
+    }
+}

@@ -1,0 +1,71 @@
+:root {
+    --gradient: linear-gradient(15deg, #e79b28, #e25a5a);
+    --gradient-reverse: linear-gradient(-15deg, #e25a5a, #e79b28);
+}
+
+#root {
+    max-height: 100vh;
+    overflow-y: scroll;
+    // scroll-snap-type: y proximity;
+
+    & > *:not(:first-child, :nth-child(3)) {
+        scroll-snap-align: start;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    font-family: "Roboto";
+    margin: 0px;
+    padding: 0px;
+    color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+
+    &:hover,
+    &.active {
+        text-decoration: underline;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "futura";
+}
+
+h1 {
+    font-size: 36pt;
+}
+
+h2 {
+    font-size: 28pt;
+}
+
+h3 {
+    font-size: 22pt;
+}
+
+section {
+    position: relative;
+    display: block;
+
+    min-height: 110vh;
+
+    .content {
+        width: 50%;
+
+        margin-left: auto;
+        margin-right: auto;
+
+
+        h2 {
+            padding-top: 2em;
+            margin-bottom: 2em;
+        }
+    }
+}

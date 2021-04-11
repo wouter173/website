@@ -1,0 +1,122 @@
+section#socials {
+    background: url("./wave.svg"), var(--gradient-reverse);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding-bottom: 100px;
+
+    .bubbles {
+        display: grid;
+
+        grid-template-columns: repeat(10, 5vw);
+        grid-template-rows: repeat(9, 5vw);
+
+        padding-bottom: 140px;
+
+        .bubble {
+            position: relative;
+            display: block;
+            width: 60%;
+            height: 60%;
+
+            align-self: center;
+            margin-left: auto;
+            margin-right: auto;
+
+            background: radial-gradient(white, #ededed);
+            border-radius: 50%;
+        }
+
+        a {
+            border: 5px solid white;
+            box-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+            animation: float 2s infinite;
+
+            svg {
+                font-size: 20pt;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                margin: 0px;
+
+                path {
+                    color: #1b1b1b;
+                }
+            }
+        }
+
+        .filler {
+            grid-column: 9/11;
+            grid-row: 6/8;
+
+            opacity: 0.6;
+
+            background: var(--gradient-reverse);
+        }
+
+        .filler2 {
+            grid-column: 1/4;
+            grid-row: 7/10;
+
+            opacity: 0.6;
+
+            background: var(--gradient-reverse);
+        }
+
+        .photo {
+            grid-column: 1/6;
+            grid-row: 1/6;
+
+            background-image: url("./also-me.jpeg");
+            background-size: cover;
+        }
+
+        .photo2 {
+            grid-column: 6/9;
+            grid-row: 4/7;
+
+            background-image: url("./me.jpeg");
+            background-size: cover;
+        }
+
+        .github {
+            grid-column: 7/8;
+            grid-row: 2/3;
+
+            animation-delay: 1s;
+        }
+        
+        .discord {
+            grid-column: 9/10;
+            grid-row: 3/4;
+
+            animation-delay: 1.5s;
+        }
+
+        .mail {
+            grid-column: 3/4;
+            grid-row: 6/7;
+        }
+
+        .instagram {
+            grid-column: 5/6;
+            grid-row: 8/9;
+
+            animation-delay: 0.5s;
+        }
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-2px);
+    }
+}
