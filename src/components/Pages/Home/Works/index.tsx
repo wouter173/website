@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Project from '../Project';
 
-import { project } from '../types';
+import { project } from '../../../Shared/types';
 import './styles.scss';
 
 export default function Works() {

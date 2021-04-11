@@ -2,7 +2,7 @@ import React from 'react';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Canvas } from 'react-three-fiber';
-import Scroller from '../Scroller';
+import Scroller from '../../../Shared/Scroller';
 import Planet from './Planet';
 import Cam from './Cam';
 import './styles.scss';

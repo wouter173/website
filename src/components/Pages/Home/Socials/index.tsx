@@ -1,7 +1,7 @@
 import { faDiscord, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import Link from '../Link';
+import Link from '../../../Shared/Link';
 import './styles.scss';
 
 export default function Socials() {

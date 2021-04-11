@@ -1,9 +1,12 @@
+import React from 'react';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faFileAlt } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
-import Link from '../Link';
+
 import Tag, {TagProps} from '../Tag';
-import { links } from '../types';
+
+import Link from '../../../Shared/Link';
+import { links } from '../../../Shared/types';
+
 import './styles.scss';
 
 type Props = {

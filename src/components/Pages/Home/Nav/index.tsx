@@ -1,5 +1,5 @@
 import React from 'react';
-import Scroller from '../Scroller';
+import Scroller from '../../../Shared/Scroller';
 import './styles.scss';
 
 export default function Nav() {

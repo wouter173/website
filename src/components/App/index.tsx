@@ -1,27 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 
-import Socials from '../Socials';
-import Bubble from '../Sunrise';
-import Contact from '../Contact';
-import Footer from '../Footer';
-import Header from '../Header';
-import Nav from '../Nav';
-import Works from '../Works';
-import Article from '../Article';
-
-
-const Home = () => (
-	<>
-		<Nav />
-		<Header />
-		<Bubble />
-		<Works />
-		<Socials />
-		<Contact />
-		<Footer />
-	</>
-);
+import Home from '../Pages/Home';
+import Article from '../Pages/Article';
 
 export default function App() {
 	return (
