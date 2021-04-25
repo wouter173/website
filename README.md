@@ -1,7 +1,8 @@
 <p align="center">
 	<img src="./public/favicon.png" alt="logo" width="100px" height="100px"/><br>
-	<b>Wouter de Bruijn's personal <a href="wouterdb.nl">website</a>.</b><br>
+	<b>Wouter de Bruijn's personal <a href="https://wouterdb.nl">website</a>.</b><br>
 	<small>wouterdb.nl</small><br><br>
+	[![Netlify Status](https://api.netlify.com/api/v1/badges/de725d1b-58ea-4b60-bb05-f1eb1282d95c/deploy-status)](https://app.netlify.com/sites/wouter173/deploys)
 </p>
 
 # Technology stack
