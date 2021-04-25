@@ -1,4 +1,19 @@
-## todo
+<p align="center">
+	<img src="./public/favicon.png" alt="logo" width="100px" height="100px"/><br>
+	<b>Wouter de Bruijn's personal <a href="wouterdb.nl">website</a>.</b><br>
+	<small>wouterdb.nl</small><br><br>
+</p>
+
+# Technology stack
+
+- <a href="https://www.typescriptlang.org/">Typescript</a>
+- <a href="https://www.netlify.com/">Netlify</a>
+- <a href="https://reactjs.org/">React</a>
+- <a href="https://sass-lang.com/">Sass</a>
+- <a href="https://fontawesome.com/">Fontawesome</a>
+
+
+# todo
 - [x] icons and text is not aligned vertically on the project element.
 - [x] canvas the header background.
 - [x] fix the scroll nav underline
@@ -26,7 +41,7 @@ long term
 - [ ] learn how to model
 - [ ] add a loading screen thingy
 
-## commands
+# commands
 ```sh
 yarn start
 ```
