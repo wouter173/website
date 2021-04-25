@@ -7,12 +7,12 @@
         position: absolute;
         z-index: 2;
 
-        width: 200px;
-        height: 200px;
+        width: 100vw;
+        height: 100vw;
         left: 50%;
         transform: translate(-50%, -50%) scale(0);
 
-        background: linear-gradient(90deg, #e36552, #e25a5a);
+        background: linear-gradient(90deg, #e36d4b, #e25a5a);
         border-radius: 50%;
     }
 }

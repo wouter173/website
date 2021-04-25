@@ -1,8 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
+import MediaContext from '../../../Shared/Context/MediaContext';
 import { encode } from './events';
 import './styles.scss';
 
 export default function Contact() {
+	const media = useContext(MediaContext);
+	const root: HTMLDivElement = document.querySelector('#root')!;
+
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [message, setMessage] = useState<string>('');
@@ -11,18 +15,25 @@ export default function Contact() {
 	const emailRef = useRef<HTMLInputElement>(null);
 	const messageRef = useRef<HTMLTextAreaElement>(null);
 
-	const baduwu = (ref: HTMLElement) => {
+	const bad = (ref: HTMLElement) => {
 		ref.classList.add('red');
 
 		window.setTimeout(() => {
 			ref.classList.remove('red');
 		}, 500);
+
+		if (media.isMobile) {
+			root.scrollTo({
+				behavior: 'smooth',
+				top: (document.querySelector('#contact') as HTMLDivElement).offsetTop
+			});
+		}
 	};
 
 	const submit = () => {
-		if ( name == '' ) { baduwu(nameRef.current!); return; }
-		if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { baduwu(emailRef.current!); return; }
-		if ( message == '' ) { baduwu(messageRef.current!); return; }
+		if ( name == '' ) { bad(nameRef.current!); return; }
+		if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { bad(emailRef.current!); return; }
+		if ( message == '' ) { bad(messageRef.current!); return; }
 
 		fetch('/', {
 			method: 'POST',

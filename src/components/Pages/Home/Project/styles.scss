@@ -1,80 +1,142 @@
 article.project {
-    --inset: 12px;
+	display: grid;
+	box-sizing: border-box;
 
-    display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas: 
+		"thumb details"
+		"thumb details";
 
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "thumb details";
+	height: 400px;
 
-    height: 400px;
+	margin-top: 20px;
+	margin-bottom: 80px;
 
-    margin-top: 20px;
-    margin-bottom: 80px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 10pt;
 
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10pt;
+	overflow: hidden;
+	transition: 0.2s;
 
-    overflow: hidden;
+	&.animating {
+		animation: "morph-project" 500ms 250ms forwards;
+	}
 
-    &:nth-child(2n) {
-        grid-template-areas: "details thumb";
-    }
+	&:nth-child(2n) {
+		grid-template-areas: "details thumb";
+	}
 
-    .thumb {
-        grid-area: thumb;
-        background-size: cover;
-        background-position: center center;
-    }
+	.thumb {
+		grid-area: thumb;
+		background-size: cover;
+		background-position: center center;
 
-    .details {
-        grid-area: details;
-        position: relative;
+		clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+		transition: 0.2s;
 
-        margin: 3.6em;
+		&.animating {
+			animation: "morph-thumb" 250ms forwards;
+		}
+	}
 
-        h3 {
-            margin-bottom: 6px;
-        }
+	h2 {
+		margin-bottom: 0px !important;
+		padding-top: 0px !important;
+	}
 
-        p {
-            margin-bottom: 18px;
-        }
+	.details {
+		grid-area: details;
+		position: relative;
 
-        ul.links {
-            display: inline-flex;
-            list-style: none;
+		margin: 3.6em;
 
-            height: 20px;
-            line-height: 20px;
+		transition: 0.2s;
 
-            li:not(:first-child) ::before{
-                content: "|";
-                color: rgba(255, 255, 255, 0.6);
+		&.animating {
+			animation: "morph-details" 500ms forwards;
+		}
 
-                margin-left: 6px;
-                margin-right: 6px;
-            }
-        }
+		h3 {
+			margin-bottom: 6px;
+		}
 
-        span.read {
-            display: block;
+		p {
+			margin-bottom: 18px;
+		}
 
-            margin-top: 28px;
-            margin-bottom: 10px;
-            font-size: 1em;
-        }
+		ul.links {
+			display: inline-flex;
+			list-style: none;
 
-        ul.tags {
-            position: absolute;
-            display: flex;
-            flex-wrap: wrap;
+			height: 20px;
+			line-height: 20px;
 
-            height: auto;
+			li:not(:first-child) ::before{
+				content: "|";
+				color: rgba(255, 255, 255, 0.6);
 
-            bottom: 0px;
+				margin-left: 6px;
+				margin-right: 6px;
+			}
+		}
 
-            list-style: none;
-        }
-    }
+		span.read {
+			display: block;
+
+			margin-top: 28px;
+			margin-bottom: 10px;
+			font-size: 1em;
+		}
+
+		ul.tags {
+			position: absolute;
+			display: flex;
+			flex-wrap: wrap;
+
+			height: auto;
+
+			bottom: 0px;
+
+			list-style: none;
+		}
+	}
+
+	@keyframes morph-project {
+		to {
+			background: rgba(255, 255, 255, 1);
+			border: 5px solid white;
+			height: 560px;
+		} 
+	}
+
+	@keyframes morph-details {
+		to {
+			opacity: 0%;
+		}
+	}
+
+	@keyframes morph-thumb {
+		to {
+			clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+		}
+	}  
+}
+
+@media only screen and (max-width: 1224px) {
+	article.project {
+		grid-template-areas: 
+			"thumb thumb" 
+			"details details";
+
+		height: 600px;
+
+		.details {
+			margin: 2.8em;
+
+			ul.tags li a {
+				font-size: 8pt;
+			}
+		}
+	}
 }

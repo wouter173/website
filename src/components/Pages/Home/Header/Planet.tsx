@@ -1,12 +1,14 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { MeshStandardMaterialProps, Vector3 } from 'react-three-fiber';
 import { Mesh } from 'three';
-import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
+import MediaContext from '../../../Shared/Context/MediaContext';
 
 type Props = {
-	url: string;
+	mesh: GLTF;
 	scale?: Vector3;
 	position?: Vector3;
+	rotation?: number[];
 	sealevel?: number;
 	seaProps?: MeshStandardMaterialProps;
 	ozonlevel?: number;
@@ -15,48 +17,35 @@ type Props = {
 
 export default function Planet(props: Props) {
 	const sea = useRef<Mesh>();
-	const [mesh, setMesh] = useState<GLTF>();
-
-	console.log('bruh');
-
-	useMemo(() => new GLTFLoader().load(props.url, (mesh) => {
-		mesh.scene.traverse((node: any) => {
-			if (node.isMesh) node.castShadow = true;
-			if (node.isMesh) node.recieveShadow = true;
-		});
-		setMesh(mesh);
-	}), [props.url]);
+	const media = useContext(MediaContext);
+	const root: HTMLDivElement = document.querySelector('#root')!;
 	
 
 	useEffect(() => {
-		if (mesh && sea.current && props.sealevel !== 0) {
-			tickWithSea();
-		}
+		if (media.isMobile) root.addEventListener('scroll', scrollHandler);
+		tick();
 
-		if (mesh && props.sealevel == 0) {
-			tickWithoutSea();
-		}
-	}, [mesh, sea]);
+		return () => {
+			if (media.isMobile) root.removeEventListener('scroll', scrollHandler);
+		};
+	}, [props.mesh]);
 
-	const tickWithSea = () => {
-		mesh!.scene.rotation.y += 0.002;
-		mesh!.scene.rotation.x += 0.001;
-		sea.current!.rotation.y += 0.002;
-		sea.current!.rotation.x += 0.001;
-
-		requestAnimationFrame(tickWithSea);
+	const scrollHandler = () => {
+		props.mesh && sea.current && (props.mesh.scene.rotation.x += Math.min(root.scrollTop / 5000, 0.1));
 	};
 
-	const tickWithoutSea = () => {
-		mesh!.scene.rotation.y += 0.002;
-		mesh!.scene.rotation.x += 0.001;
+	const tick = () => {
+		props.mesh && sea.current && (props.mesh.scene.rotation.y += 0.002);
+		props.mesh && sea.current && (props.mesh.scene.rotation.x += 0.001);
+		props.mesh && sea.current && (sea.current.rotation.y += 0.002);
+		props.mesh && sea.current && (sea.current.rotation.x += 0.001);
 
-		requestAnimationFrame(tickWithoutSea);
+		requestAnimationFrame(tick);
 	};
 
 
-	return mesh? <>
-		<primitive position={props.position || [0, 0, 0]} object={mesh.scene} scale={props.scale}/>
+	return props.mesh? <>
+		<primitive position={props.position || [0, 0, 0]} rotation={props.rotation || [0, 0, 0]} object={props.mesh.scene} scale={props.scale}/>
 		{props.sealevel !== 0 && 
 			<mesh position={props.position || [0, 0, 0]} ref={sea} scale={props.scale}>
 				<sphereBufferGeometry args={[props.sealevel || 0.984, 20, 20]}/>

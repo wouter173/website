@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
-import Tag, {TagProps} from '../Tag';
+import Tag, {TagProps} from '../../../Shared/Tag';
 
 import Link from '../../../Shared/Link';
 import { links } from '../../../Shared/types';
@@ -19,15 +19,34 @@ type Props = {
 }
 
 export default function Project(props: Props) {
+	const projectRef = useRef<HTMLDivElement>(null);
+	const [animating, setAnimating] = useState<Boolean>(false);
+
+	const animate = (): Promise<void> => {
+		const root: HTMLDivElement = document.querySelector('#root')!;
+		const works: HTMLDivElement = document.querySelector('#works')!; 
+
+		return new Promise((res) => {
+			setTimeout(() => res(), 750);
+
+			setAnimating(true);
+
+			root!.scrollTo({
+				top: projectRef.current!.offsetTop + works.offsetTop - 100,
+				behavior: 'smooth',
+			});
+		});
+	};
+
 	return (
-		<article className={'project'}>
-			<div className="thumb" style={{backgroundImage: `url("${props.thumb}")`}}></div>
-			<div className="details">
-				<h3>{props.name}</h3>
+		<article className={`project ${animating? 'animating': ''}`} ref={projectRef}>
+			<div className={`thumb ${animating? 'animating': ''}`} style={{backgroundImage: `url("${props.thumb}")`}}></div>
+			<div className={`details ${animating? 'animating': ''}`}>
+				<h2>{props.name}</h2>
 				<p>{props.description}</p>
 
 				{ props.url && <span className="read">
-					<Link router url={'/project/' + props.url} icon={faFileAlt}>Read more...</Link>
+					<Link animate={animate} url={'/project/' + props.url} icon={faFileAlt}>Read more...</Link>
 				</span> }
 
 				<ul className="links">

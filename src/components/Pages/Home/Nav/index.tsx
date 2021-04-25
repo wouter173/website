@@ -2,9 +2,13 @@ import React from 'react';
 import Scroller from '../../../Shared/Scroller';
 import './styles.scss';
 
-export default function Nav() {
+type Props = {
+	hidden: boolean;
+}
+
+export default function Nav(props: Props) {
 	return (
-		<nav>
+		<nav style={{display: props.hidden? 'none': 'block'}}>
 			<ul>
 				<li>
 					<Scroller target="works" underline>

@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Project from '../Project';
-
-import { project } from '../../../Shared/types';
+import ProjectsContext from '../../../Shared/Context/ProjectsContext';
 import './styles.scss';
 
 export default function Works() {
-	const [projects, setProjects] = useState<project[]>([]);
-
-	useEffect(() => {
-		fetch('https://projects.wouter.cloud/')
-			.then(data => data.json())
-			.then(json => setProjects(json));
-	}, []);
+	const projects = useContext(ProjectsContext);
 
 	return (
 		<section id="works">

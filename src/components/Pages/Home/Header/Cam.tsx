@@ -8,12 +8,12 @@ export default function Cam() {
 
 	let offset: {x: number, y: number} = {x: 0, y: 0};
 	const multiplier = 100;
-
+	
 	window.addEventListener('mousemove', ({clientX, clientY}) => {
 		// a bit shit but works
 		offset = {x: (clientX - window.innerWidth / 2) / ( window.innerWidth * multiplier) , y: (clientY - window.innerHeight / 2) / (window.innerHeight * multiplier)};
 	});
-	
+
 	useEffect(() => {
 		setDefaultCamera(ref.current!);
 	}, [ref]);
@@ -24,6 +24,6 @@ export default function Cam() {
 	});
 
 	return (
-		<perspectiveCamera rotation={[0, 0, 0]} position={[0,0,6]} ref={ref} far={10000}/>
+		<perspectiveCamera rotation={[0, 0, 0]} position={[0,0,6]} ref={ref} far={10000} fov={50}/>
 	);
 }

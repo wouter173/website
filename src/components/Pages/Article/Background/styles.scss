@@ -1,0 +1,73 @@
+.bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: var(--gradient);
+
+    span {
+        position: absolute;
+        display: block;
+        
+        width: 200px;
+        height: 200px;
+
+        opacity: 0.3;
+        background: var(--gradient-reverse);
+        border-radius: 14pt;
+
+        animation: "fade" 1s forwards;
+
+        &:nth-child(1) {
+            height: 220px;
+            width: 220px;
+
+            bottom: -60px;
+            right: 40px;
+
+            
+        }
+
+        &:nth-child(2) {
+            height: 400px;
+            width: 400px;
+
+            bottom: 300px;
+            right: -100px;
+
+            background: var(--gradient);
+        }
+
+        &:nth-child(3) {
+            height: 320px;
+            width: 320px;
+
+            bottom: -40px;
+            left: -20px;
+        }
+
+        &:nth-child(4) {
+            top: 20px;
+            left: -40px;
+
+            background: var(--gradient);
+        }
+
+        &:nth-child(5) {
+            height: 160px;
+            width: 160px;
+
+            bottom: 200px;
+            left: 400px;
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 0.4;
+        }
+    }
+}

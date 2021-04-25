@@ -1,15 +1,16 @@
 :root {
     --gradient: linear-gradient(15deg, #e79b28, #e25a5a);
     --gradient-reverse: linear-gradient(-15deg, #e25a5a, #e79b28);
+    --text-dark: #1b1b1b;
+    --text-light: white;
 }
 
 #root {
     max-height: 100vh;
     overflow-y: scroll;
-    // scroll-snap-type: y proximity;
 
-    & > *:not(:first-child, :nth-child(3)) {
-        scroll-snap-align: start;
+    &.noscroll {
+        overflow: hidden;
     }
 }
 
@@ -21,11 +22,11 @@ html {
     font-family: "Roboto";
     margin: 0px;
     padding: 0px;
-    color: white;
+    color: var(--text-light);
 }
 
 a {
-    color: white;
+    color: var(--text-light);
     text-decoration: none;
 
     &:hover,
@@ -39,15 +40,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 36pt;
+    font-size: 2em;
 }
 
 h2 {
-    font-size: 28pt;
+    font-size: 1.6em;
 }
 
 h3 {
-    font-size: 22pt;
+    font-size: 1.2em;
 }
 
 section {
@@ -57,7 +58,7 @@ section {
     min-height: 110vh;
 
     .content {
-        width: 50%;
+        width: 50vw;
 
         margin-left: auto;
         margin-right: auto;
@@ -67,5 +68,11 @@ section {
             padding-top: 2em;
             margin-bottom: 2em;
         }
+    }
+}
+
+@media only screen and (max-width: 1224px) {
+    section .content {
+        width: 90vw;
     }
 }

@@ -11,42 +11,6 @@ header {
     background-size: cover;
     background-repeat: no-repeat;
 
-    .background {
-        .elem {
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .one {
-            top: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-
-            background: linear-gradient(-45deg, rgb(16, 8, 8), black);
-        }
-
-        .two {
-            bottom: 200px;
-            right: 100px;
-
-            width: 200px;
-            height: 200px;
-
-            background: linear-gradient(45deg, rgb(16, 8, 16), black);
-        }
-
-        .three {
-            bottom: 100px;
-            left: 200px;
-
-            width: 300px;
-            height: 300px;
-
-            background: linear-gradient(120deg, rgb(8, 16, 16), black);
-        }
-    }
-
     .heading {
         position: absolute;
         z-index: 3;
@@ -56,6 +20,8 @@ header {
         transform: translate(-50%, -50%);
 
         text-align: center;
+
+        font-size: 14pt;
     }
 
     .scroller {
@@ -101,5 +67,11 @@ header {
 
     100% {
         transform: translateY(0px);
+    }
+}
+
+@media only screen and (max-width: 1224px) {
+    header .heading {
+        top: 40%;
     }
 }
