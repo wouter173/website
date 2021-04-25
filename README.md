@@ -34,6 +34,7 @@
 - [x] scroll on mobile to the error on the contact page when one occurs, IE wrong emailadres or empty field 
 
 long term
+- [ ] add form submit animation
 - [ ] maybe add a cool animation from the article page to home
 - [ ] fix that navbar underlines still work after getting back to home from a project
 - [ ] add a cool aside in the article page with other projects
