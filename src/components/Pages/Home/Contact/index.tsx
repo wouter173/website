@@ -42,6 +42,10 @@ export default function Contact() {
 		if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { annotate(emailRef.current!); return; }
 		if ( message == '' ) { annotate(messageRef.current!); return; }
 
+		setName('');
+		setEmail('');
+		setMessage('');
+
 		setAwesome(true);
 		window.setTimeout(() => setLoading(true), 200);
 
@@ -54,10 +58,6 @@ export default function Contact() {
 				'message': message
 			})
 		}).then(() => {
-			setName('');
-			setEmail('');
-			setMessage('');
-			
 			window.setTimeout(() => {
 				setDone(true);
 			}, 1000);
