@@ -54,6 +54,10 @@ export default function Contact() {
 				'message': message
 			})
 		}).then(() => {
+			setName('');
+			setEmail('');
+			setMessage('');
+			
 			window.setTimeout(() => {
 				setDone(true);
 			}, 1000);
@@ -62,10 +66,6 @@ export default function Contact() {
 				setLoading(false);
 				setDone(false);
 			}, 2000);
-
-			setName('');
-			setEmail('');
-			setMessage('');
 
 			window.setTimeout(() => {
 				setAwesome(false);
