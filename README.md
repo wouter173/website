@@ -35,6 +35,8 @@
 - [x] scroll on mobile to the error on the contact page when one occurs, IE wrong emailadres or empty field 
 
 long term
+- [ ] limit the textarea in the form
+- [ ] set a better default font
 - [ ] add form submit animation
 - [ ] maybe add a cool animation from the article page to home
 - [ ] fix that navbar underlines still work after getting back to home from a project

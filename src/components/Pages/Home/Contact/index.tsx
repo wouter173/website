@@ -1,3 +1,5 @@
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useRef, useState } from 'react';
 import MediaContext from '../../../Shared/Context/MediaContext';
 import { encode } from './events';
@@ -14,8 +16,13 @@ export default function Contact() {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const emailRef = useRef<HTMLInputElement>(null);
 	const messageRef = useRef<HTMLTextAreaElement>(null);
+	const submitRef = useRef<HTMLButtonElement>(null);
 
-	const bad = (ref: HTMLElement) => {
+	const [done, setDone] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [awesome, setAwesome] = useState<boolean>(false);
+
+	const annotate = (ref: HTMLElement) => {
 		ref.classList.add('red');
 
 		window.setTimeout(() => {
@@ -31,26 +38,38 @@ export default function Contact() {
 	};
 
 	const submit = () => {
-		if ( name == '' ) { bad(nameRef.current!); return; }
-		if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { bad(emailRef.current!); return; }
-		if ( message == '' ) { bad(messageRef.current!); return; }
+		if ( name == '' ) { annotate(nameRef.current!); return; }
+		if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { annotate(emailRef.current!); return; }
+		if ( message == '' ) { annotate(messageRef.current!); return; }
 
-		fetch('/', {
+		setAwesome(true);
+		window.setTimeout(() => setLoading(true), 200);
+
+		fetch('https://form.wouter.cloud', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: encode({
-				'form-name': 'contact',
 				'name': name,
 				'email': email,
 				'message': message
 			})
-		}).then(res => {
-			res.json();
-		}).then(json => {
-			console.log(json);
+		}).then(() => {
+			window.setTimeout(() => {
+				setDone(true);
+			}, 1000);
+
+			window.setTimeout(() => {
+				setLoading(false);
+				setDone(false);
+			}, 2000);
+
 			setName('');
 			setEmail('');
 			setMessage('');
+
+			window.setTimeout(() => {
+				setAwesome(false);
+			}, 2200);
 		}).catch(err => {
 			console.log(err);
 		});
@@ -77,7 +96,15 @@ export default function Contact() {
 					</p>
 
 					<p className="submit">
-						<button type="submit">Hit me up</button>
+						<button ref={submitRef} type="submit" className={`${done? 'done': ''} ${loading? 'loading':''} ${awesome? 'awesome': ''}`}>
+							Hit me up
+							<div className="spinner">
+								<div className="rotater"></div>
+							</div>
+							<div className="overlay">
+								{done? <FontAwesomeIcon icon={faCheck}/>: <></>}
+							</div>
+						</button>
 					</p>
 				</form>
 			</div>
