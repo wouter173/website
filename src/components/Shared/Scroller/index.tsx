@@ -10,7 +10,6 @@ type Props = {
 
 type State = {
 	target: HTMLDivElement | null;
-	root: HTMLDivElement | null;
 	underlined: boolean;
 }
 
@@ -20,26 +19,24 @@ export default class Scroller extends Component<Props, State> {
 
 		this.state = {
 			target: document.querySelector(`#${props.target}`)!,
-			root: document.querySelector('#root')!,
 			underlined: false,
 		};
 	}
 
 	componentDidMount() {
 		if (this.props.underline) {
-			this.state.root!.addEventListener('scroll', this.scrollHandler.bind(this));
+			window.addEventListener('scroll', this.scrollHandler.bind(this));
 		}
 	}
 
 	componentWillUnmount() {
 		if (this.props.underline) {
-			this.state.root!.removeEventListener('scroll', this.scrollHandler.bind(this));
+			window.removeEventListener('scroll', this.scrollHandler.bind(this));
 		}
 	}
 
 	scrollHandler() {
 		const target = this.state.target!;
-		const root = this.state.root!;
 
 		if(target === null) {
 			return this.setState({
@@ -47,7 +44,7 @@ export default class Scroller extends Component<Props, State> {
 			});
 		}
 
-		if ( root.scrollTop >= target.offsetTop && root.scrollTop < target.offsetTop + target.scrollHeight ) {
+		if ( window.scrollY >= target.offsetTop && window.scrollY < target.offsetTop + target.scrollHeight ) {
 			this.setState({underlined: true});
 		} else {
 			this.setState({underlined: false});
@@ -55,9 +52,7 @@ export default class Scroller extends Component<Props, State> {
 	}
 
 	clickHandler() {
-		const root: HTMLDivElement = document.querySelector('#root')!;
-
-		root!.scrollTo({
+		window.scrollTo({
 			top: document.getElementById(this.props.target)!.offsetTop + 1,
 			behavior: 'smooth',
 		});

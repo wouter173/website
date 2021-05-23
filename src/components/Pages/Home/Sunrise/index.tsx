@@ -7,10 +7,9 @@ export default function Sunrise() {
 	const media = useContext(MediaContext);
 
 	useEffect(() => {
-		const root: HTMLDivElement = document.querySelector('#root')!;
-		
-		media.isDesktop && root.addEventListener('scroll', () => {
-			const width = (root.scrollTop / root.clientWidth * 6);
+		media;
+		window.addEventListener('scroll', () => {
+			const width = (window.scrollY / window.innerWidth * 6);
 			setSize(width > 1.2? 1.2: width);
 		});
 	}, []);

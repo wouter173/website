@@ -23,7 +23,6 @@ export default function Project(props: Props) {
 	const [animating, setAnimating] = useState<Boolean>(false);
 
 	const animate = (): Promise<void> => {
-		const root: HTMLDivElement = document.querySelector('#root')!;
 		const works: HTMLDivElement = document.querySelector('#works')!; 
 
 		return new Promise((res) => {
@@ -31,7 +30,7 @@ export default function Project(props: Props) {
 
 			setAnimating(true);
 
-			root!.scrollTo({
+			window.scrollTo({
 				top: projectRef.current!.offsetTop + works.offsetTop - 100,
 				behavior: 'smooth',
 			});

@@ -15,24 +15,9 @@
 
 
 # todo
-- [x] icons and text is not aligned vertically on the project element.
-- [x] canvas the header background.
-- [x] fix the scroll nav underline
-- [x] contact input sanitasion
-- [x] bruh letterlijk alle  scroll shit is kapot
-- [x] maek the more info button on the projects cool
-- [x] fix the dumb sea.current is undefined issue
-- [x] cool animation for article page
-- [x] disable root scroll on article page
-- [x] fix smooth scroll on safari
-- [x] fix the weird pixelation problem with the sunrise in safari
-- [x] maek responsive
-- [x] optimise the project and planet model loading with a global state manager or somn
-- [x] add the contact form to html
-- [x] build da article page: background is shit atm
-- [x] fix the gradient line between the header sunrise and the works page
-- [x] add the right thingies for a cool embed in discord and SEO shit
-- [x] scroll on mobile to the error on the contact page when one occurs, IE wrong emailadres or empty field 
+- [x] set fallback font
+- [x] fix thumbnail scaling
+- [x] scroll on <html>
 
 long term
 - [ ] limit the textarea in the form
