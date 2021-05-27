@@ -1,37 +1,37 @@
-import React, { useContext } from 'react';
-import { ResizeObserver } from '@juggle/resize-observer';
+import React, { useContext, useEffect, useState } from 'react';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Canvas } from 'react-three-fiber';
+
 import Scroller from '../../../Shared/Scroller';
-import Planet from './Planet';
-import Cam from './Cam';
 import './styles.scss';
-import { Color } from 'three';
+
+import earthish from './planets/earthish.png';
+import dark from './planets/dark.png';
+import ice from './planets/ice.png';
 import MediaContext from '../../../Shared/Context/MediaContext';
-import PlanetsContext from '../../../Shared/Context/PlanetsContext';
 
 export default function Header() {
+
+	const TOTAL = 50;
+	const [pos, setPos] = useState<{x: number, y: number}>({x:0,y:0});
 	const media = useContext(MediaContext);
-	const planets = useContext(PlanetsContext);
+
+	useEffect(() => {
+		document.addEventListener('mousemove', mouse => {
+			setPos({
+				x: (TOTAL - (mouse.clientX - window.innerWidth/2) * 0.01), 
+				y: (TOTAL - (mouse.clientY - window.innerHeight/2) * 0.01)
+			});
+		});
+	}, []);
 
 	return (
 		<header>
-			<Canvas className="background" concurrent resize={{polyfill: ResizeObserver}}>
-				<Cam />
-				<ambientLight color={0x00C4e7} intensity={0.2} castShadow/>
-				<spotLight position={[0, 0, 100]} color={0xf5d88c} castShadow/>
-
-				<Planet position={media.isDesktop? [3, -1, 1]: [0, -1.2, 4]} rotation={[90, 16, 120]} mesh={planets[0]} />
-
-				{ media.isDesktop && <Planet
-					mesh={planets[1]}
-					position={[-6, -2, -4]}
-					sealevel={0.973} 
-					seaProps={{color: 0xb8751f, emissive: new Color(0xff8400)}} 
-					ozonProps={{color: 0xb8751f }} 
-				/>}
-			</Canvas>
+			<div className="background">
+				<img src={dark} alt="" style={media.isDesktop? {left: 40 - pos.x/3 +'px', top: 40 - pos.y/3 +'px'}: {left: '10px', top: '30px', width: '140px'}}/>
+				<img src={ice} alt="" style={media.isDesktop?{right: 200 + pos.x/6 + 'px', top: 100 - pos.y/6 + 'px', width: '300px'}: {right: '0px', top: '70px', width: '200px'}}/> {/*: {right: '-210px', bottom: '-100px', width: '800px'}}/>*/}
+				<img src={earthish} alt="" style={ media.isDesktop? {right: -80 + pos.x + 'px', bottom: -20 + pos.y + 'px', width: '1000px'}: {right: '-210px', bottom: '-100px', width: '800px'}}/>
+			</div>
 
 			<div className="heading">
 				<h1>Hi, I&apos;m Wouter&#8230;</h1>

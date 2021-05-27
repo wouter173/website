@@ -1,5 +1,6 @@
 header {
     position: relative;
+    overflow: hidden;
 
     width: 100vw;
     height: 100vh;
@@ -10,6 +11,21 @@ header {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
+    .background {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        // background-image: url("./lines.svg");
+        background-position: bottom right;
+        background-size: 1200px;
+        background-repeat: no-repeat;
+
+        img {
+            position: absolute;
+            width: 400px;
+        }
+    }
 
     .heading {
         position: absolute;
