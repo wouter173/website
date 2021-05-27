@@ -13,7 +13,6 @@ export default function App() {
 					<Route path="/project/:id" render={routeProps => (
 						<>
 							<Article routeProps={routeProps} />
-							<Home />
 						</>
 					)} /> 
 
