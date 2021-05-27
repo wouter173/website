@@ -13,6 +13,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-syntax-highlighter": "^13.5.0",
     "@types/smoothscroll-polyfill": "^0.3.1",
+    "react": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-markdown": "^5.0.3",
     "react-responsive": "^8.2.0",
