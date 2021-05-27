@@ -5,12 +5,12 @@ import './styles.scss';
 export default function Sunrise() {
 	const [size, setSize] = useState<number>(0);
 	const media = useContext(MediaContext);
+	const max = media.isDesktop? 1.2: 3;
 
 	useEffect(() => {
-		media;
 		window.addEventListener('scroll', () => {
 			const width = (window.scrollY / window.innerWidth * 6);
-			setSize(width > 1.2? 1.2: width);
+			setSize(width > max? max: width);
 		});
 	}, []);
 
