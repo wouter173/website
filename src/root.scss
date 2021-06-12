@@ -16,6 +16,10 @@
     color: var(--text-light);
 }
 
+body {
+    overflow-x: hidden
+}
+
 a {
     color: var(--text-light);
     text-decoration: none;
