@@ -5,11 +5,12 @@ import {Link as RouterLink, useHistory} from 'react-router-dom';
 import './styles.scss';
 
 type Props = {
-	url: string;
+	url?: string;
 	className?: string;
 	icon?: IconProp;
 	children?: ReactNode;
 	router?: boolean;
+	back?: boolean;
 	animate? : () => Promise<void>;
 }
 
@@ -27,7 +28,7 @@ export default function Link(props: Props) {
 	if (props.animate) return (
 		<a className={`${props.className? props.className: ''} link`} onClick={() => {
 			props.animate!().then(() => {
-				history.push(props.url);
+				history.push(props.url!);
 			});
 		}}>
 			<Body {...props} />
@@ -35,9 +36,15 @@ export default function Link(props: Props) {
 	);
 
 	else if (props.router) return (
-		<RouterLink to={props.url} className={`${props.className? props.className: ''} link`}>
+		<RouterLink to={props.url!} className={`${props.className? props.className: ''} link`}>
 			<Body {...props} />
 		</RouterLink>
+	);
+
+	else if (props.back) return (
+		<a className={`${props.className? props.className: ''} link`} onClick={() => {history.goBack();}}>
+			<Body {...props} />
+		</a>
 	);
 
 	else return (

@@ -45,10 +45,9 @@ export default function Card(props: Props) {
 	return (
 		<main>
 			<div className="close">
-				<Link router url="/" icon={faTimes} />
+				<Link back icon={faTimes} />
 			</div>
 
-			{console.log(meta?.thumb)}
 			<div className="thumb" style={{backgroundImage: `url("${meta?.thumb}")`}}></div>
 			<div className="details">
 				<h1>{meta?.name}</h1>
