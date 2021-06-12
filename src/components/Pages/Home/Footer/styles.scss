@@ -7,6 +7,8 @@ footer {
     background-position: bottom center;
     background-size: cover;
 
+    z-index: 3;
+
     .content {
         display: flex;
         flex-direction: row;

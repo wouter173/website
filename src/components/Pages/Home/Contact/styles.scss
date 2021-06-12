@@ -1,8 +1,11 @@
 section#contact {
+    min-height: 100vh;
+
     background: url("wave.svg"), #070707;
     background-repeat: no-repeat;
     background-position: top;
-    min-height: 100vh;
+
+    z-index: 3;
 
     form {
         display: grid;
