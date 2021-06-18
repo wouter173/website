@@ -55,7 +55,7 @@ export default function Contact() {
 			body: encode({
 				'name': name,
 				'email': email,
-			 	'message': message
+				'message': message
 			})
 		}).then(() => {
 			window.setTimeout(() => {
