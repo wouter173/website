@@ -10,7 +10,7 @@ section#contact {
     form {
         display: grid;
 
-        grid-gap: 1.4em;
+        gap: 1.4em;
 
         grid-template-rows: 60px 1fr 60px;
         grid-template-columns: 1fr 1fr;
@@ -61,7 +61,6 @@ section#contact {
                 position: relative;
                 z-index: 3;
                 width: 100%;
-                height: 40px;
 
                 margin-left: auto;
                 margin-right: auto;
@@ -96,8 +95,8 @@ section#contact {
                 &.awesome {
                     color: transparent;
                     box-shadow: 0px 0px 0px 2px transparent;
-                    width: 40px;
-                    height: 40px;
+                    width: 100px;
+                    height: 100px;
                     border-radius: 50%;
 
                     &:hover {
@@ -112,18 +111,18 @@ section#contact {
                 &.loading .overlay {
                     display: block;
                     position: absolute;
-                    width: 40px;
-                    height: 40px;
+                    width: 100px;
+                    height: 100px;
                     top: 0px;
                     left: 0px;
 
                     background: linear-gradient(170deg, #e25a5a 0%, #e79b28 40%, #C1DC1E 50%, #C1DC1E 55%, #61A30E 100%);
                     background-position: top;
-                    background-size: 40px 120px;
+                    background-size: 100px 120px;
                     border-radius: 50%;
                     transition: background 0.4s;
 
-                    line-height: 40px;
+                    line-height: 100px;
                 }
 
                 &.loading .spinner {
@@ -191,7 +190,7 @@ section#contact {
             transform: scale(1);
         }
         to {
-            transform: scale(0.4);
+            transform: scale(0.01);
         }
     }
 
@@ -202,6 +201,32 @@ section#contact {
 
         to {
             transform: rotateZ(390deg);
+        }
+    }
+}
+
+@media only screen and (min-width: 3600px) {
+    section#contact form {
+        gap: 2.4em;
+        grid-template-rows: 140px 1fr 140px;
+
+        label {
+            margin-bottom: 10px !important;
+            font-size: 2em !important;
+        }
+
+        input, textarea, button {
+            border-radius: 8pt !important;
+            font-size: 2.4em !important;
+        }
+
+        button{
+            height: 100px;
+
+            &::after {
+                border: 16px solid transparent !important;
+                border-left: 20px solid white !important;
+            }
         }
     }
 }

@@ -84,7 +84,7 @@ article.project {
 		span.read {
 			display: block;
 
-			margin-top: 28px;
+			margin-top: 1.6em;
 			margin-bottom: 10px;
 			font-size: 1em;
 		}
@@ -106,7 +106,7 @@ article.project {
 		to {
 			background: rgba(255, 255, 255, 1);
 			border: 5px solid white;
-			height: 560px;
+			height: 1200px;
 		} 
 	}
 
@@ -121,6 +121,29 @@ article.project {
 			clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 		}
 	}  
+}
+
+@media only screen and (min-width: 3600px) {
+	article.project {
+		height: 1000px;
+		font-size: 2.4em;
+		border-radius: 36pt;
+
+		.details {
+			h2 {
+				font-size: 1.8em;
+			}
+
+			ul.links {
+				height: 80px;
+				line-height: 80px;
+			}
+
+			ul.tags {
+				height: 60px;
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: 1224px) {

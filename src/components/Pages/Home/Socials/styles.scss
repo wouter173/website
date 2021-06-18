@@ -120,6 +120,14 @@ section#socials {
     }
 }
 
+@media only screen and (min-width: 3600px) {
+    section#socials .bubbles {
+        a svg {
+            font-size: 4em;
+        }
+    }
+}
+
 @media only screen and (max-width: 1224px) {
     section#socials .bubbles {
         grid-template-columns: repeat(6, 15vw);

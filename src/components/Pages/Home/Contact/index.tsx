@@ -2,7 +2,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useRef, useState } from 'react';
 import MediaContext from '../../../Shared/Context/MediaContext';
-import { encode } from './events';
+// import { encode } from './events';
 import './styles.scss';
 
 export default function Contact() {
@@ -22,6 +22,7 @@ export default function Contact() {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [awesome, setAwesome] = useState<boolean>(false);
 
+	// eslint-disable-next-line no-unused-vars
 	const annotate = (ref: HTMLElement) => {
 		ref.classList.add('red');
 
@@ -38,9 +39,9 @@ export default function Contact() {
 	};
 
 	const submit = () => {
-		if ( name == '' ) { annotate(nameRef.current!); return; }
-		if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { annotate(emailRef.current!); return; }
-		if ( message == '' ) { annotate(messageRef.current!); return; }
+		// if ( name == '' ) { annotate(nameRef.current!); return; }
+		// if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { annotate(emailRef.current!); return; }
+		// if ( message == '' ) { annotate(messageRef.current!); return; }
 
 		setName('');
 		setEmail('');
@@ -52,11 +53,11 @@ export default function Contact() {
 		fetch('https://form.wouter.cloud', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: encode({
-				'name': name,
-				'email': email,
-				'message': message
-			})
+			// body: encode({
+			// 	'name': name,
+			// 	'email': email,
+			// 	'message': message
+			// })
 		}).then(() => {
 			window.setTimeout(() => {
 				setDone(true);

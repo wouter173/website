@@ -171,6 +171,37 @@ main {
     }
 }
 
+@media only screen and (min-width: 3600px) {
+    main {
+        border-top-right-radius: 24pt;
+        border-top-left-radius: 24pt;
+
+        .close svg {
+            margin: 32px;
+            font-size: 4em;
+        }
+        
+        .thumb {
+            height: 900px;
+        }
+
+        .details {
+            grid-template-rows: 140px 160px;
+            height: 300px;
+
+            font-size: 3em;
+
+            h1 {
+                line-height: 140px;
+            }
+        }
+
+        .markdown {
+            font-size: 2.6em;
+        }
+    }
+}
+
 @media only screen and (max-width: 1224px) {
     main {
         width: 90vw;

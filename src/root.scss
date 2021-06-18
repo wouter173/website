@@ -66,6 +66,12 @@ section {
     }
 }
 
+@media only screen and (min-width: 3600px) {
+    section h2 {
+        font-size: 4em;
+    }
+}
+
 @media only screen and (max-width: 1464px) {
     section .content {
         width: 60vw;

@@ -16,7 +16,6 @@ header {
         display: block;
         width: 100vw;
         height: 100vh;
-        // background-image: url("./lines.svg");
         background-position: bottom right;
         background-size: 1200px;
         background-repeat: no-repeat;
@@ -83,6 +82,12 @@ header {
 
     100% {
         transform: translateY(0px);
+    }
+}
+
+@media only screen and (min-width: 3600px) {
+    header .heading {
+        font-size: 4em;
     }
 }
 

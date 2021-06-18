@@ -7,7 +7,7 @@ li.tag {
         padding: 0px 10px;
 
         background: rgba(255, 255, 255, 0.8);
-        border-radius: 10pt;
+        border-radius: 99pt;
 
         color: black;
         line-height: 26px;
@@ -20,5 +20,17 @@ li.tag {
         span {
             margin-right: 2px;
         }
+    }
+}
+
+
+@media only screen and (min-width: 3600px) {
+    li.tag a {
+        height: 60px;
+        padding: 0px 20px;
+        margin-right: 16px;
+
+        font-size: 0.8em;
+        line-height: 60px;
     }
 }
