@@ -8,8 +8,8 @@ section#socials {
     .bubbles {
         display: grid;
 
-        grid-template-columns: repeat(10, minmax(66px, 5vw));
-        grid-template-rows: repeat(9, minmax(66px, 5vw));
+        grid-template-columns: repeat(10, minmax(66px, 6vw));
+        grid-template-rows: repeat(9, minmax(66px, 6vw));
 
         .bubble {
             position: relative;
