@@ -178,3 +178,10 @@ section#socials {
         }
     }
 }
+
+@media only screen and (min-width: 1440px) {
+    section#socials .bubbles {
+        grid-template-columns: repeat(10, minmax(66px, 5w));
+        grid-template-rows: repeat(9, minmax(66px, 5vw));
+    }
+}
