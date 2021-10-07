@@ -25,6 +25,7 @@ export default class Scroller extends Component<Props, State> {
 
 	componentDidMount() {
 		if (this.props.underline) {
+			this.scrollHandler();
 			window.addEventListener('scroll', this.scrollHandler.bind(this));
 		}
 	}

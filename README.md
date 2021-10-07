@@ -24,7 +24,7 @@ long term
 - [ ] set a better default font
 - [ ] add form submit animation
 - [ ] maybe add a cool animation from the article page to home
-- [ ] fix that navbar underlines still work after getting back to home from a project
+- [x] fix that navbar underlines still work after getting back to home from a project
 - [ ] add a cool aside in the article page with other projects
 - [ ] add a heading to the article page displaying the x, thumb, links and tags
 - [ ] learn how to model
