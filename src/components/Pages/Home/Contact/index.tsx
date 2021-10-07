@@ -22,6 +22,8 @@ export default function Contact() {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [awesome, setAwesome] = useState<boolean>(false);
 
+	const maxLength = 1000;
+
 	const annotate = (ref: HTMLElement) => {
 		ref.classList.add('red');
 
@@ -84,15 +86,15 @@ export default function Contact() {
 					<input type="hidden" name="form-name" value="contact" />
 					<p>
 						<label>Name</label>
-						<input ref={nameRef} type="text" name="name" placeholder="Enter your firstname..." value={name} onChange={(e) => { setName(e.target.value); }} />
+						<input ref={nameRef} type="text" name="name" value={name} onChange={(e) => { setName(e.target.value); }} />
 					</p>
 					<p>
 						<label>Email</label>
-						<input ref={emailRef} type="text" name="email" placeholder="Enter your email..." value={email} onChange={(e) => { setEmail(e.target.value); }} />
+						<input ref={emailRef} type="text" name="email" value={email} onChange={(e) => { setEmail(e.target.value); }} />
 					</p>
 					<p className="message">
-						<label>Message</label>
-						<textarea ref={messageRef} name="message" placeholder="What do you want to say?" value={message} onChange={(e) => { setMessage(e.target.value); }}/>
+						<label>Message <span className="muted">{message.length}/{maxLength}</span></label>
+						<textarea maxLength={maxLength} ref={messageRef} name="message" value={message} onChange={(e) => { setMessage(e.target.value); }}/>
 					</p>
 
 					<p className="submit">

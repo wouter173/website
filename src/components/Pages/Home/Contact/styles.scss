@@ -12,7 +12,7 @@ section#contact {
 
         gap: 1.4em;
 
-        grid-template-rows: 60px 1fr 60px;
+        grid-template-rows: 60px 15em 60px;
         grid-template-columns: 1fr 1fr;
 
         height: 60vh;
@@ -26,6 +26,11 @@ section#contact {
                 font-size: 10pt;
                 font-weight: 700;
                 margin-bottom: 4px;
+
+                .muted {
+                    margin-left: 5px;
+                    color: #999;
+                }
             }
 
             input,
