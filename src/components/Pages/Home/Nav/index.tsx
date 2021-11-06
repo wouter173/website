@@ -16,11 +16,6 @@ export default function Nav(props: Props) {
 					</Scroller>
 				</li>
 				<li>
-					<Scroller target="socials" underline>
-						socials
-					</Scroller>
-				</li>
-				<li>
 					<Scroller target="contact" underline>
 						contact
 					</Scroller>

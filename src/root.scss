@@ -1,6 +1,6 @@
 :root {
     --gradient: linear-gradient(15deg, #e79b28, #e25a5a);
-    --gradient-reverse: linear-gradient(-15deg, #e25a5a, #e79b28);
+	--bg-gradient: linear-gradient(262.24deg, #141416 3.52%, #1D1D28 95.39%);
     --text-dark: #1b1b1b;
     --text-light: white;
 }
@@ -14,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
+    background-color: #868b8d;
     border-radius: 20px;
     border: 6px solid transparent;
     background-clip: content-box;
@@ -36,7 +36,9 @@
 }
 
 body {
-    overflow: overlay;
+	overflow-x: hidden;
+    overflow-y: overlay;
+	background: #070707;
 }
 
 a {
@@ -49,6 +51,7 @@ a {
     }
 }
 
+button,
 h1,
 h2,
 h3,
@@ -59,7 +62,7 @@ h6 {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2.8em;
 }
 
 h2 {

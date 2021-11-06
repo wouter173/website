@@ -2,7 +2,7 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: var(--gradient);
+    background: #010101;
 
     span {
         position: absolute;
@@ -12,7 +12,7 @@
         height: 200px;
 
         opacity: 0.3;
-        background: var(--gradient-reverse);
+        background: var(--bg-gradient);
         border-radius: 14pt;
 
         animation: "fade" 1s forwards;
@@ -34,7 +34,7 @@
             bottom: 300px;
             right: -100px;
 
-            background: var(--gradient);
+            background: var(--bg-gradient);
         }
 
         &:nth-child(3) {
@@ -49,7 +49,7 @@
             top: 20px;
             left: -40px;
 
-            background: var(--gradient);
+            background: var(--bg-gradient);
         }
 
         &:nth-child(5) {

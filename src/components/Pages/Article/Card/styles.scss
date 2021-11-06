@@ -14,8 +14,8 @@ main {
     width: 50vw;
     min-width: 800px;
 
-    background: radial-gradient(rgba(255, 255, 255, 0.9), rgba(237, 237, 237, 0.9));
-    border: 5px solid white;
+    background: #101010;
+    border: 5px solid #101010;
     border-bottom: none;
     border-top-right-radius: 12pt;
     border-top-left-radius: 12pt;
@@ -41,7 +41,7 @@ main {
         height: 400px;
         background-position: center center;
         background-size: cover;
-        background-color: white;
+        background-color: #010101;
     }
 
     .details {
@@ -52,7 +52,7 @@ main {
         width: 90%;
         padding: 20px 5% 0px 5%;
 
-        background: white;
+        background: #070707;
         border-bottom-left-radius: 16pt;
         border-bottom-right-radius: 16pt;
 
@@ -69,7 +69,7 @@ main {
             align-items: center;
 
             li.tag a{
-                background: #ededed;
+                background: #101010;
             }
         }
 
@@ -82,7 +82,7 @@ main {
                 margin-right: 12px;
 
                 a {
-                    color: var(--text-dark);
+                    color: white;
                 }
             }
         }
@@ -115,7 +115,7 @@ main {
 
         a {
             text-decoration: underline;
-            color: var(--text-dark);
+            color: white;
         }
 
         img {
@@ -135,7 +135,7 @@ main {
     }
 
     * {
-        color: var(--text-dark);
+        color: white;
     }
 }
 

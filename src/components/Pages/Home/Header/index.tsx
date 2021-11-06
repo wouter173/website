@@ -1,56 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import Scroller from '../../../Shared/Scroller';
+import React from 'react';
 import './styles.scss';
 
-import earthish from './planets/earthish.png';
-import dark from './planets/dark.png';
-import ice from './planets/ice.png';
-import MediaContext from '../../../Shared/Context/MediaContext';
-
 export default function Header() {
-	const [pos, setPos] = useState<{x: number, y: number}>({x:0,y:0});
-	const media = useContext(MediaContext);
-
-	useEffect(() => {
-		document.addEventListener('mousemove', mouse => {
-			setPos({
-				x: (mouse.clientX - window.innerWidth/2) * 0.01,
-				y: (mouse.clientY - window.innerHeight/2) * 0.01,
-			});
+	const clickHandler = () => {
+		window.scrollTo({
+			top: document.getElementById('works')!.offsetTop + 1,
+			behavior: 'smooth',
 		});
-	}, []);
+	};
 
 	return (
 		<header>
-			<div className="background">
-				<img src={dark} alt="" style={
-					media.isMobile? {left: '10px', top: '30px', width: '140px'}: 
-						media.isLaptop? {left: 40 - pos.x/3 + 'px', top: 40 - pos.y/3 +'px'}:
-							{left: 40 - pos.x/3 + 'px', top: 40 - pos.y/3 +'px', width: '1000px'}
-				}/>
-				<img src={ice} alt="" style={
-					media.isMobile? {right: '0px', top: '70px', width: '200px'}:
-						media.isLaptop? {right: 200 + pos.x/6 + 'px', top: 100 - pos.y/6 + 'px', width: '300px'}: 
-							{right: 200 + pos.x/6 + 'px', top: 300 - pos.y/6 + 'px', width: '600px'}
-				}/>
-				<img src={earthish} alt="" style={ 
-					media.isMobile? {right: '-210px', bottom: '-100px', width: '800px'}:
-						media.isLaptop? {right: -80 + pos.x + 'px', bottom: -20 + pos.y + 'px', width: '1000px'}:
-							{right: -80 + pos.x + 'px', bottom: -20 + pos.y + 'px', width: '2000px'}
-				}/>
-			</div>
+			<div id="bg-elem1" />
+			<div id="bg-elem2" />
+			<div id="bg-elem3" />
 
 			<div className="heading">
-				<h1>Hi, I&apos;m Wouter&#8230;</h1>
-				<h4>&#8230;your creative web developer.</h4>
+				<h1>Hi, I&apos;m Wouter</h1>
+				<h4>your creative web developer.</h4>
+				<button onClick={clickHandler}>Check out my projects!</button>
 			</div>
-
-			<Scroller target="works">
-				<FontAwesomeIcon icon={faChevronDown} className="icon" size={media.isDesktop? '2x': undefined} />
-			</Scroller>
 		</header>
 	);
 }

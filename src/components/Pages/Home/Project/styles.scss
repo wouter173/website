@@ -13,7 +13,7 @@ article.project {
 	margin-top: 20px;
 	margin-bottom: 80px;
 
-	background: rgba(255, 255, 255, 0.2);
+	background: var(--bg-gradient);
 	border-radius: 10pt;
 
 	overflow: hidden;
@@ -104,8 +104,7 @@ article.project {
 
 	@keyframes morph-project {
 		to {
-			background: rgba(255, 255, 255, 1);
-			border: 5px solid white;
+			background: #070707;
 			height: 1200px;
 		} 
 	}
