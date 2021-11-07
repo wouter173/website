@@ -44,9 +44,9 @@ export default function Contact() {
 		if ( email == '' || email.match(/^\S+@\S+\.\S+$/) == null) { annotate(emailRef.current!); return; }
 		if ( message == '' ) { annotate(messageRef.current!); return; }
 
-		setName('');
-		setEmail('');
-		setMessage('');
+		// setName('');
+		// setEmail('');
+		// setMessage('');
 
 		setAwesome(true);
 		window.setTimeout(() => setLoading(true), 200);

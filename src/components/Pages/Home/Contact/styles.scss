@@ -50,7 +50,7 @@ section#contact {
 
                 &:focus {
                     outline: none;
-                    border: 2px solid #808080;
+                    box-shadow: 0px 0px 0px 2px #808080;
                 }
 
                 &.red {
@@ -102,8 +102,8 @@ section#contact {
                 &.awesome {
                     color: transparent;
                     box-shadow: 0px 0px 0px 2px transparent;
-                    width: 100px;
-                    height: 100px;
+                    width: 40px;
+                    height: 40px;
                     border-radius: 50%;
 
                     &:hover {
@@ -118,18 +118,18 @@ section#contact {
                 &.loading .overlay {
                     display: block;
                     position: absolute;
-                    width: 100px;
-                    height: 100px;
+                    width: 40px;
+                    height: 40px;
                     top: 0px;
                     left: 0px;
 
-                    background: linear-gradient(170deg, #e25a5a 0%, #e79b28 40%, #C1DC1E 50%, #C1DC1E 55%, #61A30E 100%);
+                    background: var(--gradient);
                     background-position: top;
                     background-size: 100px 120px;
                     border-radius: 50%;
                     transition: background 0.4s;
 
-                    line-height: 100px;
+                    line-height: 40px
                 }
 
                 &.loading .spinner {
@@ -240,7 +240,7 @@ section#contact {
 
 @media only screen and (max-width: 1224px ) {
     section#contact form{
-        grid-template-rows: 60px 60px 1fr 60px;
+        grid-template-rows: 60px 60px 0.7fr 60px;
         height: 80vh;
     }
 

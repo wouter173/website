@@ -113,10 +113,6 @@ header {
 		}
 
 		.background {
-			grid-template-columns: 1% repeat(5, 1fr) 1%;
-			grid-template-rows: 1% repeat(4, 1fr) 1%;
-			gap: 60px;
-
 			* {
 				border-radius: 8em;
 			}
@@ -125,11 +121,39 @@ header {
 }
 
 @media only screen and (max-width: 1224px) {
-    header .content {
-        width: 90vw;
-		
-		.heading {
-			text-align: center;
+    header {
+		.content {
+			margin-top: 30vh;
+			width: 90vw;
+
+			.heading {
+				text-align: center;
+
+				button {
+					margin-top: 3em;
+				}
+			}
+		}
+
+		.background {
+			grid-template-columns: 1% repeat(5, 1fr) 1%;
+			grid-template-rows: 1% repeat(4, 1fr) 1%;
+			gap: 20px;
+
+			#bg-elem1 {
+				grid-row: 1/6;
+				grid-column: 2/5;
+			}
+
+			#bg-elem2 {
+				grid-row: 1/4;
+				grid-column: 5/7;
+			}
+
+			#bg-elem3 {
+				grid-row: 4/6;
+				grid-column: 5/7;
+			}
 		}
     }
 }
