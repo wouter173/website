@@ -16,7 +16,7 @@ export default function Footer() {
 				</ul>
 				<ul>
 					<li>Projects</li>
-					<li><Link url="shrt.lu">Shrt.lu</Link></li>
+					<li><Link url="https://stingalleman.dev">stingalleman.dev</Link></li>
 				</ul>
 			</div>
 		</footer>

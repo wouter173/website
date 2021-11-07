@@ -11,14 +11,17 @@ export default function Header() {
 
 	return (
 		<header>
-			<div id="bg-elem1" />
-			<div id="bg-elem2" />
-			<div id="bg-elem3" />
-
-			<div className="heading">
-				<h1>Hi, I&apos;m Wouter</h1>
-				<h4>your creative web developer.</h4>
-				<button onClick={clickHandler}>Check out my projects!</button>
+			<div className="background">
+				<div id="bg-elem1" />
+				<div id="bg-elem2" />
+				<div id="bg-elem3" />
+			</div>
+			<div className="content">
+				<div className="heading">
+					<h1>Hi, I&apos;m Wouter</h1>
+					<h4>your creative web developer.</h4>
+					<button onClick={clickHandler}>Check out my projects!</button>
+				</div>
 			</div>
 		</header>
 	);

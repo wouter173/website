@@ -39,8 +39,9 @@ section#contact {
                 position: relative;
                 padding: 0.6em 0.8em;
 
-                background: #303030;
+                background: #141416;
                 border: none;
+				border: 2px solid #3d3d3d;
                 border-radius: 4pt;
 
                 font-size: 12pt;
@@ -49,7 +50,7 @@ section#contact {
 
                 &:focus {
                     outline: none;
-                    box-shadow: 0px 0px 0px 2px #808080;
+                    border: 2px solid #808080;
                 }
 
                 &.red {
@@ -70,6 +71,7 @@ section#contact {
                 margin-left: auto;
                 margin-right: auto;
 
+				border: none;
                 border-radius: 4pt;
                 background: var(--gradient);
                 color: white;
