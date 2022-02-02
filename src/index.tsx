@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app';
 import smoothscroll from 'smoothscroll-polyfill';
-import './root.scss';
+import './root.css';
 
 smoothscroll.polyfill();
 

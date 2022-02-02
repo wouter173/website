@@ -38,6 +38,7 @@ export default function Project(props: MetadataType & { inverted: boolean }) {
 								local
 								className="text-lg sm:text-base"
 								onClick={() => {
+									//TODO add a bit of an animation
 									history.push('/project/' + props.slug);
 								}}
 							>
