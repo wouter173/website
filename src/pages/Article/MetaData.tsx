@@ -5,6 +5,7 @@ import { EyeIcon } from '@heroicons/react/solid';
 import Tag from 'components/Tag';
 import Link from 'components/Link';
 import { MetadataType } from 'types';
+//@ts-ignore
 const AdaptiveText: any = import('react-adaptive-text');
 
 // eslint-disable-next-line react/display-name
