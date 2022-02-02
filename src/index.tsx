@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import App from './app';
 import smoothscroll from 'smoothscroll-polyfill';
 import './root.scss';
 

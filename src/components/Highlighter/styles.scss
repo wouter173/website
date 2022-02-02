@@ -1,0 +1,43 @@
+.syntax-highlighter-wrapper {
+	width: 100%;
+	font-family: 'JetBrains Mono', monospace;
+
+	.title-bar {
+		position: relative;
+		margin-top: 0.5em;
+		background-color: #3D3D3F;
+		border-radius: 8pt 8pt 0pt 0pt;
+		color: #828282;
+		text-align: center;
+		height: 26px;
+		line-height: 26px;
+
+		.filename {
+			font-size: 0.9em;
+			color: inherit;
+		}
+
+		.copy-button {
+			position: absolute;
+			right: 10px;
+			top: 2px;
+			width: 16px;
+			height: 16px;
+
+			path {
+				color: #828282;
+			}
+
+			&:hover path {
+				color: #c2c2c2;
+				cursor: pointer;
+			}
+		}
+	}
+
+	pre {
+		margin-top: 0px !important;
+		border-radius: 0pt 0pt 8pt 8pt;
+		font-family: 'JetBrains Mono', monospace !important;
+	}
+}

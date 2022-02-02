@@ -1,111 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-    --gradient: linear-gradient(90deg, #14C1A2 0%, #587EDF 100%);
-	--bg-gradient: linear-gradient(262.24deg, #141416 3.52%, #1D1D28 95.39%);
-    --text-dark: #1b1b1b;
-    --text-light: white;
+	--gradient: linear-gradient(90deg, #14c1a2 0%, #587edf 100%);
+	--bg-gradient: linear-gradient(262.24deg, #141416 3.52%, #1d1d28 95.39%);
+	--text-dark: #1b1b1b;
+	--text-light: white;
 }
 
 ::-webkit-scrollbar {
-    width: 20px;
+	width: 20px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #868b8d;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
+	background-color: #868b8d;
+	border-radius: 20px;
+	border: 6px solid transparent;
+	background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf;
+	background-color: #a8bbbf;
 }
 
-#root.noscroll {
-    overflow: hidden;
+.card {
+	@apply w-full rounded-2xl bg-bermuda-card;
+}
+
+.AdaptiveText > span {
+	text-align: left !important;
+	display: flex !important;
+	align-items: center;
+	height: 100%;
 }
 
 * {
-    font-family: "Roboto";
-    margin: 0px;
-    padding: 0px;
-    color: var(--text-light);
+	margin: 0px;
+	padding: 0px;
 }
 
 body {
 	overflow-x: hidden;
-    overflow-y: overlay;
+	overflow-y: overlay;
 	background: #070707;
+	font-family: 'Inter', sans-serif;
+	color: var(--text-light);
 }
 
 a {
-    color: var(--text-light);
-    text-decoration: none;
+	color: var(--text-light);
+	text-decoration: none;
 
-    &:hover,
-    &.active {
-        text-decoration: underline;
-    }
-}
-
-button,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "futura", "Nunito Sans";
-}
-
-h1 {
-    font-size: 2.8em;
-}
-
-h2 {
-    font-size: 1.6em;
-}
-
-h3 {
-    font-size: 1.2em;
-}
-
-section {
-    position: relative;
-    display: block;
-
-    min-height: 110vh;
-
-    .content {
-        width: 50vw;
-
-        margin-left: auto;
-        margin-right: auto;
-
-        h2 {
-            padding-top: 2em;
-            margin-bottom: 2em;
-        }
-    }
-}
-
-@media only screen and (min-width: 3600px) {
-    section h2 {
-        font-size: 4em;
-    }
-}
-
-@media only screen and (max-width: 1464px) {
-    section .content {
-        width: 60vw;
-    }
-}
-
-@media only screen and (max-width: 824px) {
-    section .content {
-        width: 90vw;
-    }
+	&:hover,
+	&.active {
+		text-decoration: underline;
+	}
 }

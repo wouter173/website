@@ -1,57 +1,71 @@
 {
-  "name": "rework",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-brands-svg-icons": "^5.15.2",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/react-fontawesome": "^0.1.14",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-router-dom": "^5.1.7",
-    "@types/react-syntax-highlighter": "^13.5.0",
-    "@types/smoothscroll-polyfill": "^0.3.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.1",
-    "react-markdown": "^5.0.3",
-    "react-responsive": "^8.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-syntax-highlighter": "^15.4.3",
-    "sass": "^1.32.8",
-    "smoothscroll-polyfill": "^0.4.4",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/react-responsive": "^8.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.16.1",
-    "@typescript-eslint/parser": "^4.16.1",
-    "eslint": "^7.21.0",
-    "eslint-plugin-react": "^7.22.0"
-  }
+	"name": "rework",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.34",
+		"@fortawesome/free-brands-svg-icons": "^5.15.2",
+		"@fortawesome/free-solid-svg-icons": "^5.15.2",
+		"@fortawesome/react-fontawesome": "^0.1.14",
+		"@heroicons/react": "^1.0.5",
+		"@keystone-6/document-renderer": "^1.0.0",
+		"@reduxjs/toolkit": "^1.7.1",
+		"@types/node": "^12.0.0",
+		"@types/react": "^17.0.3",
+		"@types/react-dom": "^17.0.0",
+		"@types/react-router-dom": "^5.1.7",
+		"@types/react-syntax-highlighter": "^13.5.0",
+		"@types/smoothscroll-polyfill": "^0.3.1",
+		"@urql/devtools": "^2.0.3",
+		"autoprefixer": "^10.4.2",
+		"eslint-config-prettier": "^8.3.0",
+		"formik": "^2.2.9",
+		"graphql": "^16.2.0",
+		"postcss": "^8.4.5",
+		"prettier": "^2.5.1",
+		"prettier-plugin-tailwindcss": "^0.1.4",
+		"react": "^17.0.2",
+		"react-adaptive-text": "git+https://github.com/wouter173/react-adaptive-text.git",
+		"react-dom": "^17.0.1",
+		"react-redux": "^7.2.6",
+		"react-responsive": "^8.2.0",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "5.0.0",
+		"react-syntax-highlighter": "^15.4.3",
+		"react-use": "^17.3.2",
+		"sass": "^1.32.8",
+		"smoothscroll-polyfill": "^0.4.4",
+		"tailwindcss": "^3.0.15",
+		"typescript": "^4.1.2",
+		"urql": "^2.0.6",
+		"yup": "^0.32.11"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.16.1",
+		"@typescript-eslint/parser": "^4.16.1",
+		"eslint": "^7.21.0",
+		"eslint-plugin-react": "^7.28.0"
+	}
 }
