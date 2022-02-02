@@ -5,7 +5,7 @@ module.exports = {
 		fontFamily: {
 			head: '"futura", "Nunito Sans", sans-serif',
 			sans: '"Inter", sans-serif',
-			mono: '"JetBrains Mono", monospace;',
+			mono: '"JetBrains Mono", monospace',
 		},
 		extend: {
 			colors: {
