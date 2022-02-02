@@ -1,3 +1,5 @@
+//@ts-ignore
+
 import React, { ForwardedRef, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
