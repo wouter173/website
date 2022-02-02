@@ -1,8 +1,7 @@
 import React, { PropsWithChildren, RefObject } from 'react';
-import { ChevronRightIcon, HeartIcon, XIcon } from '@heroicons/react/solid';
+import { HeartIcon, XIcon } from '@heroicons/react/solid';
 import { useScroll } from 'react-use';
 import { useSelector } from 'react-redux';
-import { ChevronLeftIcon } from '@heroicons/react/solid';
 import { ProjectsType, ProjectType } from 'types';
 import { useHistory } from 'react-router-dom';
 
