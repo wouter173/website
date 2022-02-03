@@ -17,6 +17,7 @@ export default function Article(props: Props) {
 	const projectRaw = useSelector<ProjectsType, ProjectType | null>((state) => state.projects.find((project) => project.slug == slug) ?? null);
 	if (projectRaw == null) {
 		history.push('/#works');
+		return <></>;
 	}
 	const project = projectRaw as ProjectType;
 	const apiURI = getApiUri();
