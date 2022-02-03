@@ -28,7 +28,7 @@ export default function Article(props: Props) {
 		<div id="Article" className="max-h-screen overflow-auto bg-bermuda" ref={scrollRef}>
 			<div className="mx-auto mt-8 grid w-11/12 grid-flow-row gap-10 sm:mx-auto sm:w-1/2 sm:px-0">
 				<Nav refs={{ scrollRef, metadataTitleRef }} slug={slug} />
-				<div className="card h-96 bg-bermuda-card bg-cover bg-center" style={{ backgroundImage: `url(${apiURI}${project.thumbnail.url})` }} />
+				<div className="card h-96 bg-bermuda-card bg-cover bg-center" style={{ backgroundImage: `url(${apiURI}${project.thumbnail.url ?? ''})` }} />
 				<MetaData metadata={project} ref={metadataTitleRef} />
 				<Content className="card" document={project.content.document ?? []} />
 			</div>

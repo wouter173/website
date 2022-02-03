@@ -11,6 +11,7 @@ export default function Works() {
 	return (
 		<Section title="My work" id="work">
 			<div className="mb-28 grid grid-flow-row gap-20">
+				{projects.length == 0 ? <span className="mt-20 text-center">Nothing to see here yet</span> : null}
 				{projects.map((element, i) => (
 					<Project
 						key={element.title}

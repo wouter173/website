@@ -6,7 +6,7 @@ import Tag from 'components/Tag';
 import Link from 'components/Link';
 import { MetadataType } from 'types';
 //@ts-ignore
-const AdaptiveText: any = import('react-adaptive-text');
+import AdaptiveText from 'react-adaptive-text';
 
 // eslint-disable-next-line react/display-name
 const MetaData = forwardRef(({ metadata }: { metadata: MetadataType }, ref: ForwardedRef<HTMLHeadingElement>) => {
