@@ -22,6 +22,11 @@ export const renderers: DocumentRendererProps['renderers'] = {
 		),
 	},
 	block: {
+		paragraph: ({ children, textAlign }: { children: React.ReactNode; textAlign: 'center' | 'end' | undefined }) => {
+			const align = textAlign ? (textAlign == 'center' ? 'text-center' : 'text-right') : '';
+			return <p className={`mb-8 leading-7 ${align}`}>{children}</p>;
+		},
+
 		heading: ({ level, children, textAlign }: { level: 1 | 2 | 3 | 4 | 5 | 6; children: React.ReactNode; textAlign: 'center' | 'end' | undefined }) => {
 			const align = textAlign ? (textAlign == 'center' ? 'text-center' : 'text-right') : '';
 			const className = `font-head font-bold mb-6 ${align}`;
