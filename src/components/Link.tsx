@@ -15,6 +15,8 @@ const Link = (props: Props) => {
 	const className = `${props.className} flex items-center text-sm cursor-pointer sm:text-base`;
 	const onClick = props.onClick ?? (() => history.push(props.url));
 
+	if (props.url == '') return null;
+
 	if (props.local) {
 		return (
 			<a onClick={onClick} className={className}>

@@ -47,21 +47,19 @@ export default function Project(props: MetadataType & { inverted: boolean }) {
 					)}
 
 					<ul className="flex">
-						{props.github && (
-							<li>
-								<Link url={props.github} label="Github" className="text-base">
-									<FontAwesomeIcon icon={faGithub} className="mx-1"></FontAwesomeIcon>
-								</Link>
-							</li>
-						)}
-						<div className="w-5 text-center">{'|'}</div>
-						{props.live && (
-							<li>
-								<Link url={props.live} label="Live" className="text-base">
-									<EyeIcon className="mr-1 h-5 w-5" />
-								</Link>
-							</li>
-						)}
+						<li>
+							<Link url={props.github} label="Github" className="text-base">
+								<FontAwesomeIcon icon={faGithub} className="mx-1"></FontAwesomeIcon>
+							</Link>
+						</li>
+
+						{props.github != '' && props.live != '' && <div className="w-5 text-center">{'|'}</div>}
+
+						<li>
+							<Link url={props.live} label="Live" className="text-base">
+								<EyeIcon className="mr-1 h-5 w-5" />
+							</Link>
+						</li>
 					</ul>
 				</div>
 
