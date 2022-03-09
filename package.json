@@ -21,6 +21,7 @@
 		"eslint-config-prettier": "^8.3.0",
 		"formik": "^2.2.9",
 		"graphql": "^16.2.0",
+		"node-vibrant": "^3.2.1-alpha.1",
 		"postcss": "^8.4.5",
 		"prettier": "^2.5.1",
 		"prettier-plugin-tailwindcss": "^0.1.4",

@@ -10,10 +10,12 @@ import AdaptiveText from 'react-adaptive-text';
 
 // eslint-disable-next-line react/display-name
 const MetaData = forwardRef(({ metadata }: { metadata: MetadataType }, ref: ForwardedRef<HTMLHeadingElement>) => {
+	const gradient = `linear-gradient(to right, ${metadata.themeColor}AA, ${metadata.themeColor} )`;
+
 	return (
 		<div
 			className="card grid grid-cols-1 grid-rows-6 gap-2 bg-gradient-to-r from-rose-500 to-red-500 p-6 sm:grid-cols-3 sm:grid-rows-4 sm:gap-2"
-			style={{ gridTemplateRows: '1fr 1fr auto auto' }}
+			style={{ gridTemplateRows: '1fr 1fr auto auto', backgroundImage: gradient }}
 		>
 			<h1 className="AdaptiveText row-span-2 text-left font-head font-bold sm:col-start-1 sm:col-end-3 sm:row-start-1 sm:row-end-3" ref={ref}>
 				<AdaptiveText width="100%" text={metadata.title} fontSizeMax={36} fontSizeMin={16} />
