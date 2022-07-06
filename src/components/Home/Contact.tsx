@@ -1,7 +1,6 @@
-import React from 'react';
 import { Field, Form, Formik } from 'formik';
-import Section from './Section';
 import * as Yup from 'yup';
+import Section from './Section';
 
 export default function Contact() {
 	const encode = (data: any) => {

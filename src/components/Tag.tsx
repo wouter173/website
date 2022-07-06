@@ -1,4 +1,3 @@
-import React from 'react';
 import { TagType } from 'misc/types';
 
 export default function Tag(props: TagType) {
