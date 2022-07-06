@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--gradient: linear-gradient(90deg, #14c1a2 0%, #587edf 100%);
+	--bg-gradient: linear-gradient(262.24deg, #141416 3.52%, #1d1d28 95.39%);
+	--text-dark: #1b1b1b;
+	--text-light: white;
+}
+
+.card {
+	@apply w-full rounded-2xl bg-bermuda-card;
+}
+
+.AdaptiveText > span {
+	text-align: left !important;
+	display: flex !important;
+	align-items: center;
+	height: 100%;
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	overflow-x: hidden;
+	overflow-y: overlay;
+	background: #070707;
+	font-family: 'Inter', sans-serif;
+	color: var(--text-light);
+}
+
+a {
+	color: var(--text-light);
+	text-decoration: none;
+
+	&:hover,
+	&.active {
+		text-decoration: underline;
+	}
+}
