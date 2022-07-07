@@ -19,10 +19,10 @@ const Home: NextPage = () => {
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="theme-color" content="#010101" />
-				<meta name="description" content="Wouter de Bruijn, Your creative web developer. portfolio" />
+				<meta name="description" content="Wouter de Bruijn. Creative web developer" />
 
 				<meta property="og:title" content="Wouter de Bruijn" />
-				<meta property="og:description" content="Your creative web developer. Portfolio. Based in the Netherlands" />
+				<meta property="og:description" content="Wouter de Bruijn. Creative web developer" />
 				<meta property="og:image" content="/favicon.png" />
 				<meta property="og:type" content="website" />
 				<meta property="og:url" content="https://wouterdb.nl" />
