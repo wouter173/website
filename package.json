@@ -29,6 +29,7 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"formik": "^2.2.9",
 		"graphql": "^16.5.0",
+		"node-vibrant": "^3.2.1-alpha.1",
 		"postcss": "^8.4.14",
 		"prettier": "^2.7.1",
 		"react-adaptive-text": "git+https://github.com/wouter173/react-adaptive-text.git",

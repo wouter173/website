@@ -10,6 +10,8 @@ import MetaData from 'components/Article/MetaData';
 import Nav from 'components/Article/Nav';
 import { getApiUri } from 'misc/utils';
 import Head from 'next/head';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { fetchProjects } from 'lib/state/fetchProjects';
 
 export default function Project() {
 	const router = useRouter();
@@ -53,18 +55,19 @@ export default function Project() {
 	);
 }
 
-export const getStaticProps = async () => {
-	const { data, error } = await client.query(projectsQuery).toPromise();
-	if (error) throw error;
+export const getStaticProps: GetStaticProps = async () => {
+	const projects = await fetchProjects();
 
 	return {
 		props: {
-			state: data as StoreDataType,
+			state: {
+				projects,
+			},
 		},
 	};
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
 	const { data, error } = await client.query(projectSlugsQuery).toPromise();
 	if (error) throw error;
 

@@ -41,12 +41,13 @@ const Home: NextPage = () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-	const { data, error } = await client.query(projectsQuery).toPromise();
-	if (error) console.error(error);
+	const projects = await fetchProjects();
 
 	return {
 		props: {
-			state: data as StoreDataType,
+			state: {
+				projects,
+			},
 		},
 	};
 };
