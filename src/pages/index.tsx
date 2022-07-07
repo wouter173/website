@@ -1,15 +1,13 @@
-import { useRef } from 'react';
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { client } from 'lib/gql/client';
-import { projectsQuery } from 'lib/gql/queries';
-import { ProjectType, StoreDataType } from 'misc/types';
+import { useRef } from 'react';
 
+import Contact from 'components/Home/Contact';
 import Footer from 'components/Home/Footer';
 import Header from 'components/Home/Header';
 import Nav from 'components/Home/Nav';
 import Works from 'components/Home/Works';
-import Contact from 'components/Home/Contact';
+import { fetchProjects } from 'lib/state/fetchProjects';
 
 const Home: NextPage = () => {
 	const pageRef = useRef<HTMLDivElement>(null);
