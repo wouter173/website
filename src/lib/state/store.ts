@@ -7,7 +7,7 @@ const initialStoreData: StoreDataType = {
 };
 
 const createStore = (preloadedData: StoreDataType) => {
-	return create<StoreDataType>((set, get) => ({
+	return create<StoreDataType>(() => ({
 		...initialStoreData,
 		...preloadedData,
 	}));
@@ -16,17 +16,14 @@ const createStore = (preloadedData: StoreDataType) => {
 let store: ReturnType<typeof createStore> | undefined;
 
 export const initStore = (preloadedData: StoreDataType) => {
-	let _store = store ?? createStore(preloadedData);
+	let oldState = {};
 
-	if (preloadedData && store) {
-		_store = createStore({ ...store.getState(), ...preloadedData });
-		store = undefined;
+	if (store) {
+		oldState = store.getState();
 	}
 
-	if (typeof window === 'undefined') return _store;
-	if (!store) store = _store;
-
-	return _store;
+	store = createStore({ ...oldState, ...preloadedData });
+	return store;
 };
 
 export const useHydrate = (initialData: StoreDataType) => {
