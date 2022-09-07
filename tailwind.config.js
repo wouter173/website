@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			head: '"futura", "Nunito Sans", sans-serif',
-			sans: '"Inter", sans-serif',
+			sans: 'Manrope, sans-serif',
 			mono: '"JetBrains Mono", monospace',
 		},
 		extend: {
@@ -15,6 +15,9 @@ module.exports = {
 				'tx-sec': '#bfc0d0',
 				'hl-bg': '#2d2d2d',
 				'hl-top': '#3d3d3f',
+
+				metal: '#25252D',
+				'metal-light': '#323237',
 			},
 		},
 	},

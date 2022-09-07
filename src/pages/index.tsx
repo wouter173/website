@@ -6,11 +6,14 @@ import Contact from 'components/Home/Contact';
 import Footer from 'components/Home/Footer';
 import Header from 'components/Home/Header';
 import Nav from 'components/Home/Nav';
-import Works from 'components/Home/Works';
+import Work from 'components/Home/Work';
 import { fetchProjects } from 'lib/state/fetchProjects';
+import { useStore } from 'lib/state/StateProvider';
+import { StoreDataType } from 'misc/types';
 
 const Home: NextPage = () => {
 	const pageRef = useRef<HTMLDivElement>(null);
+	const { projects } = useStore<StoreDataType>();
 
 	return (
 		<>
@@ -29,8 +32,8 @@ const Home: NextPage = () => {
 			</Head>
 			<main className="max-h-screen overflow-auto" ref={pageRef}>
 				<Nav pageRef={pageRef} />
-				<Header pageRef={pageRef} />
-				<Works />
+				<Header highlightedProjects={projects.slice(0, 2)} />
+				<Work projects={projects.slice(2)} />
 				<Contact />
 				<Footer />
 			</main>

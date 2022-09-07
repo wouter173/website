@@ -58,7 +58,7 @@ export const renderers: DocumentRendererProps['renderers'] = {
 
 		layout: ({ layout, children }: { layout: [number, ...number[]]; children: ReactElement[] }) => {
 			const media = useContext(MediaContext);
-			console.log(media);
+
 			return (
 				<div className={`grid gap-4 ${media.isMobile ? '!grid-cols-1' : ''}`} style={{ gridTemplateColumns: layout.map((x) => `${x}fr`).join(' ') }}>
 					{children.map((item) => (

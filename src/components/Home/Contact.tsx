@@ -30,7 +30,7 @@ export default function Contact() {
 			</label>
 			<Field
 				disabled={context.isSubmitting}
-				className={`${context.isSubmitting ? 'text-gray-400' : ''} h-full resize-none rounded-lg bg-bermuda-card p-2 outline-rose-500 focus:outline`}
+				className={`${context.isSubmitting ? 'text-gray-400' : ''} h-full resize-none rounded-lg bg-metal p-2 outline-rose-500 focus:outline`}
 				type={type}
 				name={name}
 				id={name}

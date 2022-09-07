@@ -1,8 +1,11 @@
 import { gql } from 'urql';
 
+const publishedCondition = '(where: { status: { equals: "published" } })';
+// const publishedCondition = '';
+
 export const projectsQuery = gql`
 	query projects {
-		projects(where: { status: { equals: "published" } }) {
+		projects${publishedCondition} {
 			title
 			slug
 			description
@@ -25,7 +28,7 @@ export const projectsQuery = gql`
 
 export const projectSlugsQuery = gql`
 	query projects {
-		projects(where: { status: { equals: "published" } }) {
+		projects${publishedCondition} {
 			slug
 		}
 	}

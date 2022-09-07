@@ -16,7 +16,7 @@ const Scroller = (props: { label: string; target: string; pageRef: RefObject<HTM
 
 	const inRange = () => y >= target?.offsetTop! && y <= target?.offsetTop! + target?.clientHeight!;
 	return (
-		<span onClick={onClick} className={`${inRange() ? 'underline' : ''} hover:cursor-pointer hover:underline`}>
+		<span onClick={onClick} className={`font-bold ${inRange() ? 'underline' : ''} hover:cursor-pointer hover:underline`}>
 			{props.label}
 		</span>
 	);

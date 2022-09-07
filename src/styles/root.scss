@@ -13,6 +13,21 @@
 	@apply w-full rounded-2xl bg-bermuda-card;
 }
 
+.gradient-outline::after {
+	@apply rounded-xl;
+	content: '';
+	position: absolute;
+	inset: 0;
+	margin: -3px;
+	z-index: -1;
+	background-image: linear-gradient(to top left, #6a6a77, #6e6a77);
+	transform: translateZ(-1px);
+}
+
+.gradient-outline {
+	transform-style: preserve-3d;
+}
+
 .AdaptiveText > span {
 	text-align: left !important;
 	display: flex !important;
@@ -26,10 +41,11 @@
 }
 
 body {
+	@apply font-sans;
+
 	overflow-x: hidden;
 	overflow-y: overlay;
-	background: #070707;
-	font-family: 'Inter', sans-serif;
+	background: #12121a;
 	color: var(--text-light);
 }
 
