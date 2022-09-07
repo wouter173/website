@@ -14,6 +14,7 @@ import { StoreDataType } from 'misc/types';
 const Home: NextPage = () => {
 	const pageRef = useRef<HTMLDivElement>(null);
 	const { projects } = useStore<StoreDataType>();
+	const sortedProjects = projects.sort((a) => (a.slug.startsWith('hidden-') ? 1 : -1));
 
 	return (
 		<>
@@ -32,8 +33,8 @@ const Home: NextPage = () => {
 			</Head>
 			<main className="max-h-screen overflow-auto" ref={pageRef}>
 				<Nav pageRef={pageRef} />
-				<Header highlightedProjects={projects.slice(0, 2)} />
-				<Work projects={projects.slice(2)} />
+				<Header highlightedProjects={sortedProjects.slice(0, 2)} />
+				<Work projects={sortedProjects.slice(2)} />
 				<Contact />
 				<Footer />
 			</main>
