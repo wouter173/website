@@ -55,7 +55,7 @@ export default function Project(props: MetadataType & { outline: boolean }) {
 			<section className="flex mt-4">
 				<p className="font-bold">{props.description}</p>
 			</section>
-			<section className="flex mt-8">
+			<section className="flex mt-8 flex-col sm:flex-row gap-4 sm:gap-0">
 				<ul className="mt-auto flex h-min flex-wrap-reverse justify-items-end">
 					{props.tags?.map((item) => (
 						<Tag key={item.label} label={item.label} color={item.color} url={item.url} />

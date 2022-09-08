@@ -1,7 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 
+import MediaContext from 'components/Context/MediaContext';
 import Contact from 'components/Home/Contact';
 import Footer from 'components/Home/Footer';
 import Header from 'components/Home/Header';
@@ -10,11 +11,15 @@ import Work from 'components/Home/Work';
 import { fetchProjects } from 'lib/state/fetchProjects';
 import { useStore } from 'lib/state/StateProvider';
 import { StoreDataType } from 'misc/types';
+import { useMedia } from 'react-use';
 
 const Home: NextPage = () => {
 	const pageRef = useRef<HTMLDivElement>(null);
 	const { projects } = useStore<StoreDataType>();
 	const sortedProjects = projects.sort((a) => (a.slug.startsWith('hidden-') ? 1 : -1));
+
+	const isLaptop = useMedia('(min-width: 1024px)');
+	const headerProjects = isLaptop ? 2 : 1;
 
 	return (
 		<>
@@ -33,8 +38,8 @@ const Home: NextPage = () => {
 			</Head>
 			<main className="max-h-screen overflow-auto" ref={pageRef}>
 				<Nav pageRef={pageRef} />
-				<Header highlightedProjects={sortedProjects.slice(0, 2)} />
-				<Work projects={sortedProjects.slice(2)} />
+				<Header highlightedProjects={sortedProjects.slice(0, headerProjects)} />
+				<Work projects={sortedProjects.slice(headerProjects)} />
 				<Contact />
 				<Footer />
 			</main>

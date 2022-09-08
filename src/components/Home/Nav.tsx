@@ -26,7 +26,7 @@ export default function Nav({ pageRef }: { pageRef: RefObject<HTMLDivElement> })
 	const media = useContext(MediaContext);
 
 	return (
-		<nav id="homepage" className={`${media.isMobile ? 'hidden' : 'block'} fixed right-20 top-14 z-10`}>
+		<nav id="homepage" className="hidden sm:block fixed right-20 top-14 z-10">
 			<ul className="flex flex-row gap-4">
 				<li>
 					<Scroller target="work" label="work" pageRef={pageRef} />
