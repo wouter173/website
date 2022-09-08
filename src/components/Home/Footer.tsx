@@ -35,11 +35,13 @@ export default function Footer() {
 					<div className="col-start-3">
 						<h3 className="text-lg font-bold">Projects</h3>
 						<ul>
-							{projects.map((project) => (
-								<li key={project.slug}>
-									<Link href={'/project/' + project.slug}>{project.title}</Link>
-								</li>
-							))}
+							{projects.map((project) =>
+								!project.slug.startsWith('hidden-') ? (
+									<li key={project.slug} className="text-sm sm:text-base">
+										<Link href={'/project/' + project.slug}>{project.title}</Link>
+									</li>
+								) : null
+							)}
 						</ul>
 					</div>
 				</div>
