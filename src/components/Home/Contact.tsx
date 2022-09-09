@@ -30,7 +30,9 @@ export default function Contact() {
 			</label>
 			<Field
 				disabled={context.isSubmitting}
-				className={`${context.isSubmitting ? 'text-gray-400' : ''} h-full resize-none rounded-lg bg-metal p-2 outline-rose-500 focus:outline`}
+				className={`${
+					context.isSubmitting ? 'text-gray-400' : ''
+				} h-full resize-none rounded-lg bg-metal p-2 border border-[#4e4e59] outline-rose-500 focus:outline`}
 				type={type}
 				name={name}
 				id={name}
@@ -71,7 +73,7 @@ export default function Contact() {
 					<Form className="grid gap-4">
 						<Field type="hidden" name="form-name" value="contact" />
 						<FormField className="col-span-1" context={context} name="name" type="text" />
-						<FormField className="col-span-1 " context={context} name="email" type="text" />
+						<FormField className="col-span-1" context={context} name="email" type="text" />
 						<FormField className="col-span-1 h-48 sm:col-span-2" context={context} name="message" type="text" as="textarea" />
 						<p className="col-span-1 sm:col-span-2">
 							<Field

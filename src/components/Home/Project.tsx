@@ -18,7 +18,7 @@ export default function Project(props: MetadataType & { outline: boolean }) {
 	return (
 		<article
 			className={`
-      ${props.outline ? 'gradient-outline' : ''} 
+      ${props.outline ? 'border-2 border-[#6a6a77]' : ''} 
       relative bg-gradient-to-tl from-metal to-metal-light rounded-lg flex flex-col min-h-max w-full p-6
       shadow-2xl shadow-black/40`}
 		>
