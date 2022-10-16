@@ -38,8 +38,8 @@ const Home: NextPage = () => {
 			</Head>
 			<main className="max-h-screen overflow-auto" ref={pageRef}>
 				<Nav pageRef={pageRef} />
-				<Header highlightedProjects={sortedProjects.slice(0, headerProjects)} />
-				<Work projects={sortedProjects.slice(headerProjects)} />
+				<Header />
+				<Work projects={sortedProjects} />
 				<Contact />
 				<Footer />
 			</main>
