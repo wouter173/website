@@ -14,7 +14,7 @@ export default function Header(props: { highlightedProjects: ProjectType[] }) {
 					</button> */}
 				</section>
 
-				<section className="mt-auto mx-auto w-full mb-4 grid grid-flow-row gap-4 grid-cols-1 lg:grid-cols-2">
+				<section id="work" className="mt-auto mx-auto w-full mb-4 grid grid-flow-row gap-4 grid-cols-1 lg:grid-cols-2">
 					{props.highlightedProjects.map((project) => (
 						<Project outline {...project} key={project.slug} />
 					))}
