@@ -23,8 +23,6 @@ const Scroller = (props: { label: string; target: string; pageRef: RefObject<HTM
 };
 
 export default function Nav({ pageRef }: { pageRef: RefObject<HTMLDivElement> }) {
-	const media = useContext(MediaContext);
-
 	return (
 		<nav id="homepage" className="hidden sm:block fixed right-20 top-14 z-10">
 			<ul className="flex flex-row gap-4">
