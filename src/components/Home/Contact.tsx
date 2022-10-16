@@ -32,7 +32,7 @@ export default function Contact() {
 				disabled={context.isSubmitting}
 				className={`${
 					context.isSubmitting ? 'text-gray-400' : ''
-				} h-full resize-none rounded-lg bg-metal p-2 border border-[#4e4e59] outline-rose-500 focus:outline`}
+				} h-full resize-none rounded-lg bg-metal p-2 border-2 shadow-black/40 border-metal-light outline-rose-500 focus:outline`}
 				type={type}
 				name={name}
 				id={name}
@@ -79,7 +79,7 @@ export default function Contact() {
 							<Field
 								className={`${
 									!context.isValid || context.isSubmitting ? 'opacity-60' : 'opacity-100'
-								} w-full rounded-lg bg-gradient-to-r from-rose-500 to-red-500 p-2 outline-rose-400 transition-opacity hover:outline focus:outline active:opacity-90`}
+								} w-full rounded-lg bg-gradient-to-r from-rose-500 to-orange-500 p-2 outline-rose-500 transition-opacity hover:outline focus:outline active:opacity-90`}
 								type="submit"
 								name="submit"
 								disabled={!context.isValid || context.isSubmitting || context.isValidating}

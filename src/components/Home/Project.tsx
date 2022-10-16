@@ -18,15 +18,16 @@ export default function Project(props: MetadataType & { outline: boolean }) {
 	return (
 		<article
 			className={`
-      ${props.outline ? 'border-2 border-[#6a6a77]' : ''} 
-      relative bg-gradient-to-tl from-metal to-metal-light rounded-lg flex flex-col min-h-max w-full p-6
-      shadow-2xl shadow-black/40`}
+        ${props.outline ? 'border-2 border-metal-light' : ''} 
+        relative rounded-lg flex flex-col min-h-max w-full p-6
+        shadow-2xl shadow-black/40 hover:scale-[101%] transition-all
+        overflow-hidden from-metal to-metal bg-gradient-to-tl 
+      `}
 		>
 			<section className="flex items-center">
-				{/* <div className="row-span-2 h-14 aspect-square bg-gray-600 rounded-full mr-3" /> */}
 				<div>
 					<h3 className="font-head text-2xl font-bold sm:text-3xl">{props.title}</h3>
-					<ul className="opacity-70 font-bold flex flex-wrap">
+					<ul className="opacity-70 font-bold flex flex-wrap items-center">
 						<li key={props.slug + '-project'}>
 							<p>project</p>
 						</li>
