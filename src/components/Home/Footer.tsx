@@ -10,13 +10,14 @@ export default function Footer() {
 
 	return (
 		<footer>
+			<hr className="mb-20 border-metal-light" />
 			<Section title="" id="footer" className="min-h-[30vh]">
 				<div className="grid">
 					<div className="col-start-1">
 						<img src={'/logo.svg'} alt="logo" className="h-14 w-14" />
 					</div>
 					<div className="col-start-2">
-						<h3 className="text-lg font-bold">Social media</h3>
+						<h3 className="text-lg font-bold font-head">Social media</h3>
 						<ul>
 							<li>
 								<ExternalLink url="https://instagram.com/wouter_db_" label="Instagram" />
@@ -33,7 +34,7 @@ export default function Footer() {
 						</ul>
 					</div>
 					<div className="col-start-3">
-						<h3 className="text-lg font-bold">Projects</h3>
+						<h3 className="text-lg font-bold font-head">Projects</h3>
 						<ul>
 							{projects.map((project) =>
 								!project.slug.startsWith('hidden-') ? (
