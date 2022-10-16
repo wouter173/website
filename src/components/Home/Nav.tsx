@@ -27,7 +27,7 @@ export default function Nav({ pageRef }: { pageRef: RefObject<HTMLDivElement> })
 		<nav id="homepage" className="hidden sm:block fixed right-20 top-14 z-10">
 			<ul className="flex flex-row gap-4">
 				<li>
-					<Scroller target="work" label="work" pageRef={pageRef} />
+					<Scroller target="portfolio" label="portfolio" pageRef={pageRef} />
 				</li>
 				<li>
 					<Scroller target="contact" label="contact" pageRef={pageRef} />

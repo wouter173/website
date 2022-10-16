@@ -12,6 +12,7 @@ import { getApiUri } from 'misc/utils';
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { fetchProjects } from 'lib/state/fetchProjects';
+import Footer from 'components/Home/Footer';
 
 export default function Project() {
 	const router = useRouter();
@@ -22,8 +23,6 @@ export default function Project() {
 	else id = slug || '';
 
 	const project = useStore<ProjectType>((state) => state.projects.filter((project) => project.slug === slug)[0]);
-
-	const scrollRef = useRef(null);
 	const metadataTitleRef = useRef(null);
 
 	const title = 'Wouter de Bruijn | ' + project.title;
@@ -43,13 +42,14 @@ export default function Project() {
 
 				<title>{title}</title>
 			</Head>
-			<div id="Article" className="max-h-screen overflow-auto bg-bermuda" ref={scrollRef}>
-				<div className="mx-auto mt-8 grid w-11/12 grid-flow-row gap-10 sm:mx-auto sm:w-1/2 sm:px-0">
-					<Nav refs={{ scrollRef, metadataTitleRef }} slug={id} />
-					<div className="card h-96 bg-bermuda-card bg-cover bg-center" style={{ backgroundImage: `url(${getApiUri() + project.thumbnail.url})` }} />
+			<div id="Article" className="bg-bermuda">
+				<div className="mx-auto pt-8 grid w-11/12 grid-flow-row gap-10 sm:mx-auto sm:w-1/2 sm:px-0">
+					<Nav metadataTitleRef={metadataTitleRef} slug={id} />
+					<div className="card h-96 bg-metal bg-cover bg-center" style={{ backgroundImage: `url(${getApiUri() + project.thumbnail.url})` }} />
 					<MetaData metadata={project} ref={metadataTitleRef} />
-					<Content className="card" document={project.content.document ?? []} />
+					<Content className="" document={project.content.document ?? []} />
 				</div>
+				<Footer />
 			</div>
 		</>
 	);

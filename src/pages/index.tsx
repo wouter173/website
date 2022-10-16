@@ -1,16 +1,14 @@
-import type { GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
-import { useContext, useRef } from 'react';
-
-import MediaContext from 'components/Context/MediaContext';
 import Contact from 'components/Home/Contact';
 import Footer from 'components/Home/Footer';
 import Header from 'components/Home/Header';
 import Nav from 'components/Home/Nav';
-import Work from 'components/Home/Work';
+import Portfolio from 'components/Home/Portfolio';
 import { fetchProjects } from 'lib/state/fetchProjects';
 import { useStore } from 'lib/state/StateProvider';
 import { StoreDataType } from 'misc/types';
+import type { GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
+import { useRef } from 'react';
 import { useMedia } from 'react-use';
 
 const Home: NextPage = () => {
@@ -36,10 +34,10 @@ const Home: NextPage = () => {
 
 				<title>Wouter de Bruijn</title>
 			</Head>
-			<main className="max-h-screen overflow-auto" ref={pageRef}>
+			<main className="max-h-screen overflow-auto bg-bermuda" ref={pageRef}>
 				<Nav pageRef={pageRef} />
 				<Header />
-				<Work projects={sortedProjects} />
+				<Portfolio projects={sortedProjects} />
 				<Contact />
 				<Footer />
 			</main>
