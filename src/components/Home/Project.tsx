@@ -14,6 +14,11 @@ const Optional = (props: PropsWithChildren<{ condition: boolean }>) => {
 	return null;
 };
 
+const variants: { [key: string]: string } = {
+	sparkle: 'to-[#FFCC4D] from-[#FFAC33]',
+	'filewarp-io': 'to-[#7a89c0] from-[#596CB0]',
+};
+
 export default function Project(props: MetadataType & { outline: boolean }) {
 	return (
 		<article
@@ -26,7 +31,14 @@ export default function Project(props: MetadataType & { outline: boolean }) {
 		>
 			<section className="flex items-center">
 				<div>
-					<h3 className="font-head text-2xl font-bold sm:text-3xl">{props.title}</h3>
+					<h3
+						className={`
+              ${Object.keys(variants).includes(props.slug) && `bg-gradient-to-tl bg-clip-text text-transparent ${variants[props.slug]}`}
+              font-head text-2xl font-bold sm:text-3xl
+            `}
+					>
+						{props.title}
+					</h3>
 					<ul className="opacity-70 font-bold flex flex-wrap items-center">
 						<li key={props.slug + '-project'}>
 							<p>project</p>
