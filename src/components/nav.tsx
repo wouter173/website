@@ -34,9 +34,11 @@ export const Nav = () => {
             onMouseLeave={() => setActiveTab(null)}
           >
             {activeTab === name && (
-              <motion.div
+              <motion.span
+                layout
                 layoutId="knob"
-                className="absolute inset-0 -z-10 rounded-full bg-slate-100"
+                className="absolute inset-0 -z-10 rounded-full bg-slate-50 shadow-sm"
+                style={{ originY: "top" }}
                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
               />
             )}
