@@ -1,8 +1,8 @@
-import MillionLint from "@million/lint";
+import nextMdx from "@next/mdx";
+
+const withMdx = nextMdx();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
 
-export default MillionLint.next({
-  rsc: true,
-})(nextConfig);
+export default withMdx(nextConfig);
