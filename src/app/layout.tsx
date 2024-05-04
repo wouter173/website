@@ -14,8 +14,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="bg-[#0c0c0c]">
+      <body
+        className={`${inter.className} bg-[#0c0c0c] before:absolute before:inset-0  before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%] `}
+      >
         <Nav />
         {children}
       </body>

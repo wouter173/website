@@ -1,30 +1,63 @@
-"use client";
-// import Image from "next/image";
-// import cloudsSrc from "@/../public/clouds.png";
-import { useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Clouds, Cloud, Sky as SkyImpl, CameraControls } from "@react-three/drei";
-import { MeshLambertMaterial, Vector3 } from "three";
+"use client"
+import { Canvas, useFrame } from "@react-three/fiber"
+import { Mesh, PlaneGeometry, ShaderMaterial, Vector4 } from "three"
 
-import { Button } from "@/components/ui/button";
-import { ChevronRightIcon } from "@/components/icons/chevron-right-icon";
-import Link from "next/link";
-import { AtIcon } from "@/components/icons/at-icon";
-import { useRef, useState } from "react";
+import { AnimatePresence, useMotionValue, useTransform } from "framer-motion"
+import Image from "next/image"
+import { AtIcon } from "@/components/icons/at-icon"
+import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { useRef, useState } from "react"
+//@ts-ignore
+import fragmentShader from "@/shaders/fragment-shader.glsl"
+//@ts-ignore
+import vertexShader from "@/shaders/vertex-shader.glsl"
+import { cn } from "@/lib/utils"
+
+import raysSrc from "../../public/rays.png"
+import { motion, useDragControls, useMotionTemplate } from "framer-motion"
+import { flushSync } from "react-dom"
 
 export default function Home() {
+  const [canvasReady, setCanvasReady] = useState(false)
+
   return (
     <div className="min-h-screen w-full">
-      <main className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-0">
-        <div className="absolute inset-0 -z-10 h-full w-full opacity-80">
-          {/*bg-gradient-to-t from-[#8FACC0] to-[#385898] */}
-          <Canvas camera={{ position: new Vector3(0, -20, 0), fov: 75 }}>
-            <Sky />
-          </Canvas>
-          {/* <Image fill alt="cloud background" src={cloudsSrc} className="object-cover object-center mix-blend-screen" /> */}
+      <main className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
+        <div className="absolute inset-0 h-full w-full">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: canvasReady ? 0.15 : 0 }} className="h-full w-full">
+            <Canvas
+              onCreated={() => setCanvasReady(true)}
+              gl={{
+                preserveDrawingBuffer: true,
+                premultipliedAlpha: false,
+                alpha: true,
+                antialias: true,
+                precision: "highp",
+                powerPreference: "high-performance",
+              }}
+              resize={{ debounce: 0, scroll: false, offsetSize: true }}
+              dpr={1}
+              camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}
+            >
+              <TextureMesh />
+            </Canvas>
+          </motion.div>
+
+          {/* <Image
+            className={cn(
+              "absolute inset-0 z-20 h-full w-full mix-blend-screen transition-opacity",
+              canvasReady ? "opacity-0" : "opacity-15",
+            )}
+            src={raysSrc}
+            alt="Rays texture"
+            width={1024}
+            height={1024}
+          /> */}
         </div>
 
-        <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
+        {/* <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
           <div className="flex flex-col gap-2">
             <h1 className="text-6xl font-extrabold leading-relaxed text-black opacity-70">Wouter de Bruijn</h1>
             <div className="flex justify-center gap-2">
@@ -42,9 +75,10 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
-      <div className="relative h-screen bg-white before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat">
+
+      {/* <div className="relative pb-24">
         <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4">
           <article className="relative z-20 -mt-10 overflow-hidden rounded-lg px-6 py-6 shadow-sm">
             <div className="absolute inset-0 -z-10 bg-white [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]" />
@@ -58,45 +92,50 @@ export default function Home() {
           </article>
           <article className="relative z-20 -mt-10 rounded-lg bg-white py-20 shadow-sm"></article>
         </div>
-      </div>
+      </div> */}
     </div>
-  );
+  )
 }
 
-const Sky = () => {
+const TextureMesh = () => {
+  const mesh = useRef<Mesh<PlaneGeometry, ShaderMaterial> | null>(null)
+
+  useFrame(({ clock, gl }) => {
+    if (mesh.current) {
+      mesh.current.material.uniforms.u_mouse.value = [0, 0]
+      mesh.current.material.uniforms.u_time.value = clock.getElapsedTime()
+
+      let c = gl.domElement.getBoundingClientRect()
+      mesh.current.material.uniforms.u_resolution.value = [c.width, c.height]
+    }
+  })
+
+  const uniforms = {
+    u_colors: {
+      value: [new Vector4(1, 1, 1, 1), new Vector4(0.6352941176470588, 0.6470588235294118, 0.792156862745098, 1)],
+    },
+    u_intensity: { value: 0.375 },
+    u_rays: { value: 0.05 },
+    u_reach: { value: 0.311 },
+    u_time: { value: 0 },
+    u_mouse: { value: [0, 0] },
+    u_resolution: { value: [2048, 2048] },
+  }
+
   return (
     <>
-      <SkyImpl sunPosition={new Vector3(-1, 1, 1)} inclination={0.1} />
-      <ambientLight intensity={Math.PI / 1.5} color={"blue"} />
-      <spotLight position={[10, -40, 0]} decay={0} distance={45} penumbra={1} intensity={100} />
-      <spotLight position={[-10, -40, 0]} decay={0} distance={45} penumbra={1} intensity={100} color={"#FFFFFF"} />
-
-      <Clouds limit={400} material={MeshLambertMaterial}>
-        <Cloud seed={1} fade={0} speed={0.2} growth={4} segments={40} volume={6} opacity={0.6} bounds={[4, 3, 1]} color="white" />
-        <Cloud seed={9} fade={20} position={[0, -1, 0]} speed={0.5} growth={4} volume={50} opacity={0.2} bounds={[6, 2, 1]} color="white" />
-        <Cloud
-          seed={12}
-          fade={10}
-          position={[-10, 0, -10]}
-          speed={0.5}
-          growth={4}
-          volume={50}
-          opacity={0.1}
-          bounds={[6, 2, 1]}
-          color="#8FACC0"
+      <mesh ref={mesh} position={[0, 0, 0]} scale={1} rotation={[0, 0, 0]}>
+        <planeGeometry args={[2048, 2048]} />
+        <shaderMaterial
+          fragmentShader={fragmentShader as string}
+          vertexShader={vertexShader as string}
+          uniforms={uniforms}
+          wireframe={false}
+          wireframeLinewidth={0}
+          dithering={false}
+          glslVersion={"100"}
         />
-        <Cloud
-          seed={13}
-          fade={30}
-          position={[10, 0, -10]}
-          speed={0.5}
-          growth={4}
-          volume={50}
-          opacity={0.1}
-          bounds={[6, 2, 1]}
-          color="#8FACC0"
-        />
-      </Clouds>
+      </mesh>
     </>
-  );
-};
+  )
+}
