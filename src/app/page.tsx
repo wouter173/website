@@ -8,7 +8,7 @@ import { AtIcon } from "@/components/icons/at-icon"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useRef, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 //@ts-ignore
 import fragmentShader from "@/shaders/fragment-shader.glsl"
 //@ts-ignore
@@ -16,8 +16,7 @@ import vertexShader from "@/shaders/vertex-shader.glsl"
 import { cn } from "@/lib/utils"
 
 import raysSrc from "../../public/rays.png"
-import { motion, useDragControls, useMotionTemplate } from "framer-motion"
-import { flushSync } from "react-dom"
+import { motion } from "framer-motion"
 
 export default function Home() {
   const [canvasReady, setCanvasReady] = useState(false)
@@ -25,41 +24,31 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full">
       <main className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
-        <div className="absolute inset-0 h-full w-full">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: canvasReady ? 0.15 : 0 }} className="h-full w-full">
-            <Canvas
-              onCreated={() => setCanvasReady(true)}
-              gl={{
-                preserveDrawingBuffer: true,
-                premultipliedAlpha: false,
-                alpha: true,
-                antialias: true,
-                precision: "highp",
-                powerPreference: "high-performance",
-              }}
-              resize={{ debounce: 0, scroll: false, offsetSize: true }}
-              dpr={1}
-              camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}
-            >
-              <TextureMesh />
-            </Canvas>
-          </motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: canvasReady ? 0.15 : 0 }} className="absolute inset-0 h-full w-full">
+          <Canvas
+            onCreated={() => setCanvasReady(true)}
+            gl={{
+              preserveDrawingBuffer: true,
+              premultipliedAlpha: false,
+              alpha: true,
+              antialias: true,
+              precision: "highp",
+              powerPreference: "high-performance",
+            }}
+            resize={{ debounce: 0, scroll: false, offsetSize: true }}
+            dpr={1}
+            camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}
+          >
+            <TextureMesh counter={canvasReady ? 1 : 0} />
+          </Canvas>
+        </motion.div>
 
-          {/* <Image
-            className={cn(
-              "absolute inset-0 z-20 h-full w-full mix-blend-screen transition-opacity",
-              canvasReady ? "opacity-0" : "opacity-15",
-            )}
-            src={raysSrc}
-            alt="Rays texture"
-            width={1024}
-            height={1024}
-          /> */}
-        </div>
-
-        {/* <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
+        <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
           <div className="flex flex-col gap-2">
-            <h1 className="text-6xl font-extrabold leading-relaxed text-black opacity-70">Wouter de Bruijn</h1>
+            <span>Hi, I&apos;m</span>
+            <h1 className="block w-full bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#000_113.79%);] bg-clip-text text-6xl font-extrabold text-transparent opacity-50">
+              Wouter de Bruijn
+            </h1>
             <div className="flex justify-center gap-2">
               <Button asChild size="rounded" className="flex w-min items-center gap-1">
                 <a href="mailto:wouter@debruijn.dev">
@@ -75,7 +64,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </div> */}
+        </div>
       </main>
 
       {/* <div className="relative pb-24">
@@ -97,43 +86,36 @@ export default function Home() {
   )
 }
 
-const TextureMesh = () => {
+const TextureMesh = ({ counter: key }: { counter: number }) => {
   const mesh = useRef<Mesh<PlaneGeometry, ShaderMaterial> | null>(null)
 
   useFrame(({ clock, gl }) => {
     if (mesh.current) {
-      mesh.current.material.uniforms.u_mouse.value = [0, 0]
-      mesh.current.material.uniforms.u_time.value = clock.getElapsedTime()
+      mesh.current.material.uniforms.u_mouse.value = [1, 1]
+      mesh.current.material.uniforms.u_time.value = clock.elapsedTime
 
       let c = gl.domElement.getBoundingClientRect()
       mesh.current.material.uniforms.u_resolution.value = [c.width, c.height]
     }
   })
 
-  const uniforms = {
-    u_colors: {
-      value: [new Vector4(1, 1, 1, 1), new Vector4(0.6352941176470588, 0.6470588235294118, 0.792156862745098, 1)],
-    },
-    u_intensity: { value: 0.375 },
-    u_rays: { value: 0.05 },
-    u_reach: { value: 0.311 },
-    u_time: { value: 0 },
-    u_mouse: { value: [0, 0] },
-    u_resolution: { value: [2048, 2048] },
-  }
-
   return (
     <>
       <mesh ref={mesh} position={[0, 0, 0]} scale={1} rotation={[0, 0, 0]}>
-        <planeGeometry args={[2048, 2048]} />
+        <planeGeometry args={[1024, 1024]} />
         <shaderMaterial
+          key={key}
           fragmentShader={fragmentShader as string}
           vertexShader={vertexShader as string}
-          uniforms={uniforms}
-          wireframe={false}
-          wireframeLinewidth={0}
-          dithering={false}
-          glslVersion={"100"}
+          uniforms={{
+            u_colors: { value: [new Vector4(1, 1, 1, 1), new Vector4(0.6352941176470588, 0.6470588235294118, 0.792156862745098, 1)] },
+            u_intensity: { value: 0.375 },
+            u_rays: { value: 0.05 },
+            u_reach: { value: 0.311 },
+            u_time: { value: 0 },
+            u_mouse: { value: [0, 0] },
+            u_resolution: { value: [2048, 2048] },
+          }}
         />
       </mesh>
     </>
