@@ -1,10 +1,10 @@
-import type { Metadata } from "next"
+import { Nav } from "@/components/nav"
 import { GeistSans } from "geist/font/sans"
+import type { Metadata } from "next"
+import { ViewTransitions } from "next-view-transitions"
+import { PropsWithChildren } from "react"
 
 import "./globals.css"
-
-import { PropsWithChildren } from "react"
-import { Nav } from "@/components/nav"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,13 +13,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className="bg-[#0c0c0c]">
-      <body
-        className={`${GeistSans.className} bg-[#0c0c0c] before:absolute before:inset-0  before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%] `}
-      >
-        <Nav />
-        {children}
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" className="bg-[#0c0c0c]">
+        <body
+          className={`${GeistSans.className} relative bg-[#0c0c0c] before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%] `}
+        >
+          <Nav />
+          {children}
+        </body>
+      </html>
+    </ViewTransitions>
   )
 }

@@ -1,123 +1,103 @@
-"use client"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Mesh, PlaneGeometry, ShaderMaterial, Vector4 } from "three"
-
-import { AnimatePresence, useMotionValue, useTransform } from "framer-motion"
-import Image from "next/image"
 import { AtIcon } from "@/components/icons/at-icon"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { useEffect, useId, useRef, useState } from "react"
-//@ts-ignore
-import fragmentShader from "@/shaders/fragment-shader.glsl"
-//@ts-ignore
-import vertexShader from "@/shaders/vertex-shader.glsl"
-import { cn } from "@/lib/utils"
+import { PlusIcon } from "lucide-react"
+import { Link } from "next-view-transitions"
+import { Rays } from "./rays"
+import { Tools } from "./tools"
 
-import raysSrc from "../../public/rays.png"
-import { motion } from "framer-motion"
-
-export default function Home() {
-  const [canvasReady, setCanvasReady] = useState(false)
-
+export default function Page() {
   return (
-    <div className="min-h-screen w-full">
-      <main className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: canvasReady ? 0.15 : 0 }} className="absolute inset-0 h-full w-full">
-          <Canvas
-            onCreated={() => setCanvasReady(true)}
-            gl={{
-              preserveDrawingBuffer: true,
-              premultipliedAlpha: false,
-              alpha: true,
-              antialias: true,
-              precision: "highp",
-              powerPreference: "high-performance",
-            }}
-            resize={{ debounce: 0, scroll: false, offsetSize: true }}
-            dpr={1}
-            camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}
-          >
-            <TextureMesh counter={canvasReady ? 1 : 0} />
-          </Canvas>
-        </motion.div>
+    <div className="min-h-screen w-full ">
+      <header className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
+        <div className="absolute inset-0 h-full w-full">
+          <Rays />
+        </div>
 
         <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
-          <div className="flex flex-col gap-2">
-            <span>Hi, I&apos;m</span>
-            <h1 className="block w-full bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#000_113.79%);] bg-clip-text text-6xl font-extrabold text-transparent opacity-50">
-              Wouter de Bruijn
-            </h1>
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col">
+              <span className="font-semibold text-[#b4b5b7]/50">Hi, I&apos;m</span>
+              <h1 className="block w-full bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#000_113.79%);] bg-clip-text text-6xl font-extrabold text-transparent opacity-50">
+                Wouter de Bruijn
+              </h1>
+            </div>
             <div className="flex justify-center gap-2">
-              <Button asChild size="rounded" className="flex w-min items-center gap-1">
+              <Button
+                asChild
+                size="rounded"
+                className="flex w-min items-center gap-1 overflow-hidden border border-neutral-800 active:scale-100"
+              >
                 <a href="mailto:wouter@debruijn.dev">
                   <AtIcon className="size-3.5" />
                   Contact me
                 </a>
               </Button>
 
-              <Button asChild size="rounded" className="flex w-min items-center bg-slate-100 pr-1.5 text-black hover:bg-slate-100/80">
-                <Link href="/blog">
-                  Blog <ChevronRightIcon className="size-4 shrink-0" />
+              <Button
+                asChild
+                size="rounded"
+                className="flex w-min items-center border-2 border-slate-100 bg-slate-100 pr-1.5 text-black transition-all hover:border-black hover:bg-slate-100 hover:outline hover:outline-2 hover:outline-white/40"
+              >
+                <Link href="/work">
+                  Work <ChevronRightIcon className="size-4 shrink-0" />
                 </Link>
               </Button>
             </div>
           </div>
         </div>
-      </main>
-
-      {/* <div className="relative pb-24">
-        <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4">
-          <article className="relative z-20 -mt-10 overflow-hidden rounded-lg px-6 py-6 shadow-sm">
-            <div className="absolute inset-0 -z-10 bg-white [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]" />
-            <div className="absolute right-0 top-0 -z-10 size-8 rounded-bl-lg bg-white shadow-lg [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)]" />
-            <div className="flex flex-col gap-4 pr-8">
-              <h2 className="text-2xl font-semibold">The Next.js cheatsheet</h2>
-              <p className="text text-neutral-700">
-                A compendium of all the lessons I&quot;ve learned using nextjs for last 4 years of my life
-              </p>
-            </div>
-          </article>
-          <article className="relative z-20 -mt-10 rounded-lg bg-white py-20 shadow-sm"></article>
+      </header>
+      <main className="flex flex-col gap-72">
+        <div className="relative">
+          <Posts />
         </div>
-      </div> */}
+
+        <div className=" flex flex-col gap-8 text-center">
+          <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span>
+
+          <Tools />
+        </div>
+        <div className="flex flex-col gap-8 pb-24 text-center">
+          <span className="text-center font-medium text-[#303030]">Contact me</span>
+        </div>
+      </main>
     </div>
   )
 }
 
-const TextureMesh = ({ counter: key }: { counter: number }) => {
-  const mesh = useRef<Mesh<PlaneGeometry, ShaderMaterial> | null>(null)
+const Posts = async () => {
+  // const payload = await getPayload({ config: payloadConfig })
+  // const result = await payload.find({
+  //   collection: "posts",
+  // })
 
-  useFrame(({ clock, gl }) => {
-    if (mesh.current) {
-      mesh.current.material.uniforms.u_mouse.value = [1, 1]
-      mesh.current.material.uniforms.u_time.value = clock.elapsedTime
-
-      let c = gl.domElement.getBoundingClientRect()
-      mesh.current.material.uniforms.u_resolution.value = [c.width, c.height]
-    }
-  })
+  const post = {
+    title: "Hello world",
+    description: "This is a test",
+  }
 
   return (
-    <>
-      <mesh ref={mesh} position={[0, 0, 0]} scale={1} rotation={[0, 0, 0]}>
-        <planeGeometry args={[1024, 1024]} />
-        <shaderMaterial
-          key={key}
-          fragmentShader={fragmentShader as string}
-          vertexShader={vertexShader as string}
-          uniforms={{
-            u_colors: { value: [new Vector4(1, 1, 1, 1), new Vector4(0.6352941176470588, 0.6470588235294118, 0.792156862745098, 1)] },
-            u_intensity: { value: 0.375 },
-            u_rays: { value: 0.05 },
-            u_reach: { value: 0.311 },
-            u_time: { value: 0 },
-            u_mouse: { value: [0, 0] },
-            u_resolution: { value: [2048, 2048] },
-          }}
-        />
-      </mesh>
-    </>
+    <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4">
+      <article className="relative z-20 -mt-10 flex -rotate-1 flex-col gap-6 overflow-hidden rounded-lg px-6 py-6 shadow-sm transition-all hover:-rotate-2">
+        <div className="absolute inset-0 -z-10 bg-[#171718] [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]" />
+        <div className="absolute right-0 top-0 -z-10 size-8 rounded-bl-lg bg-gradient-to-tr from-[#242425] to-[#141415] shadow-lg [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)]" />
+        <div className="flex flex-col gap-4 pr-8">
+          <h2 className="text-2xl font-semibold text-neutral-300">{post.title}</h2>
+          <p className="text text-neutral-400">{post.description}</p>
+        </div>
+        <div className="flex justify-end">
+          <Button
+            asChild
+            size="rounded"
+            className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2.5 py-1.5 pl-3 text-neutral-100 hover:bg-[#242425]/40"
+          >
+            <Link href="/work">
+              Read more <PlusIcon className="size-4 shrink-0" />
+            </Link>
+          </Button>
+        </div>
+      </article>
+      <article className="relative z-20 -mt-10 rounded-lg bg-[#0A0A0B] py-20 shadow-sm"></article>
+    </div>
   )
 }

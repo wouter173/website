@@ -14,6 +14,14 @@ const config = {
     },
     extend: {
       keyframes: {
+        spin: {
+          from: {
+            transform: "rotate(300deg)",
+          },
+          to: {
+            transform: "rotate(660deg)",
+          },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -24,6 +32,7 @@ const config = {
         },
       },
       animation: {
+        spin: "spin 4s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
