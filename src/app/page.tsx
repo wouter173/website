@@ -6,16 +6,9 @@ import { PlusIcon } from "lucide-react"
 import { Link } from "next-view-transitions"
 import { readFile } from "node:fs/promises"
 import { Contact } from "./contact"
+import { Footer } from "./footer"
 import { Rays } from "./rays"
-import { Tools } from "./tools"
-
-export type Tool = {
-  name: string
-  thumbnail: string
-  description: string
-  url: string
-  tags: string[]
-}
+import { Tool, Tools } from "./tools"
 
 export default async function Page() {
   const tools = await getTools()
@@ -80,8 +73,8 @@ export default async function Page() {
                   the web.
                   <br />
                   <br />
-                  Through my journey I've picked up and mastered a bunch of tools that I use daily and have been using for the past couple
-                  of years — listed down below!
+                  Through my journey I&apos;ve picked up and mastered a bunch of tools that I use daily and have been using for the past
+                  couple of years — listed down below!
                 </p>
 
                 <div className="flex flex-col gap-4 text-neutral-400">
@@ -100,12 +93,12 @@ export default async function Page() {
                       <span className="font-semibold">2022 - 2023</span> —{" "}
                       <a
                         href="https://stats.fm/"
-                        className="inline-flex underline hover:text-white"
+                        className="group inline-flex underline hover:text-white"
                         rel="noopener noreferer"
                         target="_blank"
                       >
                         Stats.fm
-                        <ExternalIcon className="size-3" />
+                        <ExternalIcon className="mt-0.5 size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
                       </a>
                     </h3>
                     <p className="text-sm text-neutral-500">Moved a Vue.js spa to a Next.js fullstack app @ Stats.fm.</p>
@@ -116,12 +109,12 @@ export default async function Page() {
                       <span className="font-semibold">2023 - Today</span> —{" "}
                       <a
                         href="https://theblank.studio/"
-                        className="inline-flex underline hover:text-white"
+                        className="group inline-flex underline hover:text-white"
                         rel="noopener noreferer"
                         target="_blank"
                       >
                         The Blank Studio
-                        <ExternalIcon className="mb-1 size-3" />
+                        <ExternalIcon className="mt-0.5 size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
                       </a>
                     </h3>
                     <p className="text-sm text-neutral-500">
@@ -140,9 +133,9 @@ export default async function Page() {
           </div>
         </div>
         <div className="flex flex-col gap-8 pb-24 text-center">
-          <span className="text-center font-medium text-[#6C6C6D]">Reach out to me</span>
           <Contact />
         </div>
+        <Footer />
       </main>
     </div>
   )

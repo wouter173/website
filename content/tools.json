@@ -1,10 +1,24 @@
 [
   {
-    "name": "Vercel",
-    "thumbnail": "/tools/vercel.svg",
-    "description": "Vercel is a cloud platform for developers. It is a unified platform that combines the developer experience of the open web with the enterprise-grade infrastructure of the cloud.",
-    "url": "https://vercel.com",
-    "tags": ["cloud", "hosting", "serverless"]
+    "name": "Lucide",
+    "thumbnail": "/tools/lucide.svg",
+    "description": "Lucide is a set of open-source icons designed by the creator of Tailwind CSS. It is a popular choice for creating visually appealing user interfaces.",
+    "url": "https://lucide.dev",
+    "tags": []
+  },
+  {
+    "name": "Sanity",
+    "thumbnail": "/tools/sanity.svg",
+    "description": "Sanity is a headless CMS that allows you to build and manage content without writing code. It is a popular choice for creating content-driven websites.",
+    "url": "https://sanity.io",
+    "tags": []
+  },
+  {
+    "name": "Node",
+    "thumbnail": "/tools/node.svg",
+    "description": "Node.js is a JavaScript runtime environment that allows you to run JavaScript code on the server-side. It is a popular choice for building scalable and high-performance web applications.",
+    "url": "https://nodejs.org",
+    "tags": []
   },
   {
     "name": "Figma",
@@ -12,5 +26,75 @@
     "description": "Figma is a vector-based design tool that allows you to create, collaborate, and design beautiful user interfaces.",
     "url": "https://figma.com",
     "tags": ["design", "ui"]
+  },
+  {
+    "name": "Vue",
+    "thumbnail": "/tools/vue.svg",
+    "description": "Vue is a JavaScript framework for building user interfaces. It is maintained by Evan You and a community of individual developers and companies.",
+    "url": "https://vuejs.org",
+    "tags": []
+  },
+  {
+    "name": "Tailwind",
+    "thumbnail": "/tools/tailwind.svg",
+    "description": "Tailwind is a utility-first CSS framework that allows you to build highly customizable and responsive designs. It is a popular choice for creating modern and visually appealing user interfaces.",
+    "url": "https://tailwindcss.com",
+    "tags": ["ui", "css"]
+  },
+  {
+    "name": "React",
+    "thumbnail": "/tools/react.svg",
+    "description": "React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.",
+    "url": "https://react.dev",
+    "tags": ["ui"]
+  },
+  {
+    "name": "Vercel",
+    "thumbnail": "/tools/vercel.svg",
+    "description": "Vercel is a cloud platform for developers. It is a unified platform that combines the developer experience of the open web with the enterprise-grade infrastructure of the cloud.",
+    "url": "https://vercel.com",
+    "tags": ["cloud", "hosting", "serverless"]
+  },
+  {
+    "name": "Next",
+    "thumbnail": "/tools/next.svg",
+    "description": "Next is a React framework from Vercel. It is optimized for production and comes with built-in optimizations for performance.",
+    "url": "https://nextjs.org",
+    "tags": ["ui", "framework"]
+  },
+  {
+    "name": "Framer motion",
+    "thumbnail": "/tools/framer-motion.svg",
+    "description": "Framer motion is a library for creating animations in React applications. It is a popular choice for creating smooth and engaging user interfaces.",
+    "url": "https://www.framer.com/motion",
+    "tags": ["ui", "animation"]
+  },
+  {
+    "name": "Angular",
+    "thumbnail": "/tools/angular.svg",
+    "description": "Angular is a TypeScript-based framework for building web applications. It is a popular choice for creating complex and scalable user interfaces.",
+    "url": "https://angular.io",
+    "tags": []
+  },
+  {
+    "name": "Github",
+    "thumbnail": "/tools/github.svg",
+    "description": "Github is a web-based platform for hosting and collaborating on software projects. It is a popular choice for open-source projects and collaboration.",
+    "url": "https://github.com",
+    "tags": []
+  },
+  {
+    "name": "Three",
+    "thumbnail": "/tools/threejs.svg",
+    "description": "Three.js is a JavaScript library for creating 3D graphics and animations. It is a popular choice for creating immersive and interactive user interfaces.",
+    "url": "https://threejs.org",
+    "tags": []
+  },
+  {
+    "name": "Payload",
+    "thumbnail": "/tools/payload.svg",
+    "description": "Payload is a headless CMS that allows you to build and manage content without writing code. It is a popular choice for creating content-driven websites.",
+    "url": "https://payloadcms.com",
+    "tags": []
   }
 ]

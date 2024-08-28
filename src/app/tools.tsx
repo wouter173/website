@@ -1,8 +1,17 @@
 "use client"
+
+import { isOnScreen } from "@/lib/is-on-screen"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
-import { Tool } from "./page"
+
+export type Tool = {
+  name: string
+  thumbnail: string
+  description: string
+  url: string
+  tags: string[]
+}
 
 export const Tools = ({ tools }: { tools: Tool[] }) => {
   const ref = useRef<HTMLUListElement>(null)
@@ -10,10 +19,11 @@ export const Tools = ({ tools }: { tools: Tool[] }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (ref.current && !hovering) {
+      if (ref.current && isOnScreen(ref.current) && !hovering) {
+        console.log("scroll")
         ref.current.scrollBy({ left: 70, behavior: "smooth" })
       }
-    }, 1000)
+    }, 1500)
 
     return () => clearInterval(interval)
   }, [hovering])
@@ -42,41 +52,29 @@ const ToolsList = ({ tools }: { tools: Tool[] }) => {
         <Bauble tool={tools[0]} />
         <Bauble tool={tools[1]} />
       </div>
-      <div className="flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
+      <div className="mt-1 flex flex-col gap-3">
+        <Bauble tool={tools[2]} />
+        <Bauble tool={tools[3]} />
       </div>
-      <div className="mt-4 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
+      <div className="mt-7 flex flex-col gap-3">
+        <Bauble tool={tools[4]} />
+        <Bauble tool={tools[5]} />
+      </div>
+      <div className="mt-3 flex flex-col gap-3">
+        <Bauble tool={tools[6]} />
+        <Bauble tool={tools[7]} />
+      </div>
+      <div className="mt-8 flex flex-col gap-3">
+        <Bauble tool={tools[8]} />
+        <Bauble tool={tools[9]} />
       </div>
       <div className="mt-1 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
+        <Bauble tool={tools[10]} />
+        <Bauble tool={tools[11]} />
       </div>
-      <div className="mt-5 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
-      </div>
-      <div className="flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
-      </div>
-      <div className="mt-4 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
-      </div>
-      <div className="mt-1 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
-      </div>
-      <div className="mt-5 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
-      </div>
-      <div className="mt-1 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
+      <div className="mt-6 flex flex-col gap-3">
+        <Bauble tool={tools[12]} />
+        <Bauble tool={tools[13]} />
       </div>
     </>
   )
@@ -87,10 +85,10 @@ const Bauble = ({ tool }: { tool: Tool }) => {
     <motion.div
       initial={{ scale: 0, opacity: 0.9 }}
       whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: false, margin: "0px -300px" }}
-      className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] shadow-sm"
+      viewport={{ once: false, margin: "9999px -300px" }}
+      className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-3  shadow-sm"
     >
-      <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8" />
+      <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
     </motion.div>
   )
 }
