@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Vercel",
+    "thumbnail": "/tools/vercel.svg",
+    "description": "Vercel is a cloud platform for developers. It is a unified platform that combines the developer experience of the open web with the enterprise-grade infrastructure of the cloud.",
+    "url": "https://vercel.com",
+    "tags": ["cloud", "hosting", "serverless"]
+  },
+  {
+    "name": "Figma",
+    "thumbnail": "/tools/figma.svg",
+    "description": "Figma is a vector-based design tool that allows you to create, collaborate, and design beautiful user interfaces.",
+    "url": "https://figma.com",
+    "tags": ["design", "ui"]
+  }
+]

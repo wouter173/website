@@ -1,12 +1,25 @@
 import { AtIcon } from "@/components/icons/at-icon"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
+import { ExternalIcon } from "@/components/icons/external-icon"
 import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react"
 import { Link } from "next-view-transitions"
+import { readFile } from "node:fs/promises"
+import { Contact } from "./contact"
 import { Rays } from "./rays"
 import { Tools } from "./tools"
 
-export default function Page() {
+export type Tool = {
+  name: string
+  thumbnail: string
+  description: string
+  url: string
+  tags: string[]
+}
+
+export default async function Page() {
+  const tools = await getTools()
+
   return (
     <div className="min-h-screen w-full ">
       <header className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
@@ -47,18 +60,88 @@ export default function Page() {
           </div>
         </div>
       </header>
-      <main className="flex flex-col gap-72">
+      <main className="flex flex-col gap-40">
         <div className="relative">
           <Posts />
         </div>
 
         <div className=" flex flex-col gap-8 text-center">
-          <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span>
+          {/* <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span> */}
 
-          <Tools />
+          <div className="relative z-20 mx-auto  w-full max-w-4xl rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] py-8 shadow-sm">
+            <div className="flex flex-col gap-6 px-8">
+              {/* <h2 className="col-span-2 text-left text-4xl font-semibold text-neutral-100">Hey there, Wouter here!</h2> */}
+              <div className="grid w-full grid-cols-[1fr_1fr] gap-10 text-left">
+                <p className="mt-0.5 text-neutral-400">
+                  — a Fullstack Developer, largely self taught, and excited to learn new things.
+                  <br />
+                  <br />
+                  At the moment, my focus is finishing school and exploring ways to build the most user friendly and coolest interactions on
+                  the web.
+                  <br />
+                  <br />
+                  Through my journey I've picked up and mastered a bunch of tools that I use daily and have been using for the past couple
+                  of years — listed down below!
+                </p>
+
+                <div className="flex flex-col gap-4 text-neutral-400">
+                  <div className="flex flex-col gap-1">
+                    <h3>
+                      <span className="text-neutra font-semibold">2016 - 2021</span> — Self taught
+                    </h3>
+                    <p className="text-sm text-neutral-500">
+                      Learned about a lot of basics in computer science. Specifically about Python and the JS ecocsystem. Also dabbled in a
+                      lot of random tech like low level and iOS.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <h3>
+                      <span className="font-semibold">2022 - 2023</span> —{" "}
+                      <a
+                        href="https://stats.fm/"
+                        className="inline-flex underline hover:text-white"
+                        rel="noopener noreferer"
+                        target="_blank"
+                      >
+                        Stats.fm
+                        <ExternalIcon className="size-3" />
+                      </a>
+                    </h3>
+                    <p className="text-sm text-neutral-500">Moved a Vue.js spa to a Next.js fullstack app @ Stats.fm.</p>
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <h3>
+                      <span className="font-semibold">2023 - Today</span> —{" "}
+                      <a
+                        href="https://theblank.studio/"
+                        className="inline-flex underline hover:text-white"
+                        rel="noopener noreferer"
+                        target="_blank"
+                      >
+                        The Blank Studio
+                        <ExternalIcon className="mb-1 size-3" />
+                      </a>
+                    </h3>
+                    <p className="text-sm text-neutral-500">
+                      Building a bunch of awesome SaaS products with Next.js and other innovative technologies. Working with a team of
+                      incredible software engineers.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr className="my-6 border-[#1F1F1F]" />
+            <div className="">
+              <Tools tools={tools} />
+            </div>
+          </div>
         </div>
         <div className="flex flex-col gap-8 pb-24 text-center">
-          <span className="text-center font-medium text-[#303030]">Contact me</span>
+          <span className="text-center font-medium text-[#6C6C6D]">Reach out to me</span>
+          <Contact />
         </div>
       </main>
     </div>
@@ -100,4 +183,9 @@ const Posts = async () => {
       <article className="relative z-20 -mt-10 rounded-lg bg-[#0A0A0B] py-20 shadow-sm"></article>
     </div>
   )
+}
+
+async function getTools() {
+  const json = JSON.parse(await readFile("./content/tools.json", "utf-8")) as Tool[]
+  return json
 }

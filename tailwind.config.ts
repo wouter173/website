@@ -14,13 +14,17 @@ const config = {
     },
     extend: {
       keyframes: {
+        "marquee-primary": {
+          "0%": { left: "0%" },
+          "100%": { left: "-100%" },
+        },
+        "marquee-secondary": {
+          "0%": { left: "100%" },
+          "100%": { left: "0%" },
+        },
         spin: {
-          from: {
-            transform: "rotate(300deg)",
-          },
-          to: {
-            transform: "rotate(660deg)",
-          },
+          from: { transform: "rotate(300deg)" },
+          to: { transform: "rotate(660deg)" },
         },
         "accordion-down": {
           from: { height: "0" },
@@ -35,10 +39,12 @@ const config = {
         spin: "spin 4s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "carousel-primary": "marquee-primary 60s linear infinite",
+        "carousel-secondary": "marquee-secondary 60s linear infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar")],
 } satisfies Config
 
 export default config
