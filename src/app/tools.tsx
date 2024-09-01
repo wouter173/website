@@ -48,34 +48,34 @@ export const Tools = ({ tools }: { tools: Tool[] }) => {
 const ToolsList = ({ tools }: { tools: Tool[] }) => {
   return (
     <>
-      <div className="mt-5 flex flex-col gap-3">
+      <li className="mt-5 flex flex-col gap-3">
         <Bauble tool={tools[0]} />
         <Bauble tool={tools[1]} />
-      </div>
-      <div className="mt-1 flex flex-col gap-3">
+      </li>
+      <li className="mt-1 flex flex-col gap-3">
         <Bauble tool={tools[2]} />
         <Bauble tool={tools[3]} />
-      </div>
-      <div className="mt-7 flex flex-col gap-3">
+      </li>
+      <li className="mt-7 flex flex-col gap-3">
         <Bauble tool={tools[4]} />
         <Bauble tool={tools[5]} />
-      </div>
-      <div className="mt-3 flex flex-col gap-3">
+      </li>
+      <li className="mt-3 flex flex-col gap-3">
         <Bauble tool={tools[6]} />
         <Bauble tool={tools[7]} />
-      </div>
-      <div className="mt-8 flex flex-col gap-3">
+      </li>
+      <li className="mt-8 flex flex-col gap-3">
         <Bauble tool={tools[8]} />
         <Bauble tool={tools[9]} />
-      </div>
-      <div className="mt-1 flex flex-col gap-3">
+      </li>
+      <li className="mt-1 flex flex-col gap-3">
         <Bauble tool={tools[10]} />
         <Bauble tool={tools[11]} />
-      </div>
-      <div className="mt-6 flex flex-col gap-3">
+      </li>
+      <li className="mt-6 flex flex-col gap-3">
         <Bauble tool={tools[12]} />
         <Bauble tool={tools[13]} />
-      </div>
+      </li>
     </>
   )
 }
