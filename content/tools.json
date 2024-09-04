@@ -96,5 +96,68 @@
     "description": "Payload is a headless CMS that allows you to build and manage content without writing code. It is a popular choice for creating content-driven websites.",
     "url": "https://payloadcms.com",
     "tags": []
+  },
+  {
+    "name": "Astro",
+    "thumbnail": "/tools/astro.svg",
+    "description": "Astro is a static site generator for building fast and SEO-friendly websites. It is a popular choice for creating modern and user-friendly websites.",
+    "url": "https://astro.build",
+    "tags": ["static", "generator"]
+  },
+  {
+    "name": "Deno",
+    "thumbnail": "/tools/deno.svg",
+    "description": "Deno is a JavaScript runtime for building and running applications. It is a popular choice for creating fast and secure web applications.",
+    "url": "https://deno.land",
+    "tags": ["runtime", "web"]
+  },
+  {
+    "name": "Docker",
+    "thumbnail": "/tools/docker.svg",
+    "description": "Docker is a containerization platform for building and deploying applications. It is a popular choice for creating scalable and portable applications.",
+    "url": "https://www.docker.com",
+    "tags": ["containerization", "tool"]
+  },
+  {
+    "name": "Python",
+    "thumbnail": "/tools/python.svg",
+    "description": "Python is a high-level programming language for building web applications. It is a popular choice for creating scalable and maintainable applications.",
+    "url": "https://www.python.org",
+    "tags": ["web", "framework"]
+  },
+  {
+    "name": "Radix ui",
+    "thumbnail": "/tools/radix-ui.svg",
+    "description": "Radix UI is a collection of accessible and composable React components for building user interfaces. It is a popular choice for creating accessible and responsive user interfaces.",
+    "url": "https://www.radix-ui.com",
+    "tags": ["ui", "library"]
+  },
+  {
+    "name": "Rust",
+    "thumbnail": "/tools/rust.svg",
+    "description": "Rust is a systems programming language for building fast and secure applications. It is a popular choice for creating scalable and reliable applications.",
+    "url": "https://www.rust-lang.org",
+    "tags": ["systems", "language"]
+  },
+  {
+    "name": "Stripe",
+    "thumbnail": "/tools/stripe.svg",
+    "description": "Stripe is a payment processing platform for building secure and scalable web applications. It is a popular choice for creating secure and reliable payment systems.",
+    "url": "https://stripe.com",
+    "tags": ["payment", "platform"]
+  },
+  {
+    "name": "Turborepo",
+    "thumbnail": "/tools/turborepo.png",
+    "description": "Turborepo is a monorepo tool for managing multiple packages and applications. It is a popular choice for creating scalable and maintainable projects.",
+    "url": "https://turborepo.org",
+    "tags": ["monorepo", "tool"]
+  },
+  {
+    "name": "TypeScript",
+    "thumbnail": "/tools/typescript.svg",
+    "description": "TypeScript is a superset of JavaScript that adds static typing and other features to the language. It is a popular choice for creating scalable and maintainable applications.",
+    "url": "https://www.typescriptlang.org",
+    "tags": ["static", "typing"]
   }
 ]

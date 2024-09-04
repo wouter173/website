@@ -46,36 +46,18 @@ export const Tools = ({ tools }: { tools: Tool[] }) => {
 }
 
 const ToolsList = ({ tools }: { tools: Tool[] }) => {
+  const yOffsets = [16, 0, 28, 12, 32, 4, 24, 4, 28]
+
   return (
     <>
-      <li className="mt-5 flex flex-col gap-3">
-        <Bauble tool={tools[0]} />
-        <Bauble tool={tools[1]} />
-      </li>
-      <li className="mt-1 flex flex-col gap-3">
-        <Bauble tool={tools[2]} />
-        <Bauble tool={tools[3]} />
-      </li>
-      <li className="mt-7 flex flex-col gap-3">
-        <Bauble tool={tools[4]} />
-        <Bauble tool={tools[5]} />
-      </li>
-      <li className="mt-3 flex flex-col gap-3">
-        <Bauble tool={tools[6]} />
-        <Bauble tool={tools[7]} />
-      </li>
-      <li className="mt-8 flex flex-col gap-3">
-        <Bauble tool={tools[8]} />
-        <Bauble tool={tools[9]} />
-      </li>
-      <li className="mt-1 flex flex-col gap-3">
-        <Bauble tool={tools[10]} />
-        <Bauble tool={tools[11]} />
-      </li>
-      <li className="mt-6 flex flex-col gap-3">
-        <Bauble tool={tools[12]} />
-        <Bauble tool={tools[13]} />
-      </li>
+      {Array(Math.floor(tools.length / 2))
+        .fill(null)
+        .map((_, i) => (
+          <li key={i} className="flex flex-col gap-3" style={{ marginTop: yOffsets[i % yOffsets.length] }}>
+            <Bauble tool={tools[i * 2]} />
+            <Bauble tool={tools[i * 2 + 1]} />
+          </li>
+        ))}
     </>
   )
 }
@@ -86,7 +68,7 @@ const Bauble = ({ tool }: { tool: Tool }) => {
       initial={{ scale: 0, opacity: 0.9 }}
       whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: false, margin: "9999px -300px" }}
-      className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-3  shadow-sm"
+      className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5  shadow-sm"
     >
       <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
     </motion.div>

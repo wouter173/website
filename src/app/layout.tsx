@@ -16,7 +16,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <ViewTransitions>
       <html lang="en" className="bg-black">
         <body
-          className={`${GeistSans.className} relative bg-[#0c0c0c] before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%] `}
+          className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
         >
           <Nav />
           {children}
