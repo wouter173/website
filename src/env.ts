@@ -5,6 +5,7 @@ export const env = createEnv({
   server: {
     X_BEARER_TOKEN: z.string().min(1),
     GITHUB_BEARER_TOKEN: z.string().min(1),
+    WEBHOOK_URL: z.string().min(1),
   },
   client: {
     // NEXT_PUBLIC_PUBLISHABLE_KEY: z.string().min(1),

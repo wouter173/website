@@ -14,13 +14,9 @@ const config = {
     },
     extend: {
       keyframes: {
-        "marquee-primary": {
-          "0%": { left: "0%" },
-          "100%": { left: "-100%" },
-        },
-        "marquee-secondary": {
-          "0%": { left: "100%" },
-          "100%": { left: "0%" },
+        slideUpAndFade: {
+          from: { opacity: "0", transform: "translateY(2px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
         spin: {
           from: { transform: "rotate(300deg)" },
@@ -36,11 +32,10 @@ const config = {
         },
       },
       animation: {
-        spin: "spin 4s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "carousel-primary": "marquee-primary 60s linear infinite",
-        "carousel-secondary": "marquee-secondary 60s linear infinite",
+        spin: "spin 1s linear infinite",
+        slideUpAndFade: "slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans"
 import type { Metadata } from "next"
 import { ViewTransitions } from "next-view-transitions"
 import { PropsWithChildren } from "react"
+import { Toaster } from "sonner"
 
 import "./globals.css"
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <body
           className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
         >
+          <Toaster richColors theme="dark" />
           <Nav />
           {children}
         </body>

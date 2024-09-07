@@ -36,26 +36,27 @@ export const getGithubUserData = unstable_cache(
 
     const json = await response.json()
 
-    const schema = z.object({
-      data: z.object({
-        user: z.object({
-          url: z.string(),
-          login: z.string(),
-          repositories: z.object({
-            totalCount: z.number(),
-          }),
-          contributionsCollection: z.object({
-            contributionCalendar: z.object({
-              totalContributions: z.number(),
+    const payload = z
+      .object({
+        data: z.object({
+          user: z.object({
+            url: z.string(),
+            login: z.string(),
+            repositories: z.object({
+              totalCount: z.number(),
+            }),
+            contributionsCollection: z.object({
+              contributionCalendar: z.object({
+                totalContributions: z.number(),
+              }),
             }),
           }),
         }),
-      }),
-    })
+      })
+      .parse(json)
 
-    const data = schema.parse(json)
-
-    return data
+    console.log("Fetched github user: ", payload.data.user.login)
+    return payload.data
   },
   ["github", "user", "data"],
   { revalidate: 60 * 60 * 24 },

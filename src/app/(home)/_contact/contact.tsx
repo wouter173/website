@@ -1,5 +1,6 @@
 "use client"
 
+import { Spinner } from "@/components/spinner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -8,6 +9,7 @@ import { parseWithZod } from "@conform-to/zod"
 import { SendHorizonalIcon } from "lucide-react"
 import { ComponentProps } from "react"
 import { useFormState, useFormStatus } from "react-dom"
+import { toast } from "sonner"
 import { submitContactAction } from "./actions"
 import { contactFormSchema } from "./schema"
 
@@ -25,49 +27,71 @@ export const Contact = () => {
 }
 
 const ContactForm = () => {
-  const [lastResult, action] = useFormState(submitContactAction, null)
+  const [lastResult, action] = useFormState(async (state: unknown, data: FormData) => {
+    const result = await submitContactAction(state, data)
+    if (result.status === "success") {
+      toast.success("Message sent!")
+      form.reset()
+    }
+    return result
+  }, null)
+
   const [form, fields] = useForm({
     lastResult,
-
     onValidate: ({ formData }) => parseWithZod(formData, { schema: contactFormSchema }),
-
     shouldValidate: "onSubmit",
     shouldRevalidate: "onInput",
   })
 
   return (
     <form action={action} {...getFormProps(form)} className="flex flex-col gap-4">
-      <PendingDisabledFielset className="flex flex-col gap-4 text-left">
+      <Fieldset className="flex flex-col gap-4 text-left">
         <div className="grid grid-cols-[1fr_1fr] gap-4">
           <Input
             label="Name"
             errorLine={fields.name.errors ? fields.name.errors.join(", ") : ""}
             {...getInputProps(fields.name, { type: "text" })}
+            key={fields.name.key}
           />
           <Input
             label="Email"
             errorLine={fields.email.errors ? fields.email.errors.join(", ") : ""}
             {...getInputProps(fields.email, { type: "text" })}
-            name="email"
+            key={fields.email.key}
           />
         </div>
         <Textarea
           label="Message"
           errorLine={fields.message.errors ? fields.message.errors.join(", ") : ""}
           className="w-full max-w-full resize-none"
-          {...getTextareaProps(fields.message)}
           rows={8}
+          {...getTextareaProps(fields.message)}
+          key={fields.message.key}
         />
-        <Button type="submit" variant={"primary"} className="ml-auto w-fit rounded-lg">
-          Send
-          <SendHorizonalIcon className="ml-2 size-4" />
-        </Button>
-      </PendingDisabledFielset>
+        <SubmitButton />
+      </Fieldset>
     </form>
   )
 }
 
-const PendingDisabledFielset = (props: ComponentProps<"fieldset">) => {
+const Fieldset = (props: ComponentProps<"fieldset">) => {
   const { pending } = useFormStatus()
-  return <fieldset {...props} disabled={pending} />
+  return <fieldset disabled={pending} {...props} />
+}
+
+const SubmitButton = (props: ComponentProps<"button">) => {
+  const { pending } = useFormStatus()
+
+  return (
+    <Button type="submit" variant={"primary"} className="ml-auto w-fit min-w-24 rounded-lg" {...props}>
+      {pending ? (
+        <Spinner />
+      ) : (
+        <>
+          Send
+          <SendHorizonalIcon className="ml-2 size-4" />
+        </>
+      )}
+    </Button>
+  )
 }

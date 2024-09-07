@@ -3,14 +3,17 @@ import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { ExternalIcon } from "@/components/icons/external-icon"
 import { Button } from "@/components/ui/button"
 import { getGithubUserData } from "@/server/service/github"
+import { getTools } from "@/server/service/tools"
 import { getXUserData } from "@/server/service/x"
 import { PlusIcon } from "lucide-react"
 import Link from "next/link"
-import { readFile } from "node:fs/promises"
 import { Contact } from "./_contact/contact"
 import { Footer } from "./footer"
 import { Rays } from "./rays"
-import { Tool, Tools } from "./tools"
+import { Tools } from "./tools"
+
+export const revalidate = 86400
+export const dynamic = "force-static"
 
 export default async function Page() {
   const tools = await getTools()
@@ -167,7 +170,7 @@ export default async function Page() {
             <Link
               rel="noopener noreferer"
               target="_blank"
-              href={githubUser.data.user.url}
+              href={githubUser.user.url}
               className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-sm outline-[#2a2a2a] transition-all hover:border-black hover:bg-[#0A0A0B] hover:outline hover:outline-2 focus-visible:border-black focus-visible:outline focus-visible:outline-2 active:scale-[98%]"
             >
               <div className="flex items-center gap-4">
@@ -180,16 +183,14 @@ export default async function Page() {
                   />
                 </svg>
                 <div className="flex flex-col justify-center gap-1 leading-none">
-                  <span className="font-semibold">{githubUser.data.user.login}</span>
+                  <span className="font-semibold">{githubUser.user.login}</span>
                   <div className="flex gap-2 leading-[0px]">
                     <span className="text-sm text-neutral-400">
-                      <span className="text-white">{githubUser.data.user.repositories.totalCount} </span>
+                      <span className="text-white">{githubUser.user.repositories.totalCount} </span>
                       Repositories
                     </span>
                     <span className="text-sm text-neutral-400">
-                      <span className="text-white">
-                        {githubUser.data.user.contributionsCollection.contributionCalendar.totalContributions}{" "}
-                      </span>
+                      <span className="text-white">{githubUser.user.contributionsCollection.contributionCalendar.totalContributions} </span>
                       Contributions
                     </span>
                   </div>
@@ -242,9 +243,4 @@ const Posts = async () => {
       <article className="relative z-20 -mt-10 rounded-lg bg-[#0A0A0B] py-20 shadow-sm"></article>
     </div>
   )
-}
-
-async function getTools() {
-  const json = JSON.parse(await readFile("./content/tools.json", "utf-8")) as Tool[]
-  return json
 }
