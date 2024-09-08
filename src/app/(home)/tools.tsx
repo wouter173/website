@@ -70,7 +70,7 @@ const Bauble = ({ tool }: { tool: Tool }) => {
         initial={{ scale: 0, opacity: 0.9 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: false, margin: "9999px -300px" }}
-        className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5  shadow-sm"
+        className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5  shadow-sm hover:bg-neutral-900"
       >
         <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
       </motion.div>
@@ -84,8 +84,6 @@ const InfoTooltip = ({
   title,
   description,
 }: PropsWithChildren & { thumbnail: string; title: string; description: string }) => {
-  const [open, setOpen] = useState(false)
-
   return (
     <Tooltip.Provider delayDuration={100} skipDelayDuration={1000}>
       <Tooltip.Root>
@@ -101,7 +99,7 @@ const InfoTooltip = ({
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="data-[state=delayed-open]:data-[side=top]:animate-slideUpAndFade z-50 max-w-96 rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 shadow-sm "
+            className="z-50 max-w-96 rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 shadow-sm data-[state=delayed-open]:data-[side=top]:animate-slideUpAndFade "
             sideOffset={5}
           >
             <div className="flex flex-col gap-2">

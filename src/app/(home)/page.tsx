@@ -1,23 +1,21 @@
 import { AtIcon } from "@/components/icons/at-icon"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { ExternalIcon } from "@/components/icons/external-icon"
+import { Posts } from "@/components/posts"
 import { Button } from "@/components/ui/button"
+import tools from "@/content/tools.json"
 import { getGithubUserData } from "@/server/service/github"
-import { getTools } from "@/server/service/tools"
 import { getXUserData } from "@/server/service/x"
-import { PlusIcon } from "lucide-react"
+import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
+import { Footer } from "../../components/footer"
 import { Contact } from "./_contact/contact"
-import { Footer } from "./footer"
-import { Rays } from "./rays"
 import { Tools } from "./tools"
 
 export const revalidate = 86400
 export const dynamic = "force-static"
 
 export default async function Page() {
-  const tools = await getTools()
-
   const xUser = await getXUserData()
   const githubUser = await getGithubUserData()
 
@@ -25,10 +23,6 @@ export default async function Page() {
     <div className="min-h-screen w-full">
       <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-gradient-to-b from-transparent to-black/50"></div>
       <header className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
-        <div className="absolute inset-0 h-full w-full">
-          <Rays />
-        </div>
-
         <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col">
@@ -46,17 +40,17 @@ export default async function Page() {
               </Button>
 
               <Button asChild size="rounded" variant="primary" className="group flex w-min items-center">
-                <Link href="/work">
+                <ViewTransitionLink href="/work">
                   Work <ChevronRightIcon className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
-                </Link>
+                </ViewTransitionLink>
               </Button>
             </div>
           </div>
         </div>
       </header>
       <main className="flex flex-col gap-40">
-        <div className="relative">
-          <Posts />
+        <div className="relative -mt-14">
+          <Posts max={2} />
         </div>
 
         <div className=" flex flex-col gap-8 text-center">
@@ -204,43 +198,6 @@ export default async function Page() {
         </div>
         <Footer />
       </main>
-    </div>
-  )
-}
-
-const Posts = async () => {
-  // const payload = await getPayload({ config: payloadConfig })
-  // const result = await payload.find({
-  //   collection: "posts",
-  // })
-
-  const post = {
-    title: "Hello world",
-    description: "This is a test",
-  }
-
-  return (
-    <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4">
-      <article className="relative z-20 -mt-10 flex -rotate-1 flex-col gap-6 overflow-hidden rounded-lg px-6 py-6 shadow-sm transition-all hover:-rotate-2">
-        <div className="absolute inset-0 -z-10 bg-[#171718] [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]" />
-        <div className="absolute right-0 top-0 -z-10 size-8 rounded-bl-lg bg-gradient-to-tr from-[#242425] to-[#141415] shadow-lg [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)]" />
-        <div className="flex flex-col gap-4 pr-8">
-          <h2 className="text-2xl font-semibold text-neutral-300">{post.title}</h2>
-          <p className="text text-neutral-400">{post.description}</p>
-        </div>
-        <div className="flex justify-end">
-          <Button
-            asChild
-            size="rounded"
-            className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2.5 py-1.5 pl-3 text-neutral-100 hover:bg-[#242425]"
-          >
-            <Link href="/work">
-              Read more <PlusIcon className="size-4 shrink-0" />
-            </Link>
-          </Button>
-        </div>
-      </article>
-      <article className="relative z-20 -mt-10 rounded-lg bg-[#0A0A0B] py-20 shadow-sm"></article>
     </div>
   )
 }

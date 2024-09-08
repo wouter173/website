@@ -1,7 +1,10 @@
 import { Icon } from "@/components/icon"
+import { getPosts } from "@/server/service/posts"
 import Link from "next/link"
 
-export const Footer = () => {
+export const Footer = async () => {
+  const posts = await getPosts()
+
   return (
     <footer className=" border-t border-t-[#1f1f1f] bg-black pb-16 pt-12 text-white">
       <div className="mx-auto flex w-full max-w-4xl gap-32 px-6">
@@ -18,11 +21,16 @@ export const Footer = () => {
         </div>
         <div className="mt-4 flex flex-col gap-4">
           <h2 className="text-neutral-200">Work</h2>
-          <div className="flex flex-col text-sm text-neutral-500">
-            <Link href="https://github.com/wouter173" target="_blank" rel="noreferrer" className="hover:text-neutral-200 hover:underline">
-              Hello world
-            </Link>
-          </div>
+
+          <ul className="flex flex-col text-sm text-neutral-500">
+            {posts.map((post) => (
+              <li key={post.slug}>
+                <Link href={`/work/${post.slug}`} target="_blank" rel="noreferrer" className="hover:text-neutral-200 hover:underline">
+                  {post.metadata.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="mt-4 flex flex-col gap-4">
           <h2 className="text-neutral-200">Social media</h2>

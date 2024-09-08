@@ -10,16 +10,12 @@ const withMdx = nextMdx()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, options) => {
+  images: {
+    remotePatterns: [{ hostname: "pbs.twimg.com" }],
+  },
+  webpack: (config) => {
     config.module.rules.push({ test: /\.glsl/, type: "asset/source" })
     return config
-  },
-  images: {
-    remotePatterns: [
-      {
-        hostname: "pbs.twimg.com",
-      },
-    ],
   },
 }
 
