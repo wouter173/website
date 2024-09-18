@@ -1,10 +1,12 @@
 import { AtIcon } from "@/components/icons/at-icon"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { ExternalIcon } from "@/components/icons/external-icon"
-import { Posts } from "@/components/posts"
+import { PostCard } from "@/components/posts"
+import { Rays } from "@/components/rays"
 import { Button } from "@/components/ui/button"
 import tools from "@/content/tools.json"
 import { getGithubUserData } from "@/server/service/github"
+import { getPosts } from "@/server/service/posts"
 import { getXUserData } from "@/server/service/x"
 import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
@@ -21,6 +23,9 @@ export default async function Page() {
 
   return (
     <div className="min-h-screen w-full">
+      <div className="pointer-events-none absolute inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
+        <Rays />
+      </div>
       <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-gradient-to-b from-transparent to-black/50"></div>
       <header className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
         <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
@@ -31,8 +36,8 @@ export default async function Page() {
                 Wouter de Bruijn
               </h1>
             </div>
-            <div className="flex justify-center gap-2">
-              <Button asChild size="rounded" className="flex w-min items-center gap-1 border border-neutral-800">
+            <div className="grid grid-cols-2 gap-4">
+              <Button asChild size="rounded" className="ml-auto flex w-min items-center gap-1 border border-neutral-800">
                 <a href="mailto:wouter@debruijn.dev">
                   <AtIcon className="size-3.5" />
                   Contact me
@@ -50,7 +55,7 @@ export default async function Page() {
       </header>
       <main className="flex flex-col gap-40">
         <div className="relative -mt-14">
-          <Posts max={2} />
+          <Posts />
         </div>
 
         <div className=" flex flex-col gap-8 text-center">
@@ -198,6 +203,18 @@ export default async function Page() {
         </div>
         <Footer />
       </main>
+    </div>
+  )
+}
+
+const Posts = async () => {
+  const posts = await getPosts()
+
+  return (
+    <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4">
+      {posts.slice(0, 2).map((post) => {
+        return <PostCard post={post} key={post.slug} />
+      })}
     </div>
   )
 }

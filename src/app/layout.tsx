@@ -5,7 +5,6 @@ import { ViewTransitions } from "next-view-transitions"
 import { PropsWithChildren } from "react"
 import { Toaster } from "sonner"
 
-import { Rays } from "@/components/rays"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -20,9 +19,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <body
           className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
         >
-          <div className="pointer-events-none absolute inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
-            <Rays />
-          </div>
           <Toaster richColors theme="dark" />
           <Nav />
           <div className="relative z-10">{children}</div>

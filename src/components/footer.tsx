@@ -23,7 +23,7 @@ export const Footer = async () => {
           <h2 className="text-neutral-200">Work</h2>
 
           <ul className="flex flex-col text-sm text-neutral-500">
-            {posts.map((post) => (
+            {posts.slice(0, 4).map((post) => (
               <li key={post.slug}>
                 <Link href={`/work/${post.slug}`} target="_blank" rel="noreferrer" className="hover:text-neutral-200 hover:underline">
                   {post.metadata.title}
