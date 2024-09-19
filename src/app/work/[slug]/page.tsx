@@ -1,3 +1,4 @@
+import { ExternalIcon } from "@/components/icons/external-icon"
 import { Title } from "@/components/title"
 import { getPost, getPosts } from "@/server/service/posts"
 import { MDXRemote } from "next-mdx-remote/rsc"
@@ -27,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className="mx-auto max-w-4xl">
         <div className="mx-auto max-w-[65ch] pt-48">
           <Title className="w-full">{metadata.title}</Title>
-          <div className="prose text-neutral-200 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-white prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-a:text-white prose-a:visited:text-white">
+          <div className="prose text-neutral-200 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-white prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg">
             <MDXRemote
               source={content}
               components={{
@@ -37,8 +38,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   </code>
                 ),
                 a: ({ href, ...props }) => {
-                  if (href?.startsWith("/")) return <ViewTransitionLink href={href} {...props} />
-                  else return <Link {...props} rel="noreferrer noopener" target="_blank" href={href ?? ""} />
+                  const className = "group inline-flex underline hover:text-white text-neutral-400"
+
+                  if (href?.startsWith("/"))
+                    return (
+                      <ViewTransitionLink href={href} className={className} {...props}>
+                        {props.children}
+                      </ViewTransitionLink>
+                    )
+                  else
+                    return (
+                      <Link rel="noreferrer noopener" target="_blank" href={href ?? ""} className={className} {...props}>
+                        {props.children}{" "}
+                        <ExternalIcon className="mt-0.5 size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
+                      </Link>
+                    )
                 },
               }}
             />

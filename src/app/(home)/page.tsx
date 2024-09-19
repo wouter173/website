@@ -38,10 +38,10 @@ export default async function Page() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Button asChild size="rounded" className="ml-auto flex w-min items-center gap-1 border border-neutral-800">
-                <a href="mailto:wouter@debruijn.dev">
+                <Link href="mailto:wouter@debruijn.dev">
                   <AtIcon className="size-3.5" />
                   Contact me
-                </a>
+                </Link>
               </Button>
 
               <Button asChild size="rounded" variant="primary" className="group flex w-min items-center">
@@ -91,7 +91,7 @@ export default async function Page() {
                   <div className="flex flex-col gap-1">
                     <h2>
                       <span className="font-semibold">2022 - 2023</span> —{" "}
-                      <a
+                      <Link
                         href="https://stats.fm/"
                         className="group inline-flex underline hover:text-white"
                         rel="noopener noreferer"
@@ -99,7 +99,7 @@ export default async function Page() {
                       >
                         Stats.fm
                         <ExternalIcon className="mt-0.5 size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
-                      </a>
+                      </Link>
                     </h2>
                     <p className="text-sm text-neutral-500">Moved a Vue.js spa to a Next.js fullstack app @ Stats.fm.</p>
                   </div>
@@ -107,7 +107,7 @@ export default async function Page() {
                   <div className="flex flex-col gap-1">
                     <h2>
                       <span className="font-semibold">2023 - Today</span> —{" "}
-                      <a
+                      <Link
                         href="https://theblank.studio/"
                         className="group inline-flex underline hover:text-white"
                         rel="noopener noreferer"
@@ -115,7 +115,7 @@ export default async function Page() {
                       >
                         The Blank Studio
                         <ExternalIcon className="mt-0.5 size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
-                      </a>
+                      </Link>
                     </h2>
                     <p className="text-sm text-neutral-500">
                       Building a bunch of awesome SaaS products with Next.js and other innovative technologies. Working with a team of

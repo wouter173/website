@@ -12,10 +12,8 @@ export default function Blog() {
           <div className="border-x-2 border-dashed border-[rgba(109,109,109,0.07)]" />
         </div>
       </div>
-      <div className="pt-48">
-        <div className="pb-20 pt-10">
-          <Posts />
-        </div>
+      <div className=" py-56">
+        <Posts />
       </div>
       <Footer />
     </div>
