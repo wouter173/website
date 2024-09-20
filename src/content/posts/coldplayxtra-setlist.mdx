@@ -1,0 +1,34 @@
+---
+title: Setlist maker
+summary: A project in collaboration with @coldplayxtra to create a setlist maker for the MOTS tour.
+type: project
+publishedAt: 2022-02-23
+previewImage: /images/coldplayxtra.jpeg
+githubLink: https://github.com/wouter173/coldplayxtra-setlist
+externalLink: https://setlist.pages.dev/
+---
+
+### Hi there,
+
+In this post you can read all about the setlist maker project!
+
+### Idea
+
+The idea of the project came about when a friend of mine made a custom setlist of what he hoped would be the official setlist coldplay is going to use this year when they are on tour. He realised it was a lot of fun making the setlist and saw an opportunity for a cool webapp. The webapp would be a setlist maker using which you could easily build a personal setlist with some additional features.
+
+### App
+
+The main focus of the project was on the editor stage of the app. In this stage a lot of quality-of-life features where implemented like the auto suggest for song names and adding custom effects to a song using the extra options.
+
+The editor overall is good to use on mobile (which is our main focus) and desktop with some consideration for drag and drop but in the end we decided it would be a bit too cramped and not very user friendly to implement drag and drop so we opted for good control over the song order using the arrow buttons and with a feedback animation on the moved song.
+
+When you are done creating your own setlist you get to the share stage where we render the created setlist on an html5 canvas. When finished rendering you are able to share the image directly to social media using the `navigator.share` API, which looks rad on mobile!
+
+Here are some images of the final version:
+
+<Image src="/images/setlist-full.png" alt="" bg="#19111d" width={697} height={1163} />
+<Image src="/images/setlist-result.png" alt="" bg="#19111d" width={697} height={1163} />
+
+### Conclusion
+
+In the end although I did not have as much time spent on the project as I wanted (when do we ever have enough time) I learned a lot about working together in a small team and had a lot of fun!

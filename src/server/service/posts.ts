@@ -10,7 +10,9 @@ const metadataSchema = z.object({
   summary: z.string(),
   publishedAt: z.date(),
   type: z.enum(["blog", "project"]),
-  image: z.string().optional(),
+  previewImage: z.string().optional(),
+  externalLink: z.string().optional(),
+  githubLink: z.string().optional(),
 })
 
 export async function getPost(slug: string) {
