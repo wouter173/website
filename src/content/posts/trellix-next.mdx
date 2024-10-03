@@ -1,18 +1,26 @@
 ---
 title: Trellix Nextjs
-summary: Building a progressively enhanced task managing webapp with Nextjs 15 and server actions.
+summary: Building a optimistic task managing webapp with Nextjs 15 and server actions.
 type: project
 publishedAt: 2024-09-08
+githubLink: https://github.com/wouter173/trellix-next
+externalLink: https://trellix-next.vercel.app/
 ---
 
 [text](https://vercel.com/blog/improving-the-accessibility-of-our-nextjs-site)
 [text](https://interfaces.rauno.me/)
 [Lucia Nextjs post](/work/lucia)
 
-Dolore ea eiusmod sit ut amet pariatur amet veniam labore fugiat officia non veniam labore aliqua. Adipisicing est enim veniam dolor labore esse adipisicing adipisicing et ad irure pariatur nulla irure culpa. Ex elit nisi excepteur sit dolore officia laborum non excepteur labore. Mollit occaecat quis dolor sit laborum sint enim.
+## the useOptimistic hook
 
-Dolore et cillum duis nisi aliquip et et dolor. Veniam voluptate ullamco aute in adipisicing commodo sunt sunt enim. Dolor eiusmod ullamco duis exercitation. Occaecat amet aliqua proident in consequat reprehenderit est anim culpa consectetur nostrud labore minim dolore. Duis Lorem deserunt veniam amet sunt eiusmod esse velit adipisicing voluptate incididunt. Veniam culpa anim irure anim magna.
+good
 
-Duis nisi Lorem cupidatat. Eiusmod quis nulla laborum ullamco dolor culpa cupidatat ad. Pariatur magna consectetur aute laborum consequat ad velit commodo ad magna ipsum. Ea qui qui ut. Duis dolor consequat enim ipsum tempor eiusmod.
+- very easy to implement in a next project
+- very good for stuff like user settings
+- can be used to fix some situations where you would want to use useEffect (hacky)
 
-Aute pariatur tempor exercitation consectetur elit anim eu. Elit enim aliquip reprehenderit veniam ad aliqua aliqua non nulla ut eiusmod eu cupidatat est labore. Pariatur ea proident dolore labore esse ullamco duis consectetur duis excepteur sit. Ea sint irure duis mollit. Aute mollit voluptate sunt cillum minim minim aliqua laborum id aliqua consequat do elit proident consectetur. Ut nostrud est occaecat ad nisi excepteur cillum dolore culpa cupidatat tempor voluptate commodo.
+bad
+
+- not suited for highly dynamic ui
+- it does not batch by default in next
+- due to transitions it does not block, but it also means that performing a lot of updates can take more time than the user uses the app which causes data loss

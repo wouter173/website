@@ -30,8 +30,11 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
       </div>
       <div className="mt-auto flex justify-between">
         <div className="flex items-end gap-2">
-          <span className="text-sm text-neutral-600">
+          <span className="hidden text-sm text-neutral-600 lg:inline">
             {format(post.metadata.publishedAt, "MMMM yyy")} - {post.metadata.type === "blog" ? "Blog" : "Project"}
+          </span>
+          <span className="text-sm text-neutral-600 lg:hidden">
+            {format(post.metadata.publishedAt, "MMM yyy")} - {post.metadata.type === "blog" ? "Blog" : "Project"}
           </span>
         </div>
         <div className="flex justify-end gap-2">

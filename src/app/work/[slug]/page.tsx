@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </div>
       <div className="mx-auto min-h-screen max-w-4xl">
-        <div className="mx-auto max-w-[65ch] py-48">
+        <div className="mx-auto max-w-[65ch] px-4 py-32 lg:px-0 lg:py-48">
           <Title className="w-full">{metadata.title}</Title>
           <ul className="flex gap-2 pb-6 pt-2">
             {metadata.externalLink && (

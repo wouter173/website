@@ -16,11 +16,11 @@ import { contactFormSchema } from "./schema"
 export const Contact = () => {
   return (
     <>
-      <div className="relative z-20 mx-auto  w-full max-w-4xl rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] py-8 shadow-sm">
-        <div className="flex flex-col gap-6 px-8">
-          <h2 className="col-span-2 text-left text-2xl font-semibold text-neutral-200">&hellip; or reach out to me with a message!</h2>
-          <ContactForm />
-        </div>
+      <div className="relative z-20 flex flex-col gap-6 rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] p-6 shadow-sm lg:p-8">
+        <h2 className="col-span-2 text-left text-lg font-semibold text-neutral-200 lg:text-2xl">
+          &hellip; or reach out to me with a message!
+        </h2>
+        <ContactForm />
       </div>
     </>
   )
@@ -46,7 +46,7 @@ const ContactForm = () => {
   return (
     <form action={action} {...getFormProps(form)} className="flex flex-col gap-4">
       <Fieldset className="flex flex-col gap-4 text-left">
-        <div className="grid grid-cols-[1fr_1fr] gap-4">
+        <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
           <Input
             label="Name"
             errorLine={fields.name.errors ? fields.name.errors.join(", ") : ""}

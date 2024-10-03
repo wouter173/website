@@ -12,7 +12,7 @@ export default function Blog() {
           <div className="border-x-2 border-dashed border-[rgba(109,109,109,0.07)]" />
         </div>
       </div>
-      <div className=" py-56">
+      <div className="py-32 lg:py-56">
         <Posts />
       </div>
       <Footer />
@@ -34,7 +34,7 @@ const Posts = async () => {
   )
 
   return (
-    <div className="mx-auto flex w-full flex-col gap-24">
+    <div className="mx-auto flex w-full flex-col gap-24 px-4 lg:px-0">
       {Object.entries(postPerYear)
         .reverse()
         .map(([key, posts]) => (
@@ -47,7 +47,7 @@ const Posts = async () => {
 
             <div className="my-2 w-full border-b-2 border-dashed border-[rgba(109,109,109,0.05)]"></div>
 
-            <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4">
+            <div className="mx-auto grid max-w-4xl gap-4 lg:grid-cols-2">
               {posts.map((post, i) => {
                 return <PostCard post={post} key={post.slug} style={getSeededOffset(i)} />
               })}

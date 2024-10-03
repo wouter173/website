@@ -18,7 +18,7 @@ export const Nav = () => {
   let activeTab = keys.find((key) => pathname.startsWith(links[key]))
 
   return (
-    <nav className="sticky top-16 z-30 mx-auto h-0 pt-0">
+    <nav className="sticky top-6 z-30 mx-auto h-0 pt-0 lg:top-16">
       <ul className="relative mx-auto flex w-fit max-w-4xl items-center justify-center gap-7 rounded-full bg-black/30 px-3 py-1 backdrop-blur-[8px]">
         <li>
           <NavLink linkKey={"home"} activeTab={activeTab}>

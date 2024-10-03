@@ -27,8 +27,8 @@ export default async function Page() {
         <Rays />
       </div>
       <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-gradient-to-b from-transparent to-black/50"></div>
-      <header className="relative flex h-[90vh] max-h-[1000px] min-h-[900px] w-full flex-col">
-        <div className="relative z-20 mx-auto grid h-full max-w-4xl place-items-center">
+      <header className="relative flex h-[90vh] max-h-[1000px] w-full flex-col lg:min-h-[900px]">
+        <div className="relative z-20 mx-auto -mt-6 grid h-full max-w-4xl place-items-center px-4 lg:mt-0">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col">
               <span className="font-semibold text-[#b4b5b7]/50">Hi, I&apos;m</span>
@@ -36,8 +36,8 @@ export default async function Page() {
                 Wouter de Bruijn
               </h1>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <Button asChild size="rounded" className="ml-auto flex w-min items-center gap-1 border border-neutral-800">
+            <div className="grid grid-cols-[116px,116px] gap-2 lg:mx-auto lg:gap-4">
+              <Button asChild size="rounded" className="flex w-min items-center gap-1 border border-neutral-800">
                 <Link href="mailto:wouter@debruijn.dev">
                   <AtIcon className="size-3.5" />
                   Contact me
@@ -53,18 +53,18 @@ export default async function Page() {
           </div>
         </div>
       </header>
-      <main className="flex flex-col gap-40">
+      <main className="flex flex-col gap-20 lg:gap-40">
         <div className="relative -mt-14">
           <Posts />
         </div>
 
-        <div className=" flex flex-col gap-8 text-center">
+        <div className=" flex flex-col gap-8 px-4 text-center">
           {/* <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span> */}
 
-          <div className="relative z-20 mx-auto  w-full max-w-4xl rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] py-8 shadow-sm">
+          <div className="relative z-20 mx-auto w-full max-w-4xl rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] py-8 shadow-sm">
             <div className="flex flex-col gap-6 px-8">
               {/* <h2 className="col-span-2 text-left text-4xl font-semibold text-neutral-100">Hey there, Wouter here!</h2> */}
-              <div className="grid w-full grid-cols-[1fr_1fr] gap-10 text-left">
+              <div className="grid w-full gap-10 text-left lg:grid-cols-[1fr_1fr]">
                 <p className="mt-0.5 text-neutral-400">
                   — a Fullstack Developer, largely self taught, and excited to learn new things.
                   <br />
@@ -132,9 +132,9 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-8 pb-24">
+        <div className="flex flex-col gap-8 lg:pb-24">
           <h2 className="text-center text-lg text-neutral-400 ">Follow my work on X or Github &hellip;</h2>
-          <div className="mx-auto grid w-full max-w-4xl grid-cols-[1fr_1fr] gap-8 text-white">
+          <div className="mx-auto grid w-full max-w-4xl gap-8 px-4 text-white lg:grid-cols-[1fr_1fr] lg:px-0 ">
             <Link
               rel="noopener noreferer"
               target="_blank"
@@ -199,7 +199,9 @@ export default async function Page() {
               <ExternalIcon className="-mt-1 size-6 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
           </div>
-          <Contact />
+          <div className="mx-auto w-full max-w-4xl px-4 lg:px-0">
+            <Contact />
+          </div>
         </div>
         <Footer />
       </main>
@@ -211,7 +213,7 @@ const Posts = async () => {
   const posts = await getPosts()
 
   return (
-    <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-4">
+    <div className="mx-auto grid w-full max-w-4xl gap-4 px-4 lg:grid-cols-2 lg:px-0">
       {posts.slice(0, 2).map((post) => {
         return <PostCard post={post} key={post.slug} />
       })}
