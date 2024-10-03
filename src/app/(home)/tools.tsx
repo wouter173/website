@@ -14,20 +14,22 @@ export type Tool = {
   tags: string[]
 }
 
-export const Tools = ({ tools }: { tools: Tool[] }) => {
+export const Tools = ({ tools, mobile }: { tools: Tool[]; mobile?: boolean }) => {
   const ref = useRef<HTMLUListElement>(null)
   const [hovering, setHovering] = useState(false)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (ref.current && isOnScreen(ref.current) && !hovering) {
-        console.log("scroll")
-        ref.current.scrollBy({ left: 70, behavior: "smooth" })
-      }
-    }, 1500)
+    if (!mobile) {
+      const interval = setInterval(() => {
+        if (ref.current && isOnScreen(ref.current) && !hovering) {
+          console.log("scroll")
+          ref.current.scrollBy({ left: 70, behavior: "smooth" })
+        }
+      }, 1500)
 
-    return () => clearInterval(interval)
-  }, [hovering])
+      return () => clearInterval(interval)
+    }
+  }, [hovering, mobile])
 
   return (
     <ul
@@ -40,13 +42,13 @@ export const Tools = ({ tools }: { tools: Tool[] }) => {
       }}
     >
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => (
-        <ToolsList key={x} tools={tools} />
+        <ToolsList key={x} tools={tools} mobile={mobile} />
       ))}
     </ul>
   )
 }
 
-const ToolsList = ({ tools }: { tools: Tool[] }) => {
+const ToolsList = ({ tools, mobile }: { tools: Tool[]; mobile?: boolean }) => {
   const yOffsets = [16, 0, 28, 12, 32, 4, 24, 4, 28]
 
   return (
@@ -55,21 +57,21 @@ const ToolsList = ({ tools }: { tools: Tool[] }) => {
         .fill(null)
         .map((_, i) => (
           <li key={i} className="flex flex-col gap-3" style={{ marginTop: yOffsets[i % yOffsets.length] }}>
-            <Bauble tool={tools[i * 2]} />
-            <Bauble tool={tools[i * 2 + 1]} />
+            <Bauble tool={tools[i * 2]} mobile={mobile} />
+            <Bauble tool={tools[i * 2 + 1]} mobile={mobile} />
           </li>
         ))}
     </>
   )
 }
 
-const Bauble = ({ tool }: { tool: Tool }) => {
+const Bauble = ({ tool, mobile }: { tool: Tool; mobile?: boolean }) => {
   return (
     <InfoTooltip description={tool.description} title={tool.name} thumbnail={tool.thumbnail}>
       <motion.div
         initial={{ scale: 0, opacity: 0.9 }}
         whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: false, margin: "9999px -300px" }}
+        viewport={{ once: false, margin: mobile ? "9999px -20px" : "9999px -300px" }}
         className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5  shadow-sm hover:bg-neutral-900"
       >
         <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />

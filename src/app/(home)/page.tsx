@@ -127,8 +127,11 @@ export default async function Page() {
             </div>
 
             <hr className="my-6 border-[#1F1F1F]" />
-            <div className="">
+            <div className="hidden lg:block">
               <Tools tools={tools} />
+            </div>
+            <div className="lg:hidden">
+              <Tools tools={tools} mobile />
             </div>
           </div>
         </div>
