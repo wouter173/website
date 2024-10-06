@@ -5,7 +5,7 @@ import { getPost, getPosts } from "@/server/service/posts"
 import { ExternalLinkIcon } from "lucide-react"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import Link from "next/link"
-import { mdxComponents } from "./mdx-components"
+import { mdxComponents } from "../../../components/mdx-components"
 
 export async function generateStaticParams() {
   const posts = await getPosts()
@@ -63,7 +63,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             )}
           </ul>
 
-          <div className="prose text-neutral-200 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-white prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg">
+          <div className="prose text-neutral-300 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-100 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg">
             <MDXRemote source={content} components={mdxComponents} />
           </div>
         </div>

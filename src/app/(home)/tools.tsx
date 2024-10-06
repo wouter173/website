@@ -32,7 +32,7 @@ export const Tools = ({ tools }: { tools: Tool[] }) => {
   return (
     <ul
       ref={ref}
-      className="relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8 scrollbar-none [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
+      className="relative mx-auto flex w-full max-w-5xl  gap-3 overflow-scroll px-8 py-1 scrollbar-none [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onMouseOver={() => {

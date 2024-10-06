@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils"
 import { Post } from "@/server/service/posts"
 import { format } from "date-fns"
-import { ExternalLinkIcon, PlusIcon } from "lucide-react"
+import { ExternalLinkIcon, FileCodeIcon, FileTextIcon, PlusIcon } from "lucide-react"
 import { Link as ViewTransitionLink } from "next-view-transitions"
-import Image from "next/image"
 import Link from "next/link"
 import { ComponentProps } from "react"
 import { Button } from "./ui/button"
@@ -18,9 +17,17 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
       <div className="absolute right-0 top-0 -z-10 size-8 rounded-bl-lg bg-gradient-to-tr from-[#242425] to-[#141415] shadow-lg transition-all [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)] group-hover:size-10" />
       <div className="flex flex-col gap-3 pr-8">
         <div className="flex items-center gap-3">
-          {post.metadata.previewImage && (
+          {/* {post.metadata.previewImage ? (
             <Image src={post.metadata.previewImage} alt={""} width={64} height={64} className="size-9 rounded-lg" />
-          )}
+          ) : ( */}
+          <div className="grid h-8 w-6 place-items-center rounded-lg ">
+            {post.metadata.type === "blog" ? (
+              <FileTextIcon className="size-6 shrink-0 text-[#555557]" />
+            ) : (
+              <FileCodeIcon className="size-6 shrink-0 text-[#555557]" />
+            )}
+          </div>
+          {/* )} */}
           <h2 className="text-2xl font-semibold leading-tight text-neutral-300">{post.metadata.title}</h2>
         </div>
         <div className="relative pb-3">
@@ -44,7 +51,7 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
             className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2.5 py-1.5 pl-3 text-neutral-100 group-hover:bg-[#242425]"
           >
             <ViewTransitionLink href={`/work/${post.slug}`}>
-              Read more <PlusIcon className="size-4 shrink-0" />
+              {post.metadata.type === "blog" ? "Read post" : "Writeup"} <PlusIcon className="size-4 shrink-0" />
             </ViewTransitionLink>
           </Button>
           {post.metadata.externalLink && (

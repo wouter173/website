@@ -1,26 +1,198 @@
 ---
-title: Trellix Nextjs
-summary: Building a optimistic task managing webapp with Nextjs 15 and server actions.
+title: Trellix Next
+summary: Building an optimistic task management webapp with Next 14 and server actions.
 type: project
 publishedAt: 2024-09-08
 githubLink: https://github.com/wouter173/trellix-next
 externalLink: https://trellix-next.vercel.app/
 ---
 
-[text](https://vercel.com/blog/improving-the-accessibility-of-our-nextjs-site)
-[text](https://interfaces.rauno.me/)
-[Lucia Nextjs post](/work/lucia)
+{/* [text](https://vercel.com/blog/improving-the-accessibility-of-our-nextjs-site) */}
+{/* [text](https://interfaces.rauno.me/) */}
+{/* [Lucia Nextjs post](/work/lucia) */}
 
-## the useOptimistic hook
+Trellix Next is a project heavily inspired by [Ryan Florence's tweet](https://twitter.com/ryanflorence/status/1765179463497892117) about building an optimistic kanban board.
+My goal was to recreate the core functionality displayed in the [original Trellix demo](https://trellix.fly.dev/) built in remix using Next's new server actions, server components and the useOptimistic API.
 
-good
+## Current state of the project
 
-- very easy to implement in a next project
-- very good for stuff like user settings
-- can be used to fix some situations where you would want to use useEffect (hacky)
+Trellix Next currently implements the following features:
 
-bad
+1. sign in with GitHub
+2. creation of boards
+3. creation, deletion and editing of columns
+4. creation, deletion and editing of tasks within columns
+5. drag and drop for tasks inside and between columns
 
-- not suited for highly dynamic ui
-- it does not batch by default in next
-- due to transitions it does not block, but it also means that performing a lot of updates can take more time than the user uses the app which causes data loss
+This closely resembles the original demo. A few insignificant features are missing.
+For example being able to change the name of the board, or authentication with username/password.
+I believe these features do not add significant value to the demo.
+
+## Next 14's new patterns
+
+Of course the entire demo was built to demonstrate the new features Next and React have to offer.
+Optimistic updates were a key highlight of this project, and we'll explore them in depth towards the end of this post.
+Furthermore the new patterns that I used were server actions (with transitions) and server components (with Suspense).
+
+### Server components
+
+Server components allow you to write async JavaScript code that runs on the server and returns React components.
+This is incredible for writing data fetching code because you don't have to wait for the client side JS to hydrate before fetching data.
+
+An example of this would look something like this:
+
+```tsx
+async function UsersList() {
+  const users = await db.query.users.findMany()
+
+  return (
+    <div>
+      {users.map((user) => (
+        <div key={user.id}>{user.name}</div>
+      ))}
+    </div>
+  )
+}
+```
+
+All this code runs on the server and is returned as static html once the fetch request is done, and the JSX is rendered.
+This is the data fetching pattern that I've used throughout the entirety of the project.
+For example for getting the currently logged in user, and all the boards that the user has created.
+
+This is especially powerful when combined with `Suspense` which is a new feature as well which allows for loading states.
+`Suspense` is needed because the above code actually blocks the server until the data is ready. This can result in a poor user experience.
+
+`Suspense` fixes this by showing you a loading state until the async component is ready.
+
+```tsx
+function Page() {
+  return (
+    <Suspense fallback={"loading..."}>
+      <UsersList />
+    </Suspense>
+  )
+}
+```
+
+The `Suspense` pattern really makes the app feel instant, even though the data is not there when the UI is shown.
+
+<Image src="/images/trellix-loading.gif" alt="" bg="#ececee" width={697} height={453} unoptimized />
+
+### Server actions
+
+Server actions are the natural counterpart to server components. They are used to send data from the client to the server.
+This is done in a way similar to traditional RPC calls. They are just functions that you can call from the client.
+
+An example of this looks like this:
+
+```tsx
+//auth/actions.ts
+"use server"
+
+type Payload = { username: string; password: string }
+
+export async function signinAction(payload: Payload) {
+  return await signin(payload)
+}
+```
+
+```tsx
+//auth/signin-button.ts
+import { signinAction } from "./actions"
+
+export function SigninButton() {
+  return (
+    <button
+      onClick={() => {
+        signinAction({ username: "test", password: "test" })
+      }}
+    >
+      Sign in
+    </button>
+  )
+}
+```
+
+Like server components, the `signinAction` code runs on the server.
+Unlike server components, server actions do not block the client. They are able to do all work in the background, allowing client interactions to continue.
+
+However, sometimes a blocking behavior or loading state is necessary to show user feedback.
+This is where transitions come in, they allow you to show a loading state while the server action is running.
+
+```tsx
+import { signinAction } from "./actions"
+import { useTransition } from "react"
+
+export function SigninButton() {
+  const [pending, startTransition] = useTransition()
+
+  return (
+    <button
+      disabled={pending}
+      onClick={() => {
+        startTransition(async () => {
+          await signinAction({ username: "test", password: "test" })
+        })
+      }}
+    >
+      {pending ? "loading..." : "Sign in"}
+    </button>
+  )
+}
+```
+
+This is all the code needed to show a loading state while the server action is running.
+It cleans up a lot of cumbersome loading state which is easy to get wrong and has a lot of edge cases.
+
+It can be seen in on the signin button in the demo as well.
+
+<Image src="/images/trellix-transition.gif" alt="" bg="#ececee" width={697} height={453} unoptimized />
+
+## Optimistic updates
+
+The entire board UI is built with optimistic updates in mind.
+This means that no matter how slow your connection is, the UI will always feel very snappy.
+An example can be seen below.
+
+<Image src="/images/trellix-optimistic.gif" alt="" bg="#ececee" width={697} height={453} unoptimized />
+
+Although this could be done on the client, it would break the single source of truth.
+If this interaction was built with a more traditional approach of using `useState`, there is no clear source of truth whenever the user is changing the board around.
+This can lead to synchronisation issues which in turn also means data loss.
+
+Say for example, that the user is dragging a task while their connection drops.
+This would mean that the app is now in a state where the server and the client are out of sync.
+This should be resolved by updating the client, which is difficult with traditional `useState` approaches.
+
+The `useOptimistic` hook on the other hand is a very easy way to solve this problem.
+It basically acts as the `useState` hook but falls back to it's default value whenever it changes.
+This means that the client is always in sync with the server, because all client state gets thrown out whenever the server state changes.
+
+### The good and bad of useOptimistic
+
+While using `useOptimistic` in building this project, I've found that it has the upsides I have already discussed.
+It is very easy to implement in Next, it is incredible for making sure that your server is always the source of truth.
+And it makes very hard client problems disappear with a single hook and a way better data loading pattern via server components.
+
+However, there are also several downsides using `useOptimistic`.
+I would say that it sadly does not live up to what I expected it to be. It is not really suited for a highly dynamic UI like the kanban board in Trellix Next.
+This is because actions are not batched by default, this is an exercise left to the developer.
+This means that every update to the board (action) triggers a new request which in turn updates the db and the client via the rsc payload.
+The behavior becomes a problem when the user is performing a lot of actions in a short amount of time.
+For example with Trellix.
+
+Although it does not inherently cause any data loss because it does correctly send all the actions in sequence.
+It does mean that whenever the user closes their tab before all the actions are done, the ones that are still in the queue are lost.
+
+## Conclusion
+
+In the end, I have to say that I'm very happy with the result of Trellix Next.
+It taught me a lot about the new transitions and optimistic APIs in React.
+
+I do have to say however that even though a lot of the new patterns are nice to work with, they are not a all-around solution.
+Each framework will need to integrate a lot of these features into their own APIs to make them work well.
+
+We can already see this with Next's `loading.tsx` file which is basically a route level `Suspense` boundary.
+I can say that `useOptimistic` still needs a lot of love from framework authors to be the best it can be.
+
+Until then, I'd suggest to wait a few seconds before closing Trellix Next 👀.

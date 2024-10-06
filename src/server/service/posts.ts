@@ -13,6 +13,7 @@ const metadataSchema = z.object({
   previewImage: z.string().optional(),
   externalLink: z.string().optional(),
   githubLink: z.string().optional(),
+  hidden: z.boolean().optional().default(false),
 })
 
 export async function getPost(slug: string) {
@@ -25,7 +26,9 @@ export async function getPosts() {
   const files = await fs.readdir(POST_DIR)
 
   const posts = await Promise.all(files.map(async (file) => await getPost(file.replace(".mdx", ""))))
-  return posts.toSorted((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
+  return posts
+    .filter((post) => !post.metadata.hidden)
+    .toSorted((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
 }
 
 export type Post = Awaited<ReturnType<typeof getPost>>
