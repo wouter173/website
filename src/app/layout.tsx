@@ -5,6 +5,7 @@ import { ViewTransitions } from "next-view-transitions"
 import { PropsWithChildren } from "react"
 import { Toaster } from "sonner"
 
+import Script from "next/script"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -15,6 +16,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <ViewTransitions>
+      <Script
+        defer
+        id="plausible"
+        data-domain="wouterdb.nl"
+        src="https://plausible.wouter.cloud/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+      />
+      <Script
+        id="inline-plausible"
+        dangerouslySetInnerHTML={{
+          __html: `window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`,
+        }}
+      />
+
       <html lang="en" className="bg-black">
         <body
           className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}

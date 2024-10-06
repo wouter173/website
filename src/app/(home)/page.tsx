@@ -12,7 +12,7 @@ import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
 import { Footer } from "../../components/footer"
 import { Contact } from "./_contact/contact"
-import { Tools } from "./tools"
+import { MobileTools, Tools } from "./tools"
 
 export const revalidate = 86400
 export const dynamic = "force-static"
@@ -126,13 +126,13 @@ export default async function Page() {
               </div>
             </div>
 
-            <hr className="my-6 border-[#1F1F1F]" />
             <div className="hidden lg:block">
+              <hr className="my-6 border-[#1F1F1F]" />
               <Tools tools={tools} />
             </div>
-            <div className="lg:hidden">
-              <Tools tools={tools} mobile />
-            </div>
+          </div>
+          <div className="lg:hidden">
+            <MobileTools tools={tools} />
           </div>
         </div>
         <div className="flex flex-col gap-8 lg:pb-24">
