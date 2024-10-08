@@ -9,12 +9,12 @@ import { PropsWithChildren, useEffect, useRef, useState } from "react"
 export type Tool = {
   name: string
   thumbnail: string
-  description: string
+  description: string | JSX.Element
   url: string
   tags: string[]
 }
 
-export const Tools = ({ tools }: { tools: Tool[] }) => {
+export const Toolbelt = ({ tools }: { tools: Tool[] }) => {
   const ref = useRef<HTMLUListElement>(null)
   const [hovering, setHovering] = useState(false)
 
@@ -46,7 +46,7 @@ export const Tools = ({ tools }: { tools: Tool[] }) => {
   )
 }
 
-export const MobileTools = ({ tools }: { tools: Tool[] }) => {
+export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
   const ref = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
@@ -125,7 +125,7 @@ const InfoTooltip = ({
   thumbnail,
   title,
   description,
-}: PropsWithChildren & { thumbnail: string; title: string; description: string }) => {
+}: PropsWithChildren & { thumbnail: string; title: string; description: string | JSX.Element }) => {
   return (
     <Tooltip.Provider delayDuration={100} skipDelayDuration={1000}>
       <Tooltip.Root>

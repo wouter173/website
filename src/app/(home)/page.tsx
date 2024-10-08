@@ -1,10 +1,11 @@
+import { ExternalLink } from "@/components/external-link"
 import { AtIcon } from "@/components/icons/at-icon"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { ExternalIcon } from "@/components/icons/external-icon"
 import { PostCard } from "@/components/posts"
 import { Rays } from "@/components/rays"
 import { Button } from "@/components/ui/button"
-import tools from "@/content/tools.json"
+import { tools } from "@/content/tools"
 import { getGithubUserData } from "@/server/service/github"
 import { getPosts } from "@/server/service/posts"
 import { getXUserData } from "@/server/service/x"
@@ -12,7 +13,7 @@ import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
 import { Footer } from "../../components/footer"
 import { Contact } from "./_contact/contact"
-import { MobileTools, Tools } from "./tools"
+import { MobileToolbelt, Toolbelt } from "./tool-belt"
 
 export const revalidate = 86400
 export const dynamic = "force-static"
@@ -80,46 +81,29 @@ export default async function Page() {
                 <div className="flex flex-col gap-4 text-neutral-400">
                   <div className="flex flex-col gap-1">
                     <h2>
-                      <span className="text-neutra font-semibold">2016 - 2021</span> — Self taught
+                      <span className="font-semibold">2023 - Today</span> —{" "}
+                      <ExternalLink href="https://theblank.studio/">The Blank Studio</ExternalLink>
                     </h2>
                     <p className="text-sm text-neutral-500">
-                      Learned about a lot of basics in computer science. Specifically about Python and the JS ecocsystem. Also dabbled in a
-                      lot of random tech like low level and iOS.
+                      Building a bunch of awesome SaaS products with Next.js and other innovative technologies. Working with a team of
+                      incredible software engineers.
                     </p>
                   </div>
 
                   <div className="flex flex-col gap-1">
                     <h2>
-                      <span className="font-semibold">2022 - 2023</span> —{" "}
-                      <Link
-                        href="https://stats.fm/"
-                        className="group inline-flex underline hover:text-white"
-                        rel="noopener noreferer"
-                        target="_blank"
-                      >
-                        Stats.fm
-                        <ExternalIcon className="mt-0.5 size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
-                      </Link>
+                      <span className="font-semibold">2022 - 2023</span> — <ExternalLink href="https://stats.fm/">Stats.fm</ExternalLink>
                     </h2>
                     <p className="text-sm text-neutral-500">Moved a Vue.js spa to a Next.js fullstack app @ Stats.fm.</p>
                   </div>
 
                   <div className="flex flex-col gap-1">
                     <h2>
-                      <span className="font-semibold">2023 - Today</span> —{" "}
-                      <Link
-                        href="https://theblank.studio/"
-                        className="group inline-flex underline hover:text-white"
-                        rel="noopener noreferer"
-                        target="_blank"
-                      >
-                        The Blank Studio
-                        <ExternalIcon className="mt-0.5 size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
-                      </Link>
+                      <span className="text-neutra font-semibold">2016 - 2021</span> — Self taught
                     </h2>
                     <p className="text-sm text-neutral-500">
-                      Building a bunch of awesome SaaS products with Next.js and other innovative technologies. Working with a team of
-                      incredible software engineers.
+                      Learned about a lot of basics in computer science. Specifically about Python and the JS ecocsystem. Also dabbled in a
+                      lot of random tech like low level and iOS.
                     </p>
                   </div>
                 </div>
@@ -128,11 +112,11 @@ export default async function Page() {
 
             <div className="hidden lg:block">
               <hr className="my-6 border-[#1F1F1F]" />
-              <Tools tools={tools} />
+              <Toolbelt tools={tools} />
             </div>
           </div>
           <div className="lg:hidden">
-            <MobileTools tools={tools} />
+            <MobileToolbelt tools={tools} />
           </div>
         </div>
         <div className="flex flex-col gap-8 lg:pb-24">

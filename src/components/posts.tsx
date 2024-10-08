@@ -48,7 +48,7 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
           <Button
             asChild
             size="rounded"
-            className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2.5 py-1.5 pl-3 text-neutral-100 group-hover:bg-[#242425]"
+            className="flex w-min items-center gap-1 border-2 border-transparent bg-[#2a2a2c] px-2 py-1 pl-3 text-neutral-100 group-hover:bg-[#242425] hover:border-[#171718]"
           >
             <ViewTransitionLink href={`/work/${post.slug}`}>
               {post.metadata.type === "blog" ? "Read post" : "Writeup"} <PlusIcon className="size-4 shrink-0" />
@@ -58,7 +58,7 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
             <Button
               asChild
               size="rounded"
-              className="flex size-8  items-center gap-1 bg-[#2a2a2c] p-2 text-neutral-100 group-hover:bg-[#242425]"
+              className="flex size-8 items-center gap-1 border-2 border-transparent bg-[#2a2a2c] p-1.5 text-neutral-100 group-hover:bg-[#242425] hover:border-[#171718]"
             >
               <Link href={post.metadata.externalLink} target="_blank" rel="noopener noreferrer">
                 <ExternalLinkIcon className="size-4 shrink-0" />
