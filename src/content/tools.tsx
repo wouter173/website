@@ -138,8 +138,8 @@ export const tools = [
     description: (
       <p>
         Deno is the natural succesor of node, according to{" "}
-        <ExternalLink href="https://www.youtube.com/watch?v=M3BM9TB-8yA">Ryan Dahl</ExternalLink>. Personally, I've found it to be the best{" "}
-        <ExternalLink href="https://github.com/wouter173/Advent-of-Code"> Advent of Code tool</ExternalLink>.
+        <ExternalLink href="https://www.youtube.com/watch?v=M3BM9TB-8yA">Ryan Dahl</ExternalLink>. Personally, I&apos;ve found it to be the
+        best <ExternalLink href="https://github.com/wouter173/Advent-of-Code"> Advent of Code tool</ExternalLink>.
       </p>
     ),
     url: "https://deno.land",

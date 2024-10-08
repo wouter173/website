@@ -30,10 +30,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </div>
 
       <div className="min-h-screen py-32 lg:py-48">
-        <div className="mx-auto w-[calc(65ch+128px)]">
-          <div className="-ml-16 flex">
-            <div className="sticky top-60 mt-2 w-32 shrink-0 text-neutral-300">
-              <ViewTransitionLink href="/work" className="flex w-fit items-center gap-2 rounded-full px-2.5 py-0.5 hover:bg-white/10">
+        <div className="mx-auto w-full max-w-[65ch] px-4 lg:max-w-[calc(65ch+128px)] lg:px-0">
+          <div className="flex flex-col lg:-ml-16 lg:flex-row">
+            <div className="mt-2 w-32 shrink-0 pl-4 text-neutral-300">
+              <ViewTransitionLink
+                href="/work"
+                className="flex w-fit items-center gap-2 rounded-full px-2.5 py-0.5 transition-all hover:bg-white/10 active:scale-95"
+              >
                 <Undo2Icon className="mb-0.5 size-4" />
                 Back
               </ViewTransitionLink>
