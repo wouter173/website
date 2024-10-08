@@ -10,7 +10,7 @@ import Script from "next/script"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tunnel.wouter.cloud"),
+  metadataBase: new URL("https://wouterdb.nl"),
   title: "Wouter de Bruijn",
   description: "Portfolio of Wouter de Bruijn. A Fullstack Developer, largely self taught, and excited to learn new things.",
   twitter: {
@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     description: "Portfolio of Wouter de Bruijn. A Fullstack Developer, largely self taught, and excited to learn new things.",
     card: "summary_large_image",
     creator: "@wouterdebruijn",
+  },
+  openGraph: {
+    siteName: "Wouter de Bruijn",
+    url: "https://wouterdb.nl",
   },
 }
 

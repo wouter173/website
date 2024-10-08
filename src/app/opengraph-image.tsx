@@ -2,16 +2,18 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
+export const contentType = "image/png"
+export const dynamic = "force-static"
 
 export default function GET() {
   return new ImageResponse(
     (
       <div tw="flex items-center justify-center w-full h-full bg-black text-white">
         <div tw="absolute inset-0 flex w-full h-full">
-          <img style={{ opacity: 0.03 }} src="https://tunnel.wouter.cloud/grain.png" width={1200} height={600} alt="" />
+          <img style={{ opacity: 0.03 }} src="https://wouterdb.nl/grain.png" width={1200} height={600} alt="" />
         </div>
         <div tw="absolute inset-0 flex w-full h-full">
-          <img style={{ opacity: 0.3 }} src="https://tunnel.wouter.cloud/rays.png" width={1200} height={600} alt="" />
+          <img style={{ opacity: 0.3 }} src="https://wouterdb.nl/rays.png" width={1200} height={600} alt="" />
         </div>
         <svg width="232" height="168" viewBox="0 0 58 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_f_225_160)">
