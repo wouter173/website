@@ -1,4 +1,5 @@
 import { Nav } from "@/components/nav"
+import { Analytics } from "@vercel/analytics/react"
 import { GeistSans } from "geist/font/sans"
 import type { Metadata } from "next"
 import { ViewTransitions } from "next-view-transitions"
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <ViewTransitions>
+    <html lang="en" className="bg-black">
       <Script
         defer
         id="plausible"
@@ -29,15 +30,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
         }}
       />
 
-      <html lang="en" className="bg-black">
-        <body
-          className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
-        >
-          <Toaster richColors theme="dark" />
-          <Nav />
+      <body
+        className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
+      >
+        <Nav />
+        <ViewTransitions>
           <div className="relative z-10">{children}</div>
-        </body>
-      </html>
-    </ViewTransitions>
+        </ViewTransitions>
+        <Toaster richColors theme="dark" />
+        <Analytics />
+      </body>
+    </html>
   )
 }
