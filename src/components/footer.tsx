@@ -7,9 +7,12 @@ export const Footer = async () => {
 
   return (
     <footer className="border-t border-t-[#1f1f1f] bg-black pb-16 pt-12 text-white">
-      <div className="mx-auto flex w-full max-w-4xl flex-col-reverse gap-4 px-6 lg:flex-row lg:gap-32">
-        <div className="mt-20 flex flex-col gap-8 lg:mt-10">
+      <div className="mx-auto flex w-full max-w-4xl flex-col-reverse gap-4 px-6 lg:flex-row lg:gap-20">
+        <div className="mt-6 flex flex-col gap-8">
           <Icon />
+        </div>
+        <div className="mt-4 flex flex-col gap-4">
+          <h2 className="text-neutral-200">Information</h2>
           <div className="text-sm text-neutral-500">
             <p>Wouter de Bruijn Development</p>
             <p>kvk. 87881608</p>

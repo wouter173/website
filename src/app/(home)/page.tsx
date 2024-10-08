@@ -1,5 +1,4 @@
 import { ExternalLink } from "@/components/external-link"
-import { AtIcon } from "@/components/icons/at-icon"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { ExternalIcon } from "@/components/icons/external-icon"
 import { PostCard } from "@/components/posts"
@@ -13,6 +12,7 @@ import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
 import { Footer } from "../../components/footer"
 import { Contact } from "./_contact/contact"
+import { ContactButton } from "./contact-button"
 import { MobileToolbelt, Toolbelt } from "./tool-belt"
 
 export const revalidate = 86400
@@ -38,12 +38,7 @@ export default async function Page() {
               </h1>
             </div>
             <div className="grid grid-cols-[116px,116px] gap-2 lg:mx-auto lg:gap-4">
-              <Button asChild size="rounded" className="flex w-min items-center gap-1 border border-neutral-800">
-                <Link href="mailto:wouter@debruijn.dev">
-                  <AtIcon className="size-3.5" />
-                  Contact me
-                </Link>
-              </Button>
+              <ContactButton />
 
               <Button asChild size="rounded" variant="primary" className="group flex w-min items-center">
                 <ViewTransitionLink href="/work">

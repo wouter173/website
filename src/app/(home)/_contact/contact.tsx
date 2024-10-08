@@ -44,7 +44,7 @@ const ContactForm = () => {
   })
 
   return (
-    <form action={action} {...getFormProps(form)} className="flex flex-col gap-4">
+    <form action={action} {...getFormProps(form)} className="flex flex-col gap-4" id="contact-form">
       <Fieldset className="flex flex-col gap-4 text-left">
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
           <Input

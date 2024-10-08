@@ -23,8 +23,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="relative min-h-screen w-full">
       <div className="absolute -z-10 h-full w-full">
-        <div className="mx-auto grid h-full max-w-[904px] grid-cols-2 gap-2">
-          <div className="border-x-2 border-dashed border-[rgba(109,109,109,0.07)]" />
+        <div className="mx-auto grid h-full max-w-[904px]">
           <div className="border-x-2 border-dashed border-[rgba(109,109,109,0.07)]" />
         </div>
       </div>
@@ -32,17 +31,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className="min-h-screen py-32 lg:py-48">
         <div className="mx-auto w-full max-w-[65ch] px-4 lg:max-w-[calc(65ch+128px)] lg:px-0">
           <div className="flex flex-col lg:-ml-16 lg:flex-row">
-            <div className="mt-2 w-32 shrink-0 pl-4 text-neutral-300">
+            <div className="mt-2 w-32 shrink-0 pl-4 text-neutral-500 hover:text-neutral-300">
               <ViewTransitionLink
                 href="/work"
-                className="flex w-fit items-center gap-2 rounded-full px-2.5 py-0.5 transition-all hover:bg-white/10 active:scale-95"
+                className="sticky top-[75.5px] ml-2.5 flex w-fit items-center gap-2 rounded-full px-2.5 py-0.5 transition-all hover:bg-white/10 active:scale-95"
               >
                 <Undo2Icon className="mb-0.5 size-4" />
                 Back
               </ViewTransitionLink>
             </div>
             <div>
-              <Title className="w-full">{metadata.title}</Title>
+              <Title className="w-fit">{metadata.title}</Title>
               <ul className="flex gap-2 pb-6 pt-2">
                 {metadata.externalLink && (
                   <li>
@@ -75,12 +74,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   </li>
                 )}
               </ul>
+              <div className="prose text-neutral-300 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-100 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0">
+                <MDXRemote source={content} components={mdxComponents} />
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="mx-auto max-w-[65ch] px-4 lg:px-0">
-          <div className="prose text-neutral-300 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-100 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg">
-            <MDXRemote source={content} components={mdxComponents} />
           </div>
         </div>
       </div>

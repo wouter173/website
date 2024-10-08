@@ -26,7 +26,9 @@ export const Nav = () => {
           </NavLink>
         </li>
         <li>
-          <Logo />
+          <ViewTransitionLink href={"/"}>
+            <Logo />
+          </ViewTransitionLink>
         </li>
         <li className="relative">
           <NavLink linkKey={"work"} activeTab={activeTab}>
