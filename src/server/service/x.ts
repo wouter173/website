@@ -49,7 +49,7 @@ export const getXUserData = unstable_cache(
           id: "wouterdebruijn",
           name: "Wouter de Bruijn",
           username: "wouterdebruijn",
-          public_metrics: { followers_count: 0, following_count: 0, tweet_count: 0, listed_count: 0 },
+          public_metrics: { followers_count: 49, following_count: 308, tweet_count: 149, listed_count: 0 },
           profile_image_url: "https://pbs.twimg.com/profile_images/1675277653/avatar.jpg",
           url: "https://twitter.com/wouterdebruijn",
         },
