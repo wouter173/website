@@ -2,9 +2,9 @@
 
 import { isOnScreen } from "@/lib/is-on-screen"
 import * as Tooltip from "@radix-ui/react-tooltip"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import Image from "next/image"
-import { PropsWithChildren, useEffect, useRef, useState } from "react"
+import { PropsWithChildren, useEffect, useRef, useState, type JSX } from "react"
 
 export type Tool = {
   name: string

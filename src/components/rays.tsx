@@ -5,10 +5,10 @@ import { Canvas, useFrame } from "@react-three/fiber"
 import { useRef, useState } from "react"
 import { Mesh, PlaneGeometry, ShaderMaterial, Vector4 } from "three"
 //@ts-ignore
-import fragmentShader from "@/shaders/fragment-shader.glsl"
-//@ts-ignore
 import vertexShader from "@/shaders/vertex-shader.glsl"
-import { motion } from "framer-motion"
+//@ts-ignore
+import fragmentShader from "@/shaders/fragment-shader.glsl"
+import { motion } from "motion/react"
 
 export const Rays = () => {
   const [ready, setReady] = useState(false)

@@ -17,7 +17,8 @@ export async function generateStaticParams() {
 export const dynamic = "force-static"
 export const dynamicParams = false
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const { content, metadata } = await getPost(params.slug)
 
   return (

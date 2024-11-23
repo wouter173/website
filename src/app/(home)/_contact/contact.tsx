@@ -7,8 +7,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { getFormProps, getInputProps, getTextareaProps, useForm } from "@conform-to/react"
 import { parseWithZod } from "@conform-to/zod"
 import { SendHorizonalIcon } from "lucide-react"
-import { ComponentProps } from "react"
-import { useFormState, useFormStatus } from "react-dom"
+import { ComponentProps, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { toast } from "sonner"
 import { submitContactAction } from "./actions"
 import { contactFormSchema } from "./schema"
@@ -27,7 +27,7 @@ export const Contact = () => {
 }
 
 const ContactForm = () => {
-  const [lastResult, action] = useFormState(async (state: unknown, data: FormData) => {
+  const [lastResult, action] = useActionState(async (state: unknown, data: FormData) => {
     const result = await submitContactAction(state, data)
     if (result.status === "success") {
       toast.success("Message sent!")
