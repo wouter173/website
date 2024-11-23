@@ -7,8 +7,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { getFormProps, getInputProps, getTextareaProps, useForm } from "@conform-to/react"
 import { parseWithZod } from "@conform-to/zod"
 import { SendHorizonalIcon } from "lucide-react"
-import { ComponentProps, useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import { ComponentProps, useActionState } from "react"
+import { useFormStatus } from "react-dom"
 import { toast } from "sonner"
 import { submitContactAction } from "./actions"
 import { contactFormSchema } from "./schema"
@@ -16,7 +16,10 @@ import { contactFormSchema } from "./schema"
 export const Contact = () => {
   return (
     <>
-      <div className="relative z-20 flex flex-col gap-6 rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] p-6 shadow-sm lg:p-8">
+      <div
+        className="relative z-20 flex flex-col gap-6 rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] p-6 shadow-sm lg:p-8"
+        id="contact-form"
+      >
         <h2 className="col-span-2 text-left text-lg font-semibold text-neutral-200 lg:text-2xl">
           &hellip; or reach out to me with a message!
         </h2>
@@ -44,7 +47,7 @@ const ContactForm = () => {
   })
 
   return (
-    <form action={action} {...getFormProps(form)} className="flex flex-col gap-4" id="contact-form">
+    <form action={action} {...getFormProps(form)} className="flex flex-col gap-4">
       <Fieldset className="flex flex-col gap-4 text-left">
         <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
           <Input

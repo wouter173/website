@@ -21,7 +21,6 @@ export const Toolbelt = ({ tools }: { tools: Tool[] }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (ref.current && isOnScreen(ref.current) && !hovering) {
-        console.log("scroll")
         ref.current.scrollBy({ left: 70, behavior: "smooth" })
       }
     }, 1500)
@@ -52,7 +51,6 @@ export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (ref.current && isOnScreen(ref.current)) {
-        console.log("scroll")
         ref.current.scrollBy({ left: 70, behavior: "smooth" })
       }
     }, 1500)

@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ hostname: "pbs.twimg.com" }],
   },
   experimental: {
+    reactCompiler: true,
     turbo: {
       rules: {
         "*.glsl": { loaders: ["raw-loader"], as: "*.js" },
