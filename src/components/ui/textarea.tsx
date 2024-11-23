@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils"
-import { ComponentProps, forwardRef } from "react"
+import { ComponentProps } from "react"
 
-type TextareaProps = ComponentProps<"textarea"> & { label?: string; errorLine?: string }
+type TextareaProps = ComponentProps<"textarea"> & { label?: string; errorLine?: string; ref?: HTMLTextAreaElement }
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, label, errorLine, ...props }, ref) => {
+const Textarea = ({ className, label, errorLine, ref, ...props }: TextareaProps) => {
   return (
     <label className="flex max-w-full flex-col gap-2">
       {label ? <span className="text-sm font-medium text-neutral-500">{label}</span> : null}
@@ -18,7 +18,6 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, la
       {errorLine ? <span className="text-sm text-red-500">{errorLine}</span> : null}
     </label>
   )
-})
-Textarea.displayName = "Textarea"
+}
 
 export { Textarea }

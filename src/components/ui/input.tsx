@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils"
-import { ComponentProps, forwardRef } from "react"
+import { ComponentProps, Ref } from "react"
 
-type InputProps = ComponentProps<"input"> & { label?: string; errorLine?: string }
+type InputProps = ComponentProps<"input"> & { label?: string; errorLine?: string; ref?: Ref<HTMLInputElement> }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ className, type, label, errorLine, ...props }, ref) => {
+const Input = ({ className, type, label, errorLine, ref, ...props }: InputProps) => {
   return (
     <label className="flex max-w-full flex-col gap-2">
       {label ? <span className="text-sm font-medium text-neutral-500">{label}</span> : null}
@@ -23,7 +23,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, type, label
       ) : null}
     </label>
   )
-})
-Input.displayName = "Input"
+}
 
 export { Input }
