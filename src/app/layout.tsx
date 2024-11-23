@@ -41,6 +41,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             __html: `window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`,
           }}
         />
+        <Script defer data-site-id="wouterdb.nl" src="https://assets.onedollarstats.com/tracker.js" />
 
         <body
           className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
