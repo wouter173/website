@@ -13,10 +13,10 @@ export const tools = [
     name: "Sanity",
     thumbnail: "/tools/sanity.svg",
     description: (
-      <p>
+      <>
         Sanity is a headless CMS that integrates with Next.js to create a custom content dashboard for your application. I used it building
         the <ExternalLink href="https://bluethrone.io">Bluethrone website</ExternalLink>
-      </p>
+      </>
     ),
     url: "https://sanity.io",
     tags: [],
@@ -25,10 +25,10 @@ export const tools = [
     name: "Node",
     thumbnail: "/tools/node.svg",
     description: (
-      <p>
+      <>
         Node is THE js runtime I use with almost every project nowadays. A real game changer in understanding how fragile computers are, was{" "}
         <ExternalLink href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">this talk</ExternalLink> about the event loop.
-      </p>
+      </>
     ),
     url: "https://nodejs.org",
     tags: [],
@@ -101,10 +101,10 @@ export const tools = [
     name: "Github",
     thumbnail: "/tools/github.svg",
     description: (
-      <p>
+      <>
         Github is of course the way to share and collaborate on code. I use it for everything{" "}
         <ExternalLink href="https://github.com/wouter173/website">even this site!</ExternalLink>
-      </p>
+      </>
     ),
     url: "https://github.com",
     tags: [],
@@ -136,11 +136,11 @@ export const tools = [
     name: "Deno",
     thumbnail: "/tools/deno.svg",
     description: (
-      <p>
+      <>
         Deno is the natural succesor of node, according to{" "}
         <ExternalLink href="https://www.youtube.com/watch?v=M3BM9TB-8yA">Ryan Dahl</ExternalLink>. Personally, I&apos;ve found it to be the
         best <ExternalLink href="https://github.com/wouter173/Advent-of-Code"> Advent of Code tool</ExternalLink>.
-      </p>
+      </>
     ),
     url: "https://deno.land",
     tags: ["runtime", "web"],

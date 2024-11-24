@@ -2,7 +2,7 @@
 
 import { isOnScreen } from "@/lib/is-on-screen"
 import * as Tooltip from "@radix-ui/react-tooltip"
-import { motion } from "motion/react"
+import { motion, useAnimationControls } from "motion/react"
 import Image from "next/image"
 import { PropsWithChildren, useEffect, useRef, useState, type JSX } from "react"
 
@@ -71,34 +71,65 @@ export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
 }
 
 const ToolsList = ({ tools, mobile }: { tools: Tool[]; mobile?: boolean }) => {
-  const yOffsets = [16, 0, 28, 12, 32, 4, 24, 4, 28]
-  const delays = [0.5, 0, 0.875, 0.375, 0.9, 0.125, 0.7]
-
   return (
     <>
       {Array(Math.floor(tools.length / 2))
         .fill(null)
         .map((_, i) => (
-          <motion.li
-            key={i}
-            className="flex flex-col gap-3"
-            animate={{
-              y: [-2, 2],
-              transition: {
-                delay: 2 * delays[i % delays.length],
-                duration: 2,
-                repeat: Infinity,
-                repeatDelay: 0.2,
-                repeatType: "reverse",
-              },
-            }}
-            style={{ marginTop: yOffsets[i % yOffsets.length] }}
-          >
-            <Bauble tool={tools[i * 2]} mobile={mobile} />
-            <Bauble tool={tools[i * 2 + 1]} mobile={mobile} />
-          </motion.li>
+          <ToolPair key={i} tool1={tools[i * 2]} tool2={tools[i * 2 + 1]} index={i} />
         ))}
     </>
+  )
+}
+
+const ToolPair = ({ tool1, tool2, index, mobile }: { tool1: Tool; tool2: Tool; index: number; mobile?: boolean }) => {
+  const yOffsets = [16, 0, 28, 12, 32, 4, 24, 4, 28]
+  const yRef = useRef(0)
+
+  const controls = useAnimationControls()
+
+  useEffect(() => {
+    const delays = [0.5, 0, 0.875, 0.375, 0.9, 0.125, 0.7]
+
+    controls.start({
+      y: [-2, 2],
+      transition: {
+        delay: 2 * delays[index % delays.length],
+        duration: 2,
+        repeat: Infinity,
+        repeatDelay: 0.2,
+        repeatType: "reverse",
+      },
+    })
+  }, [controls, index])
+
+  return (
+    <motion.li
+      key={index}
+      className="flex flex-col gap-3"
+      onUpdate={(latest) => (yRef.current = +latest.y)}
+      onHoverStart={() => {
+        controls.start({
+          y: yRef.current,
+        })
+      }}
+      onHoverEnd={() => {
+        controls.start({
+          y: [yRef.current, -2, 2],
+          transition: {
+            duration: 2,
+            repeat: Infinity,
+            repeatDelay: 0.2,
+            repeatType: "reverse",
+          },
+        })
+      }}
+      animate={controls}
+      style={{ marginTop: yOffsets[index % yOffsets.length] }}
+    >
+      <Bauble tool={tool1} mobile={mobile} />
+      <Bauble tool={tool2} mobile={mobile} />
+    </motion.li>
   )
 }
 
