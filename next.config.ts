@@ -11,9 +11,7 @@ const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
     turbo: {
-      rules: {
-        "*.glsl": { loaders: ["raw-loader"], as: "*.js" },
-      },
+      rules: { "*.glsl": { loaders: ["raw-loader"], as: "*.js" } },
     },
   },
 

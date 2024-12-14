@@ -39,9 +39,9 @@ const MdxImage = ({ src, alt, bg, width, height }: { src: string; alt: string; b
 }
 
 export const CodeBlock = async ({ children }: ComponentProps<"pre">) => {
-  //@ts-expect-error
+  //@ts-expect-error - children is a string
   const content = Children.toArray(children)[0].props.children as string
-  //@ts-expect-error
+  //@ts-expect-error - className is a string
   const lang = Children.toArray(children)[0].props.className?.replace("language-", "")
 
   const code = highlighter.codeToHtml(content, {

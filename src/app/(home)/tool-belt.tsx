@@ -70,7 +70,7 @@ export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
   )
 }
 
-const ToolsList = ({ tools, mobile }: { tools: Tool[]; mobile?: boolean }) => {
+const ToolsList = ({ tools }: { tools: Tool[]; mobile?: boolean }) => {
   return (
     <>
       {Array(Math.floor(tools.length / 2))

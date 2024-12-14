@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon"
-import { getPosts } from "@/server/service/posts"
+import { getPosts } from "@/server/posts"
 import Link from "next/link"
 
 export const Footer = async () => {

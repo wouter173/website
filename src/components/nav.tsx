@@ -15,7 +15,7 @@ export const Nav = () => {
   const pathname = usePathname()
   const keys = Object.keys(links) as (keyof typeof links)[]
 
-  let activeTab = keys.find((key) => pathname.startsWith(links[key]))
+  const activeTab = keys.find((key) => pathname.startsWith(links[key]))
 
   return (
     <nav className="sticky top-6 z-30 mx-auto h-0 pt-0 lg:top-16">

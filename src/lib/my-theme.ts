@@ -1,4 +1,6 @@
-export const myTheme = {
+import { ThemeInput } from "shiki"
+
+export const myTheme: ThemeInput = {
   default: {
     colors: {
       "activityBar.background": "#101010",

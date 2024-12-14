@@ -1,12 +1,11 @@
 "use client"
 
-//@ts-ignore
 import { Canvas, useFrame } from "@react-three/fiber"
 import { useRef, useState } from "react"
 import { Mesh, PlaneGeometry, ShaderMaterial, Vector4 } from "three"
-//@ts-ignore
+//@ts-expect-error import glsl
 import vertexShader from "@/shaders/vertex-shader.glsl"
-//@ts-ignore
+//@ts-expect-error import glsl
 import fragmentShader from "@/shaders/fragment-shader.glsl"
 import { motion } from "motion/react"
 
@@ -38,24 +37,20 @@ export const Rays = () => {
 const TextureMesh = ({ counter: key }: { counter: number }) => {
   const mesh = useRef<Mesh<PlaneGeometry, ShaderMaterial> | null>(null)
 
-  //@ts-ignore
   useFrame(({ clock, gl }) => {
     if (mesh.current) {
       mesh.current.material.uniforms.u_mouse.value = [1, 1]
       mesh.current.material.uniforms.u_time.value = clock.elapsedTime
 
-      let c = gl.domElement.getBoundingClientRect()
+      const c = gl.domElement.getBoundingClientRect()
       mesh.current.material.uniforms.u_resolution.value = [c.width, c.height]
     }
   })
 
   return (
     <>
-      {/* @ts-ignore */}
       <mesh ref={mesh} position={[0, 0, 0]} scale={1} rotation={[0, 0, 0]}>
-        {/* @ts-ignore */}
         <planeGeometry args={[1024, 1024]} />
-        {/* @ts-ignore */}
         <shaderMaterial
           key={key}
           fragmentShader={fragmentShader as string}
@@ -70,7 +65,6 @@ const TextureMesh = ({ counter: key }: { counter: number }) => {
             u_resolution: { value: [2048, 2048] },
           }}
         />
-        {/* @ts-ignore */}
       </mesh>
     </>
   )

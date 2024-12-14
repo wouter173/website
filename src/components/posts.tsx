@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { Post } from "@/server/service/posts"
+import { Post } from "@/server/posts"
 import { format } from "date-fns"
 import { ExternalLinkIcon, FileCodeIcon, FileTextIcon, PlusIcon } from "lucide-react"
 import { Link as ViewTransitionLink } from "next-view-transitions"
