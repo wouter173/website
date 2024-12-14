@@ -1,8 +1,8 @@
 import { Nav } from "@/components/nav"
 import { Analytics } from "@vercel/analytics/react"
-import { GeistSans } from "geist/font/sans"
 import type { Metadata } from "next"
 import { ViewTransitions } from "next-view-transitions"
+import { Geist } from "next/font/google"
 import { PropsWithChildren } from "react"
 import { Toaster } from "sonner"
 
@@ -25,6 +25,12 @@ export const metadata: Metadata = {
   },
 }
 
+const geist = Geist({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-geist",
+})
+
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <ViewTransitions>
@@ -44,7 +50,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Script defer data-site-id="wouterdb.nl" src="https://assets.onedollarstats.com/tracker.js" />
 
         <body
-          className={`${GeistSans.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
+          className={`${geist.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
         >
           <Nav />
           <div className="relative z-10">{children}</div>
