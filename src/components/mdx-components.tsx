@@ -1,6 +1,5 @@
 import { ExternalIcon } from "@/components/icons/external-icon"
 import { highlighter } from "@/lib/highlighter"
-import { MDXComponents } from "mdx/types"
 import { Link as ViewTransitionLink } from "next-view-transitions"
 import Image from "next/image"
 import Link from "next/link"
@@ -59,7 +58,7 @@ export const CodeBlock = async ({ children }: ComponentProps<"pre">) => {
   return <div className="my-4 overflow-clip rounded-xl border border-neutral-800 py-0" dangerouslySetInnerHTML={{ __html: code }} />
 }
 
-export const mdxComponents: MDXComponents = {
+export const mdxComponents = {
   code: Code,
   a: Anchor,
   Image: MdxImage,

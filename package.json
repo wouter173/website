@@ -11,8 +11,6 @@
   "dependencies": {
     "@conform-to/react": "^1.2.2",
     "@conform-to/zod": "^1.2.2",
-    "@mdx-js/loader": "^3.1.0",
-    "@mdx-js/react": "^3.1.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.4",
     "@react-three/fiber": "^9.0.0-rc.1",
@@ -45,7 +43,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@total-typescript/ts-reset": "^0.6.1",
-    "@types/mdx": "^2.0.13",
     "@types/three": "^0.163.0",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.1.1-canary.2",
