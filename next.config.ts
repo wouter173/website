@@ -1,8 +1,5 @@
-import nextMdx from "@next/mdx"
 import { NextConfig } from "next"
 import "./src/env"
-
-const withMdx = nextMdx()
 
 const nextConfig: NextConfig = {
   images: {
@@ -21,4 +18,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withMdx(nextConfig)
+export default nextConfig
