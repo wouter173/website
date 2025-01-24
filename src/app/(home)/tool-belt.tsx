@@ -31,7 +31,7 @@ export const Toolbelt = ({ tools }: { tools: Tool[] }) => {
   return (
     <ul
       ref={ref}
-      className="relative mx-auto flex w-full max-w-5xl  gap-3 overflow-scroll px-8 py-1 scrollbar-none [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
+      className="scrollbar-none relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8 py-1 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onMouseOver={() => {
@@ -61,7 +61,7 @@ export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
   return (
     <ul
       ref={ref}
-      className="pointer-events-none relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8  py-8 scrollbar-none [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
+      className="scrollbar-none pointer-events-none relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8 py-8 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
     >
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => (
         <ToolsList key={x} tools={tools} mobile />
@@ -141,7 +141,7 @@ const Bauble = ({ tool, mobile }: { tool: Tool; mobile?: boolean }) => {
         initial={{ scale: 0, opacity: 0.9 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: false, margin: mobile ? "9999px 0px" : "9999px -300px" }}
-        className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5  shadow-xs hover:bg-neutral-900"
+        className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5 shadow-xs hover:bg-neutral-900"
       >
         <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
       </motion.div>
@@ -170,7 +170,7 @@ const InfoTooltip = ({
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="z-50 max-w-96 rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 shadow-xs data-[state=delayed-open]:data-[side=top]:animate-slideUpAndFade "
+            className="data-[state=delayed-open]:data-[side=top]:animate-slide-up-and-fade z-50 max-w-96 rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 shadow-xs"
             sideOffset={5}
           >
             <div className="flex flex-col gap-2">

@@ -1,5 +1,4 @@
-'use client'
-import { SVGAttributes } from 'react'
+import { SVGAttributes } from "react"
 
 export const Icon = (props: SVGAttributes<SVGElement>) => {
   return (
