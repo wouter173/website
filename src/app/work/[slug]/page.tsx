@@ -49,7 +49,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                     <li>
                       <Button
                         asChild
-                        size="rounded"
+                        size="rounded-sm"
                         className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2.5 py-1 text-neutral-100 group-hover:bg-[#242425]"
                       >
                         <Link href={metadata.externalLink} target="_blank" rel="noopener noreferrer">
@@ -63,7 +63,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                     <li>
                       <Button
                         asChild
-                        size="rounded"
+                        size="rounded-sm"
                         className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2 py-1 text-neutral-100 group-hover:bg-[#242425]"
                       >
                         <Link href={metadata.githubLink} target="_blank" rel="noopener noreferrer">

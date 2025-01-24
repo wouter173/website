@@ -9,7 +9,7 @@ export const ContactButton = () => {
       onClick={() => {
         document.getElementById("contact-form")!.scrollIntoView({ behavior: "smooth" })
       }}
-      size="rounded"
+      size="rounded-sm"
       className="flex w-min items-center gap-1 border border-neutral-800"
     >
       <AtIcon className="size-3.5" />

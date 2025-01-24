@@ -10,11 +10,11 @@ import { Button } from "./ui/button"
 export const PostCard = ({ post, className, ...props }: { post: Post } & ComponentProps<"div">) => {
   return (
     <article
-      className={cn("group relative z-20 flex flex-col gap-6 overflow-hidden rounded-lg px-6 py-6 shadow-sm transition-all", className)}
+      className={cn("group relative z-20 flex flex-col gap-6 overflow-hidden rounded-lg px-6 py-6 shadow-xs transition-all", className)}
       {...props}
     >
       <div className="absolute inset-0 -z-10 bg-[#171718] transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]" />
-      <div className="absolute right-0 top-0 -z-10 size-8 rounded-bl-lg bg-gradient-to-tr from-[#242425] to-[#141415] shadow-lg transition-all [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)] group-hover:size-10" />
+      <div className="absolute right-0 top-0 -z-10 size-8 rounded-bl-lg bg-linear-to-tr from-[#242425] to-[#141415] shadow-lg transition-all [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)] group-hover:size-10" />
       <div className="flex flex-col gap-3 pr-8">
         <div className="flex items-center gap-3">
           {/* {post.metadata.previewImage ? (
@@ -47,7 +47,7 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
         <div className="flex justify-end gap-2">
           <Button
             asChild
-            size="rounded"
+            size="rounded-sm"
             className="flex w-min items-center gap-1 border-2 border-transparent bg-[#2a2a2c] px-2 py-1 pl-3 text-neutral-100 group-hover:bg-[#242425] hover:border-[#171718]"
           >
             <ViewTransitionLink href={`/work/${post.slug}`}>
@@ -57,7 +57,7 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
           {post.metadata.externalLink && (
             <Button
               asChild
-              size="rounded"
+              size="rounded-sm"
               className="flex size-8 items-center gap-1 border-2 border-transparent bg-[#2a2a2c] p-1.5 text-neutral-100 group-hover:bg-[#242425] hover:border-[#171718]"
             >
               <Link href={post.metadata.externalLink} target="_blank" rel="noopener noreferrer">

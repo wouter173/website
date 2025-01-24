@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           "bg-black/70 text-white hover:bg-opacity-40 hover:outline hover:outline-2 outline-neutral-600 hover:border-black focus-visible:border-black focus-visible:outline focus-visible:outline-2 ",
         primary:
-          "border-2 border-slate-100 bg-slate-100 pr-1.5 text-black hover:border-black hover:bg-slate-100 hover:outline hover:outline-2 outline-[#6F6F70] focus-visible:border-black focus-visible:outline focus-visible:outline-2 disabled:opacity-70 disabled:hover:outline-none disabled:focus-visible:outline-none disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100",
+          "border-2 border-slate-100 bg-slate-100 pr-1.5 text-black hover:border-black hover:bg-slate-100 hover:outline hover:outline-2 outline-[#6F6F70] focus-visible:border-black focus-visible:outline focus-visible:outline-2 disabled:opacity-70 disabled:hover:outline-hidden disabled:focus-visible:outline-hidden disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100",
         // destructive: "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
         // outline: "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         // secondary: "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",

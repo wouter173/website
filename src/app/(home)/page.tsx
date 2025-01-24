@@ -27,7 +27,7 @@ export default async function Page() {
       <div className="pointer-events-none absolute inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
         <Rays />
       </div>
-      <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-gradient-to-b from-transparent to-black/50"></div>
+      <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-linear-to-b from-transparent to-black/50"></div>
       <header className="relative flex h-[90vh] max-h-[1000px] w-full flex-col lg:min-h-[900px]">
         <div className="relative z-20 mx-auto -mt-6 grid h-full max-w-4xl place-items-center px-4 lg:mt-0">
           <div className="flex flex-col gap-6">
@@ -37,10 +37,10 @@ export default async function Page() {
                 Wouter de Bruijn
               </h1>
             </div>
-            <div className="grid grid-cols-[116px,116px] gap-2 lg:mx-auto lg:gap-4">
+            <div className="grid grid-cols-[116px_116px] gap-2 lg:mx-auto lg:gap-4">
               <ContactButton />
 
-              <Button asChild size="rounded" variant="primary" className="group flex w-min items-center">
+              <Button asChild size="rounded-sm" variant="primary" className="group flex w-min items-center">
                 <ViewTransitionLink href="/work">
                   Work <ChevronRightIcon className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
                 </ViewTransitionLink>
@@ -57,7 +57,7 @@ export default async function Page() {
         <div className=" flex flex-col gap-8 px-4 text-center">
           {/* <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span> */}
 
-          <div className="relative z-20 mx-auto w-full max-w-4xl rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] py-8 shadow-sm">
+          <div className="relative z-20 mx-auto w-full max-w-4xl rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] py-8 shadow-xs">
             <div className="flex flex-col gap-6 px-8">
               {/* <h2 className="col-span-2 text-left text-4xl font-semibold text-neutral-100">Hey there, Wouter here!</h2> */}
               <div className="grid w-full gap-10 text-left lg:grid-cols-[1fr_1fr]">
@@ -121,7 +121,7 @@ export default async function Page() {
               rel="noopener noreferer"
               target="_blank"
               href={xUser.data.url}
-              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-sm outline-[#2a2a2a] transition-all hover:border-black hover:bg-[#0A0A0B] hover:outline hover:outline-2 focus-visible:border-black focus-visible:outline focus-visible:outline-2 active:scale-[98%]"
+              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-xs outline-[#2a2a2a] transition-all hover:border-black hover:bg-[#0A0A0B] hover:outline hover:outline-2 focus-visible:border-black focus-visible:outline focus-visible:outline-2 active:scale-[98%]"
             >
               <div className="flex items-center gap-4">
                 <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +152,7 @@ export default async function Page() {
               rel="noopener noreferer"
               target="_blank"
               href={githubUser.user.url}
-              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-sm outline-[#2a2a2a] transition-all hover:border-black hover:bg-[#0A0A0B] hover:outline hover:outline-2 focus-visible:border-black focus-visible:outline focus-visible:outline-2 active:scale-[98%]"
+              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-xs outline-[#2a2a2a] transition-all hover:border-black hover:bg-[#0A0A0B] hover:outline hover:outline-2 focus-visible:border-black focus-visible:outline focus-visible:outline-2 active:scale-[98%]"
             >
               <div className="flex items-center gap-4">
                 <svg width="33" height="33" viewBox="0 0 98 96" fill="none" xmlns="http://www.w3.org/2000/svg">
