@@ -44,12 +44,11 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
             <div className="flex flex-col gap-2">
               <Title className="w-fit">{metadata.title}</Title>
               {metadata.externalLink || metadata.githubLink ? (
-                <ul className="flex gap-2 pb-6 pt-2">
+                <ul className="flex gap-2 pt-2 pb-6">
                   {metadata.externalLink && (
                     <li>
                       <Button
                         asChild
-                        size="rounded-sm"
                         className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2.5 py-1 text-neutral-100 group-hover:bg-[#242425]"
                       >
                         <Link href={metadata.externalLink} target="_blank" rel="noopener noreferrer">
@@ -63,7 +62,6 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                     <li>
                       <Button
                         asChild
-                        size="rounded-sm"
                         className="flex w-min items-center gap-1 bg-[#2a2a2c] px-2 py-1 text-neutral-100 group-hover:bg-[#242425]"
                       >
                         <Link href={metadata.githubLink} target="_blank" rel="noopener noreferrer">
@@ -77,7 +75,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                   )}
                 </ul>
               ) : null}
-              <div className="prose text-neutral-300 prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-100 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0">
+              <div className="prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-100 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0 text-neutral-300">
                 <MDXRemote source={content} components={mdxComponents} />
               </div>
             </div>

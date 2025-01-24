@@ -86,7 +86,7 @@ const SubmitButton = (props: ComponentProps<"button">) => {
   const { pending } = useFormStatus()
 
   return (
-    <Button type="submit" variant={"primary"} className="ml-auto w-fit min-w-24 rounded-lg" {...props}>
+    <Button type="submit" variant={"primary"} className="ml-auto h-10 w-fit min-w-24 rounded-lg px-4 py-2" {...props}>
       {pending ? (
         <Spinner />
       ) : (
