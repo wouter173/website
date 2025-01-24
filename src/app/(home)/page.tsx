@@ -33,7 +33,7 @@ export default async function Page() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col">
               <span className="font-semibold text-[#b4b5b7]/50">Hi, I&apos;m</span>
-              <h1 className="block w-full bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#000_113.79%);] bg-clip-text text-6xl font-extrabold text-transparent opacity-50">
+              <h1 className="block w-full bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#000_113.79%);] bg-clip-text text-6xl font-black tracking-tight text-transparent opacity-50">
                 Wouter de Bruijn
               </h1>
             </div>
