@@ -1,9 +1,9 @@
 "use client"
 
 import { isOnScreen } from "@/lib/is-on-screen"
-import * as Tooltip from "@radix-ui/react-tooltip"
 import { motion, useAnimationControls } from "motion/react"
 import Image from "next/image"
+import { Tooltip } from "radix-ui"
 import { PropsWithChildren, useEffect, useRef, useState, type JSX } from "react"
 
 export type Tool = {

@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
+@plugin "@tailwindcss/typography";
+@plugin "tailwind-scrollbar";
+@plugin "tailwindcss-animate";
 
 @theme {
   --animate-accordion-down: accordion-down 0.2s ease-out;
