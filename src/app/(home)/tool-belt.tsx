@@ -4,7 +4,7 @@ import { isOnScreen } from "@/lib/is-on-screen"
 import { motion, useAnimationControls } from "motion/react"
 import Image from "next/image"
 import { Tooltip } from "radix-ui"
-import { PropsWithChildren, useEffect, useRef, useState, type JSX } from "react"
+import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from "react"
 
 export type Tool = {
   name: string

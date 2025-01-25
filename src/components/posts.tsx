@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils"
-import { Post } from "@/server/posts"
+import type { Post } from "@/server/posts"
 import { format } from "date-fns"
 import { ExternalLinkIcon, FileCodeIcon, FileTextIcon, PlusIcon } from "lucide-react"
 import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
-import { ComponentProps } from "react"
+import type { ComponentProps } from "react"
 import { Button } from "./ui/button"
 
 export const PostCard = ({ post, className, ...props }: { post: Post } & ComponentProps<"div">) => {

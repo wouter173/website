@@ -1,4 +1,4 @@
-import { ThemeInput } from "shiki"
+import { type ThemeInput } from "shiki"
 
 export const myTheme: ThemeInput = {
   default: {

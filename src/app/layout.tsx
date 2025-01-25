@@ -3,9 +3,10 @@ import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next"
 import { ViewTransitions } from "next-view-transitions"
 import { Geist } from "next/font/google"
-import { PropsWithChildren } from "react"
+import type { PropsWithChildren } from "react"
 import { Toaster } from "sonner"
 
+import { getPosts } from "@/server/posts"
 import Script from "next/script"
 import "./globals.css"
 
@@ -31,7 +32,9 @@ const geist = Geist({
   variable: "--font-geist",
 })
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default async function RootLayout({ children }: PropsWithChildren) {
+  const posts = await getPosts()
+
   return (
     <ViewTransitions>
       <html lang="en" className="bg-black">
@@ -52,7 +55,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <body
           className={`${geist.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
         >
-          <Nav />
+          <Nav posts={posts} />
           <div className="relative z-10">{children}</div>
           <Toaster richColors theme="dark" />
           <Analytics />

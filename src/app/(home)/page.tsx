@@ -1,12 +1,10 @@
 import { ExternalLink } from "@/components/external-link"
 import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
 import { ExternalIcon } from "@/components/icons/external-icon"
-import { PostCard } from "@/components/posts"
 import { Rays } from "@/components/rays"
 import { tools } from "@/components/tools"
 import { Button } from "@/components/ui/button"
 import { getGithubUserData } from "@/server/github"
-import { getPosts } from "@/server/posts"
 import { getXUserData } from "@/server/x"
 import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
@@ -50,9 +48,9 @@ export default async function Page() {
         </div>
       </header>
       <main className="flex flex-col gap-20 lg:gap-40">
-        <div className="relative -mt-14">
+        {/* <div className="relative -mt-14">
           <Posts />
-        </div>
+        </div> */}
 
         <div className="flex flex-col gap-8 px-4 text-center">
           {/* <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span> */}
@@ -187,18 +185,6 @@ export default async function Page() {
         </div>
         <Footer />
       </main>
-    </div>
-  )
-}
-
-const Posts = async () => {
-  const posts = await getPosts()
-
-  return (
-    <div className="mx-auto grid w-full max-w-4xl gap-4 px-4 lg:grid-cols-2 lg:px-0">
-      {posts.slice(0, 2).map((post) => {
-        return <PostCard post={post} key={post.slug} />
-      })}
     </div>
   )
 }

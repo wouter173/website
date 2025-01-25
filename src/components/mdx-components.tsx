@@ -3,7 +3,7 @@ import { highlighter } from "@/lib/highlighter"
 import { Link as ViewTransitionLink } from "next-view-transitions"
 import Image from "next/image"
 import Link from "next/link"
-import { Children, ComponentProps } from "react"
+import { Children, type ComponentProps } from "react"
 
 const Code = ({ children }: ComponentProps<"code">) => (
   <code className="rounded-lg border border-[rgba(109,109,109,0.07)] bg-[#2a2a2a] px-1 py-0.5 text-neutral-300 before:content-none after:content-none">
@@ -24,7 +24,7 @@ const Anchor = ({ href, ...props }: ComponentProps<"a">) => {
     return (
       <Link rel="noreferrer noopener" target="_blank" href={href ?? ""} className={className} {...props}>
         {props.children}
-        <ExternalIcon className="-ml-0 -mt-2.5 inline size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
+        <ExternalIcon className="-mt-2.5 -ml-0 inline size-3 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
       </Link>
     )
 }

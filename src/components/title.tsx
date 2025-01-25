@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { ComponentProps } from "react"
+import type { ComponentProps } from "react"
 
 export const Title = ({
   children,
@@ -12,7 +12,7 @@ export const Title = ({
   return (
     <Component
       className={cn(
-        "block w-min bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#232323_160%);] bg-clip-text text-4xl font-extrabold leading-normal text-transparent opacity-50",
+        "block w-min bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#232323_160%);] bg-clip-text text-4xl leading-normal font-extrabold text-transparent opacity-50",
         className,
       )}
       {...props}

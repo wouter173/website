@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "motion/react"
-import { SVGAttributes } from "react"
+import type { SVGAttributes } from "react"
 
 export const Logo = (props: SVGAttributes<SVGElement>) => {
   return (

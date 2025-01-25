@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
-import { ComponentProps, Ref } from "react"
+import type { ComponentProps, Ref } from "react"
 
 const buttonVariants = cva(
   "active:scale-95 transition-all inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium",
