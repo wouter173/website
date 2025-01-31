@@ -3,13 +3,13 @@
 import { ChevronDown } from "lucide-react"
 import { Link as ViewTransitionLink } from "next-view-transitions"
 import { usePathname } from "next/navigation"
-import { Logo } from "./logo"
 
 import type { Post } from "@/server/posts"
 import { format } from "date-fns"
-import { motion } from "motion/react"
+import { motion, useMotionValueEvent, useScroll } from "motion/react"
 import { NavigationMenu } from "radix-ui"
 import { useState } from "react"
+import { Logo } from "./logo"
 
 const links = {
   work: "/work",
@@ -27,14 +27,26 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
 
   const activeTab = value ? value : hovering ? hovering : currentPath
 
+  const { scrollY } = useScroll()
+  const [logoVisible, setLogoVisible] = useState(true)
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (!logoVisible && latest < 600) setLogoVisible(true)
+    if (logoVisible && latest > 600) setLogoVisible(false)
+  })
+
+  // const showLogo = pathname === "/" ? !logoVisible : true
+
+  console.log(activeTab)
+
   return (
     <div className="sticky top-6 z-30 mx-auto h-0 pt-0 lg:top-16" onMouseLeave={() => setHovering(null)}>
       <NavigationMenu.Root className="pointer-events-none relative flex w-screen justify-center" value={value} onValueChange={setValue}>
-        <NavigationMenu.List className="pointer-events-auto mx-auto flex h-12.5 w-fit max-w-4xl items-center justify-center rounded-full bg-black/30 backdrop-blur-[8px]">
+        <NavigationMenu.List className="pointer-events-auto mx-auto flex h-12.5 w-fit max-w-4xl items-center justify-center rounded-full border border-white/7 bg-black/30 backdrop-blur-[8px]">
           {/* home */}
           <NavigationMenu.Item
             value="home"
-            className="flex h-12.5 items-center py-1 pr-3 pl-3 lg:pr-6"
+            className="flex h-12.5 items-center px-3 py-1 lg:pr-6"
             onMouseEnter={() => setHovering("home")}
             onMouseLeave={() => setHovering(null)}
           >
@@ -50,6 +62,13 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
             </NavigationMenu.Link>
           </NavigationMenu.Item>
           {/* logo */}
+          {/* <AnimatePresence>
+            <motion.div
+              initial={{ scale: 0, width: "0px" }}
+              animate={{ scale: 1, width: "auto" }}
+              exit={{ scale: 0, width: "0px" }}
+              className="flex items-center justify-center"
+            > */}
           <NavigationMenu.Item className="h-full py-1">
             <NavigationMenu.Link asChild>
               <ViewTransitionLink href={"/"}>
@@ -57,6 +76,8 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
               </ViewTransitionLink>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
+          {/* </motion.div> */}
+          {/* </AnimatePresence> */}
           {/* work mobile */}
           <NavigationMenu.Item
             value="work"
@@ -84,17 +105,11 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
                   className="relative top-px size-4 stroke-[2.5] transition-all group-data-[state=open]:-rotate-180"
                   aria-hidden
                 />
-                {activeTab === "work" && (
-                  <motion.span
-                    layoutId="knob"
-                    className="absolute inset-0 -z-10 rounded-full bg-white/10"
-                    transition={{ duration: 0.3, ease: "circOut" }}
-                  />
-                )}
+                {activeTab === "work" && <ActiveTab />}
               </div>
             </NavigationMenu.Trigger>
             <NavigationMenu.Content>
-              <ul className="grid grid-cols-2 gap-2">
+              <ul className="grid grid-cols-1 gap-2">
                 {posts.slice(0, 2).map((post) => (
                   <li key={post.slug}>
                     <ViewTransitionLink
@@ -138,15 +153,13 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
   )
 }
 
-function ActiveTab({}) {
-  return (
-    <>
-      <motion.span
-        layoutId="knob"
-        className="absolute inset-0 -z-10 hidden rounded-full bg-white/10 lg:block"
-        transition={{ duration: 0.3, ease: "circOut" }}
-      />
-      <span className="absolute inset-0 -z-10 rounded-full bg-white/10 lg:hidden"></span>
-    </>
-  )
-}
+const ActiveTab = () => (
+  <>
+    <motion.span
+      layoutId="knob"
+      className="absolute inset-0 -z-10 hidden rounded-full bg-white/10 lg:block"
+      transition={{ duration: 0.3, ease: "circOut" }}
+    />
+    <span className="absolute inset-0 -z-10 rounded-full bg-white/10 [view-transition-name:knob] lg:hidden"></span>
+  </>
+)

@@ -1,16 +1,13 @@
 import { ExternalLink } from "@/components/external-link"
-import { ChevronRightIcon } from "@/components/icons/chevron-right-icon"
+import { Header } from "@/components/header"
 import { ExternalIcon } from "@/components/icons/external-icon"
 import { Rays } from "@/components/rays"
 import { tools } from "@/components/tools"
-import { Button } from "@/components/ui/button"
 import { getGithubUserData } from "@/server/github"
 import { getXUserData } from "@/server/x"
-import { Link as ViewTransitionLink } from "next-view-transitions"
 import Link from "next/link"
 import { Footer } from "../../components/footer"
 import { Contact } from "./_contact/contact"
-import { ContactButton } from "./contact-button"
 import { MobileToolbelt, Toolbelt } from "./tool-belt"
 
 export const revalidate = 86400
@@ -22,36 +19,18 @@ export default async function Page() {
 
   return (
     <div className="min-h-screen w-full">
-      <div className="pointer-events-none absolute inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
+      <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-linear-to-b from-transparent to-black/50"></div>
+      <div className="pointer-events-none relative h-[90vh] max-h-[1000px] lg:min-h-[90vh]"></div>
+      <div className="pointer-events-none fixed inset-0 -z-10 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
         <Rays />
       </div>
-      <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-linear-to-b from-transparent to-black/50"></div>
-      <header className="relative flex h-[90vh] max-h-[1000px] w-full flex-col lg:min-h-[900px]">
-        <div className="relative z-20 mx-auto -mt-6 grid h-full max-w-4xl place-items-center px-4 lg:mt-0">
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col">
-              <span className="font-semibold text-[#b4b5b7]/50">Hi, I&apos;m</span>
-              <h1 className="block w-full bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#000_113.79%);] bg-clip-text text-6xl font-black tracking-tight text-transparent opacity-50">
-                Wouter de Bruijn
-              </h1>
-            </div>
-            <div className="grid grid-cols-[116px_116px] gap-2 lg:mx-auto lg:gap-4">
-              <ContactButton />
-
-              <Button asChild variant="primary" className="group flex w-min items-center">
-                <ViewTransitionLink href="/work">
-                  Work <ChevronRightIcon className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
-                </ViewTransitionLink>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-      <main className="flex flex-col gap-20 lg:gap-40">
-        {/* <div className="relative -mt-14">
-          <Posts />
-        </div> */}
-
+      <div className="fixed inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
+        <Header />
+      </div>
+      {/* <header className="pointer-events-none relative -z-20 flex h-[90vh] max-h-[1000px] w-full flex-col lg:min-h-[900px]"></header> */}
+      {/* <div className="sticky top-[100vh] h-dvh w-full bg-black/0 backdrop-blur-3xl"></div> */}
+      <main className="relative z-10 flex flex-col gap-20 lg:gap-40">
+        <div className="absolute inset-0 top-[313px] -z-10 bg-[#0c0c0c]/0 backdrop-blur-3xl before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]"></div>
         <div className="flex flex-col gap-8 px-4 text-center">
           {/* <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span> */}
 
@@ -60,7 +39,8 @@ export default async function Page() {
               {/* <h2 className="col-span-2 text-left text-4xl font-semibold text-neutral-100">Hey there, Wouter here!</h2> */}
               <div className="grid w-full gap-10 text-left lg:grid-cols-[1fr_1fr]">
                 <p className="mt-0.5 text-neutral-400">
-                  — a Fullstack Developer, largely self taught, and excited to learn new things.
+                  Hi I&apos;m <span className="font-semibold text-white">Wouter</span> — a Fullstack Developer, largely self taught, and
+                  excited to learn new things.
                   <br />
                   <br />
                   At the moment, my focus is finishing school and exploring ways to build the most user friendly and coolest interactions on

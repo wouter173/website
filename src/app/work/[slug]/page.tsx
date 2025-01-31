@@ -6,6 +6,7 @@ import { getPost, getPosts } from "@/server/posts"
 import { ExternalLinkIcon, Undo2Icon } from "lucide-react"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { Link as ViewTransitionLink } from "next-view-transitions"
+
 import Link from "next/link"
 
 export async function generateStaticParams() {
@@ -75,6 +76,13 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                   )}
                 </ul>
               ) : null}
+              {/* <div className="-mx-12">
+                <AspectRatio.Root ratio={16 / 9} className="overflow-clip rounded-xl">
+                  <Image src={"https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nIRco6j4Xq1g0rS5uEWcTpiB84aYPoV2JGbM7n"} fill alt={""}></Image>
+                </AspectRatio.Root>
+                <hr className="my-8 border-[#1f1f1f]" />
+              </div> */}
+
               <div className="prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-100 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0 text-neutral-300">
                 <MDXRemote source={content} components={mdxComponents} />
               </div>

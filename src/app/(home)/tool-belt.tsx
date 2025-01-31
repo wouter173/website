@@ -133,14 +133,14 @@ const ToolPair = ({ tool1, tool2, index, mobile }: { tool1: Tool; tool2: Tool; i
   )
 }
 
-const Bauble = ({ tool, mobile }: { tool: Tool; mobile?: boolean }) => {
+const Bauble = ({ tool }: { tool: Tool; mobile?: boolean }) => {
   return (
     <InfoTooltip description={tool.description} title={tool.name} thumbnail={tool.thumbnail}>
       <motion.div
         transition={{ duration: 0.2 }}
         initial={{ scale: 0, opacity: 0.9 }}
         whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: false, margin: mobile ? "9999px 0px" : "9999px -300px" }}
+        viewport={{ once: false }}
         className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5 shadow-xs hover:bg-neutral-900"
       >
         <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />

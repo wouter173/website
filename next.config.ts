@@ -3,7 +3,7 @@ import "./src/env"
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [{ hostname: "pbs.twimg.com" }],
+    remotePatterns: [{ hostname: "pbs.twimg.com" }, { hostname: "uqvgufujds.ufs.sh" }],
   },
   experimental: {
     reactCompiler: true,

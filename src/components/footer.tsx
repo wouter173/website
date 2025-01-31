@@ -6,7 +6,7 @@ export const Footer = async () => {
   const posts = await getPosts()
 
   return (
-    <footer className="border-t border-t-[#1f1f1f] bg-black pb-16 pt-12 text-white">
+    <footer className="border-t border-t-[#1f1f1f] bg-black pt-12 pb-16 text-white">
       <div className="mx-auto flex w-full max-w-4xl flex-col-reverse gap-4 px-6 lg:flex-row lg:gap-20">
         <div className="mt-6 flex flex-col gap-8">
           <Icon />
