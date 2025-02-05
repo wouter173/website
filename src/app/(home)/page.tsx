@@ -8,6 +8,7 @@ import { getXUserData } from "@/server/x"
 import Link from "next/link"
 import { Footer } from "../../components/footer"
 import { Contact } from "./_contact/contact"
+import { BlurOverlay } from "./blur-overlay"
 import { MobileToolbelt, Toolbelt } from "./tool-belt"
 
 export const revalidate = 86400
@@ -24,13 +25,13 @@ export default async function Page() {
       <div className="pointer-events-none fixed inset-0 -z-10 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
         <Rays />
       </div>
-      <div className="fixed inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
+      <div className="pointer-events-none fixed inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full lg:pointer-events-auto">
         <Header />
       </div>
+      <BlurOverlay />
       {/* <header className="pointer-events-none relative -z-20 flex h-[90vh] max-h-[1000px] w-full flex-col lg:min-h-[900px]"></header> */}
       {/* <div className="sticky top-[100vh] h-dvh w-full bg-black/0 backdrop-blur-3xl"></div> */}
       <main className="relative z-10 flex flex-col gap-20 lg:gap-40">
-        <div className="absolute inset-0 top-[313px] -z-10 bg-[#0c0c0c]/0 backdrop-blur-3xl before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]"></div>
         <div className="flex flex-col gap-8 px-4 text-center">
           {/* <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span> */}
 
@@ -94,12 +95,12 @@ export default async function Page() {
         </div>
         <div className="flex flex-col gap-8 lg:pb-24">
           <h2 className="text-center text-lg text-neutral-400">Follow my work on X or Github &hellip;</h2>
-          <div className="mx-auto grid w-full max-w-4xl gap-8 px-4 text-white lg:grid-cols-[1fr_1fr] lg:px-0">
+          <div className="mx-auto grid w-full max-w-4xl gap-4 px-4 text-white lg:grid-cols-[1fr_1fr] lg:gap-8 lg:px-0">
             <Link
               rel="noopener noreferer"
               target="_blank"
               href={xUser.data.url}
-              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-xs outline-[#2a2a2a] transition-all hover:border-black hover:bg-[#0A0A0B] hover:outline-2 focus-visible:border-black focus-visible:outline-2 active:scale-[98%]"
+              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-xs transition-all hover:ring-2 hover:ring-[#6F6F70] hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-[#6F6F70] focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
             >
               <div className="flex items-center gap-4">
                 <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -130,7 +131,7 @@ export default async function Page() {
               rel="noopener noreferer"
               target="_blank"
               href={githubUser.user.url}
-              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-xs outline-[#2a2a2a] transition-all hover:border-black hover:bg-[#0A0A0B] hover:outline-2 focus-visible:border-black focus-visible:outline-2 active:scale-[98%]"
+              className="group relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 text-white shadow-xs transition-all hover:ring-2 hover:ring-[#6F6F70] hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-[#6F6F70] focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
             >
               <div className="flex items-center gap-4">
                 <svg width="33" height="33" viewBox="0 0 98 96" fill="none" xmlns="http://www.w3.org/2000/svg">

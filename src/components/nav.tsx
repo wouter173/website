@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 
 import type { Post } from "@/server/posts"
 import { format } from "date-fns"
-import { motion, useMotionValueEvent, useScroll } from "motion/react"
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
 import { NavigationMenu } from "radix-ui"
 import { useState } from "react"
 import { Logo } from "./logo"
@@ -35,7 +35,7 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
     if (logoVisible && latest > 600) setLogoVisible(false)
   })
 
-  // const showLogo = pathname === "/" ? !logoVisible : true
+  const showLogo = pathname === "/" ? !logoVisible : true
 
   console.log(activeTab)
 
@@ -62,22 +62,24 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
             </NavigationMenu.Link>
           </NavigationMenu.Item>
           {/* logo */}
-          {/* <AnimatePresence>
-            <motion.div
-              initial={{ scale: 0, width: "0px" }}
-              animate={{ scale: 1, width: "auto" }}
-              exit={{ scale: 0, width: "0px" }}
-              className="flex items-center justify-center"
-            > */}
-          <NavigationMenu.Item className="h-full py-1">
-            <NavigationMenu.Link asChild>
-              <ViewTransitionLink href={"/"}>
-                <Logo />
-              </ViewTransitionLink>
-            </NavigationMenu.Link>
-          </NavigationMenu.Item>
-          {/* </motion.div> */}
-          {/* </AnimatePresence> */}
+          <AnimatePresence initial={false}>
+            {showLogo && (
+              <motion.div
+                initial={{ scale: 0, width: "0px" }}
+                animate={{ scale: 1, width: "auto" }}
+                exit={{ scale: 0, width: "0px" }}
+                className="flex items-center justify-center"
+              >
+                <NavigationMenu.Item className="h-full py-1">
+                  <NavigationMenu.Link asChild>
+                    <ViewTransitionLink href={"/"}>
+                      <Logo className="scale-90" />
+                    </ViewTransitionLink>
+                  </NavigationMenu.Link>
+                </NavigationMenu.Item>
+              </motion.div>
+            )}
+          </AnimatePresence>
           {/* work mobile */}
           <NavigationMenu.Item
             value="work"
