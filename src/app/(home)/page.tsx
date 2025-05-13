@@ -1,14 +1,12 @@
 import { ExternalLink } from '@/components/external-link'
 import { Header } from '@/components/header'
 import { ExternalIcon } from '@/components/icons/external-icon'
-import { Rays } from '@/components/rays'
 import { tools } from '@/components/tools'
 import { getGithubUserData } from '@/server/github'
 import { getXUserData } from '@/server/x'
 import Link from 'next/link'
 import { Footer } from '../../components/footer'
 import { Contact } from './_contact/contact'
-import { BlurOverlay } from './blur-overlay'
 import { MobileToolbelt, Toolbelt } from './tool-belt'
 
 export const revalidate = 86400
@@ -21,23 +19,17 @@ export default async function Page() {
   return (
     <div className="min-h-screen w-full">
       <div className="pointer-events-none fixed bottom-0 left-0 z-50 h-16 w-full bg-linear-to-b from-transparent to-black/50"></div>
-      <div className="pointer-events-none relative h-[90vh] max-h-[1000px] lg:min-h-[90vh]"></div>
-      <div className="pointer-events-none fixed inset-0 -z-10 h-[90vh] max-h-[1000px] min-h-[900px] w-full">
-        <Rays />
+      <div className="pointer-events-none relative h-[90vh] max-h-[1000px] lg:min-h-[90vh]">
+        <Header />
       </div>
       <div className="pointer-events-none fixed inset-0 h-[90vh] max-h-[1000px] min-h-[900px] w-full lg:pointer-events-auto">
         <Header />
       </div>
-      <BlurOverlay />
-      {/* <header className="pointer-events-none relative -z-20 flex h-[90vh] max-h-[1000px] w-full flex-col lg:min-h-[900px]"></header> */}
-      {/* <div className="sticky top-[100vh] h-dvh w-full bg-black/0 backdrop-blur-3xl"></div> */}
+
       <main className="relative z-10 flex flex-col gap-20 lg:gap-40">
         <div className="flex flex-col gap-8 px-4 text-center">
-          {/* <span className="text-center font-medium text-[#6C6C6D]">The tools I use</span> */}
-
           <div className="relative z-20 mx-auto w-full max-w-4xl rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] py-8 shadow-xs">
             <div className="flex flex-col gap-6 px-8">
-              {/* <h2 className="col-span-2 text-left text-4xl font-semibold text-neutral-100">Hey there, Wouter here!</h2> */}
               <div className="grid w-full gap-10 text-left lg:grid-cols-[1fr_1fr]">
                 <p className="mt-0.5 text-neutral-400">
                   Hi I&apos;m <span className="font-semibold text-white">Wouter</span> — a Fullstack Developer, largely self taught, and

@@ -2,7 +2,7 @@ import fs from 'fs/promises'
 import { z } from 'zod'
 import { read as readMdx } from 'zod-matter'
 
-const POST_DIR = 'src/app/work/_posts'
+const POST_DIR = 'src/posts'
 
 export type Metadata = z.infer<typeof metadataSchema>
 const metadataSchema = z.object({

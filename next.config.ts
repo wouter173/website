@@ -5,11 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ hostname: 'pbs.twimg.com' }, { hostname: 'uqvgufujds.ufs.sh' }],
   },
-  experimental: {
-    reactCompiler: true,
-    turbo: {
-      rules: { '*.glsl': { loaders: ['raw-loader'], as: '*.js' } },
-    },
+
+  turbopack: {
+    rules: { '*.glsl': { loaders: ['raw-loader'], as: '*.js' } },
   },
 
   webpack: (config) => {
