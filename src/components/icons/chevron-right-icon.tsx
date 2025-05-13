@@ -1,4 +1,4 @@
-import { type SVGAttributes } from "react";
+import { type SVGAttributes } from 'react'
 export const ChevronRightIcon = (props: SVGAttributes<SVGElement>) => {
   return (
     <>
@@ -17,5 +17,5 @@ export const ChevronRightIcon = (props: SVGAttributes<SVGElement>) => {
         <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </>
-  );
-};
+  )
+}

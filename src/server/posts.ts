@@ -1,15 +1,15 @@
-import fs from "fs/promises"
-import { z } from "zod"
-import { read as readMdx } from "zod-matter"
+import fs from 'fs/promises'
+import { z } from 'zod'
+import { read as readMdx } from 'zod-matter'
 
-const POST_DIR = "src/app/work/_posts"
+const POST_DIR = 'src/app/work/_posts'
 
 export type Metadata = z.infer<typeof metadataSchema>
 const metadataSchema = z.object({
   title: z.string(),
   summary: z.string(),
   publishedAt: z.date(),
-  type: z.enum(["blog", "project"]),
+  type: z.enum(['blog', 'project']),
   previewImage: z.string().optional(),
   externalLink: z.string().optional(),
   githubLink: z.string().optional(),
@@ -25,7 +25,7 @@ export async function getPost(slug: string) {
 export async function getPosts() {
   const files = await fs.readdir(POST_DIR)
 
-  const posts = await Promise.all(files.map(async (file) => await getPost(file.replace(".mdx", ""))))
+  const posts = await Promise.all(files.map(async (file) => await getPost(file.replace('.mdx', ''))))
   return posts
     .filter((post) => !post.metadata.hidden)
     .toSorted((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())

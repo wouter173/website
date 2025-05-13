@@ -63,7 +63,7 @@ This is especially powerful when combined with `Suspense` which is a new feature
 ```tsx
 function Page() {
   return (
-    <Suspense fallback={"loading..."}>
+    <Suspense fallback={'loading...'}>
       <UsersList />
     </Suspense>
   )
@@ -83,7 +83,7 @@ An example of this looks like this:
 
 ```tsx
 //auth/actions.ts
-"use server"
+'use server'
 
 type Payload = { username: string; password: string }
 
@@ -94,13 +94,13 @@ export async function signinAction(payload: Payload) {
 
 ```tsx
 //auth/signin-button.ts
-import { signinAction } from "./actions"
+import { signinAction } from './actions'
 
 export function SigninButton() {
   return (
     <button
       onClick={() => {
-        signinAction({ username: "test", password: "test" })
+        signinAction({ username: 'test', password: 'test' })
       }}
     >
       Sign in
@@ -116,8 +116,8 @@ However, sometimes a blocking behavior or loading state is necessary to show use
 This is where transitions come in, they allow you to show a loading state while the server action is running.
 
 ```tsx
-import { signinAction } from "./actions"
-import { useTransition } from "react"
+import { signinAction } from './actions'
+import { useTransition } from 'react'
 
 export function SigninButton() {
   const [pending, startTransition] = useTransition()
@@ -127,11 +127,11 @@ export function SigninButton() {
       disabled={pending}
       onClick={() => {
         startTransition(async () => {
-          await signinAction({ username: "test", password: "test" })
+          await signinAction({ username: 'test', password: 'test' })
         })
       }}
     >
-      {pending ? "loading..." : "Sign in"}
+      {pending ? 'loading...' : 'Sign in'}
     </button>
   )
 }

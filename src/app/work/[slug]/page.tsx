@@ -1,13 +1,13 @@
-import { Footer } from "@/components/footer"
-import { mdxComponents } from "@/components/mdx-components"
-import { Title } from "@/components/title"
-import { Button } from "@/components/ui/button"
-import { getPost, getPosts } from "@/server/posts"
-import { ExternalLinkIcon, Undo2Icon } from "lucide-react"
-import { MDXRemote } from "next-mdx-remote/rsc"
-import { Link as ViewTransitionLink } from "next-view-transitions"
+import { Footer } from '@/components/footer'
+import { mdxComponents } from '@/components/mdx-components'
+import { Title } from '@/components/title'
+import { Button } from '@/components/ui/button'
+import { getPost, getPosts } from '@/server/posts'
+import { ExternalLinkIcon, Undo2Icon } from 'lucide-react'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import { Link as ViewTransitionLink } from 'next-view-transitions'
 
-import Link from "next/link"
+import Link from 'next/link'
 
 export async function generateStaticParams() {
   const posts = await getPosts()
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export const dynamic = "force-static"
+export const dynamic = 'force-static'
 export const dynamicParams = false
 
 export default async function Page(props: { params: Promise<{ slug: string }> }) {

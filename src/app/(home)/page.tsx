@@ -1,18 +1,18 @@
-import { ExternalLink } from "@/components/external-link"
-import { Header } from "@/components/header"
-import { ExternalIcon } from "@/components/icons/external-icon"
-import { Rays } from "@/components/rays"
-import { tools } from "@/components/tools"
-import { getGithubUserData } from "@/server/github"
-import { getXUserData } from "@/server/x"
-import Link from "next/link"
-import { Footer } from "../../components/footer"
-import { Contact } from "./_contact/contact"
-import { BlurOverlay } from "./blur-overlay"
-import { MobileToolbelt, Toolbelt } from "./tool-belt"
+import { ExternalLink } from '@/components/external-link'
+import { Header } from '@/components/header'
+import { ExternalIcon } from '@/components/icons/external-icon'
+import { Rays } from '@/components/rays'
+import { tools } from '@/components/tools'
+import { getGithubUserData } from '@/server/github'
+import { getXUserData } from '@/server/x'
+import Link from 'next/link'
+import { Footer } from '../../components/footer'
+import { Contact } from './_contact/contact'
+import { BlurOverlay } from './blur-overlay'
+import { MobileToolbelt, Toolbelt } from './tool-belt'
 
 export const revalidate = 86400
-export const dynamic = "force-static"
+export const dynamic = 'force-static'
 
 export default async function Page() {
   const xUser = await getXUserData()
@@ -55,7 +55,7 @@ export default async function Page() {
                 <div className="flex flex-col gap-4 text-neutral-400">
                   <div className="flex flex-col gap-1">
                     <h2>
-                      <span className="font-semibold">2023 - Today</span> —{" "}
+                      <span className="font-semibold">2023 - Today</span> —{' '}
                       <ExternalLink href="https://theblank.studio/">The Blank Studio</ExternalLink>
                     </h2>
                     <p className="text-sm text-neutral-500">
@@ -124,7 +124,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <ExternalIcon className="-mt-1 size-6 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ExternalIcon className="-mt-1 size-6 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
 
             <Link
@@ -157,7 +157,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <ExternalIcon className="-mt-1 size-6 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ExternalIcon className="-mt-1 size-6 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
           <div className="mx-auto w-full max-w-4xl px-4 lg:px-0">

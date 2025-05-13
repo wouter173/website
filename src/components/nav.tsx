@@ -1,19 +1,19 @@
-"use client"
+'use client'
 
-import { ChevronDown } from "lucide-react"
-import { Link as ViewTransitionLink } from "next-view-transitions"
-import { usePathname } from "next/navigation"
+import { ChevronDown } from 'lucide-react'
+import { Link as ViewTransitionLink } from 'next-view-transitions'
+import { usePathname } from 'next/navigation'
 
-import type { Post } from "@/server/posts"
-import { format } from "date-fns"
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react"
-import { NavigationMenu } from "radix-ui"
-import { useState } from "react"
-import { Logo } from "./logo"
+import type { Post } from '@/server/posts'
+import { format } from 'date-fns'
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
+import { NavigationMenu } from 'radix-ui'
+import { useState } from 'react'
+import { Logo } from './logo'
 
 const links = {
-  work: "/work",
-  home: "/",
+  work: '/work',
+  home: '/',
 }
 
 export const Nav = ({ posts }: { posts: Post[] }) => {
@@ -30,12 +30,12 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
   const { scrollY } = useScroll()
   const [logoVisible, setLogoVisible] = useState(true)
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, 'change', (latest) => {
     if (!logoVisible && latest < 600) setLogoVisible(true)
     if (logoVisible && latest > 600) setLogoVisible(false)
   })
 
-  const showLogo = pathname === "/" ? !logoVisible : true
+  const showLogo = pathname === '/' ? !logoVisible : true
 
   console.log(activeTab)
 
@@ -47,7 +47,7 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
           <NavigationMenu.Item
             value="home"
             className="flex h-12.5 items-center px-3 py-1 lg:pr-6"
-            onMouseEnter={() => setHovering("home")}
+            onMouseEnter={() => setHovering('home')}
             onMouseLeave={() => setHovering(null)}
           >
             <NavigationMenu.Link asChild>
@@ -56,7 +56,7 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
                 className="relative z-20 rounded-full px-2 py-1 text-sm font-semibold text-white/50 transition-all"
               >
                 <div className="absolute inset-0 -mx-2 -my-2"></div>
-                {activeTab === "home" && <ActiveTab />}
+                {activeTab === 'home' && <ActiveTab />}
                 <span>Home</span>
               </ViewTransitionLink>
             </NavigationMenu.Link>
@@ -65,14 +65,14 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
           <AnimatePresence initial={false}>
             {showLogo && (
               <motion.div
-                initial={{ scale: 0, width: "0px" }}
-                animate={{ scale: 1, width: "auto" }}
-                exit={{ scale: 0, width: "0px" }}
+                initial={{ scale: 0, width: '0px' }}
+                animate={{ scale: 1, width: 'auto' }}
+                exit={{ scale: 0, width: '0px' }}
                 className="flex items-center justify-center"
               >
                 <NavigationMenu.Item className="h-full py-1">
                   <NavigationMenu.Link asChild>
-                    <ViewTransitionLink href={"/"}>
+                    <ViewTransitionLink href={'/'}>
                       <Logo className="scale-90" />
                     </ViewTransitionLink>
                   </NavigationMenu.Link>
@@ -84,7 +84,7 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
           <NavigationMenu.Item
             value="work"
             className="flex h-12.5 items-center px-3 py-1 lg:hidden"
-            onMouseEnter={() => setHovering("work")}
+            onMouseEnter={() => setHovering('work')}
             onMouseLeave={() => setHovering(null)}
           >
             <NavigationMenu.Link asChild>
@@ -93,7 +93,7 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
                 className="relative z-20 rounded-full px-2 py-1 text-sm font-semibold text-white/50 transition-all"
               >
                 <div className="absolute inset-0 -mx-2 -my-2"></div>
-                {activeTab === "work" && <ActiveTab />}
+                {activeTab === 'work' && <ActiveTab />}
                 <span>Work</span>
               </ViewTransitionLink>
             </NavigationMenu.Link>
@@ -107,7 +107,7 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
                   className="relative top-px size-4 stroke-[2.5] transition-all group-data-[state=open]:-rotate-180"
                   aria-hidden
                 />
-                {activeTab === "work" && <ActiveTab />}
+                {activeTab === 'work' && <ActiveTab />}
               </div>
             </NavigationMenu.Trigger>
             <NavigationMenu.Content>
@@ -115,14 +115,14 @@ export const Nav = ({ posts }: { posts: Post[] }) => {
                 {posts.slice(0, 2).map((post) => (
                   <li key={post.slug}>
                     <ViewTransitionLink
-                      href={"/work/" + post.slug}
+                      href={'/work/' + post.slug}
                       className="block w-max max-w-72 rounded-lg bg-white/0 p-3 text-white transition-all hover:bg-white/10"
                     >
                       <div className="flex flex-col">
                         <div className="flex flex-row items-center gap-2">
                           {post.metadata.title}
                           {post.metadata.publishedAt ? (
-                            <span className="text-sm text-neutral-500">{format(post.metadata.publishedAt, "yyyy")}</span>
+                            <span className="text-sm text-neutral-500">{format(post.metadata.publishedAt, 'yyyy')}</span>
                           ) : null}
                         </div>
 
@@ -160,7 +160,7 @@ const ActiveTab = () => (
     <motion.span
       layoutId="knob"
       className="absolute inset-0 -z-10 hidden rounded-full bg-white/10 lg:block"
-      transition={{ duration: 0.3, ease: "circOut" }}
+      transition={{ duration: 0.3, ease: 'circOut' }}
     />
     <span className="absolute inset-0 -z-10 rounded-full bg-white/10 [view-transition-name:knob] lg:hidden"></span>
   </>

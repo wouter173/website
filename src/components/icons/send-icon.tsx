@@ -1,4 +1,4 @@
-import { type SVGAttributes } from "react"
+import { type SVGAttributes } from 'react'
 export const SendIcon = (props: SVGAttributes<SVGElement>) => {
   return (
     <>

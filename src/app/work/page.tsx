@@ -1,7 +1,7 @@
-import { Footer } from "@/components/footer"
-import { PostCard } from "@/components/posts"
-import { Title } from "@/components/title"
-import { type Post, getPosts } from "@/server/posts"
+import { Footer } from '@/components/footer'
+import { PostCard } from '@/components/posts'
+import { Title } from '@/components/title'
+import { type Post, getPosts } from '@/server/posts'
 
 export default function Blog() {
   return (

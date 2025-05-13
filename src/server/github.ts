@@ -1,7 +1,7 @@
-import { unstable_cache } from "next/cache"
-import { z } from "zod"
+import { unstable_cache } from 'next/cache'
+import { z } from 'zod'
 
-const baseUrl = "https://api.github.com/graphql"
+const baseUrl = 'https://api.github.com/graphql'
 const query = `
 query {
   user(login: "wouter173") {
@@ -21,17 +21,17 @@ query {
 export const getGithubUserData = unstable_cache(
   async () => {
     const response = await fetch(baseUrl, {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_BEARER_TOKEN}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query }),
     })
 
     if (!response.ok) {
       console.error(await response.text())
-      throw new Error("Failed to fetch github user")
+      throw new Error('Failed to fetch github user')
     }
 
     const json = await response.json()
@@ -55,9 +55,9 @@ export const getGithubUserData = unstable_cache(
       })
       .parse(json)
 
-    console.log("Fetched github user: ", payload.data.user.login)
+    console.log('Fetched github user: ', payload.data.user.login)
     return payload.data
   },
-  ["github", "user", "data"],
+  ['github', 'user', 'data'],
   { revalidate: 60 * 60 * 24 },
 )

@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import { isOnScreen } from "@/lib/is-on-screen"
-import { motion, useAnimationControls } from "motion/react"
-import Image from "next/image"
-import { Tooltip } from "radix-ui"
-import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from "react"
+import { isOnScreen } from '@/lib/is-on-screen'
+import { motion, useAnimationControls } from 'motion/react'
+import Image from 'next/image'
+import { Tooltip } from 'radix-ui'
+import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from 'react'
 
 export type Tool = {
   name: string
@@ -21,7 +21,7 @@ export const Toolbelt = ({ tools }: { tools: Tool[] }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (ref.current && isOnScreen(ref.current) && !hovering) {
-        ref.current.scrollBy({ left: 70, behavior: "smooth" })
+        ref.current.scrollBy({ left: 70, behavior: 'smooth' })
       }
     }, 1500)
 
@@ -51,7 +51,7 @@ export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (ref.current && isOnScreen(ref.current)) {
-        ref.current.scrollBy({ left: 70, behavior: "smooth" })
+        ref.current.scrollBy({ left: 70, behavior: 'smooth' })
       }
     }, 1500)
 
@@ -98,7 +98,7 @@ const ToolPair = ({ tool1, tool2, index, mobile }: { tool1: Tool; tool2: Tool; i
         duration: 2,
         repeat: Infinity,
         repeatDelay: 0.2,
-        repeatType: "reverse",
+        repeatType: 'reverse',
       },
     })
   }, [controls, index])
@@ -120,7 +120,7 @@ const ToolPair = ({ tool1, tool2, index, mobile }: { tool1: Tool; tool2: Tool; i
             duration: 2,
             repeat: Infinity,
             repeatDelay: 0.2,
-            repeatType: "reverse",
+            repeatType: 'reverse',
           },
         })
       }}
@@ -175,7 +175,7 @@ const InfoTooltip = ({
           >
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
-                <Image src={thumbnail} alt={""} width={32} height={32} className="size-8"></Image>
+                <Image src={thumbnail} alt={''} width={32} height={32} className="size-8"></Image>
                 <h2 className="text-white">{title}</h2>
               </div>
               <p className="text-neutral-400">{description}</p>

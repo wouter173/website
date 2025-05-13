@@ -1,7 +1,7 @@
-import { ImageResponse } from "next/og"
+import { ImageResponse } from 'next/og'
 
-export const contentType = "image/png"
-export const dynamic = "force-static"
+export const contentType = 'image/png'
+export const dynamic = 'force-static'
 
 export default function GET() {
   return new ImageResponse(

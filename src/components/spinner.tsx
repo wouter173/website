@@ -3,7 +3,7 @@ export const Spinner = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 27 27"
     className="h-4 w-4 animate-spin"
-    style={{ animationTimingFunction: "steps(12, end)" }}
+    style={{ animationTimingFunction: 'steps(12, end)' }}
   >
     <path
       style={{ opacity: 1 }}

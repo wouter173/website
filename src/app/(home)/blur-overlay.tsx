@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import { cn } from "@/lib/utils"
-import { motion, useMotionTemplate, useScroll, useTransform } from "motion/react"
-import { useViewportHeight } from "./use-viewport-height"
+import { cn } from '@/lib/utils'
+import { motion, useMotionTemplate, useScroll, useTransform } from 'motion/react'
+import { useViewportHeight } from './use-viewport-height'
 
 export const BlurOverlay = () => {
   const height = useViewportHeight()

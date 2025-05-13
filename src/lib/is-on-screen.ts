@@ -1,4 +1,4 @@
-import "client-only"
+import 'client-only'
 
 export function isOnScreen(elm: HTMLElement) {
   const rect = elm.getBoundingClientRect()

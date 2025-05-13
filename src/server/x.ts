@@ -1,6 +1,6 @@
-import { env } from "@/env"
-import { unstable_cache } from "next/cache"
-import { z } from "zod"
+import { env } from '@/env'
+import { unstable_cache } from 'next/cache'
+import { z } from 'zod'
 
 export const getXUserData = unstable_cache(
   async () => {
@@ -17,7 +17,7 @@ export const getXUserData = unstable_cache(
 
       if (!response.ok) {
         console.error(await response.text())
-        throw new Error("Failed to fetch x user")
+        throw new Error('Failed to fetch x user')
       }
 
       const json = await response.json()
@@ -40,23 +40,23 @@ export const getXUserData = unstable_cache(
         })
         .parse(json)
 
-      console.log("Fetched twitter user: ", payload.data.username)
+      console.log('Fetched twitter user: ', payload.data.username)
       return payload
     } catch (e) {
       console.error(e)
       return {
         data: {
-          id: "wouterdebruijn",
-          name: "Wouter de Bruijn",
-          username: "wouterdebruijn",
+          id: 'wouterdebruijn',
+          name: 'Wouter de Bruijn',
+          username: 'wouterdebruijn',
           public_metrics: { followers_count: 49, following_count: 308, tweet_count: 149, listed_count: 0 },
-          profile_image_url: "https://pbs.twimg.com/profile_images/1675277653/avatar.jpg",
-          url: "https://twitter.com/wouterdebruijn",
+          profile_image_url: 'https://pbs.twimg.com/profile_images/1675277653/avatar.jpg',
+          url: 'https://twitter.com/wouterdebruijn',
         },
       }
     }
   },
-  ["x", "user", "data"],
+  ['x', 'user', 'data'],
   {
     revalidate: 60 * 60 * 24,
   },
