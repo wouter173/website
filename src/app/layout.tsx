@@ -1,13 +1,11 @@
 import { Nav } from '@/components/nav'
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import { ViewTransitions } from 'next-view-transitions'
-import { Geist } from 'next/font/google'
+import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
-
-import { getPosts } from '@/server/posts'
-import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -26,41 +24,45 @@ export const metadata: Metadata = {
   },
 }
 
-const geist = Geist({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-geist',
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 export default async function RootLayout({ children }: PropsWithChildren) {
-  const posts = await getPosts()
-
   return (
     <ViewTransitions>
-      <html lang="en" className="bg-black">
-        <Script
-          defer
-          id="plausible"
-          data-domain="wouterdb.nl"
-          src="https://plausible.wouter.cloud/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
-        />
-        <Script
-          id="inline-plausible"
-          dangerouslySetInnerHTML={{
-            __html: `window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`,
-          }}
-        />
-        <Script defer data-site-id="wouterdb.nl" src="https://assets.onedollarstats.com/tracker.js" />
-
+      <html lang="en" className="bg-offwhite">
+        <Analytics />
         <body
-          className={`${geist.className} relative bg-[#0c0c0c] before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-[3%]`}
+          className={`${inter.className} relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-50`}
         >
-          <Nav posts={posts} />
-          <div className="relative z-10">{children}</div>
-          <Toaster richColors theme="dark" />
-          <Analytics />
+          <Nav />
+          <div>{children}</div>
+          <Toaster richColors theme="light" />
         </body>
       </html>
     </ViewTransitions>
+  )
+}
+
+function Analytics() {
+  return (
+    <>
+      <Script
+        defer
+        id="plausible"
+        data-domain="wouterdb.nl"
+        src="https://plausible.wouter.cloud/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+      />
+      <Script
+        id="inline-plausible"
+        dangerouslySetInnerHTML={{
+          __html: `window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`,
+        }}
+      />
+      <Script defer data-site-id="wouterdb.nl" src="https://assets.onedollarstats.com/tracker.js" />
+      <VercelAnalytics />
+    </>
   )
 }

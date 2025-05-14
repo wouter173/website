@@ -12,7 +12,7 @@ const Code = ({ children }: ComponentProps<'code'>) => (
 )
 
 const Anchor = ({ href, ...props }: ComponentProps<'a'>) => {
-  const className = 'group inline underline hover:text-white text-neutral-400'
+  const className = 'group inline underline hover:text-white text-neutral-600'
 
   if (href?.startsWith('/'))
     return (

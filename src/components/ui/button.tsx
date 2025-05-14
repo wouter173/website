@@ -5,15 +5,20 @@ import { cn } from '@/lib/utils'
 import type { ComponentProps, Ref } from 'react'
 
 const buttonVariants = cva(
-  'active:scale-95 transition-all inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium',
+  'active:scale-95 transition-all inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium cursor-pointer',
   {
     variants: {
       variant: {
+        cta: `bg-[#1E1D1F] border-1 border-black pr-1.5 text-white outline-black shadow-[0px_4px_4px_0px_rgba(156,156,156,0.25),0px_0px_0px_1px_rgba(255,255,255,0.20)_inset]
+          active:scale-95 transition-all active:translate-y-[1px]
+          hover:border-white hover:outline-2
+          focus-visible:border-white focus-visible:outline-2
+          `,
         default:
           'bg-black/70 text-white hover:bg-opacity-40 hover:outline-2 outline-neutral-600 hover:border-black focus-visible:border-black focus-visible:outline-2 ',
-        primary: `border-2 border-slate-100 bg-slate-100 pr-1.5 text-black outline-[#6F6F70]
-          hover:border-black hover:bg-slate-100 hover:outline-2
-          focus-visible:border-black focus-visible:bg-slate-100 focus-visible:outline-2
+        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-neutral-600
+          hover:border-white hover:outline-2
+          focus-visible:border-white focus-visible:outline-2
           disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
           `,
         // destructive: "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",

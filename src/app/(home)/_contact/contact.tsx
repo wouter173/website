@@ -16,13 +16,8 @@ import { contactFormSchema } from './schema'
 export const Contact = () => {
   return (
     <>
-      <div
-        className="relative z-20 flex flex-col gap-6 rounded-3xl border border-[#1F1F1F] bg-[#0A0A0B] p-6 shadow-xs lg:p-8"
-        id="contact-form"
-      >
-        <h2 className="col-span-2 text-left text-lg font-semibold text-neutral-200 lg:text-2xl">
-          &hellip; or reach out to me with a message!
-        </h2>
+      <div className="border-stroke relative z-20 flex flex-col gap-6 rounded-3xl border bg-[#FFF] p-6 shadow-xs lg:p-8" id="contact-form">
+        <h2 className="text-label col-span-2 text-left text-lg font-semibold lg:text-2xl">Reach out!</h2>
         <ContactForm />
       </div>
     </>

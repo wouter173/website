@@ -1,75 +1,35 @@
-import { Footer } from '@/components/footer'
-import { PostCard } from '@/components/posts'
-import { Title } from '@/components/title'
-import { type Post, getPosts } from '@/server/posts'
+import { ExternalLink } from '@/components/external-link'
 
-export default function Blog() {
+export default function Page() {
   return (
-    <div className="min-h-screen w-full">
-      <div className="absolute -z-10 h-full w-full">
-        <div className="mx-auto grid h-full max-w-[904px] grid-cols-2 gap-2">
-          <div className="border-x-2 border-dashed border-[rgba(109,109,109,0.07)]" />
-          <div className="border-x-2 border-dashed border-[rgba(109,109,109,0.07)]" />
-        </div>
+    <div className="flex flex-col gap-4 text-neutral-600">
+      <div className="flex flex-col gap-1">
+        <h2>
+          <span className="font-semibold">2023 - Today</span> —{' '}
+          <ExternalLink href="https://theblank.studio/">The Blank Studio</ExternalLink>
+        </h2>
+        <p className="text-sm text-neutral-500">
+          Building a bunch of awesome SaaS products with Next.js and other innovative technologies. Working with a team of incredible
+          software engineers.
+        </p>
       </div>
-      <div className="py-32 lg:py-56">
-        <Posts />
+
+      <div className="flex flex-col gap-1">
+        <h2>
+          <span className="font-semibold">2022 - 2023</span> — <ExternalLink href="https://stats.fm/">Stats.fm</ExternalLink>
+        </h2>
+        <p className="text-sm text-neutral-500">Moved a Vue.js spa to a Next.js fullstack app @ Stats.fm.</p>
       </div>
-      <Footer />
+
+      <div className="flex flex-col gap-1">
+        <h2>
+          <span className="text-neutra font-semibold">2016 - 2021</span> — Self taught
+        </h2>
+        <p className="text-sm text-neutral-500">
+          Learned about a lot of basics in computer science. Specifically about Python and the JS ecocsystem. Also dabbled in a lot of
+          random tech like low level and iOS.
+        </p>
+      </div>
     </div>
   )
-}
-
-const Posts = async () => {
-  const posts = await getPosts()
-
-  const postPerYear = posts.reduce(
-    (acc, post) => {
-      const year = new Date(post.metadata.publishedAt).getFullYear()
-      if (acc[year]) acc[year].push(post)
-      else acc[year] = [post]
-      return acc
-    },
-    {} as Record<number, Post[]>,
-  )
-
-  return (
-    <div className="mx-auto flex w-full flex-col gap-24 px-4 lg:px-0">
-      {Object.entries(postPerYear)
-        .reverse()
-        .map(([key, posts]) => (
-          <div key={key}>
-            <div className="mx-auto max-w-4xl">
-              <Title as="h2" className="text-3xl">
-                {key}
-              </Title>
-            </div>
-
-            <div className="my-2 w-full border-b-2 border-dashed border-[rgba(109,109,109,0.05)]"></div>
-
-            <div className="mx-auto grid max-w-4xl gap-4 lg:grid-cols-2">
-              {posts.map((post, i) => {
-                return <PostCard post={post} key={post.slug} style={getSeededOffset(i)} />
-              })}
-            </div>
-          </div>
-        ))}
-    </div>
-  )
-}
-
-const seededRandom = (seed: number) => {
-  const x = Math.sin(seed) * 10000
-  return x - Math.floor(x)
-}
-
-// Function to generate a small rotation and translation based on seed (index `i`)
-const getSeededOffset = (i: number) => {
-  const rotation = seededRandom(i) * 1 - 0.5 // Rotation between -1deg and 1deg
-  const translateX = seededRandom(i + 2) * 2 - 1 // TranslateX between -1px and 1px
-  const translateY = seededRandom(i + 2) * 1 - 0.5 // TranslateY between -1px and 1px
-
-  return {
-    transform: `rotate(${rotation}deg) translate(${translateX}px, ${translateY}px)`,
-  }
 }

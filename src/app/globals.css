@@ -6,17 +6,21 @@
 @plugin "tailwindcss-animate";
 
 @theme {
+  --color-label: #28292a;
+  --color-stroke: #ededed;
+  --color-offwhite: #f9f9f9;
+
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-spin: spin 1s linear infinite;
-  --animate-slide-up-and-fade: slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-up-and-fade: slide-up-and-fade 400ms cubic-bezier(0.16, 1, 0.3, 1);
 
   --animate-scale-in: scale-in 0.2s ease;
   --animate-scale-out: scale-out 0.2s ease;
   --animate-fade-in: fade-in 0.2s ease;
   --animate-fade-out: fade-out 0.2s ease;
 
-  @keyframes slideUpAndFade {
+  @keyframes slide-up-and-fade {
     from {
       opacity: 0;
       transform: translateY(2px);
@@ -95,17 +99,6 @@
   }
 }
 
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
-}
-
 code {
   counter-reset: step;
   counter-increment: step 0;
@@ -119,53 +112,4 @@ code .line::before {
   display: inline-block;
   text-align: right;
   color: rgba(115, 138, 148, 0.4);
-}
-
-.gradient-blur > div,
-.gradient-blur::before,
-.gradient-blur::after {
-  position: absolute;
-  inset: 0;
-}
-.gradient-blur::before {
-  content: '';
-  z-index: 1;
-  backdrop-filter: blur(0.5px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
-}
-.gradient-blur > div:nth-of-type(1) {
-  z-index: 2;
-  backdrop-filter: blur(1px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
-}
-.gradient-blur > div:nth-of-type(2) {
-  z-index: 3;
-  backdrop-filter: blur(2px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
-}
-.gradient-blur > div:nth-of-type(3) {
-  z-index: 4;
-  backdrop-filter: blur(4px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
-}
-.gradient-blur > div:nth-of-type(4) {
-  z-index: 5;
-  backdrop-filter: blur(8px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
-}
-.gradient-blur > div:nth-of-type(5) {
-  z-index: 6;
-  backdrop-filter: blur(16px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
-}
-.gradient-blur > div:nth-of-type(6) {
-  z-index: 7;
-  backdrop-filter: blur(32px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%);
-}
-.gradient-blur::after {
-  content: '';
-  z-index: 8;
-  backdrop-filter: blur(64px);
-  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
 }

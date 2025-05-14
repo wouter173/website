@@ -8,14 +8,14 @@
     }
 
     .st1 {
-      stroke: #FFFFFF;
+      stroke: #28292a;
       stroke-width: 7;
       stroke-miterlimit: 10;
     }
 
     .st2 {
       fill: none;
-      stroke: #FFFFFF;
+      stroke: #28292a;
       stroke-width: 7;
       stroke-miterlimit: 10;
     }

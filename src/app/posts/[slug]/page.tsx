@@ -35,7 +35,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
           <div className="flex flex-col lg:-ml-16 lg:flex-row">
             <div className="mt-2 w-32 shrink-0 pl-4 text-neutral-500 hover:text-neutral-300">
               <ViewTransitionLink
-                href="/work"
+                href="/posts"
                 className="sticky top-[75.5px] my-4 -ml-6 flex w-fit items-center gap-2 rounded-full px-2.5 py-0.5 transition-all hover:bg-white/10 active:scale-95 lg:my-0 lg:ml-2.5"
               >
                 <Undo2Icon className="mb-0.5 size-4" />
@@ -80,7 +80,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                 <AspectRatio.Root ratio={16 / 9} className="overflow-clip rounded-xl">
                   <Image src={"https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nIRco6j4Xq1g0rS5uEWcTpiB84aYPoV2JGbM7n"} fill alt={""}></Image>
                 </AspectRatio.Root>
-                <hr className="my-8 border-[#1f1f1f]" />
+                <hr className="my-8 border-stroke" />
               </div> */}
 
               <div className="prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-100 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0 text-neutral-300">

@@ -3,8 +3,7 @@
 import { isOnScreen } from '@/lib/is-on-screen'
 import { motion, useAnimationControls } from 'motion/react'
 import Image from 'next/image'
-import { Tooltip } from 'radix-ui'
-import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from 'react'
+import { useEffect, useRef, useState, type JSX } from 'react'
 
 export type Tool = {
   name: string
@@ -135,55 +134,14 @@ const ToolPair = ({ tool1, tool2, index, mobile }: { tool1: Tool; tool2: Tool; i
 
 const Bauble = ({ tool }: { tool: Tool; mobile?: boolean }) => {
   return (
-    <InfoTooltip description={tool.description} title={tool.name} thumbnail={tool.thumbnail}>
-      <motion.div
-        transition={{ duration: 0.2 }}
-        initial={{ scale: 0, opacity: 0.9 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: false }}
-        className="grid size-14 snap-center place-items-center rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-2.5 shadow-xs hover:bg-neutral-900"
-      >
-        <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
-      </motion.div>
-    </InfoTooltip>
-  )
-}
-
-const InfoTooltip = ({
-  children,
-  thumbnail,
-  title,
-  description,
-}: PropsWithChildren & { thumbnail: string; title: string; description: string | JSX.Element }) => {
-  return (
-    <Tooltip.Provider delayDuration={100} skipDelayDuration={1000}>
-      <Tooltip.Root>
-        <Tooltip.Trigger asChild>
-          <div
-            onClick={(e) => {
-              e.stopPropagation()
-              e.preventDefault()
-            }}
-          >
-            {children}
-          </div>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content
-            className="data-[state=delayed-open]:data-[side=top]:animate-slide-up-and-fade z-50 max-w-96 rounded-xl border border-[#1F1F1F] bg-[#0A0A0B] px-6 py-4 shadow-xs"
-            sideOffset={5}
-          >
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <Image src={thumbnail} alt={''} width={32} height={32} className="size-8"></Image>
-                <h2 className="text-white">{title}</h2>
-              </div>
-              <p className="text-neutral-400">{description}</p>
-            </div>
-            <Tooltip.Arrow className="fill-[#1F1F1F]" />
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+    <motion.div
+      transition={{ duration: 0.2 }}
+      initial={{ scale: 0, opacity: 0.9 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: false }}
+      className="border-stroke grid size-14 snap-center place-items-center rounded-xl border bg-[#FFF] px-2.5 shadow-xs hover:bg-neutral-50"
+    >
+      <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
+    </motion.div>
   )
 }

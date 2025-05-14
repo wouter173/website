@@ -17,9 +17,6 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
       <div className="absolute top-0 right-0 -z-10 size-8 rounded-bl-lg bg-linear-to-tr from-[#242425] to-[#141415] shadow-lg transition-all [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)] group-hover:size-10" />
       <div className="flex flex-col gap-3 pr-8">
         <div className="flex items-center gap-3">
-          {/* {post.metadata.previewImage ? (
-            <Image src={post.metadata.previewImage} alt={""} width={64} height={64} className="size-9 rounded-lg" />
-          ) : ( */}
           <div className="grid h-8 w-6 place-items-center rounded-lg">
             {post.metadata.type === 'blog' ? (
               <FileTextIcon className="size-6 shrink-0 text-[#555557]" />
@@ -27,11 +24,10 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
               <FileCodeIcon className="size-6 shrink-0 text-[#555557]" />
             )}
           </div>
-          {/* )} */}
           <h2 className="text-2xl leading-tight font-semibold text-neutral-300">{post.metadata.title}</h2>
         </div>
         <div className="relative pb-3">
-          <p className="text leading-8 text-neutral-400">{post.metadata.summary}</p>
+          <p className="text leading-8 text-neutral-600">{post.metadata.summary}</p>
           <div className="absolute inset-0 -z-10 bg-[url('/line.png')]" />
         </div>
       </div>
@@ -49,7 +45,7 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
             asChild
             className="flex w-min items-center gap-1 border-2 border-transparent bg-[#2a2a2c] px-2 py-1 pl-3 text-neutral-100 group-hover:bg-[#242425] hover:border-[#171718]"
           >
-            <ViewTransitionLink href={`/work/${post.slug}`}>
+            <ViewTransitionLink href={`/posts/${post.slug}`}>
               {post.metadata.type === 'blog' ? 'Read post' : 'Writeup'} <PlusIcon className="size-4 shrink-0" />
             </ViewTransitionLink>
           </Button>

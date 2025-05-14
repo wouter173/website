@@ -6,11 +6,11 @@ type InputProps = ComponentProps<'input'> & { label?: string; errorLine?: string
 const Input = ({ className, type, label, errorLine, ref, ...props }: InputProps) => {
   return (
     <label className="flex max-w-full flex-col gap-2">
-      {label ? <span className="text-sm font-medium text-neutral-500">{label}</span> : null}
+      {label ? <span className="text-label text-sm font-medium">{label}</span> : null}
       <input
         type={type}
         className={cn(
-          'flex h-10 w-full rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-2 text-white ring-offset-neutral-950 placeholder:text-neutral-400 focus-visible:ring-2 focus-visible:ring-[#6F6F70] focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
+          'text-label flex h-10 w-full rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-2 ring-offset-neutral-50 placeholder:text-neutral-600 focus-visible:ring-2 focus-visible:ring-neutral-600 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
           className,
         )}
         ref={ref}

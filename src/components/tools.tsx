@@ -83,7 +83,7 @@ export const tools = [
   },
   {
     name: 'Framer motion',
-    thumbnail: '/tools/framer-motion.svg',
+    thumbnail: '/tools/motion.svg',
     description:
       "Framer motion is my favorite library to use for animations, it's simple and powerful. I have used it in my projects to create awesome user experiences.",
     url: 'https://www.framer.com/motion',
