@@ -6,7 +6,7 @@ import { Logo } from './logo'
 export function Nav() {
   return (
     <nav className="relative z-20 mx-auto max-w-4xl pt-6 lg:pt-16">
-      <div className="flex w-min gap-6 rounded-full px-4 py-3">
+      <div className="flex w-min gap-6 rounded-full">
         <Link href="/">
           <Logo />
         </Link>

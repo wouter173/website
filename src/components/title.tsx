@@ -10,13 +10,7 @@ export const Title = ({
   const Component = componentAs ?? 'h1'
 
   return (
-    <Component
-      className={cn(
-        'bg-[linear-gradient(91deg,rgba(244,244,245,0.80)_45.8%,#232323_160%);] block w-min bg-clip-text text-4xl leading-normal font-extrabold text-transparent opacity-50',
-        className,
-      )}
-      {...props}
-    >
+    <Component className={cn('block w-min text-4xl leading-normal font-extrabold', className)} {...props}>
       {children}
     </Component>
   )

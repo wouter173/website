@@ -13,10 +13,12 @@ const buttonVariants = cva(
           active:scale-95 transition-all active:translate-y-[1px]
           hover:border-white hover:outline-2
           focus-visible:border-white focus-visible:outline-2
+          disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
           `,
         default:
           'bg-black/70 text-white hover:bg-opacity-40 hover:outline-2 outline-neutral-600 hover:border-black focus-visible:border-black focus-visible:outline-2 ',
-        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-neutral-600
+        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-neutral-300
+          active:scale-95 transition-all active:translate-y-[1px]
           hover:border-white hover:outline-2
           focus-visible:border-white focus-visible:outline-2
           disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
@@ -30,10 +32,15 @@ const buttonVariants = cva(
       size: {
         rounded: 'rounded-full py-1 px-2.5',
       },
+      elevation: {
+        none: 'shadow-none',
+        1: 'shadow-[0px_4px_4px_0px_rgba(156,156,156,0.05)]',
+      },
     },
     defaultVariants: {
       variant: 'default',
       size: 'rounded',
+      elevation: 'none',
     },
   },
 )
@@ -44,9 +51,9 @@ export type ButtonProps = ComponentProps<'button'> &
     ref?: Ref<HTMLButtonElement>
   }
 
-const Button = ({ className, variant, size, asChild = false, ref, ...props }: ButtonProps) => {
+const Button = ({ className, variant, size, elevation, asChild = false, ref, ...props }: ButtonProps) => {
   const Comp = asChild ? Slot.Root : 'button'
-  return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
+  return <Comp className={cn(buttonVariants({ variant, size, elevation, className }))} ref={ref} {...props} />
 }
 
 export { Button, buttonVariants }
