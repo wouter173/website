@@ -6,10 +6,11 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
+import { CONSTANTS } from './constants'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://wouterdb.nl'),
+  metadataBase: new URL(CONSTANTS.canonicalUrl),
   title: 'Wouter de Bruijn',
   description: 'Portfolio of Wouter de Bruijn. A Fullstack Developer, largely self taught, and excited to learn new things.',
   twitter: {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     siteName: 'Wouter de Bruijn',
-    url: 'https://wouterdb.nl',
+    url: CONSTANTS.canonicalUrl,
   },
 }
 
