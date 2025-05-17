@@ -17,7 +17,7 @@ export default async function Page() {
 
   return (
     <div className="min-h-screen w-full">
-      <div className="relative h-[80vh] max-h-[1000px] lg:min-h-[80vh]">
+      <div className="relative h-[60vh] max-h-[1000px] lg:h-[80vh] lg:min-h-[80vh]">
         <Header />
       </div>
 

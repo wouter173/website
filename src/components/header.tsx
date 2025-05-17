@@ -6,9 +6,9 @@ import Link from 'next/link'
 
 export const Header = () => {
   return (
-    <header className="mx-auto grid h-[80%] w-full max-w-4xl place-items-center">
+    <header className="mx-auto grid h-[90%] w-full max-w-4xl place-items-center">
       <div className="flex flex-col items-center gap-6">
-        <h1 className="text-label text-center text-5xl font-bold">Wouter de Bruijn</h1>
+        <h1 className="text-label text-center text-4xl font-bold lg:text-5xl">Wouter de Bruijn</h1>
         <div className="flex gap-2">
           <Button
             variant={'cta'}

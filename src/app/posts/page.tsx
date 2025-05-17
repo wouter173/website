@@ -7,7 +7,7 @@ export default async function Blog() {
 
   return (
     <>
-      <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl pt-24">
+      <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl px-6 py-24 lg:px-0">
         <h1 className="text-label text-3xl font-bold">Posts</h1>
         <div className="-mx-2 grid max-w-4xl gap-4 pt-8 lg:grid-cols-2">
           {posts.map((post, i) => (

@@ -1,6 +1,6 @@
 import { Nav } from '@/components/nav'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
@@ -8,6 +8,10 @@ import type { PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
 import { CONSTANTS } from './constants'
 import './globals.css'
+
+export const viewport: Viewport = {
+  themeColor: '#f9f9f9',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(CONSTANTS.canonicalUrl),

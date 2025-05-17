@@ -1,3 +1,4 @@
+import { Footer } from '@/components/footer'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
@@ -32,30 +33,33 @@ const items = [
 
 export default function Page() {
   return (
-    <main className="relative z-10 mx-auto w-full max-w-4xl pt-24">
-      <h1 className="text-label text-3xl font-bold">Work</h1>
-      <ol className="flex flex-col gap-2 pt-8">
-        {items.map((item, i) => (
-          <li
-            key={i}
-            className={cn(
-              'has-focus-visible:ring-echo -mx-3.5 flex flex-col gap-1 rounded-xl p-4 transition-all',
-              item.url
-                ? 'cursor-pointer hover:bg-white active:scale-[0.98] has-focus-visible:bg-white has-focus-visible:ring-2 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-white has-focus-visible:outline-none'
-                : 'cursor-default',
-            )}
-          >
-            <Link href={item.url || ''} target="_blank" rel="noopener noreferrer" className="outline-none">
-              <div className="flex items-center justify-between">
-                <h2 className="text-label shrink-0 text-lg font-semibold">{item.title}</h2>
-                <hr className="mx-4 h-px w-full border-none bg-[#e0e2e6]" />
-                <span className="shrink-0 text-right text-sm text-[#2D2F32]">{item.date}</span>
-              </div>
-              <p className="text-sm text-balance text-[#46474BB2]">{item.description}</p>
-            </Link>
-          </li>
-        ))}
-      </ol>
-    </main>
+    <>
+      <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
+        <h1 className="text-label text-3xl font-bold">Work</h1>
+        <ol className="flex flex-col gap-2 pt-8">
+          {items.map((item, i) => (
+            <li
+              key={i}
+              className={cn(
+                'has-focus-visible:ring-echo -mx-3.5 flex flex-col gap-1 rounded-xl p-4 transition-all',
+                item.url
+                  ? 'cursor-pointer hover:bg-white active:scale-[0.98] has-focus-visible:bg-white has-focus-visible:ring-2 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-white has-focus-visible:outline-none'
+                  : 'cursor-default',
+              )}
+            >
+              <Link href={item.url || ''} target="_blank" rel="noopener noreferrer" className="outline-none">
+                <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between">
+                  <h2 className="text-label shrink-0 text-lg font-semibold">{item.title}</h2>
+                  <hr className="mx-4 hidden h-px w-full border-none bg-[#e0e2e6] lg:block" />
+                  <span className="shrink-0 text-left text-sm text-[#2D2F32] lg:text-right">{item.date}</span>
+                </div>
+                <p className="text-sm text-balance text-[#46474BB2]">{item.description}</p>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </main>
+      <Footer />
+    </>
   )
 }

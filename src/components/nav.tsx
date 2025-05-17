@@ -9,7 +9,7 @@ export function Nav() {
   const pathname = usePathname()
 
   return (
-    <motion.nav layoutRoot className="relative z-20 mx-auto max-w-4xl pt-6 lg:pt-16">
+    <motion.nav layoutRoot className="relative z-20 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16">
       <div className="flex w-min items-center gap-6 rounded-full contain-layout">
         <Link href="/" className="relative">
           <Logo className="relative" />
