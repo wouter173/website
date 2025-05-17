@@ -17,15 +17,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(CONSTANTS.canonicalUrl),
   title: 'Wouter de Bruijn',
   description: 'Portfolio of Wouter de Bruijn. A Fullstack Developer, largely self taught, and excited to learn new things.',
+
   twitter: {
     title: 'Wouter de Bruijn',
     description: 'Portfolio of Wouter de Bruijn. A Fullstack Developer, largely self taught, and excited to learn new things.',
     card: 'summary_large_image',
     creator: '@wouterdebruijn',
+    images: [{ url: '/opengraph-image' }],
   },
   openGraph: {
     siteName: 'Wouter de Bruijn',
     url: CONSTANTS.canonicalUrl,
+    images: [{ url: '/opengraph-image' }],
   },
 }
 
