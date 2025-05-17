@@ -1,5 +1,5 @@
-import { Link } from 'next-view-transitions'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 const items = [
   {
@@ -36,16 +36,16 @@ export default function Page() {
       <h1 className="text-label text-3xl font-bold">Work</h1>
       <ol className="flex flex-col gap-2 pt-8">
         {items.map((item, i) => (
-          <li key={i}>
-            <Link
-              className={cn(
-                '-mx-3.5 flex flex-col gap-1 rounded-xl p-4 transition-all hover:bg-white active:scale-[0.98]',
-                item.url || 'pointer-events-none',
-              )}
-              href={item.url || ''}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <li
+            key={i}
+            className={cn(
+              'has-focus-visible:ring-echo -mx-3.5 flex flex-col gap-1 rounded-xl p-4 transition-all',
+              item.url
+                ? 'cursor-pointer hover:bg-white active:scale-[0.98] has-focus-visible:bg-white has-focus-visible:ring-2 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-white has-focus-visible:outline-none'
+                : 'cursor-default',
+            )}
+          >
+            <Link href={item.url || ''} target="_blank" rel="noopener noreferrer" className="outline-none">
               <div className="flex items-center justify-between">
                 <h2 className="text-label shrink-0 text-lg font-semibold">{item.title}</h2>
                 <hr className="mx-4 h-px w-full border-none bg-[#e0e2e6]" />

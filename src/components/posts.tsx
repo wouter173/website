@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import type { Post } from '@/server/posts'
 import { format } from 'date-fns'
 import { ExternalLinkIcon, PlusIcon } from 'lucide-react'
-import { Link as ViewTransitionLink } from 'next-view-transitions'
+
 import Link from 'next/link'
 import type { ComponentProps } from 'react'
 import { Button } from './ui/button'
@@ -10,11 +10,15 @@ import { Button } from './ui/button'
 export const PostCard = ({ post, className, ...props }: { post: Post } & ComponentProps<'div'>) => {
   return (
     <article
-      className={cn('group relative z-20 flex flex-col gap-6 overflow-hidden rounded-lg px-6 py-6 shadow-xs transition-all', className)}
+      className={cn('group relative z-20 flex flex-col gap-6 overflow-hidden rounded-lg px-6 py-6 transition-all', className)}
       {...props}
     >
-      <div className="absolute inset-0 -z-10 bg-[white] transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]" />
+      <div className="absolute inset-0 -z-10 rounded-lg border border-neutral-100 bg-white shadow-xs transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]" />
       <div className="absolute top-0 right-0 -z-10 size-8 rounded-bl-lg bg-linear-to-tr from-white to-[#efeff1] shadow-lg transition-all [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)] group-hover:size-10" />
+      <Link
+        className="absolute inset-0 transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]"
+        href={`/posts/${post.slug}`}
+      />
       <div className="flex flex-col gap-3 pr-8">
         <div className="flex items-center gap-3">
           <h2 className="text-label text-2xl leading-tight font-semibold">{post.metadata.title}</h2>
@@ -34,13 +38,13 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
           </span>
         </div>
         <div className="flex justify-end gap-2">
-          <Button variant={'primary'} asChild className="flex w-min items-center gap-1 px-2 py-1 pl-3">
-            <ViewTransitionLink href={`/posts/${post.slug}`}>
+          <Button variant={'primary'} asChild className="relative z-10 flex w-min items-center gap-1 px-2 py-1 pl-3">
+            <Link href={`/posts/${post.slug}`}>
               {post.metadata.type === 'blog' ? 'Read post' : 'Writeup'} <PlusIcon className="size-4 shrink-0" />
-            </ViewTransitionLink>
+            </Link>
           </Button>
           {post.metadata.externalLink && (
-            <Button variant={'primary'} asChild className="flex w-min items-center gap-1 px-2 py-1 pl-3">
+            <Button variant={'primary'} asChild className="relative z-10 flex w-min items-center gap-1 px-2 py-1 pl-3">
               <Link href={post.metadata.externalLink} target="_blank" rel="noopener noreferrer">
                 <ExternalLinkIcon className="size-4 shrink-0" />
               </Link>

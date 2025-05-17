@@ -29,6 +29,7 @@ export const Toolbelt = ({ tools }: { tools: Tool[] }) => {
 
   return (
     <ul
+      tabIndex={-1}
       ref={ref}
       className="scrollbar-none relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8 py-1 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
       onMouseEnter={() => setHovering(true)}
@@ -59,6 +60,7 @@ export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
 
   return (
     <ul
+      tabIndex={-1}
       ref={ref}
       className="scrollbar-none pointer-events-none relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8 py-8 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
     >

@@ -11,8 +11,8 @@ export const Footer = async () => {
         <div className="mt-6 flex flex-col gap-8">
           <Logo />
         </div>
-        <div className="mt-4 flex flex-col gap-4">
-          <h2 className="text-label">Information</h2>
+        <div className="mt-4 flex flex-col gap-2">
+          <h2 className="text-label text-sm font-medium">Information</h2>
           <div className="text-sm text-neutral-500">
             <p>Wouter de Bruijn Development</p>
             <p>kvk. 87881608</p>
@@ -22,21 +22,21 @@ export const Footer = async () => {
             </Link>
           </div>
         </div>
-        <div className="mt-4 flex flex-col gap-4">
-          <h2 className="text-label">Work</h2>
+        <div className="mt-4 flex flex-col gap-2">
+          <h2 className="text-label text-sm font-medium">Posts</h2>
 
           <ul className="flex flex-col text-sm text-neutral-500">
             {posts.slice(0, 4).map((post) => (
               <li key={post.slug}>
-                <Link href={`/work/${post.slug}`} target="_blank" rel="noreferrer" className="hover:text-label hover:underline">
+                <Link href={`/posts/${post.slug}`} target="_blank" rel="noreferrer" className="hover:text-label hover:underline">
                   {post.metadata.title}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
-        <div className="mt-4 flex flex-col gap-4">
-          <h2 className="text-label">Social media</h2>
+        <div className="mt-4 flex flex-col gap-2">
+          <h2 className="text-label text-sm font-medium">Social media</h2>
           <div className="flex flex-col text-sm text-neutral-500">
             <Link href="https://x.com/wouterdebruijn" target="_blank" rel="noreferrer" className="hover:text-label hover:underline">
               X (Twitter)

@@ -10,7 +10,7 @@ const Input = ({ className, type, label, errorLine, ref, ...props }: InputProps)
       <input
         type={type}
         className={cn(
-          'text-label flex h-10 w-full rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-2 ring-offset-neutral-50 placeholder:text-neutral-600 focus-visible:ring-2 focus-visible:ring-neutral-600 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
+          'text-label focus-visible:ring-echo flex h-10 w-full rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-2 ring-offset-neutral-50 placeholder:text-neutral-600 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
           className,
         )}
         ref={ref}

@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import { getPost, getPosts } from '@/server/posts'
 import { ExternalLinkIcon, Undo2Icon } from 'lucide-react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { Link as ViewTransitionLink } from 'next-view-transitions'
 
 import Link from 'next/link'
 
@@ -27,14 +26,11 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
         <div className="mx-auto w-full max-w-[65ch] px-4 lg:max-w-[calc(65ch+128px)] lg:px-0">
           <div className="flex flex-col lg:-ml-16 lg:flex-row">
             <div className="mt-2 w-32 shrink-0 text-neutral-500 hover:text-neutral-700">
-              <Button asChild variant={'primary'} elevation={1}>
-                <ViewTransitionLink
-                  href="/posts"
-                  className="sticky top-[75.5px] my-4 -ml-6 flex w-fit items-center gap-2 lg:my-0 lg:ml-2.5"
-                >
+              <Button asChild elevation={1}>
+                <Link href="/posts" className="sticky top-[75.5px] my-4 -ml-6 flex w-fit items-center gap-2 lg:my-0 lg:ml-2.5">
                   <Undo2Icon className="mb-0.5 size-4" />
                   Back
-                </ViewTransitionLink>
+                </Link>
               </Button>
             </div>
             <div className="flex flex-col gap-2">
@@ -43,7 +39,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                 <ul className="flex gap-2 pt-2 pb-6">
                   {metadata.externalLink && (
                     <li>
-                      <Button variant={'primary'} asChild className="flex w-min items-center gap-1 px-2 py-1 pl-3" elevation={1}>
+                      <Button asChild className="flex w-min items-center gap-1 px-2 py-1 pl-3" elevation={1}>
                         <Link href={metadata.externalLink} target="_blank" rel="noopener noreferrer">
                           <ExternalLinkIcon className="size-4 shrink-0" />
                           Live Site

@@ -9,7 +9,7 @@ const Textarea = ({ className, label, errorLine, ref, ...props }: TextareaProps)
       {label ? <span className="text-sm font-medium text-neutral-500">{label}</span> : null}
       <textarea
         className={cn(
-          'text-label flex min-h-[80px] w-full rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-2 ring-offset-neutral-50 placeholder:text-neutral-600 focus-visible:ring-2 focus-visible:ring-neutral-600 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
+          'text-label focus-visible:ring-echo flex min-h-[80px] w-full rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-2 ring-offset-neutral-50 placeholder:text-neutral-600 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
           className,
         )}
         ref={ref}

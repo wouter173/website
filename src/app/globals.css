@@ -5,10 +5,15 @@
 @plugin "tailwind-scrollbar";
 @plugin "tailwindcss-animate";
 
+*:focus {
+  @apply outline-echo;
+}
+
 @theme {
   --color-label: #28292a;
   --color-stroke: #ededed;
   --color-offwhite: #f9f9f9;
+  --color-echo: #94979a;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;

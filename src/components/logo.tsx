@@ -4,15 +4,26 @@ import type { SVGAttributes } from 'react'
 export function Logo(props: SVGAttributes<SVGElement>) {
   return (
     <svg
-      {...props}
+      width="45"
+      height="28"
+      viewBox="0 0 45 28"
       xmlns="http://www.w3.org/2000/svg"
-      width="38"
-      height="22"
-      viewBox="0 0 38 22"
-      className={cn(props.className, 'fill-label')}
+      {...props}
+      className={cn('fill-label', props.className)}
     >
-      <path d="M12.8035 21.6755L0 0.0195312L9.84058 0.0195238L16.6469 11.9405L17.933 9.90261L12.0394 0.0195312H21.9701L28.7528 12.1207L29.8148 10.2881L25.9765 3.83616L28.2067 0.0195312H37.7797L24.869 21.6925L18.7605 11.3026L12.8035 21.6755Z" />
+      <path d="M16.4136 24.82L3.61011 3.16406L13.4507 3.16406L20.257 15.085L21.5431 13.0471L15.6495 3.16406H25.5802L32.363 15.2652L33.4249 13.4326L29.5866 6.98069L31.8168 3.16406H41.3898L28.4791 24.837L22.3706 14.4471L16.4136 24.82Z" />
     </svg>
+
+    // <svg
+    //   {...props}
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   width="38"
+    //   height="22"
+    //   viewBox="0 0 38 22"
+    //   className={cn('fill-label', props.className)}
+    // >
+    //   <path d="M12.8035 21.6755L0 0.0195312L9.84058 0.0195238L16.6469 11.9405L17.933 9.90261L12.0394 0.0195312H21.9701L28.7528 12.1207L29.8148 10.2881L25.9765 3.83616L28.2067 0.0195312H37.7797L24.869 21.6925L18.7605 11.3026L12.8035 21.6755Z" />
+    // </svg>
   )
 }
 

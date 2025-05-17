@@ -51,13 +51,13 @@ export default async function Page() {
             <MobileToolbelt tools={tools} />
           </div>
         </div>
-        <div className="flex flex-col gap-8 lg:pb-24">
+        <div className="flex flex-col gap-8 lg:pb-24" id="contact">
           <div className="text-label mx-auto grid w-full max-w-4xl gap-4 px-4 lg:grid-cols-[1fr_1fr] lg:gap-8 lg:px-0">
             <Link
               rel="noopener noreferer"
               target="_blank"
               href={xUser.data.url}
-              className="group text-label border-stroke relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 shadow-xs transition-all hover:ring-2 hover:ring-[#6F6F70] hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-[#6F6F70] focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
+              className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 shadow-xs transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
             >
               <div className="flex items-center gap-4">
                 <svg width="33" height="33" viewBox="0 0 33 33" className="fill-label" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@ export default async function Page() {
               rel="noopener noreferer"
               target="_blank"
               href={githubUser.user.url}
-              className="group text-label border-stroke relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 shadow-xs transition-all hover:ring-2 hover:ring-[#6F6F70] hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-[#6F6F70] focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
+              className="group text-label border-stroke hover:ring-echo focus-visible:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 shadow-xs transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
             >
               <div className="flex items-center gap-4">
                 <svg width="33" height="33" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" className="fill-label">

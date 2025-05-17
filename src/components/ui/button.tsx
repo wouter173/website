@@ -15,9 +15,7 @@ const buttonVariants = cva(
           focus-visible:border-white focus-visible:outline-2
           disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
           `,
-        default:
-          'bg-black/70 text-white hover:bg-opacity-40 hover:outline-2 outline-neutral-600 hover:border-black focus-visible:border-black focus-visible:outline-2 ',
-        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-neutral-300
+        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-echo
           active:scale-95 transition-all active:translate-y-[1px]
           hover:border-white hover:outline-2
           focus-visible:border-white focus-visible:outline-2
@@ -38,7 +36,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'primary',
       size: 'rounded',
       elevation: 'none',
     },

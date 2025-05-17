@@ -1,6 +1,6 @@
 import { ExternalIcon } from '@/components/icons/external-icon'
 import { highlighter } from '@/lib/highlighter'
-import { Link as ViewTransitionLink } from 'next-view-transitions'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { Children, type ComponentProps } from 'react'
@@ -16,9 +16,9 @@ const Anchor = ({ href, ...props }: ComponentProps<'a'>) => {
 
   if (href?.startsWith('/'))
     return (
-      <ViewTransitionLink href={href} className={className} {...props}>
+      <Link href={href} className={className} {...props}>
         {props.children}
-      </ViewTransitionLink>
+      </Link>
     )
   else
     return (
