@@ -62,7 +62,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
                 </ul>
               ) : null}
 
-              <div className="prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-800 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0 text-label">
+              <div className="prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-800 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0 text-label prose-sm lg:prose-base">
                 <MDXRemote source={content} components={mdxComponents} />
               </div>
             </div>
