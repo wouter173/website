@@ -31,6 +31,13 @@ const items = [
   },
 ]
 
+export const metadata = {
+  title: 'Work',
+  alternates: {
+    canonical: '/work',
+  },
+}
+
 export default function Page() {
   return (
     <>

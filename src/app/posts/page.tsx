@@ -2,6 +2,13 @@ import { Footer } from '@/components/footer'
 import { PostCard } from '@/components/posts'
 import { getPosts } from '@/server/posts'
 
+export const metadata = {
+  title: 'Posts',
+  alternates: {
+    canonical: '/posts',
+  },
+}
+
 export default async function Blog() {
   const posts = await getPosts()
 

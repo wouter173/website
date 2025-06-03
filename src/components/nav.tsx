@@ -17,7 +17,7 @@ export function Nav() {
         <Link href="/" className="group relative px-3">
           {pathname === '/' && (
             <motion.div
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.15, ease: 'backOut' }}
               layoutId="active-tab"
               className="absolute inset-x-0 top-1/2 -z-10 h-7 -translate-y-1/2 rounded-full border border-neutral-200 bg-neutral-100"
             />
@@ -28,7 +28,7 @@ export function Nav() {
         <Link href={'/work'} className="group relative px-3">
           {pathname === '/work' && (
             <motion.div
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.15, ease: 'backOut' }}
               layoutId="active-tab"
               className="absolute inset-x-0 top-1/2 -z-10 h-7 -translate-y-1/2 rounded-full border border-neutral-200 bg-neutral-100"
             />
@@ -38,7 +38,7 @@ export function Nav() {
         <Link href={'/posts'} className="group relative px-3">
           {pathname.startsWith('/posts') && (
             <motion.div
-              transition={{ duration: 0.2, easings: ['circInOut'] }}
+              transition={{ duration: 0.15, ease: 'backOut' }}
               layoutId="active-tab"
               className="absolute inset-x-0 top-1/2 -z-10 h-7 -translate-y-1/2 rounded-full border border-neutral-200 bg-neutral-100"
             />

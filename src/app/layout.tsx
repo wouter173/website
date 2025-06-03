@@ -15,10 +15,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(CONSTANTS.canonicalUrl),
-  alternates: {
-    canonical: '/',
+  title: {
+    template: '%s | Wouter de Bruijn',
+    default: 'Wouter de Bruijn',
   },
-  title: 'Wouter de Bruijn',
   description: 'Portfolio of Wouter de Bruijn. A Fullstack Developer, largely self taught, and excited to learn new things.',
   twitter: {
     title: 'Wouter de Bruijn',
