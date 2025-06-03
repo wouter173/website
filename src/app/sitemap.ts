@@ -24,11 +24,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
-    ...posts.map((post) => ({
-      url: `${CONSTANTS.canonicalUrl}/posts/${post.slug}`,
-      lastModified: new Date(post.metadata.publishedAt),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    })),
+    ...posts
+      .filter((post) => !post.metadata.hidden)
+      .map((post) => ({
+        url: `${CONSTANTS.canonicalUrl}/posts/${post.slug}`,
+        lastModified: new Date(post.metadata.publishedAt),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      })),
   ]
 }

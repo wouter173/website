@@ -7,8 +7,14 @@ import Link from 'next/link'
 export const Header = () => {
   return (
     <header className="mx-auto grid h-[90%] w-full max-w-4xl place-items-center">
-      <div className="flex flex-col items-center gap-6">
-        <h1 className="text-label text-center text-4xl font-bold lg:text-5xl">Wouter de Bruijn</h1>
+      <div className="flex flex-col items-center gap-8">
+        <div>
+          <h1 className="text-label text-center text-4xl font-bold lg:text-5xl">Wouter de Bruijn</h1>
+          <p className="text-shadow-label mt-3 text-center text-base">
+            Freelance Software Engineer <span className="opacity-50">|</span> Student <span className="opacity-50">|</span> The Netherlands
+          </p>
+        </div>
+
         <div className="flex gap-2">
           <Button
             variant={'cta'}

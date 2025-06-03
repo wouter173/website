@@ -18,17 +18,19 @@ export const dynamicParams = false
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  const { metadata } = await getPost(slug)
   return {
-    title: `${slug}`,
+    title: `${metadata.title}`,
+    description: `${metadata.summary}...`,
     alternates: {
       canonical: `/posts/${slug}`,
     },
   }
 }
 
-export default async function Page(props: { params: Promise<{ slug: string }> }) {
-  const params = await props.params
-  const { content, metadata } = await getPost(params.slug)
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const { content, metadata } = await getPost(slug)
 
   return (
     <div className="relative z-20 min-h-screen w-full">
