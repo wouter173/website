@@ -60,6 +60,7 @@ export default function Page() {
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
         <h1 className="text-label text-3xl font-bold">Work</h1>
+
         <ol className="flex flex-col gap-2 pt-8">
           {items.map((item, i) => (
             <li
