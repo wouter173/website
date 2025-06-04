@@ -67,7 +67,7 @@ export default function Page() {
               className={cn(
                 'has-focus-visible:ring-echo -mx-3.5 flex flex-col gap-1 rounded-xl p-4 transition-all',
                 item.url
-                  ? 'cursor-pointer hover:bg-white active:scale-[0.98] has-focus-visible:bg-white has-focus-visible:ring-2 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-white has-focus-visible:outline-none'
+                  ? 'hover:border-stroke cursor-pointer border border-transparent hover:bg-white active:scale-[0.98] has-focus-visible:bg-white has-focus-visible:ring-2 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-white has-focus-visible:outline-none'
                   : 'cursor-default',
               )}
             >

@@ -9,11 +9,9 @@ import { Button } from './ui/button'
 
 export const PostCard = ({ post, className, ...props }: { post: Post } & ComponentProps<'div'>) => {
   return (
-    <article
-      className={cn('group relative z-20 flex flex-col gap-6 overflow-hidden rounded-lg px-6 py-6 transition-all', className)}
-      {...props}
-    >
-      <div className="absolute inset-0 -z-10 rounded-lg border border-neutral-100 bg-white shadow-xs transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]" />
+    <article className={cn('group relative z-20 flex flex-col gap-6 rounded-lg px-6 py-6 transition-all', className)} {...props}>
+      <div className="bg-stroke absolute -inset-px -z-20 rounded-[9px] shadow-xs transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]" />
+      <div className="absolute inset-0 -z-10 rounded-lg bg-white transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]" />
       <div className="absolute top-0 right-0 -z-10 size-8 rounded-bl-lg bg-linear-to-tr from-white to-[#efeff1] shadow-lg transition-all [clip-path:polygon(-100%_0%,0%_0%,100%_100%,100%_200%,-100%_200%)] group-hover:size-10" />
       <Link
         className="absolute inset-0 transition-all [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)] group-hover:[clip-path:polygon(0_0,calc(100%-40px)_0,100%_40px,100%_100%,0_100%)]"
