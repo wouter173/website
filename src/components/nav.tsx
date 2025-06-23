@@ -13,7 +13,7 @@ import { InstantLink } from './instant-link'
 
 export function Nav() {
   const pathname = usePathname()
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
@@ -75,18 +75,17 @@ export function Nav() {
             Posts
           </span>
         </InstantLink>
-        {/* Dark mode toggle */}
+
         {mounted ? (
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            aria-label={resolvedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
             className="ml-auto flex h-8 w-8 cursor-pointer items-center justify-center rounded-full"
             type="button"
-            suppressHydrationWarning
           >
-            {theme === 'dark' ? (
+            {resolvedTheme === 'dark' ? (
               <Sun className="size-5 text-neutral-400 hover:text-neutral-200" />
             ) : (
               <Moon className="size-5 text-neutral-500 hover:text-neutral-800" />
