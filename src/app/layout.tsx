@@ -8,6 +8,7 @@ import type { PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
 import { CONSTANTS } from './constants'
 import './globals.css'
+import { Providers } from './providers'
 
 export const viewport: Viewport = {
   themeColor: '#f9f9f9',
@@ -40,14 +41,16 @@ const inter = Inter({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className="bg-offwhite dark dark:bg-[#040404]">
+    <html lang="en" className="bg-offwhite dark dark:bg-[#040404]" suppressHydrationWarning>
       <Analytics />
       <body
         className={`${inter.className} dark:bg-graphite relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-50 dark:text-neutral-400 dark:before:opacity-5`}
       >
-        <Nav />
-        <div>{children}</div>
-        <Toaster richColors theme="light" />
+        <Providers>
+          <Nav />
+          <div>{children}</div>
+          <Toaster richColors theme="light" />
+        </Providers>
       </body>
     </html>
   )
