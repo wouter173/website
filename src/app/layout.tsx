@@ -40,10 +40,10 @@ const inter = Inter({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className="bg-offwhite">
+    <html lang="en" className="bg-offwhite dark dark:bg-[#040404]">
       <Analytics />
       <body
-        className={`${inter.className} relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-50`}
+        className={`${inter.className} dark:bg-graphite relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-50 dark:text-neutral-400 dark:before:opacity-5`}
       >
         <Nav />
         <div>{children}</div>

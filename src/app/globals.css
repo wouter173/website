@@ -1,19 +1,17 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *));
 @plugin "@tailwindcss/typography";
 @plugin "tailwind-scrollbar";
 @plugin "tailwindcss-animate";
-
-*:focus {
-  @apply outline-echo;
-}
 
 @theme {
   --color-label: #28292a;
   --color-stroke: #ededed;
   --color-offwhite: #f9f9f9;
   --color-echo: #94979a;
+
+  --color-graphite: #0d0d0d;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -102,6 +100,16 @@
       opacity: 0;
     }
   }
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+*:focus {
+  @apply outline-echo;
 }
 
 code {

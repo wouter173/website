@@ -16,8 +16,10 @@ import { contactFormSchema } from './schema'
 export const Contact = () => {
   return (
     <>
-      <div className="border-stroke relative z-20 flex flex-col gap-6 rounded-3xl border bg-[#FFF] p-6 shadow-xs lg:p-8" id="contact-form">
-        <h2 className="text-label col-span-2 text-left text-lg font-semibold lg:text-2xl">Reach out!</h2>
+      <div
+        className="border-stroke relative z-20 flex flex-col gap-6 rounded-3xl border bg-[#FFF] p-6 shadow-xs lg:p-8 dark:border-[#1F1F1F] dark:bg-black"
+        id="contact-form"
+      >
         <ContactForm />
       </div>
     </>
@@ -81,13 +83,13 @@ const SubmitButton = (props: ComponentProps<'button'>) => {
   const { pending } = useFormStatus()
 
   return (
-    <Button type="submit" variant={'primary'} className="ml-auto h-10 w-fit min-w-24 rounded-lg px-4 py-2" {...props}>
+    <Button type="submit" variant={'primary'} className="group ml-auto h-10 w-fit min-w-24 rounded-full px-4 py-2" {...props}>
       {pending ? (
         <Spinner />
       ) : (
         <>
           Send
-          <SendHorizonalIcon className="ml-2 size-4" />
+          <SendHorizonalIcon className="ml-2 size-4 -rotate-35 transition-transform ease-out group-hover:-rotate-0 group-focus-visible:rotate-0 dark:fill-neutral-600" />
         </>
       )}
     </Button>

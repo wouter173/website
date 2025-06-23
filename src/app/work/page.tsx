@@ -45,12 +45,12 @@ function WorkItem({ title, date, description, role }: { title: string; date: str
   return (
     <>
       <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between">
-        <h2 className="text-label shrink-0 text-lg font-semibold">{title}</h2>
-        <hr className="mx-4 hidden h-px w-full border-none bg-[#e0e2e6] lg:block" />
-        <span className="shrink-0 text-left text-sm text-[#2D2F32] lg:text-right">{date}</span>
+        <h2 className="text-label shrink-0 text-lg font-semibold dark:text-neutral-300">{title}</h2>
+        <hr className="mx-4 hidden h-px w-full border-none bg-[#e0e2e6] lg:block dark:bg-[#2d2d2d]" />
+        <span className="shrink-0 text-left text-sm text-[#2D2F32] lg:text-right dark:text-neutral-500">{date}</span>
       </div>
-      {role && <span className="text-label/80 mb-2 text-sm whitespace-nowrap">{role}</span>}
-      <p className="mt-2 text-sm text-balance text-[#46474BB2]">{description}</p>
+      {role && <span className="text-label/80 mb-2 text-sm whitespace-nowrap dark:text-neutral-400">{role}</span>}
+      <p className="mt-2 text-sm text-balance text-[#46474BB2] dark:text-neutral-500">{description}</p>
     </>
   )
 }
@@ -59,7 +59,7 @@ export default function Page() {
   return (
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
-        <h1 className="text-label text-3xl font-bold">Work</h1>
+        <h1 className="text-label text-3xl font-bold dark:text-neutral-200">Work</h1>
 
         <ol className="flex flex-col gap-2 pt-8">
           {items.map((item, i) => (
@@ -68,7 +68,7 @@ export default function Page() {
               className={cn(
                 'has-focus-visible:ring-echo -mx-3.5 flex flex-col gap-1 rounded-xl p-4 transition-all',
                 item.url
-                  ? 'hover:border-stroke cursor-pointer border border-transparent hover:bg-white active:scale-[0.98] has-focus-visible:bg-white has-focus-visible:ring-2 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-white has-focus-visible:outline-none'
+                  ? 'hover:border-stroke cursor-pointer border border-transparent hover:bg-white active:scale-[0.98] has-focus-visible:bg-white has-focus-visible:ring-2 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-white has-focus-visible:outline-none dark:hover:border-[#1F1F1F] dark:hover:bg-black dark:has-focus-visible:bg-black dark:has-focus-visible:ring-offset-black'
                   : 'cursor-default',
               )}
             >

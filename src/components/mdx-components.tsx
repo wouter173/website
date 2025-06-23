@@ -6,13 +6,14 @@ import Link from 'next/link'
 import { Children, type ComponentProps } from 'react'
 
 const Code = ({ children }: ComponentProps<'code'>) => (
-  <code className="text-label rounded-lg border border-neutral-200 bg-neutral-100 px-1 py-0.5 before:content-none after:content-none">
+  <code className="text-label dark:bg-graphite rounded-lg border border-neutral-200 bg-neutral-100 px-1 py-0.5 before:content-none after:content-none dark:border-[#1f1f1f] dark:text-neutral-400">
     {children}
   </code>
 )
 
 const Anchor = ({ href, ...props }: ComponentProps<'a'>) => {
-  const className = 'group inline underline text-label font-normal hover:text-black relative'
+  const className =
+    'group inline underline text-label font-normal hover:text-black relative dark:text-neutral-400 dark:hover:text-neutral-300'
 
   if (href?.startsWith('/'))
     return (
@@ -35,7 +36,7 @@ const MdxImage = ({ src, alt, bg, width, height }: { src: string; alt: string; b
       <Image
         src={src}
         alt={alt}
-        className="block w-full overflow-hidden rounded-lg border border-neutral-200 bg-white"
+        className="dark:bg-graphite block w-full overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-transparent"
         style={{ background: bg }}
         width={width}
         height={height}
@@ -52,7 +53,11 @@ export const CodeBlock = async ({ children }: ComponentProps<'pre'>) => {
 
   const code = highlighter.codeToHtml(content, {
     lang,
-    theme: 'min-light',
+    themes: {
+      light: 'min-light',
+      dark: 'my-theme',
+    },
+
     transformers: [
       {
         preprocess(code: string) {
@@ -62,7 +67,12 @@ export const CodeBlock = async ({ children }: ComponentProps<'pre'>) => {
       },
     ],
   })
-  return <div className="my-4 overflow-clip rounded-xl border border-neutral-200 py-0" dangerouslySetInnerHTML={{ __html: code }} />
+  return (
+    <div
+      className="my-4 overflow-clip rounded-xl border border-neutral-200 py-0 dark:border-[#1f1f1f]"
+      dangerouslySetInnerHTML={{ __html: code }}
+    />
+  )
 }
 
 export const mdxComponents = {

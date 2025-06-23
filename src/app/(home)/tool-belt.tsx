@@ -141,7 +141,7 @@ const Bauble = ({ tool }: { tool: Tool; mobile?: boolean }) => {
       initial={{ scale: 0, opacity: 0.9 }}
       whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: false }}
-      className="border-stroke grid size-14 snap-center place-items-center rounded-xl border bg-[#FFF] px-2.5 shadow-xs hover:bg-neutral-50"
+      className="border-stroke dark:bg-graphite grid size-14 snap-center place-items-center rounded-xl border bg-[#FFF] px-2.5 shadow-xs hover:bg-neutral-50 dark:border-[#1F1F1F]"
     >
       <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
     </motion.div>

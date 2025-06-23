@@ -29,12 +29,12 @@ export default async function Page() {
 
       <main className="relative z-10 flex flex-col gap-20 lg:gap-40">
         <div className="flex flex-col gap-8 px-4 text-center">
-          <div className="border-stroke relative z-20 mx-auto w-full max-w-4xl rounded-3xl border bg-[#FFF] py-8">
+          <div className="border-stroke relative z-20 mx-auto w-full max-w-4xl rounded-3xl border bg-[#FFF] py-8 dark:border-[#1F1F1F] dark:bg-black">
             <div className="flex flex-col gap-6 px-8">
               <div className="grid w-full gap-10 text-left lg:grid-cols-[1fr_1fr]">
-                <p className="mt-0.5 text-neutral-600">
-                  Hi I&apos;m <span className="font-semibold text-black">Wouter</span> — a Fullstack Developer, largely self taught, and
-                  excited to learn new things.
+                <p className="mt-0.5 text-neutral-600 dark:text-neutral-400">
+                  Hi I&apos;m <span className="font-semibold text-black dark:text-neutral-200">Wouter</span> — a Fullstack Developer,
+                  largely self taught, and excited to learn new things.
                   <br />
                   <br />
                   At the moment, my focus is finishing uni and exploring ways to build the most user friendly and coolest interactions on
@@ -49,7 +49,7 @@ export default async function Page() {
             </div>
 
             <div className="hidden lg:block">
-              <hr className="border-stroke my-6" />
+              <hr className="border-stroke my-6 dark:border-[#1F1F1F]" />
               <Toolbelt tools={tools} />
             </div>
           </div>
@@ -58,26 +58,32 @@ export default async function Page() {
           </div>
         </div>
         <div className="flex flex-col gap-8 lg:pb-24" id="contact">
-          <div className="text-label mx-auto grid w-full max-w-4xl gap-4 px-4 lg:grid-cols-[1fr_1fr] lg:gap-8 lg:px-0">
+          <div className="text-label mx-auto grid w-full max-w-4xl gap-4 px-4 lg:grid-cols-[1fr_1fr] lg:gap-8 lg:px-0 dark:text-neutral-200">
             <Link
               rel="noopener noreferer"
               target="_blank"
               href={xUser.data.url}
-              className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
+              className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%] dark:border-[#1F1F1F] dark:bg-black dark:text-neutral-200 dark:hover:ring-offset-black dark:focus-visible:ring-offset-black"
             >
               <div className="flex items-center gap-4">
-                <svg width="33" height="33" viewBox="0 0 33 33" className="fill-label" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  width="33"
+                  height="33"
+                  viewBox="0 0 33 33"
+                  className="fill-label dark:fill-neutral-200"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path d="M24.8579 3.40625H29.2686L19.6326 14.4196L30.9686 29.4063H22.0926L15.1406 20.3169L7.18592 29.4063H2.77259L13.0793 17.6263L2.20459 3.40625H11.3059L17.5899 11.7143L24.8579 3.40625ZM23.3099 26.7663H25.7539L9.97792 5.90758H7.35526L23.3099 26.7663Z" />
                 </svg>
                 <div className="flex flex-col justify-center gap-1 leading-none">
                   <span className="font-semibold">@{xUser.data.username}</span>
                   <div className="flex gap-2 leading-[0px]">
-                    <span className="text-sm text-neutral-600">
-                      <span className="text-label">{xUser.data.public_metrics.followers_count} </span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                      <span className="text-label dark:text-neutral-200">{xUser.data.public_metrics.followers_count} </span>
                       Followers
                     </span>
-                    <span className="text-sm text-neutral-600">
-                      <span className="text-label">{xUser.data.public_metrics.tweet_count} </span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                      <span className="text-label dark:text-neutral-200">{xUser.data.public_metrics.tweet_count} </span>
                       Posts
                     </span>
                   </div>
@@ -91,10 +97,16 @@ export default async function Page() {
               rel="noopener noreferer"
               target="_blank"
               href={githubUser.user.url}
-              className="group text-label border-stroke hover:ring-echo focus-visible:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%]"
+              className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%] dark:border-[#1F1F1F] dark:bg-black dark:text-neutral-200 dark:hover:ring-offset-black dark:focus-visible:ring-offset-black"
             >
               <div className="flex items-center gap-4">
-                <svg width="33" height="33" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" className="fill-label">
+                <svg
+                  width="33"
+                  height="33"
+                  viewBox="0 0 98 96"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="fill-label dark:fill-neutral-200"
+                >
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -104,12 +116,14 @@ export default async function Page() {
                 <div className="flex flex-col justify-center gap-1 leading-none">
                   <span className="font-semibold">{githubUser.user.login}</span>
                   <div className="flex gap-2 leading-[0px]">
-                    <span className="text-sm text-neutral-600">
-                      <span className="text-label">{githubUser.user.repositories.totalCount} </span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                      <span className="text-label dark:text-neutral-200">{githubUser.user.repositories.totalCount} </span>
                       Repositories
                     </span>
-                    <span className="text-sm text-neutral-600">
-                      <span className="text-label">{githubUser.user.contributionsCollection.contributionCalendar.totalContributions} </span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                      <span className="text-label dark:text-neutral-200">
+                        {githubUser.user.contributionsCollection.contributionCalendar.totalContributions}{' '}
+                      </span>
                       Contributions
                     </span>
                   </div>

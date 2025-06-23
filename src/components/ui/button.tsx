@@ -14,25 +14,21 @@ const buttonVariants = cva(
           hover:border-white hover:outline-2
           focus-visible:border-white focus-visible:outline-2
           disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
+          dark:bg-white dark:text-label dark:hover:border-black dark:focus-visible:border-black dark:outline-echo
           `,
-        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-echo
+        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-echo outline-offset-2
           active:scale-95 transition-all active:translate-y-[1px]
-          hover:border-white hover:outline-2
-          focus-visible:border-white focus-visible:outline-2
+          focus-visible:outline-2 hover:outline-2
           disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
+           dark:text-neutral-200  dark:outline-echo dark:border-[#2d2d2d] dark:bg-[#171717]
           `,
-        // destructive: "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
-        // outline: "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
-        // secondary: "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
-        // ghost: "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
-        // link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
       },
       size: {
         rounded: 'rounded-full py-1 px-2.5',
       },
       elevation: {
         none: 'shadow-none',
-        1: 'shadow-[0px_4px_4px_0px_rgba(156,156,156,0.05)]',
+        1: 'shadow-[0px_4px_4px_0px_rgba(156,156,156,0.05)] dark:shadow-2xl',
       },
     },
     defaultVariants: {
