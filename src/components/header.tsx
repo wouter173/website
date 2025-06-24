@@ -28,7 +28,7 @@ export const Header = () => {
           >
             Reach out <ChevronDown size={16} className="-mr-1 ml-1" />
           </Button>
-          <Button variant={'primary'} onClick={() => console.log('test')} className="flex items-center" asChild>
+          <Button variant={'primary'} className="flex items-center" asChild>
             <Link href="/work">
               My work <ChevronRight size={16} className="-mr-1 ml-1" />
             </Link>

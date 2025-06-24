@@ -8,13 +8,9 @@ import { contactFormSchema } from './schema'
 export async function submitContactAction(_prevState: unknown, data: FormData) {
   const submission = parseWithZod(data, { schema: contactFormSchema })
 
-  if (submission.status === 'success') {
-    console.log('success', submission.payload)
-  }
-
   await setTimeout(1000)
 
-  const result = await fetch(env.WEBHOOK_URL, {
+  await fetch(env.WEBHOOK_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -30,8 +26,6 @@ export async function submitContactAction(_prevState: unknown, data: FormData) {
       ],
     }),
   })
-
-  console.log(result)
 
   return submission.reply()
 }

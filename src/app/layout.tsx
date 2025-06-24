@@ -5,7 +5,6 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
-import { Toaster } from 'sonner'
 import { CONSTANTS } from './constants'
 import './globals.css'
 import { Providers } from './providers'
@@ -56,7 +55,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <Providers>
           <Nav />
           <div>{children}</div>
-          <Toaster richColors theme="light" />
         </Providers>
       </body>
     </html>
