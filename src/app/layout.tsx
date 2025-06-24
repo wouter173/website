@@ -11,7 +11,9 @@ import './globals.css'
 import { Providers } from './providers'
 
 export const viewport: Viewport = {
-  themeColor: '#f9f9f9',
+  initialScale: 1,
+  viewportFit: 'cover',
+  width: 'device-width',
 }
 
 export const metadata: Metadata = {
@@ -41,8 +43,13 @@ const inter = Inter({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className="bg-offwhite dark dark:bg-[#040404]" suppressHydrationWarning>
+    <html lang="en" className="bg-offwhite dark dark:bg-black" suppressHydrationWarning>
       <Analytics />
+      <head>
+        <meta name="theme-color" content="" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101010" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9f9f9" />
+      </head>
       <body
         className={`${inter.className} dark:bg-graphite relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-50 dark:text-neutral-400 dark:before:opacity-5`}
       >

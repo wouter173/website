@@ -69,7 +69,7 @@ export function Nav() {
           <span
             className={cn(
               'relative z-20 text-sm font-medium transition-all group-hover:opacity-70 dark:text-neutral-300',
-              pathname === '/posts' && 'dark:text-white',
+              pathname.startsWith('/posts') && 'dark:text-white',
             )}
           >
             Posts

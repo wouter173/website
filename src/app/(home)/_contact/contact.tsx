@@ -17,7 +17,7 @@ export const Contact = () => {
   return (
     <>
       <div
-        className="border-stroke relative z-20 flex flex-col gap-6 rounded-3xl border bg-[#FFF] p-6 shadow-xs lg:p-8 dark:border-[#1F1F1F] dark:bg-black"
+        className="border-stroke relative z-20 flex flex-col gap-6 rounded-3xl border bg-[#FFF] p-6 lg:p-8 dark:border-[#1F1F1F] dark:bg-black"
         id="contact-form"
       >
         <ContactForm />
