@@ -45,9 +45,17 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <html lang="en" className="bg-offwhite dark dark:bg-black" suppressHydrationWarning>
       <Analytics />
       <head>
-        <meta name="theme-color" content="" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101010" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9f9f9" />
+        <meta name="theme-color" content="#f9f9f9" />
+        <script>
+          {`
+            (() => {
+              let a, theme = localStorage?.getItem("theme");
+              a = "dark" === theme || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "#0d0d0d" : "#f9f9f9";
+              let c = Array.from(document.querySelectorAll('meta[name="theme-color"]'));
+              c.forEach((b) => {b.setAttribute("content", a)});
+            })();
+          `}
+        </script>
       </head>
       <body
         className={`${inter.className} dark:bg-graphite relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-50 dark:text-neutral-400 dark:before:opacity-5`}

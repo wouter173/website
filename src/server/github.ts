@@ -2,7 +2,7 @@ import { unstable_cache } from 'next/cache'
 import { z } from 'zod'
 
 const baseUrl = 'https://api.github.com/graphql'
-const query = `
+const query = `#graphql
 query {
   user(login: "wouter173") {
     url
