@@ -178,11 +178,11 @@ const InfoTooltip = ({
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
                 <Image src={thumbnail} alt={''} width={24} height={24} className="size-6"></Image>
-                <h2 className="text-label font-medium">{title}</h2>
+                <h2 className="text-label font-medium dark:text-white">{title}</h2>
               </div>
               <p className="text-shadow-label text-sm">{description}</p>
             </div>
-            <Tooltip.Arrow className="fill-stroke" />
+            <Tooltip.Arrow className="fill-stroke dark:fill-[#1f1f1f]" />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
