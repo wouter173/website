@@ -5,7 +5,7 @@ export const tools = [
     name: 'Lucide',
     thumbnail: '/tools/lucide.svg',
     description:
-      'Lucide is my go to icon set for building ui. It has great integrations with React and Figma which are my daily drivers for ui.',
+      'Lucide is my preferred icon library for UI development. It has good React and Figma integrations for modern web applications.',
     url: 'https://lucide.dev',
     tags: [],
   },
@@ -14,8 +14,8 @@ export const tools = [
     thumbnail: '/tools/sanity.svg',
     description: (
       <>
-        Sanity is a headless CMS that integrates with Next.js to create a custom content dashboard for your application. I used it building
-        the <ExternalLink href="https://bluethrone.io">Bluethrone website</ExternalLink>
+        Sanity is a headless CMS that works well with Next.js for content management. I used it for the{' '}
+        <ExternalLink href="https://bluethrone.io">Bluethrone website</ExternalLink> project.
       </>
     ),
     url: 'https://sanity.io',
@@ -26,8 +26,8 @@ export const tools = [
     thumbnail: '/tools/node.svg',
     description: (
       <>
-        Node is THE js runtime I use with almost every project nowadays. A real game changer in understanding how fragile computers are, was{' '}
-        <ExternalLink href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">this talk</ExternalLink> about the event loop.
+        Node.js is my main JavaScript runtime for most projects. I learned a lot about how computers work from{' '}
+        <ExternalLink href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">this presentation</ExternalLink> on the event loop.
       </>
     ),
     url: 'https://nodejs.org',
@@ -37,7 +37,7 @@ export const tools = [
     name: 'Figma',
     thumbnail: '/tools/figma.svg',
     description:
-      "Figma is my tool of choice for doing design work, although I don't do design that often. The community, plugins and usability is just great. (and free) (mostly)",
+      'Figma is my design tool for UI/UX work. The collaboration features, plugins, and interface make it great for design projects.',
     url: 'https://figma.com',
     tags: ['design', 'ui'],
   },
@@ -45,7 +45,7 @@ export const tools = [
     name: 'Vue',
     thumbnail: '/tools/vue.svg',
     description:
-      "Vue is not a framework I'm the biggest fan of, however I have worked and built projects on vue in the past. It's a great tool for building web applications.",
+      'Vue.js is a framework I have experience with from various projects. While not my main choice, it provides good tooling for building web applications.',
     url: 'https://vuejs.org',
     tags: [],
   },
@@ -53,15 +53,14 @@ export const tools = [
     name: 'Tailwind',
     thumbnail: '/tools/tailwind.svg',
     description:
-      "I'm a very big tailwind fan, I use it in almost every project at work and at home. I love how to colocates my styles with my logic.",
+      'Tailwind CSS is my preferred styling solution for most projects. I like how it keeps styles close to markup for faster development.',
     url: 'https://tailwindcss.com',
     tags: ['ui', 'css'],
   },
   {
     name: 'React',
     thumbnail: '/tools/react.svg',
-    description:
-      'React is my go to framework for building anything web related. I have built many personal and profesional products with it.',
+    description: 'React is my main framework for web development. I have built many personal and professional applications using React.',
     url: 'https://react.dev',
     tags: ['ui'],
   },
@@ -69,7 +68,7 @@ export const tools = [
     name: 'Vercel',
     thumbnail: '/tools/vercel.svg',
     description:
-      'Vercel is the cloud provider I usually go to for hosting my projects, especially when using Next. The deployment experience is absolutely amazing!',
+      'Vercel is my preferred platform for hosting projects, especially those built with Next.js. The deployment process and performance are excellent.',
     url: 'https://vercel.com',
     tags: ['cloud', 'hosting', 'serverless'],
   },
@@ -77,7 +76,7 @@ export const tools = [
     name: 'Next',
     thumbnail: '/tools/next.svg',
     description:
-      "Next is the most forward thinking framework I have used to date. Although I'm not completely behind every choice it makes, I believe it to be the most competent framework for building highly interactive and performant web apps.",
+      'Next.js is the most innovative framework I have worked with. While I may not agree with every decision, it provides the best solution for building interactive web applications.',
     url: 'https://nextjs.org',
     tags: ['ui', 'framework'],
   },
@@ -85,7 +84,7 @@ export const tools = [
     name: 'Framer motion',
     thumbnail: '/tools/motion.svg',
     description:
-      "Framer motion is my favorite library to use for animations, it's simple and powerful. I have used it in my projects to create awesome user experiences.",
+      'Framer Motion is my go-to animation library for React applications. Its API and features make it easy to create smooth user experiences.',
     url: 'https://www.framer.com/motion',
     tags: ['ui', 'animation'],
   },
@@ -93,7 +92,7 @@ export const tools = [
     name: 'Angular',
     thumbnail: '/tools/angular.svg',
     description:
-      "Angular is a framework I picked up while doing school projects. Even though I don't like MVC, I appreciate the future it has given us.",
+      'Angular is a framework I learned during school projects. While I prefer other patterns, I recognize its contributions to web development.',
     url: 'https://angular.io',
     tags: [],
   },
@@ -102,8 +101,8 @@ export const tools = [
     thumbnail: '/tools/github.svg',
     description: (
       <>
-        Github is of course the way to share and collaborate on code. I use it for everything{' '}
-        <ExternalLink href="https://github.com/wouter173/website">even this site!</ExternalLink>
+        GitHub is essential for code collaboration and version control. I use it for all my projects, including{' '}
+        <ExternalLink href="https://github.com/wouter173/website">this website</ExternalLink>.
       </>
     ),
     url: 'https://github.com',
@@ -113,7 +112,7 @@ export const tools = [
     name: 'Three',
     thumbnail: '/tools/threejs.svg',
     description:
-      "Three is a tool that I've been experimenting with lately to build 3d and shader based experiences on the web. The rays on the top of this page are made with three.",
+      'Three.js is a library I am exploring for creating 3D and shader-based web experiences. The rays animation on this page shows its capabilities.',
     url: 'https://threejs.org',
     tags: [],
   },
@@ -121,14 +120,14 @@ export const tools = [
     name: 'Payload',
     thumbnail: '/tools/payload.svg',
     description:
-      "Payload would be my advise for a headless CMS if it weren't in beta at the moment. It's building a tight integration with Next.js at the moment and can't wait to see where it goes.",
+      'Payload CMS would be my recommendation for headless content management if it were out of beta. The upcoming Next.js integration looks promising.',
     url: 'https://payloadcms.com',
     tags: [],
   },
   {
     name: 'Astro',
     thumbnail: '/tools/astro.svg',
-    description: "Astro is a tool that I've occasionally been using as a replacement for Vite + React.",
+    description: 'Astro is a static site generator I occasionally use as an alternative to Vite + React for content-focused applications.',
     url: 'https://astro.build',
     tags: ['static', 'generator'],
   },
@@ -137,9 +136,9 @@ export const tools = [
     thumbnail: '/tools/deno.svg',
     description: (
       <>
-        Deno is the natural succesor of node, according to{' '}
-        <ExternalLink href="https://www.youtube.com/watch?v=M3BM9TB-8yA">Ryan Dahl</ExternalLink>. Personally, I&apos;ve found it to be the
-        best <ExternalLink href="https://github.com/wouter173/Advent-of-Code"> Advent of Code tool</ExternalLink>.
+        Deno is the evolution of Node.js, as described by{' '}
+        <ExternalLink href="https://www.youtube.com/watch?v=M3BM9TB-8yA">Ryan Dahl</ExternalLink>. I have found it useful for{' '}
+        <ExternalLink href="https://github.com/wouter173/Advent-of-Code">Advent of Code</ExternalLink> solutions.
       </>
     ),
     url: 'https://deno.land',
@@ -148,7 +147,8 @@ export const tools = [
   {
     name: 'Docker',
     thumbnail: '/tools/docker.svg',
-    description: 'Docker is the best way of containerizing your applications for deployment.',
+    description:
+      'Docker is my preferred solution for containerizing applications for deployment. It provides consistent environments across development and production.',
     url: 'https://www.docker.com',
     tags: ['containerization', 'tool'],
   },
@@ -156,14 +156,14 @@ export const tools = [
     name: 'Python',
     thumbnail: '/tools/python.svg',
     description:
-      'Python is the very first programming language I learned when I was 12. I still use it when I have to create a quick program, and even some embedded with micropython',
+      'Python was my first programming language, learned at age 12. I still use it for quick scripts, automation, and embedded development with MicroPython.',
     url: 'https://www.python.org',
     tags: ['web', 'framework'],
   },
   {
     name: 'Radix ui',
     thumbnail: '/tools/radix-ui.svg',
-    description: 'Radix ui is a set of headless ui components which I use for all my professional projects.',
+    description: 'Radix UI provides accessible, unstyled UI components that I use in professional projects for building design systems.',
     url: 'https://www.radix-ui.com',
     tags: ['ui', 'library'],
   },
@@ -171,7 +171,7 @@ export const tools = [
     name: 'Rust',
     thumbnail: '/tools/rust.svg',
     description:
-      "Rust is a language focussed on memory safety and performance, I am currently learning and using it to build embedded projects on esp32's for home automations with zigbee.",
+      'Rust is a systems programming language focused on memory safety and performance. I am learning it for embedded development projects, particularly ESP32-based home automation with Zigbee.',
     url: 'https://www.rust-lang.org',
     tags: ['systems', 'language'],
   },
@@ -179,7 +179,7 @@ export const tools = [
     name: 'Stripe',
     thumbnail: '/tools/stripe.svg',
     description:
-      "Stripe is a payment provider I've worked with a bunch. It's a great tool for doing subscriptions and one time payments for SaaS products.",
+      'Stripe is a payment platform I have worked with extensively. It provides good APIs for implementing subscriptions and one-time payments in SaaS applications.',
     url: 'https://stripe.com',
     tags: ['payment', 'platform'],
   },
@@ -187,7 +187,7 @@ export const tools = [
     name: 'Turborepo',
     thumbnail: '/tools/turborepo.png',
     description:
-      "Turborepo is one of the newest tools in my stack. It's a monorepo tool to manage all your shared code and applications in one repository.",
+      'Turborepo is a monorepo tool I have recently started using. It helps manage shared code and multiple applications in one repository.',
     url: 'https://turborepo.org',
     tags: ['monorepo', 'tool'],
   },
@@ -195,7 +195,7 @@ export const tools = [
     name: 'TypeScript',
     thumbnail: '/tools/typescript.svg',
     description:
-      'TypeScript is a superset of JavaScript that adds static typing and other features to the language. It is a popular choice for creating scalable and maintainable applications.',
+      'TypeScript is a JavaScript superset that adds static typing and other features. It is my preferred choice for building maintainable applications.',
     url: 'https://www.typescriptlang.org',
     tags: ['static', 'typing'],
   },
