@@ -21,8 +21,8 @@ export function Nav() {
 
   return (
     <motion.nav layoutRoot className="relative z-20 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16">
-      <div className="flex w-full items-center rounded-full contain-layout">
-        <InstantLink href="/" className="relative pr-3">
+      <div className="flex w-full items-center gap-0.5 rounded-full contain-layout">
+        <InstantLink href="/" className="relative pr-2">
           <Logo className="relative" />
         </InstantLink>
         <InstantLink href="/" className="group relative px-3 sm:px-2">
@@ -46,26 +46,6 @@ export function Nav() {
           </div>
         </InstantLink>
 
-        <InstantLink href={'/work'} className="group relative px-3 sm:px-2">
-          {pathname === '/work' && (
-            <motion.div
-              transition={{ duration: 0.15, ease: 'circOut' }}
-              layoutId="active-tab"
-              className="dark:outline-echo absolute inset-x-0 top-1/2 -z-10 h-7 -translate-y-1/2 rounded-full border border-neutral-200 bg-neutral-100 dark:-inset-x-0.5 dark:h-8 dark:border-[#2d2d2d] dark:bg-[#171717] dark:text-neutral-200"
-            />
-          )}
-          <div className="flex gap-1.5">
-            <Kbd keybind="2" onPress={() => router.push('/work')} className="max-sm:hidden" />
-            <span
-              className={cn(
-                'relative z-20 text-sm font-medium transition-all group-hover:opacity-70 dark:text-neutral-300',
-                pathname === '/work' && 'dark:text-white',
-              )}
-            >
-              Work
-            </span>
-          </div>
-        </InstantLink>
         <InstantLink href={'/posts'} className="group relative px-3 sm:px-2">
           {pathname.startsWith('/posts') && (
             <motion.div
@@ -75,7 +55,7 @@ export function Nav() {
             />
           )}
           <div className="flex gap-1.5">
-            <Kbd keybind="3" onPress={() => router.push('/posts')} className="max-sm:hidden" />
+            <Kbd keybind="2" onPress={() => router.push('/posts')} className="max-sm:hidden" />
 
             <span
               className={cn(
@@ -84,6 +64,26 @@ export function Nav() {
               )}
             >
               Posts
+            </span>
+          </div>
+        </InstantLink>
+        <InstantLink href={'/work'} className="group relative px-3 sm:px-2">
+          {pathname === '/work' && (
+            <motion.div
+              transition={{ duration: 0.15, ease: 'circOut' }}
+              layoutId="active-tab"
+              className="dark:outline-echo absolute inset-x-0 top-1/2 -z-10 h-7 -translate-y-1/2 rounded-full border border-neutral-200 bg-neutral-100 dark:-inset-x-0.5 dark:h-8 dark:border-[#2d2d2d] dark:bg-[#171717] dark:text-neutral-200"
+            />
+          )}
+          <div className="flex gap-1.5">
+            <Kbd keybind="3" onPress={() => router.push('/work')} className="max-sm:hidden" />
+            <span
+              className={cn(
+                'relative z-20 text-sm font-medium transition-all group-hover:opacity-70 dark:text-neutral-300',
+                pathname === '/work' && 'dark:text-white',
+              )}
+            >
+              Work
             </span>
           </div>
         </InstantLink>
