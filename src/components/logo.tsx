@@ -9,7 +9,7 @@ export function Logo(props: SVGAttributes<SVGElement>) {
       viewBox="0 0 45 28"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
-      className={cn('fill-label dark:fill-neutral-100', props.className)}
+      className={cn('fill-label scale-90 dark:fill-neutral-100', props.className)}
     >
       <path d="M16.4136 24.82L3.61011 3.16406L13.4507 3.16406L20.257 15.085L21.5431 13.0471L15.6495 3.16406H25.5802L32.363 15.2652L33.4249 13.4326L29.5866 6.98069L31.8168 3.16406H41.3898L28.4791 24.837L22.3706 14.4471L16.4136 24.82Z" />
     </svg>
