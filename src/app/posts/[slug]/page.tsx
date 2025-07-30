@@ -1,5 +1,5 @@
 import { Footer } from '@/components/footer'
-import { mdxComponents } from '@/components/mdx-components'
+import { mdxComponents } from '@/components/mdx/components'
 import { Button } from '@/components/ui/button'
 import { getPost, getPosts } from '@/server/posts'
 import { ExternalLinkIcon, Undo2Icon } from 'lucide-react'
@@ -74,7 +74,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 </ul>
               ) : null}
 
-              <div className="prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-800 dark:prose-headings:text-neutral-200 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0 text-label prose-sm lg:prose-base prose-p:leading-relaxed dark:text-neutral-400">
+              <div className="prose prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-neutral-800 dark:prose-headings:text-neutral-200 prose-h1:text-3xl prose-h2:mt-16 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg prose-pre:my-0 text-label prose-sm lg:prose-base prose-p:leading-relaxed prose-video:m-0 dark:text-neutral-400">
                 <MDXRemote source={content} components={mdxComponents} />
               </div>
             </div>

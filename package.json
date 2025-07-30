@@ -6,11 +6,13 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "ts-patch install -s"
   },
   "dependencies": {
     "@conform-to/react": "^1.5.0",
     "@conform-to/zod": "^1.5.0",
+    "@effect/platform": "^0.87.1",
     "@t3-oss/env-nextjs": "^0.13.4",
     "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "^1.4.1",
@@ -19,6 +21,7 @@
     "client-only": "^0.0.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "effect": "^3.16.10",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.510.0",
     "motion": "^12.11.0",
@@ -35,6 +38,7 @@
     "zod-matter": "^0.1.1"
   },
   "devDependencies": {
+    "@effect/language-service": "^0.23.3",
     "@eslint/eslintrc": "3.3.1",
     "@tailwindcss/postcss": "^4.1.6",
     "@total-typescript/ts-reset": "^0.6.1",
@@ -51,6 +55,7 @@
     "shiki": "^3.7.0",
     "tailwind-scrollbar": "4.0.0-beta.0",
     "tailwindcss": "^4.1.6",
+    "ts-patch": "^3.3.0",
     "typescript": "^5.8.3"
   },
   "packageManager": "pnpm@9.1.4+sha512.9df9cf27c91715646c7d675d1c9c8e41f6fce88246f1318c1aa6a1ed1aeb3c4f032fcdf4ba63cc69c4fe6d634279176b5358727d8f2cc1e65b65f43ce2f8bfb0"

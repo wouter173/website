@@ -1,7 +1,7 @@
 import { Header } from '@/components/header'
 import { ExternalIcon } from '@/components/icons/external-icon'
 import { tools } from '@/components/tools'
-import { getGithubUserData } from '@/server/github'
+import { getGithubUserDataCached } from '@/server/github'
 import { getXUserData } from '@/server/x'
 import Link from 'next/link'
 import { Footer } from '../../components/footer'
@@ -19,7 +19,7 @@ export const metadata = {
 
 export default async function Page() {
   const xUser = await getXUserData()
-  const githubUser = await getGithubUserData()
+  const githubUser = await getGithubUserDataCached()
 
   return (
     <div className="min-h-screen w-full">

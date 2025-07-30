@@ -1,63 +1,63 @@
 import { unstable_cache } from 'next/cache'
-import { z } from 'zod'
+
+import { FetchHttpClient, HttpBody, HttpClient, HttpClientRequest, HttpClientResponse } from '@effect/platform'
+import { Config, Effect, Schema } from 'effect'
 
 const baseUrl = 'https://api.github.com/graphql'
 const query = `#graphql
-query {
-  user(login: "wouter173") {
-    url
-    login
-    repositories(visibility: PUBLIC) {
-      totalCount
-    }
-    contributionsCollection {
-      contributionCalendar {
-        totalContributions
+  query {
+    user(login: "wouter173") {
+      url
+      login
+      repositories(visibility: PUBLIC) {
+        totalCount
+      }
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+        }
       }
     }
   }
-}`
+`
 
-export const getGithubUserData = unstable_cache(
-  async () => {
-    const response = await fetch(baseUrl, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.GITHUB_BEARER_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query }),
-    })
-
-    if (!response.ok) {
-      console.error(await response.text())
-      throw new Error('Failed to fetch github user')
-    }
-
-    const json = await response.json()
-
-    const payload = z
-      .object({
-        data: z.object({
-          user: z.object({
-            url: z.string(),
-            login: z.string(),
-            repositories: z.object({
-              totalCount: z.number(),
-            }),
-            contributionsCollection: z.object({
-              contributionCalendar: z.object({
-                totalContributions: z.number(),
-              }),
-            }),
-          }),
+const payloadSchema = Schema.Struct({
+  data: Schema.Struct({
+    user: Schema.Struct({
+      url: Schema.String,
+      login: Schema.String,
+      repositories: Schema.Struct({
+        totalCount: Schema.Number,
+      }),
+      contributionsCollection: Schema.Struct({
+        contributionCalendar: Schema.Struct({
+          totalContributions: Schema.Number,
         }),
-      })
-      .parse(json)
+      }),
+    }),
+  }),
+})
 
-    console.log('Fetched github user: ', payload.data.user.login)
-    return payload.data
-  },
+const fetchGithubUserDataEffect = Effect.gen(function* () {
+  const httpClient = yield* HttpClient.HttpClient
+
+  const githubToken = yield* Config.string('GITHUB_BEARER_TOKEN')
+  const body = yield* HttpBody.json({ query }).pipe(Effect.catchTag('HttpBodyError', () => Effect.succeed(HttpBody.empty)))
+
+  const payload = yield* HttpClientRequest.post(baseUrl, { body, acceptJson: true }).pipe(
+    HttpClientRequest.bearerToken(githubToken),
+    httpClient.execute,
+    Effect.andThen(HttpClientResponse.filterStatusOk),
+    Effect.andThen(HttpClientResponse.schemaBodyJson(payloadSchema)),
+  )
+
+  yield* Effect.logInfo('Fetched github user: ', payload.data.user.login)
+
+  return payload.data
+}).pipe(Effect.provide(FetchHttpClient.layer))
+
+export const getGithubUserDataCached = unstable_cache(
+  async () => Effect.runPromise(fetchGithubUserDataEffect),
   ['github', 'user', 'data'],
   { revalidate: 60 * 60 * 24 },
 )

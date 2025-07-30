@@ -7,6 +7,8 @@ githubLink: https://github.com/wouter173/trellix-next
 externalLink: https://trellix-next.vercel.app/
 ---
 
+import { MDXProvidedComponents } from '../components/mdx/components'
+
 Trellix Next is a project heavily inspired by [Ryan Florence's tweet](https://twitter.com/ryanflorence/status/1765179463497892117) about building an optimistic kanban board.
 My goal was to recreate the core functionality displayed in the [original Trellix demo](https://trellix.fly.dev/) built in remix using Next's new server actions, server components and the useOptimistic API.
 
@@ -72,7 +74,13 @@ function Page() {
 
 The `Suspense` pattern really makes the app feel instant, even though the data is not there when the UI is shown.
 
-<Image src="/images/trellix-loading.gif" alt="" bg="#ececee" width={697} height={453} unoptimized />
+<Video
+  className="bg-[#ECECEE] dark:bg-[#040308]"
+  width={1164}
+  height={802}
+  darkSrc="https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nICgJjFrenn6YhAjOEVUw9SyRZJil3Dgcfs1Cz"
+  lightSrc="https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nIfGPJUUMkcunxISoPd4g0wqizbD5Ck1GO8eZj"
+/>
 
 ### Server actions
 
@@ -142,7 +150,13 @@ It cleans up a lot of cumbersome loading state which is easy to get wrong and ha
 
 It can be seen in on the signin button in the demo as well.
 
-<Image src="/images/trellix-transition.gif" alt="" bg="#ececee" width={697} height={453} unoptimized />
+<Video
+  className="bg-[#ECECEE] dark:bg-[#040308]"
+  width={1164}
+  height={802}
+  darkSrc="https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nICgJjFrenn6YhAjOEVUw9SyRZJil3Dgcfs1Cz"
+  lightSrc="https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nIfGPJUUMkcunxISoPd4g0wqizbD5Ck1GO8eZj"
+/>
 
 ## Optimistic updates
 
@@ -150,7 +164,13 @@ The entire board UI is built with optimistic updates in mind.
 This means that no matter how slow your connection is, the UI will always feel very snappy.
 An example can be seen below.
 
-<Image src="/images/trellix-optimistic.gif" alt="" bg="#ececee" width={697} height={453} unoptimized />
+<Video
+  className="bg-[#ECECEE] dark:bg-[#040308]"
+  width={1362}
+  height={844}
+  darkSrc="https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nIoXDcpjBUiy8fvJ2X7sw3TSVrRMIqdAlZYQkn"
+  lightSrc="https://uqvgufujds.ufs.sh/f/JOQEpvAAv0nIZw7LIw6fUChn5dkBrKLqVwcQAtbsuYJegNTm"
+/>
 
 Although this could be done on the client, it would break the single source of truth.
 If this interaction was built with a more traditional approach of using `useState`, there is no clear source of truth whenever the user is changing the board around.

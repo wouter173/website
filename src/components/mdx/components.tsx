@@ -1,9 +1,10 @@
 import { ExternalIcon } from '@/components/icons/external-icon'
 import { highlighter } from '@/lib/highlighter'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { Children, type ComponentProps } from 'react'
+import { Video } from './video'
+import { Image } from './image'
 
 const Code = ({ children }: ComponentProps<'code'>) => (
   <code className="text-label dark:bg-graphite rounded-lg border border-neutral-200 bg-neutral-100 px-1 py-0.5 before:content-none after:content-none dark:border-[#1f1f1f] dark:text-neutral-400">
@@ -28,21 +29,6 @@ const Anchor = ({ href, ...props }: ComponentProps<'a'>) => {
         <ExternalIcon className="-mt-2.5 -ml-0 inline size-3 transition-transform group-hover:translate-x-px group-hover:-translate-y-px" />
       </Link>
     )
-}
-
-const MdxImage = ({ src, alt, bg, width, height }: { src: string; alt: string; bg: `#${number}`; width: number; height: number }) => {
-  return (
-    <div className="relative">
-      <Image
-        src={src}
-        alt={alt}
-        className="dark:bg-graphite block w-full overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-transparent"
-        style={{ background: bg }}
-        width={width}
-        height={height}
-      />
-    </div>
-  )
 }
 
 export const CodeBlock = async ({ children }: ComponentProps<'pre'>) => {
@@ -78,6 +64,9 @@ export const CodeBlock = async ({ children }: ComponentProps<'pre'>) => {
 export const mdxComponents = {
   code: Code,
   a: Anchor,
-  Image: MdxImage,
   pre: CodeBlock,
+  Image,
+  Video,
 }
+
+export type MDXProvidedComponents = typeof mdxComponents
