@@ -2,6 +2,8 @@ import { Footer } from '@/components/footer'
 import { PostCard } from '@/components/posts'
 import { getPosts } from '@/server/posts'
 
+const posts = await getPosts()
+
 export const metadata = {
   title: 'Posts',
   alternates: {
@@ -10,8 +12,6 @@ export const metadata = {
 }
 
 export default async function Blog() {
-  const posts = await getPosts()
-
   return (
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">

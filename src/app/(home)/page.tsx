@@ -9,7 +9,6 @@ import { Contact } from './_contact/contact'
 import { MobileToolbelt, Toolbelt } from './tool-belt'
 
 export const revalidate = 86400
-export const dynamic = 'force-static'
 
 export const metadata = {
   alternates: {

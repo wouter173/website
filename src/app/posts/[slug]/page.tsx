@@ -7,9 +7,9 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import Link from 'next/link'
 
-export async function generateStaticParams() {
-  const posts = await getPosts()
+const posts = await getPosts()
 
+export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
