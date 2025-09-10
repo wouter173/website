@@ -1,10 +1,11 @@
 import { Footer } from '@/components/footer'
 import { PostCard } from '@/components/posts'
 import { getPosts } from '@/server/posts'
+import type { Metadata } from 'next'
 
 const posts = await getPosts()
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Posts',
   alternates: {
     canonical: '/posts',

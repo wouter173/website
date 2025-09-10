@@ -7,10 +7,11 @@ import Link from 'next/link'
 import { Footer } from '../../components/footer'
 import { Contact } from './_contact/contact'
 import { MobileToolbelt, Toolbelt } from './tool-belt'
+import type { Metadata } from 'next'
 
 export const revalidate = 86400
 
-export const metadata = {
+export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },

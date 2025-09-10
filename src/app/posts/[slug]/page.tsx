@@ -3,6 +3,7 @@ import { mdxComponents } from '@/components/mdx/components'
 import { Button } from '@/components/ui/button'
 import { getPost, getPosts } from '@/server/posts'
 import { ExternalLinkIcon, Undo2Icon } from 'lucide-react'
+import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import Link from 'next/link'
@@ -16,7 +17,7 @@ export async function generateStaticParams() {
 export const dynamic = 'force-static'
 export const dynamicParams = false
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const { metadata } = await getPost(slug)
   return {
