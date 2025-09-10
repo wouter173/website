@@ -18,14 +18,12 @@ const metadataSchema = z.object({
 })
 
 export async function getPost(slug: string) {
-  console.log('Reading 1 post from directory:', POST_DIR)
   const { data: metadata, content } = readMdx(`${POST_DIR}/${slug}.mdx`, metadataSchema)
 
   return { slug, metadata, content }
 }
 
 export async function getPosts() {
-  console.log('Reading all posts from directory:', POST_DIR)
   const files = await fs.readdir(POST_DIR)
 
   const posts = await Promise.all(files.map(async (file) => await getPost(file.replace('.mdx', ''))))
