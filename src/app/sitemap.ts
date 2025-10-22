@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next'
 import { CONSTANTS } from './constants'
 import { getPosts } from '@/server/posts'
 
-const posts = await getPosts()
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getPosts()
+
   return [
     {
       url: CONSTANTS.canonicalUrl,

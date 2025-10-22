@@ -1,4 +1,5 @@
 import fs from 'fs/promises'
+import { cacheLife, cacheTag } from 'next/cache'
 import path from 'path'
 import { z } from 'zod'
 import { read as readMdx } from 'zod-matter'
@@ -18,12 +19,19 @@ const metadataSchema = z.object({
 })
 
 export async function getPost(slug: string) {
+  'use cache'
+  cacheLife('max')
+  cacheTag('posts', slug)
   const { data: metadata, content } = readMdx(`${POST_DIR}/${slug}.mdx`, metadataSchema)
 
   return { slug, metadata, content }
 }
 
 export async function getPosts() {
+  'use cache'
+  cacheLife('max')
+  cacheTag('posts')
+
   const files = await fs.readdir(POST_DIR)
 
   const posts = await Promise.all(files.map(async (file) => await getPost(file.replace('.mdx', ''))))

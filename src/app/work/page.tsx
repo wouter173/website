@@ -1,5 +1,6 @@
 import { Footer } from '@/components/footer'
 import { cn } from '@/lib/utils'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const items = [
@@ -34,7 +35,7 @@ const items = [
   },
 ]
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Work',
   alternates: {
     canonical: '/work',

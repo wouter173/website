@@ -1,4 +1,4 @@
-import { unstable_cache } from 'next/cache'
+import { cacheLife, unstable_cache } from 'next/cache'
 
 import { FetchHttpClient, HttpBody, HttpClient, HttpClientRequest, HttpClientResponse } from '@effect/platform'
 import { Config, Effect, Schema } from 'effect'
@@ -56,8 +56,9 @@ const fetchGithubUserDataEffect = Effect.gen(function* () {
   return payload.data
 }).pipe(Effect.provide(FetchHttpClient.layer))
 
-export const getGithubUserDataCached = unstable_cache(
-  async () => Effect.runPromise(fetchGithubUserDataEffect),
-  ['github', 'user', 'data'],
-  { revalidate: 60 * 60 * 24 },
-)
+export async function getGithubUserDataCached() {
+  'use cache'
+  cacheLife('days')
+
+  return Effect.runPromise(fetchGithubUserDataEffect)
+}

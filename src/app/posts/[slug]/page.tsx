@@ -5,19 +5,23 @@ import { getPost, getPosts } from '@/server/posts'
 import { ExternalLinkIcon, Undo2Icon } from 'lucide-react'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import { cacheLife } from 'next/cache'
 
 import Link from 'next/link'
 
-const posts = await getPosts()
-
 export async function generateStaticParams() {
+  'use cache'
+  cacheLife('max')
+
+  const posts = await getPosts()
+
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export const dynamic = 'force-static'
-export const dynamicParams = false
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  'use cache'
+  cacheLife('max')
+
   const { slug } = await params
   const { metadata } = await getPost(slug)
   return {
@@ -30,6 +34,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  'use cache'
+  cacheLife('max')
+
   const { slug } = await params
   const { content, metadata } = await getPost(slug)
 

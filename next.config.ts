@@ -1,7 +1,8 @@
 import type { NextConfig } from 'next'
-import './src/env'
+import './src/env.ts'
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   images: {
     remotePatterns: [{ hostname: 'pbs.twimg.com' }, { hostname: 'uqvgufujds.ufs.sh' }],
   },

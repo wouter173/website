@@ -1,10 +1,14 @@
 import { getPosts } from '@/server/posts'
 import Link from 'next/link'
 import { Logo } from './logo'
+import { cacheLife } from 'next/cache'
 
-const posts = await getPosts()
+export const Footer = async () => {
+  'use cache'
+  cacheLife('max')
 
-export const Footer = () => {
+  const posts = await getPosts()
+
   return (
     <footer className="border-t-stroke relative z-20 border-t bg-white pt-12 pb-16 text-white dark:border-[#1F1F1F] dark:bg-black dark:text-neutral-200">
       <div className="mx-auto flex w-full max-w-4xl flex-col-reverse gap-4 px-6 lg:flex-row lg:gap-20">

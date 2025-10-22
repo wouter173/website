@@ -2,8 +2,7 @@ import { Footer } from '@/components/footer'
 import { PostCard } from '@/components/posts'
 import { getPosts } from '@/server/posts'
 import type { Metadata } from 'next'
-
-const posts = await getPosts()
+import { cacheLife } from 'next/cache'
 
 export const metadata: Metadata = {
   title: 'Posts',
@@ -13,6 +12,11 @@ export const metadata: Metadata = {
 }
 
 export default async function Blog() {
+  'use cache'
+  cacheLife('max')
+
+  const posts = await getPosts()
+
   return (
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">

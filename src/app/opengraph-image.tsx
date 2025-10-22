@@ -1,15 +1,19 @@
 import { ImageResponse } from 'next/og'
-import { CONSTANTS } from './constants'
+import path from 'node:path'
+import fs from 'node:fs'
 
 export const contentType = 'image/png'
-export const dynamic = 'force-static'
 
 export default function GET() {
+  const filePath = path.join(process.cwd(), 'public/grain.png')
+  const file = fs.readFileSync(filePath)
+  const base64 = Buffer.from(file).toString('base64')
+
   return new ImageResponse(
     (
       <div tw="flex items-center justify-center w-full h-full bg-white text-neutral-600">
         <div tw="absolute inset-0 flex w-full h-full">
-          <img style={{ opacity: 0.5 }} src={`${CONSTANTS.canonicalUrl}/grain.png`} width={1200} height={600} alt="" />
+          <img style={{ opacity: 0.5 }} src={`data:image/png;base64,${base64}`} width={1200} height={600} alt="" />
         </div>
         <div tw="flex flex-col items-center justify-center">
           <svg width="180" height="112" viewBox="0 0 45 28" xmlns="http://www.w3.org/2000/svg" fill="#28292a">
