@@ -74,9 +74,8 @@ function Analytics() {
     <>
       <Script
         defer
-        id="plausible"
         data-domain="wouterdb.nl"
-        src="https://plausible.wouter.cloud/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+        src="https://plausible.wouterdb.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
       />
       <Script
         id="inline-plausible"
