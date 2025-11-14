@@ -20,7 +20,7 @@ export default async function Blog() {
   return (
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
-        <h1 className="text-label text-3xl font-bold dark:text-neutral-200">Posts</h1>
+        <h1 className="text-label font-serif text-4xl font-bold dark:text-neutral-200">Posts</h1>
         <div className="-mx-2 grid max-w-4xl gap-4 pt-8 lg:grid-cols-2">
           {posts.map((post, i) => (
             <PostCard post={post} key={post.slug} style={getSeededOffset(i)} />

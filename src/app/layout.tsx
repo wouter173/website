@@ -2,12 +2,13 @@ import { Nav } from '@/components/nav'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import type { Metadata, Viewport } from 'next'
 
-import { Inter } from 'next/font/google'
+import { Inter, Frank_Ruhl_Libre } from 'next/font/google'
 import Script from 'next/script'
 import type { PropsWithChildren } from 'react'
 import { CONSTANTS } from './constants'
 import './globals.css'
 import { Providers } from './providers'
+import { cons } from 'effect/List'
 
 export const viewport: Viewport = {
   initialScale: 1,
@@ -40,6 +41,12 @@ const inter = Inter({
   weight: ['400', '500', '600', '700', '800'],
 })
 
+const frankRuhlLibre = Frank_Ruhl_Libre({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-serif',
+})
+
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" className="bg-offwhite dark dark:bg-black" suppressHydrationWarning>
@@ -58,7 +65,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         </script>
       </head>
       <body
-        className={`${inter.className} dark:bg-graphite relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/grain.png')] before:bg-repeat before:opacity-50 dark:text-neutral-400 dark:before:opacity-5`}
+        className={`${inter.className} ${frankRuhlLibre.variable} dark:bg-graphite relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/noise.png')] before:bg-repeat before:opacity-5 dark:text-neutral-400 dark:before:opacity-3`}
       >
         <Providers>
           <Nav />

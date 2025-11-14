@@ -1,4 +1,4 @@
-import { Header } from '@/components/header'
+import { Header } from '@/app/(home)/header'
 import { tools } from '@/components/tools'
 import type { Metadata } from 'next'
 import { Footer } from '../../components/footer'

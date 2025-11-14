@@ -23,6 +23,8 @@
   --animate-fade-in: fade-in 0.2s ease;
   --animate-fade-out: fade-out 0.2s ease;
 
+  --font-serif: 'var(--font-serif)';
+
   @keyframes slide-up-and-fade {
     from {
       opacity: 0;
