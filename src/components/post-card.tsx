@@ -2,9 +2,8 @@ import { cn } from '@/lib/utils'
 import type { Post } from '@/server/posts'
 import { format } from 'date-fns'
 import { ExternalLinkIcon, PlusIcon } from 'lucide-react'
-
 import Link from 'next/link'
-import type { ComponentProps } from 'react'
+import { type ComponentProps, ViewTransition } from 'react'
 import { Button } from './ui/button'
 
 export const PostCard = ({ post, className, ...props }: { post: Post } & ComponentProps<'div'>) => {
@@ -19,7 +18,11 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
       />
       <div className="-z-10 flex flex-col gap-3 pr-8">
         <div className="flex items-center gap-3">
-          <h2 className="text-label text-2xl leading-tight font-semibold dark:text-neutral-300">{post.metadata.title}</h2>
+          <h2 className="text-label text-2xl leading-tight font-semibold dark:text-neutral-300">
+            <ViewTransition name={`post-title-${post.slug}`}>
+              <span>{post.metadata.title}</span>
+            </ViewTransition>
+          </h2>
         </div>
         <div className="relative pb-3">
           <p className="text leading-8 text-neutral-600 select-none dark:text-neutral-500">{post.metadata.summary}</p>

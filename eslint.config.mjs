@@ -1,17 +1,12 @@
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import nextVitals from 'eslint-config-next/core-web-vitals'
+import nextTs from 'eslint-config-next/typescript'
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-  recommendedConfig: js.configs.recommended,
-})
-
-const eslintConfig = [
-  ...compat.config({
-    extends: ['eslint:recommended', 'next'],
-  }),
-  eslintPluginPrettierRecommended,
-]
+const eslintConfig = defineConfig([
+  //
+  ...nextVitals,
+  ...nextTs,
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+])
 
 export default eslintConfig
