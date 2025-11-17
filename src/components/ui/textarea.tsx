@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
-import type { ComponentProps } from 'react'
+import type { ComponentProps, Ref } from 'react'
 
-type TextareaProps = ComponentProps<'textarea'> & { label?: string; errorLine?: string; ref?: HTMLTextAreaElement }
+type TextareaProps = ComponentProps<'textarea'> & { label?: string; errorLine?: string; ref?: Ref<HTMLTextAreaElement> }
 
 const Textarea = ({ className, label, errorLine, ref, ...props }: TextareaProps) => {
   return (

@@ -16,11 +16,11 @@ const buttonVariants = cva(
           disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
           dark:bg-white dark:text-label dark:hover:border-black dark:focus-visible:border-black dark:outline-echo
           `,
-        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-echo outline-offset-2
-          active:scale-95 transition-all active:translate-y-[1px]
-          focus-visible:outline-2 hover:outline-2
-          disabled:opacity-70 disabled:hover:outline-0 disabled:focus-visible:outline-0 disabled:focus-visible:border-slate-100 disabled:hover:border-slate-100
-           dark:text-neutral-200  dark:outline-echo dark:border-[#2d2d2d] dark:bg-[#171717]
+        primary: `border-1 border-neutral-200 bg-neutral-100 pr-1.5 text-label outline-echo outline-offset-2 transition-all
+          active:scale-95 active:translate-y-[1px] disabled:active:scale-100 disabled:active:translate-y-0
+          focus-visible:outline-2 hover:outline-2 disabled:hover:outline-0 disabled:focus-visible:outline-0
+          disabled:opacity-70 disabled:cursor-not-allowed
+          dark:text-neutral-200 dark:outline-echo dark:border-[#2d2d2d] dark:bg-[#171717]
           `,
       },
       size: {
