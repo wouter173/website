@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils'
 import { useAnimate } from 'motion/react'
 import { useTheme } from 'next-themes'
 import { useEffect, useRef, useState, type ComponentProps } from 'react'
+import { useIsMounted } from '../use-is-mounted'
 
 export function Video({
   darkSrc,
@@ -26,17 +27,18 @@ export function Video({
   playsInline?: boolean
 }) {
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
+  const isMounted = useIsMounted()
 
   return (
     <div
-      className={cn('relative aspect-video w-full overflow-hidden rounded-lg', className)}
+      className={cn('relative aspect-video w-full overflow-hidden rounded-xl border border-neutral-200 dark:border-[#1f1f1f]', className)}
       style={{ aspectRatio: `${width} / ${height}` }}
     >
       <VideoChrome
-        className={cn('absolute inset-0 h-full w-full object-cover', mounted && resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0')}
+        className={cn(
+          'absolute inset-0 h-full w-full rounded-xl bg-white object-cover',
+          isMounted && resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0',
+        )}
         autoPlay={autoPlay}
         muted={muted}
         loop={loop}
@@ -45,7 +47,10 @@ export function Video({
         <source src={lightSrc} type="video/webm" />
       </VideoChrome>
       <VideoChrome
-        className={cn('absolute inset-0 h-full w-full object-cover', mounted && resolvedTheme === 'dark' ? 'opacity-100' : 'opacity-0')}
+        className={cn(
+          'absolute inset-0 h-full w-full bg-black object-cover',
+          isMounted && resolvedTheme === 'dark' ? 'opacity-100' : 'opacity-0',
+        )}
         autoPlay={autoPlay}
         muted={muted}
         loop={loop}

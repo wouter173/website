@@ -1,4 +1,5 @@
 import { Footer } from '@/components/footer'
+import { Kbd } from '@/components/kbd'
 import { mdxComponents } from '@/components/mdx/components'
 import { Button } from '@/components/ui/button'
 import { getPost, getPosts } from '@/server/posts'
@@ -45,7 +46,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <div className="min-h-screen py-24">
         <div className="mx-auto w-full max-w-[65ch] px-4 lg:max-w-[calc(65ch+128px)] lg:px-0">
           <div className="flex flex-col lg:-ml-16 lg:flex-row">
-            <div className="lg:ml0 mt-2 ml-6 w-32 shrink-0 text-neutral-500 hover:text-neutral-700">
+            <div className="mt-2 ml-6 w-32 shrink-0 text-neutral-500 hover:text-neutral-700 lg:ml-0">
               <Button asChild elevation={1}>
                 <Link href="/posts" className="sticky top-[75.5px] my-4 -ml-6 flex w-fit items-center gap-2 lg:my-0 lg:ml-2.5">
                   <Undo2Icon className="mb-0.5 size-4" />

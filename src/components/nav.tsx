@@ -8,21 +8,20 @@ import { Logo } from './logo'
 
 import { cn } from '@/lib/utils'
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
 import { InstantLink } from './instant-link'
 import { Kbd } from './kbd'
+import { useIsMounted } from './use-is-mounted'
 
 export function Nav() {
   const pathname = usePathname()
   const router = useRouter()
   const { resolvedTheme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const isMounted = useIsMounted()
 
   return (
     <motion.nav layoutRoot className="relative z-20 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16">
       <div className="flex w-full items-center gap-0.5 rounded-full contain-layout">
-        <InstantLink href="/" className="relative pr-2">
+        <InstantLink href="/" className="relative -ml-1 pr-2">
           <Logo className="relative" />
         </InstantLink>
         <InstantLink href="/" className="group relative px-3 sm:px-2">
@@ -88,7 +87,7 @@ export function Nav() {
           </div>
         </InstantLink>
 
-        {mounted ? (
+        {isMounted ? (
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
