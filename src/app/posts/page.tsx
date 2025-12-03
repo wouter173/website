@@ -1,5 +1,5 @@
 import { Footer } from '@/components/footer'
-import { PostCard } from '@/components/post-card'
+import { PostCard } from './post-card'
 import { getPosts } from '@/server/posts'
 import type { Metadata } from 'next'
 import { cacheLife } from 'next/cache'

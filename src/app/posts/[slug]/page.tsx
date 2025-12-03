@@ -6,7 +6,6 @@ import { ExternalLinkIcon, Undo2Icon } from 'lucide-react'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { cacheLife } from 'next/cache'
-import { ViewTransition } from 'react'
 import Link from 'next/link'
 
 export async function generateStaticParams() {
@@ -54,11 +53,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </Button>
             </div>
             <div className="flex flex-col gap-2">
-              <h1 className="text-label text-3xl font-bold dark:text-neutral-200">
-                <ViewTransition name={`post-title-${slug}`}>
-                  <span>{metadata.title}</span>
-                </ViewTransition>
-              </h1>
+              <h1 className="text-label text-3xl font-bold dark:text-neutral-200">{metadata.title}</h1>
               {metadata.externalLink || metadata.githubLink ? (
                 <ul className="flex gap-2 pt-2 pb-6">
                   {metadata.externalLink && (
