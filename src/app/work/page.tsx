@@ -64,7 +64,7 @@ export default function Page() {
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
         <h1 className="text-label font-serif text-4xl font-bold dark:text-neutral-200">Projects</h1>
 
-        <ol className="-mx-2 grid max-w-4xl gap-4 gap-y-8 pt-8 pb-24 lg:grid-cols-2">
+        {/* <ol className="-mx-2 grid max-w-4xl gap-4 gap-y-8 pt-8 pb-24 lg:grid-cols-2">
           <Suspense>
             <ProjectCard>
               <div
@@ -84,7 +84,7 @@ export default function Page() {
             <ProjectCard />
             <ProjectCard />
           </Suspense>
-        </ol>
+        </ol> */}
 
         <h1 className="text-label font-serif text-4xl font-bold dark:text-neutral-200">Experience</h1>
 
