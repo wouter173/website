@@ -128,3 +128,35 @@ code .line::before {
   text-align: right;
   color: rgba(115, 138, 148, 0.4);
 }
+
+@keyframes overscroll-color-dark {
+  0% {
+    background-color: #101010;
+  }
+
+  100% {
+    background-color: var(--color-black);
+  }
+}
+
+html.dark {
+  animation: overscroll-color-dark 1ms linear;
+  animation-timeline: --main-timeline;
+  scroll-timeline: --main-timeline y;
+}
+
+@keyframes overscroll-color-light {
+  0% {
+    background-color: #f8f8f8;
+  }
+
+  100% {
+    background-color: var(--color-white);
+  }
+}
+
+html {
+  animation: overscroll-color-light 1ms linear;
+  animation-timeline: --main-timeline;
+  scroll-timeline: --main-timeline y;
+}
