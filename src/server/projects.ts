@@ -4,7 +4,7 @@ import path from 'path'
 import { z } from 'zod'
 import { read as readMdx } from 'zod-matter'
 
-const POST_DIR = path.join(process.cwd(), 'public/content/posts')
+const PROJECTS_DIR = path.join(process.cwd(), 'public/content/projects')
 
 export type Metadata = z.infer<typeof metadataSchema>
 const metadataSchema = z.object({
@@ -17,26 +17,26 @@ const metadataSchema = z.object({
   hidden: z.boolean().optional().default(false),
 })
 
-export async function getPost(slug: string) {
+export async function getProject(slug: string) {
   'use cache'
   cacheLife('max')
   cacheTag('posts', slug)
-  const { data: metadata, content } = readMdx(`${POST_DIR}/${slug}.mdx`, metadataSchema)
+  const { data: metadata, content } = readMdx(`${PROJECTS_DIR}/${slug}.mdx`, metadataSchema)
 
   return { slug, metadata, content }
 }
 
-export async function getPosts() {
+export async function getProjects() {
   'use cache'
   cacheLife('max')
   cacheTag('posts')
 
-  const files = await fs.readdir(POST_DIR)
+  const files = await fs.readdir(PROJECTS_DIR)
 
-  const posts = await Promise.all(files.map(async (file) => await getPost(file.replace('.mdx', ''))))
+  const posts = await Promise.all(files.map(async (file) => await getProject(file.replace('.mdx', ''))))
   return posts
     .filter((post) => !post.metadata.hidden)
     .toSorted((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
 }
 
-export type Post = Awaited<ReturnType<typeof getPost>>
+export type Project = Awaited<ReturnType<typeof getProject>>

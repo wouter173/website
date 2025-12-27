@@ -8,7 +8,6 @@ import type { PropsWithChildren } from 'react'
 import { CONSTANTS } from './constants'
 import './globals.css'
 import { Providers } from './providers'
-import { cons } from 'effect/List'
 
 export const viewport: Viewport = {
   initialScale: 1,
@@ -49,7 +48,7 @@ const frankRuhlLibre = Frank_Ruhl_Libre({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className="bg-offwhite dark dark:bg-black" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <Analytics />
       <head>
         <meta name="theme-color" content="#f9f9f9" />

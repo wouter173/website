@@ -28,17 +28,13 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
       </div>
       <div className="mt-auto flex justify-between peer-hover/link:[&_*#primary-cta]:outline-2">
         <div className="flex items-end gap-2">
-          <span className="hidden text-sm text-neutral-600 lg:inline">
-            {format(post.metadata.publishedAt, 'MMMM yyy')} - {post.metadata.type === 'blog' ? 'Blog' : 'Project'}
-          </span>
-          <span className="text-sm text-neutral-600 lg:hidden">
-            {format(post.metadata.publishedAt, 'MMM yyy')} - {post.metadata.type === 'blog' ? 'Blog' : 'Project'}
-          </span>
+          <span className="hidden text-sm text-neutral-600 lg:inline">{format(post.metadata.publishedAt, 'MMMM yyy')}</span>
+          <span className="text-sm text-neutral-600 lg:hidden">{format(post.metadata.publishedAt, 'MMM yyy')}</span>
         </div>
         <div className="flex justify-end gap-2">
           <Button id="primary-cta" variant={'primary'} asChild className="relative z-10 flex w-min items-center gap-1 px-2 py-1 pl-3">
             <Link href={`/posts/${post.slug}`}>
-              {post.metadata.type === 'blog' ? 'Read post' : 'Writeup'} <PlusIcon className="size-4 shrink-0" />
+              {'Read post'} <PlusIcon className="size-4 shrink-0" />
             </Link>
           </Button>
           {post.metadata.externalLink && (

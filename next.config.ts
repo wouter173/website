@@ -2,6 +2,7 @@ import type { NextConfig } from 'next'
 import './src/env.ts'
 
 const nextConfig: NextConfig = {
+  reactCompiler: true,
   cacheComponents: true,
   experimental: {
     viewTransition: true,

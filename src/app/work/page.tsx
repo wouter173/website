@@ -3,7 +3,6 @@ import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ProjectCard } from './project-card'
-import { Suspense } from 'react'
 
 const items = [
   {
@@ -58,33 +57,39 @@ function WorkItem({ title, date, description, role }: { title: string; date: str
   )
 }
 
+const x = new Date()
+
 export default function Page() {
   return (
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
         <h1 className="text-label font-serif text-4xl font-bold dark:text-neutral-200">Projects</h1>
 
-        {/* <ol className="-mx-2 grid max-w-4xl gap-4 gap-y-8 pt-8 pb-24 lg:grid-cols-2">
-          <Suspense>
-            <ProjectCard>
-              <div
-                className={cn(
-                  'absolute -top-4 left-14 h-48 w-48 -rotate-z-6 rounded-2xl border border-[#1E1E1E] bg-neutral-900 transition-transform ease-in-out',
-                  'group-hover:-translate-x-4 group-hover:-translate-y-12 group-hover:-rotate-9',
-                  //
-                )}
-              />
-              <div
-                className={cn(
-                  `absolute -top-3 right-10 h-48 w-48 rotate-6 rounded-2xl border border-[#1E1E1E] bg-neutral-900 shadow-2xl transition-transform ease-in-out`,
-                  `group-hover:translate-x-4 group-hover:-translate-y-12 group-hover:rotate-9`,
-                )}
-              />
-            </ProjectCard>
-            <ProjectCard />
-            <ProjectCard />
-          </Suspense>
-        </ol> */}
+        <ol className="-mx-2 grid max-w-4xl gap-4 gap-y-8 pt-8 pb-24 lg:grid-cols-2">
+          <ProjectCard
+            title="W5 Chat"
+            description="A set of resources I've acquired over the years which I find myself going back to a lot."
+            cta={{ name: 'Read more', slug: 'w5-chat' }}
+            externalLink={'https://chat.wouterdb.com'}
+            date={x}
+          >
+            <div
+              className={cn(
+                'absolute -top-4 left-14 h-48 w-48 -rotate-z-6 rounded-2xl border border-[#1E1E1E] bg-neutral-900 transition-transform ease-in-out',
+                'group-hover:-translate-x-4 group-hover:-translate-y-12 group-hover:-rotate-9',
+                //
+              )}
+            />
+            <div
+              className={cn(
+                `absolute -top-3 right-10 h-48 w-48 rotate-6 rounded-2xl border border-[#1E1E1E] bg-neutral-900 shadow-2xl transition-transform ease-in-out`,
+                `group-hover:translate-x-4 group-hover:-translate-y-12 group-hover:rotate-9`,
+              )}
+            />
+          </ProjectCard>
+          {/* <ProjectCard />
+          <ProjectCard /> */}
+        </ol>
 
         <h1 className="text-label font-serif text-4xl font-bold dark:text-neutral-200">Experience</h1>
 
