@@ -6,6 +6,7 @@ import { Contact } from './_contact/contact'
 import { MobileToolbelt, Toolbelt } from './tool-belt'
 import { Suspense } from 'react'
 import { SocialLinks } from './social-links'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   alternates: {
@@ -16,6 +17,15 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <div className="min-h-screen w-full">
+      <div className="absolute inset-x-0 top-132">
+        <Image
+          width={1262}
+          height={594}
+          alt="clouds bg"
+          src="/clouds.png"
+          className="w-full [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)] object-contain object-bottom opacity-10 mix-blend-lighten"
+        />
+      </div>
       <div className="relative h-[60vh] max-h-[1000px] lg:h-[80vh] lg:min-h-[80vh]">
         <Header />
       </div>
