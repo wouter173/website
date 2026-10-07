@@ -1,5 +1,4 @@
 import { Nav } from '@/components/nav'
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import type { Metadata, Viewport } from 'next'
 
 import { Inter, Frank_Ruhl_Libre } from 'next/font/google'
@@ -78,19 +77,16 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 function Analytics() {
   return (
     <>
-      <Script
-        defer
-        data-domain="wouterdb.nl"
-        src="https://plausible.wouterdb.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
-      />
+      <script async src="https://plausible.wouterdb.com/js/pa-5BXxZKR9w5nLeGIxFaAXM.js"></script>
+      <script></script>
+
+      <Script async src="/x/js/script.js" />
       <Script
         id="inline-plausible"
         dangerouslySetInnerHTML={{
-          __html: `window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`,
+          __html: `window.plausible=window.plausible||function(){(plausible.q = plausible.q || []).push(arguments)},plausible.init=plausible.init||function(i){(plausible.o = i || {})}; plausible.init();plausible.init({endpoint: "/x/api/event"})`,
         }}
       />
-      <Script defer data-site-id="wouterdb.nl" src="https://assets.onedollarstats.com/tracker.js" />
-      <VercelAnalytics />
     </>
   )
 }

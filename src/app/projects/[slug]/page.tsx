@@ -8,6 +8,8 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { cacheLife } from 'next/cache'
 import Link from 'next/link'
 
+export const ensureStatic = 'navigation'
+
 export async function generateStaticParams() {
   'use cache'
   cacheLife('max')

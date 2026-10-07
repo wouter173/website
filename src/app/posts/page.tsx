@@ -4,6 +4,8 @@ import { getPosts } from '@/server/posts'
 import type { Metadata } from 'next'
 import { cacheLife } from 'next/cache'
 
+export const ensureStatic = 'navigation'
+
 export const metadata: Metadata = {
   title: 'Posts',
   alternates: {

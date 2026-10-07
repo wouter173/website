@@ -2,7 +2,8 @@ import { Footer } from '@/components/footer'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ProjectCard } from './project-card'
+
+export const ensureStatic = 'navigation'
 
 const items = [
   {
@@ -56,8 +57,6 @@ function WorkItem({ title, date, description, role }: { title: string; date: str
     </>
   )
 }
-
-const x = new Date()
 
 export default function Page() {
   return (
