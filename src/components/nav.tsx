@@ -88,8 +88,8 @@ export function Nav() {
           </div>
         </InstantLink>
 
-        <InstantLink href={'/journal'} className="group relative px-3 sm:px-2">
-          {pathname.startsWith('/journal') && (
+        <InstantLink href={'/devlog'} className="group relative px-3 sm:px-2">
+          {pathname.startsWith('/devlog') && (
             <motion.div
               transition={{ duration: 0.15, ease: 'circOut' }}
               layoutId="active-tab"
@@ -97,15 +97,15 @@ export function Nav() {
             />
           )}
           <div className="flex gap-1.5 sm:pr-1">
-            <Kbd keybind="4" onPress={() => router.push('/journal')} className="max-sm:hidden" />
+            <Kbd keybind="4" onPress={() => router.push('/devlog')} className="max-sm:hidden" />
 
             <span
               className={cn(
                 'relative z-20 text-sm font-medium transition-all group-hover:opacity-70 dark:text-neutral-300',
-                pathname.startsWith('/journal') && 'dark:text-white',
+                pathname.startsWith('/devlog') && 'dark:text-white',
               )}
             >
-              Journal
+              Devlog
             </span>
           </div>
         </InstantLink>

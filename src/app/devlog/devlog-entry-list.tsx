@@ -2,7 +2,7 @@
 import { DateTime } from 'effect'
 import type { postSchema } from './schema'
 
-export function JournalPost({ post }: { post: typeof postSchema.Type }) {
+export function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
   return (
     <article className="flex flex-col gap-2 p-2">
       <p className="text-white">Welcome to my echo chamber</p>
@@ -23,11 +23,11 @@ export function JournalPost({ post }: { post: typeof postSchema.Type }) {
   )
 }
 
-export function JournalPostList() {
+export function DevlogEntryList() {
   return (
     <ul className="w-full">
       <li className="rounded-2xl border border-neutral-800 bg-neutral-900 p-2">
-        <JournalPost
+        <DevlogEntry
           post={{
             topic: 'Topic',
             content: { text: 'hello' },
@@ -37,7 +37,7 @@ export function JournalPostList() {
         />
       </li>
       <li className="border-b border-b-neutral-800 py-4">
-        <JournalPost
+        <DevlogEntry
           post={{
             topic: 'Topic',
             content: { text: 'hello' },
@@ -47,7 +47,7 @@ export function JournalPostList() {
         />
       </li>
       <li className="border-b border-b-neutral-800 py-4">
-        <JournalPost
+        <DevlogEntry
           post={{
             topic: 'Topic',
             content: { text: 'hello' },
