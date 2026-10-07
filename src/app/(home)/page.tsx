@@ -19,6 +19,7 @@ export default async function Page() {
     <div className="min-h-screen w-full">
       <div className="absolute inset-x-0 top-132">
         <Image
+        loading='eager'
           width={1262}
           height={594}
           alt="clouds bg"

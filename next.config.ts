@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ hostname: 'pbs.twimg.com' }, { hostname: 'uqvgufujds.ufs.sh' }],
   },
-
   rewrites: () => [
     { source: '/x/js/script.js', destination: 'https://plausible.wouterdb.com/js/pa-5BXxZKR9w5nLeGIxFaAXM.js' },
     { source: '/x/api/event', destination: 'https://plausible.wouterdb.com/api/event' },

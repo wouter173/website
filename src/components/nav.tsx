@@ -87,7 +87,28 @@ export function Nav() {
             </span>
           </div>
         </InstantLink>
-        
+
+        <InstantLink href={'/journal'} className="group relative px-3 sm:px-2">
+          {pathname.startsWith('/journal') && (
+            <motion.div
+              transition={{ duration: 0.15, ease: 'circOut' }}
+              layoutId="active-tab"
+              className="dark:outline-echo absolute inset-x-0 top-1/2 -z-10 h-7 -translate-y-1/2 rounded-full border border-neutral-200 bg-neutral-100 dark:-inset-x-0.5 dark:h-8 dark:border-[#2d2d2d] dark:bg-[#171717] dark:text-neutral-200"
+            />
+          )}
+          <div className="flex gap-1.5 sm:pr-1">
+            <Kbd keybind="4" onPress={() => router.push('/journal')} className="max-sm:hidden" />
+
+            <span
+              className={cn(
+                'relative z-20 text-sm font-medium transition-all group-hover:opacity-70 dark:text-neutral-300',
+                pathname.startsWith('/journal') && 'dark:text-white',
+              )}
+            >
+              Journal
+            </span>
+          </div>
+        </InstantLink>
 
         {isMounted ? (
           <motion.button
