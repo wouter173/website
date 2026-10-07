@@ -77,9 +77,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 function Analytics() {
   return (
     <>
-      <script async src="https://plausible.wouterdb.com/js/pa-5BXxZKR9w5nLeGIxFaAXM.js"></script>
-      <script></script>
-
       <Script async src="/x/js/script.js" />
       <Script
         id="inline-plausible"
