@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </Button>
             </div>
             <div className="flex flex-col gap-2">
-              <h1 className="text-label text-3xl font-bold dark:text-neutral-200">{metadata.title}</h1>
+              <h1 className="text-label font-serif text-3xl font-bold dark:text-neutral-200">{metadata.title}</h1>
               {metadata.externalLink || metadata.githubLink ? (
                 <ul className="flex gap-2 pt-2 pb-6">
                   {metadata.externalLink && (

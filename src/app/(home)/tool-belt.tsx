@@ -32,7 +32,7 @@ export const Toolbelt = ({ tools }: { tools: Tool[] }) => {
     <ul
       tabIndex={-1}
       ref={ref}
-      className="scrollbar-none relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8 py-1 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
+      className="relative mx-auto flex w-full max-w-5xl scrollbar-none gap-3 overflow-scroll px-8 py-1 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onMouseOver={() => {
@@ -63,7 +63,7 @@ export const MobileToolbelt = ({ tools }: { tools: Tool[] }) => {
     <ul
       tabIndex={-1}
       ref={ref}
-      className="scrollbar-none pointer-events-none relative mx-auto flex w-full max-w-5xl gap-3 overflow-scroll px-8 py-8 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
+      className="pointer-events-none relative mx-auto flex w-full max-w-5xl scrollbar-none gap-3 overflow-scroll px-8 py-8 [mask:linear-gradient(to_right,rgba(255,255,255,0)_0%,rgba(255,255,255,1)_12.5%,rgba(255,255,255,1)_87.5%,rgba(255,255,255,0)_100%)]"
     >
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => (
         <ToolsList key={x} tools={tools} mobile />
@@ -137,55 +137,14 @@ const ToolPair = ({ tool1, tool2, index, mobile }: { tool1: Tool; tool2: Tool; i
 
 const Bauble = ({ tool }: { tool: Tool; mobile?: boolean }) => {
   return (
-    <InfoTooltip description={tool.description} title={tool.name} thumbnail={tool.thumbnail}>
-      <motion.div
-        transition={{ duration: 0.2 }}
-        initial={{ scale: 0, opacity: 0.9 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: false }}
-        className="border-stroke dark:bg-graphite grid size-14 snap-center place-items-center rounded-xl border bg-[#FFF] px-2.5 shadow-xs hover:bg-neutral-50 dark:border-[#1F1F1F]"
-      >
-        <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
-      </motion.div>
-    </InfoTooltip>
-  )
-}
-
-const InfoTooltip = ({
-  children,
-  thumbnail,
-  title,
-  description,
-}: PropsWithChildren & { thumbnail: string; title: string; description: string | JSX.Element }) => {
-  return (
-    <Tooltip.Provider delayDuration={100} skipDelayDuration={1000}>
-      <Tooltip.Root>
-        <Tooltip.Trigger asChild>
-          <div
-            onClick={(e) => {
-              e.stopPropagation()
-              e.preventDefault()
-            }}
-          >
-            {children}
-          </div>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content
-            className="data-[state=delayed-open]:data-[side=top]:animate-slide-up-and-fade border-stroke dark:bg-graphite z-50 max-w-96 rounded-xl border bg-white px-6 py-4 dark:border-[#1F1F1F]"
-            sideOffset={5}
-          >
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <Image src={thumbnail} alt={''} width={24} height={24} className="size-6"></Image>
-                <h2 className="text-label font-medium dark:text-white">{title}</h2>
-              </div>
-              <p className="text-shadow-label text-sm">{description}</p>
-            </div>
-            <Tooltip.Arrow className="fill-stroke dark:fill-[#1f1f1f]" />
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+    <motion.div
+      transition={{ duration: 0.2 }}
+      initial={{ scale: 0, opacity: 0.9 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: false }}
+      className="border-stroke dark:bg-graphite grid size-14 snap-center place-items-center rounded-xl border bg-[#FFF] px-2.5 shadow-xs hover:bg-neutral-50 dark:border-[#1F1F1F]"
+    >
+      <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
+    </motion.div>
   )
 }

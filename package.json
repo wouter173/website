@@ -11,6 +11,8 @@
     "prepare": "ts-patch install -s"
   },
   "dependencies": {
+    "@atproto/lex": "^0.3.14",
+    "@atproto/oauth-client-browser": "^0.5.9",
     "@hookform/resolvers": "^5.2.2",
     "@t3-oss/env-nextjs": "^0.13.4",
     "@tailwindcss/typography": "^0.5.16",
