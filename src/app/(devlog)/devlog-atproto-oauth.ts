@@ -6,8 +6,14 @@ import { CONSTANTS } from '../constants'
 let initialization: ReturnType<typeof initialize> | undefined
 
 async function initialize() {
+  const local = ['localhost', '127.0.0.1'].includes(location.hostname)
+
+  const clientId = local
+    ? `http://localhost?${new URLSearchParams({ redirect_uri: 'http://127.0.0.1:3000/devlog', scope: 'atproto transition:generic' })}`
+    : `${CONSTANTS.canonicalUrl}/client-metadata.json`
+
   const oauth = await BrowserOAuthClient.load({
-    clientId: `${CONSTANTS.canonicalUrl}/client-metadata.json`,
+    clientId,
     handleResolver: CONSTANTS.devlogUrl,
   })
 
@@ -22,7 +28,5 @@ export function getAuth() {
 
 export async function login() {
   const { oauth } = await getAuth()
-  await oauth.signIn(CONSTANTS.did, {
-    scope: 'atproto transition:generic',
-  })
+  await oauth.signIn(CONSTANTS.did, { scope: 'atproto transition:generic' })
 }

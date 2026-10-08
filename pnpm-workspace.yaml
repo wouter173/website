@@ -5,3 +5,4 @@ allowBuilds:
   unrs-resolver: false
 minimumReleaseAgeExclude:
   - '@atproto/api@0.24.0'
+  - effect@4.0.2

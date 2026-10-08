@@ -16,7 +16,7 @@ export function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
           <span>#{post.topic}</span>
         </div>
       </div>
-      <p className="text-sm text-neutral-100">Welcome to my echo chamber</p>
+      <p className="text-sm text-neutral-100">{post.content.text}</p>
     </article>
   )
 }

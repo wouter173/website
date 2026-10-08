@@ -1,14 +1,19 @@
 'use client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider, useTheme } from 'next-themes'
 import { useEffect, type PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
 
+const qc = new QueryClient()
+
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-      <ThemeColor />
-      {children}
-    </ThemeProvider>
+    <QueryClientProvider client={qc}>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeColor />
+        {children}
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
 

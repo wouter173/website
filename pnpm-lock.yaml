@@ -173,14 +173,17 @@ importers:
         specifier: ^0.5.9
         version: 0.5.9
       '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.9.1(@standard-schema/spec@1.1.0)(ajv@6.15.0)(effect@4.0.1)(react-hook-form@7.89.0(@types/react@19.2.2)(react@19.2.0))(zod@4.6.5)
+        specifier: ^5.9.1
+        version: 5.9.1(@standard-schema/spec@1.1.0)(ajv@6.15.0)(effect@4.0.2)(react-hook-form@7.89.0(@types/react@19.2.2)(react@19.2.0))(zod@4.6.5)
       '@t3-oss/env-nextjs':
         specifier: ^0.13.4
         version: 0.13.11(typescript@5.9.3)(zod@4.6.5)
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.20(tailwindcss@4.3.3)
+      '@tanstack/react-query':
+        specifier: ^5.104.1
+        version: 5.104.1(react@19.2.0)
       '@vercel/analytics':
         specifier: ^1.4.1
         version: 1.6.1(next@16.4.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@22.20.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
@@ -197,8 +200,8 @@ importers:
         specifier: ^4.1.0
         version: 4.4.0
       effect:
-        specifier: ^4.0.0
-        version: 4.0.1
+        specifier: ^4.0.2
+        version: 4.0.2
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -1815,6 +1818,14 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || >=4.0.0 || insiders'
 
+  '@tanstack/query-core@5.104.1':
+    resolution: {integrity: sha512-TiRghcrGkUTE+M4JBxvpPSpBhxvIzQairw+cksrHYGr+2uwC77yW1SY9nYxnYRYOppvucf8rEg6b5byoz4rTpw==}
+
+  '@tanstack/react-query@5.104.1':
+    resolution: {integrity: sha512-Zz70EgjahNI7aCz8BZxM3vUGU44ycxEAzMuCUjLeA7SVhhOkg3ZgPjPJPvHjs6Rmky/dtmnu1WzjGHNHmhCoZQ==}
+    peerDependencies:
+      react: ^18 || ^19
+
   '@total-typescript/ts-reset@0.6.1':
     resolution: {integrity: sha512-cka47fVSo6lfQDIATYqb/vO1nvFfbPw7uWLayIXIhGETj0wcOOlrlkobOMDNQOFr9QOafegUPq13V2+6vtD7yg==}
 
@@ -2461,8 +2472,8 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
-  effect@4.0.1:
-    resolution: {integrity: sha512-b1VlQG9g8fwxE5QnIZuPoOP/0MsqHJSRKxUijjoM80E5q95FXrX5yWtY5XI8G+GJsBQAVSDbLS458z9a++uVvw==}
+  effect@4.0.2:
+    resolution: {integrity: sha512-YeYnLqSFrL4+tCOXRrfNP03w8FILoF/wDl+ukraJAGzXrjcS383W7LAAvGBbLatEyktmLxRq+9xJinx7QzXW5A==}
 
   electron-to-chromium@1.5.446:
     resolution: {integrity: sha512-kWlGMPHzuitCKx0O+MbY1ZGvQmP14JtckrnGjD4JsusTxh2cX9wu4bb4rOYZqLSvENjFFrHzlqY8kXhseucR/w==}
@@ -4804,14 +4815,14 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@hookform/resolvers@5.9.1(@standard-schema/spec@1.1.0)(ajv@6.15.0)(effect@4.0.1)(react-hook-form@7.89.0(@types/react@19.2.2)(react@19.2.0))(zod@4.6.5)':
+  '@hookform/resolvers@5.9.1(@standard-schema/spec@1.1.0)(ajv@6.15.0)(effect@4.0.2)(react-hook-form@7.89.0(@types/react@19.2.2)(react@19.2.0))(zod@4.6.5)':
     dependencies:
       '@standard-schema/utils': 0.3.0
       react-hook-form: 7.89.0(@types/react@19.2.2)(react@19.2.0)
     optionalDependencies:
       '@standard-schema/spec': 1.1.0
       ajv: 6.15.0
-      effect: 4.0.1
+      effect: 4.0.2
       zod: 4.6.5
 
   '@humanfs/core@0.19.2':
@@ -5938,6 +5949,13 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.3.3
 
+  '@tanstack/query-core@5.104.1': {}
+
+  '@tanstack/react-query@5.104.1(react@19.2.0)':
+    dependencies:
+      '@tanstack/query-core': 5.104.1
+      react: 19.2.0
+
   '@total-typescript/ts-reset@0.6.1': {}
 
   '@ts-morph/common@0.28.1':
@@ -6572,7 +6590,7 @@ snapshots:
       es-errors: 1.3.0
       gopd: 1.2.0
 
-  effect@4.0.1: {}
+  effect@4.0.2: {}
 
   electron-to-chromium@1.5.446: {}
 

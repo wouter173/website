@@ -1,5 +1,5 @@
 export const CONSTANTS = {
-  canonicalUrl: 'http://localhost:3000',
+  canonicalUrl: 'https://wouterdb.com',
   devlogUrl: 'https://devlog.wouterdb.com',
   did: 'did:plc:jql2nwuaopzkdn7jycwgeoov',
 } as const
