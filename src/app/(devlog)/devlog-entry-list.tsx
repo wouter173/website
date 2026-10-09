@@ -105,7 +105,6 @@ export async function DevlogEntryList(props: { highlighted?: string }) {
     <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center">
       <ul className="h-full w-full">
         {result.body.records.map((post) => {
-          console.log(post)
           return (
             <li
               key={post.cid}
@@ -114,7 +113,7 @@ export async function DevlogEntryList(props: { highlighted?: string }) {
                 highlighted === post.cid ? '-mx-px rounded-2xl border bg-white dark:bg-black' : 'border-y',
               )}
             >
-              <DevlogEntry post={toDevlogPost(post.value)} />
+              <DevlogEntry post={{ ...toDevlogPost(post.value) }} />
             </li>
           )
         })}

@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark, .dark *));
-@plugin "@tailwindcss/typography";
-@plugin "tailwind-scrollbar";
-@plugin "tailwindcss-animate";
+@plugin '@tailwindcss/typography';
+@plugin 'tailwind-scrollbar';
+@plugin 'tailwindcss-animate';
 
 @theme {
   --color-label: #28292a;

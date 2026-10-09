@@ -1,0 +1,44 @@
+::view-transition-group(.zoom) {
+  animation-duration: 250ms;
+  overflow: clip;
+  z-index: 20;
+}
+
+::view-transition-old(.zoom),
+::view-transition-new(.zoom) {
+  animation: none;
+  mix-blend-mode: normal;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+::view-transition-old(.zoom) {
+  display: none;
+}
+
+:root:active-view-transition-type(zoom-close)::view-transition-old(.zoom) {
+  display: block;
+}
+
+:root:active-view-transition-type(zoom-close)::view-transition-new(.zoom) {
+  display: none;
+}
+
+:root:active-view-transition-type(zoom-open),
+:root:active-view-transition-type(zoom-close) {
+  &::view-transition-old(root) {
+    display: none;
+  }
+
+  &::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(.zoom) {
+    animation-duration: 0s;
+  }
+}

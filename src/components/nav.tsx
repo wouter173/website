@@ -19,7 +19,7 @@ export function Nav() {
   const isMounted = useIsMounted()
 
   return (
-    <motion.nav layoutRoot className="relative z-20 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16">
+    <motion.nav layoutRoot className="relative z-10 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16">
       <div className="flex w-full items-center gap-0.5 rounded-full contain-layout">
         <InstantLink href="/" className="relative -ml-1 pr-2">
           <Logo className="relative" />

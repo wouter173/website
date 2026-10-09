@@ -3,6 +3,6 @@ import { CONSTANTS } from '../constants'
 
 const reader = new Client(CONSTANTS.devlogUrl)
 
-export function getDevlogPosts() {
-  return reader.listRecords('app.bsky.feed.post', { repo: CONSTANTS.did, limit: 50 })
+export async function getDevlogPosts() {
+  return reader.listRecords('app.bsky.feed.post', { repo: CONSTANTS.did, limit: 100 })
 }
