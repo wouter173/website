@@ -2,6 +2,7 @@ import 'client-only'
 import { Client } from '@atproto/lex'
 import { BrowserOAuthClient } from '@atproto/oauth-client-browser'
 import { CONSTANTS } from '../constants'
+import { queryOptions } from '@tanstack/react-query'
 
 let initialization: ReturnType<typeof initialize> | undefined
 
@@ -30,3 +31,5 @@ export async function login() {
   const { oauth } = await getAuth()
   await oauth.signIn(CONSTANTS.did, { scope: 'atproto transition:generic' })
 }
+
+export const atprotoAuthQueryOptions = queryOptions({ queryKey: ['user'], queryFn: async () => getAuth() })

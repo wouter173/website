@@ -18,11 +18,9 @@ export default async function Page({ params }: PageProps<'/devlog/[id]'>) {
   return (
     <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-0">
       <Header />
-      <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center">
-        <Suspense>
-          <DevlogEntryList highlighted={id} />
-        </Suspense>
-      </div>
+      <Suspense>
+        <DevlogEntryList highlighted={id} />
+      </Suspense>
     </main>
   )
 }

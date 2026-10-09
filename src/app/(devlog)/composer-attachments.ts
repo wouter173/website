@@ -29,6 +29,47 @@ export function getMediaError(files: File[], type: 'images' | 'video', existingI
   }
 }
 
+async function getImageDimensions(file: File) {
+  const url = URL.createObjectURL(file)
+  const image = new Image()
+
+  try {
+    image.src = url
+    await image.decode()
+
+    return { width: image.naturalWidth, height: image.naturalHeight }
+  } finally {
+    URL.revokeObjectURL(url)
+  }
+}
+
+async function getVideoDimensions(file: File) {
+  const url = URL.createObjectURL(file)
+  const video = document.createElement('video')
+
+  try {
+    video.preload = 'metadata'
+
+    await new Promise<void>((resolve, reject) => {
+      video.onloadedmetadata = () => resolve()
+      video.onerror = () => reject(new Error('Could not read video dimensions.'))
+      video.src = url
+    })
+
+    if (!video.videoWidth || !video.videoHeight) {
+      throw new Error('The file has no video dimensions.')
+    }
+
+    return { width: video.videoWidth, height: video.videoHeight }
+  } finally {
+    video.onloadedmetadata = null
+    video.onerror = null
+    video.removeAttribute('src')
+    video.load()
+    URL.revokeObjectURL(url)
+  }
+}
+
 export async function createPostEmbed(writer: Client, attachment: typeof attachmentSchema.Type, videoPdsUrl?: string): Promise<LexMap> {
   const files = attachment.type === 'image' ? attachment.images.map(({ file }) => file) : [attachment.video.file]
 
@@ -39,14 +80,20 @@ export async function createPostEmbed(writer: Client, attachment: typeof attachm
     if (!videoPdsUrl) {
       throw new Error('Could not determine your PDS for video upload.')
     }
-    const video = await uploadVideo(writer, attachment.video.file, videoPdsUrl)
-    return { $type: 'app.bsky.embed.video', video }
+
+    const file = attachment.video.file
+    const aspectRatio = await getVideoDimensions(file)
+    const video = await uploadVideo(writer, file, videoPdsUrl)
+
+    return { $type: 'app.bsky.embed.video', video, aspectRatio }
   }
 
   const images = await Promise.all(
     attachment.images.map(async ({ file }) => {
+      const aspectRatio = await getImageDimensions(file)
       const { body } = await writer.uploadBlob(file)
-      return { image: body.blob, alt: '' }
+
+      return { image: body.blob, alt: '', aspectRatio }
     }),
   )
 

@@ -1,4 +1,5 @@
 import { queryOptions, useQuery } from '@tanstack/react-query'
+import type { BlobRef, Client } from '@atproto/lex'
 import { Schema } from 'effect'
 
 const cardybSchema = Schema.Struct({
@@ -16,13 +17,29 @@ export type LinkEmbed = {
   image?: { url: string; alt: string }
 }
 
-export function createLinkEmbed(embed: LinkEmbed) {
+export async function createLinkEmbed(writer: Client, embed: LinkEmbed) {
+  let thumb: BlobRef | undefined
+
+  if (embed.image) {
+    const response = await fetch(embed.image.url)
+    if (!response.ok) throw new Error('Could not fetch the link image.')
+
+    const image = await response.blob()
+    if (image.size > 1_000_000) {
+      throw new Error('The link image exceeds the 1 MB thumbnail limit.')
+    }
+
+    const { body } = await writer.uploadBlob(image)
+    thumb = body.blob
+  }
+
   return {
     $type: 'app.bsky.embed.external',
     external: {
       uri: embed.url,
       title: embed.title,
       description: embed.description,
+      ...(thumb ? { thumb } : {}),
     },
   }
 }
@@ -90,7 +107,7 @@ export function LinkEmbed({ embed }: { embed: LinkEmbed }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Link preview: ${embed.title}`}
-      className="overflow-hidden rounded-lg border border-neutral-800 text-sm hover:border-neutral-600"
+      className="block overflow-hidden rounded-lg border border-neutral-200 text-sm hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600"
     >
       {embed?.image && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -98,8 +115,7 @@ export function LinkEmbed({ embed }: { embed: LinkEmbed }) {
       )}
 
       <div className="min-w-0 p-3">
-        <p className="text-xs text-neutral-500">{embed.siteName}</p>
-        <p className="font-medium text-neutral-200">{embed.title}</p>
+        <p className="text-label font-medium dark:text-neutral-200">{embed.title}</p>
         {embed.description && <p className="mt-1 text-sm text-neutral-400">{embed.description}</p>}
         <p className="mt-1 text-xs break-all text-neutral-500">{embed.url}</p>
       </div>
