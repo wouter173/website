@@ -6,11 +6,14 @@ import {
   startTransition,
   useContext,
   useId,
+  useEffect,
+  useRef,
   useState,
   type PropsWithChildren,
   ViewTransition,
   type ComponentProps,
   addTransitionType,
+  useLayoutEffect,
 } from 'react'
 
 const ZoomContext = createContext<{ open: boolean; name: string } | null>(null)
@@ -26,16 +29,44 @@ function Root({ children }: PropsWithChildren) {
 
   const name = useId()
 
+  const rootSnapshotCleanup = useRef<(() => void) | null>(null)
+  const previousOpen = useRef(open)
+
+  useLayoutEffect(() => {
+    if (previousOpen.current === open) return
+    previousOpen.current = open
+
+    // Keep the root snapshot before React measures the committed transition.
+    // Without it, Chromium fails to paint the live fixed overlay at deep scroll.
+    const root = document.documentElement
+    const previousName = root.style.viewTransitionName
+    root.style.viewTransitionName = 'root'
+    rootSnapshotCleanup.current = () => {
+      root.style.viewTransitionName = previousName
+    }
+  }, [open])
+
+  useEffect(() => {
+    // Release after snapshot capture, or if the component unmounts.
+    rootSnapshotCleanup.current?.()
+    rootSnapshotCleanup.current = null
+
+    return () => {
+      rootSnapshotCleanup.current?.()
+      rootSnapshotCleanup.current = null
+    }
+  }, [open])
+
   return (
     <ZoomContext value={{ open, name }}>
       <Dialog.Root
         open={open}
-        onOpenChange={(next) => {
+        onOpenChange={(next) =>
           startTransition(() => {
             addTransitionType(next ? 'zoom-open' : 'zoom-close')
             setOpen(next)
           })
-        }}
+        }
       >
         {children}
       </Dialog.Root>
@@ -43,11 +74,11 @@ function Root({ children }: PropsWithChildren) {
   )
 }
 
-function Trigger({ children, className, ...props }: PropsWithChildren & ComponentProps<typeof Dialog.Trigger>) {
+function Trigger({ children, ...props }: PropsWithChildren & ComponentProps<typeof Dialog.Trigger>) {
   const { open, name } = useZoom()
 
   return (
-    <Dialog.Trigger {...props} className={cn(`h-full w-full`, open ? 'invisible' : '', className)}>
+    <Dialog.Trigger {...props} className={cn(`h-full w-full`, open ? 'invisible' : '', props.className)}>
       {open ? (
         children
       ) : (

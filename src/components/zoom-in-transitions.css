@@ -27,6 +27,10 @@
 
 :root:active-view-transition-type(zoom-open),
 :root:active-view-transition-type(zoom-close) {
+  &::view-transition-group(root) {
+    animation: none;
+  }
+
   &::view-transition-old(root) {
     display: none;
   }
