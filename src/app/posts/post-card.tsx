@@ -39,9 +39,9 @@ export const PostCard = ({ post, className, ...props }: { post: Post } & Compone
           </Button>
           {post.metadata.externalLink && (
             <Button variant={'primary'} asChild className="relative z-10 flex w-min items-center gap-1 px-2 py-1 pl-2.5">
-              <Link href={post.metadata.externalLink} target="_blank" rel="noopener noreferrer">
+              <a href={post.metadata.externalLink} target="_blank" rel="noopener noreferrer">
                 <ExternalLinkIcon className="size-4 shrink-0" />
-              </Link>
+              </a>
             </Button>
           )}
         </div>

@@ -1,7 +1,6 @@
 import { Footer } from '@/components/footer'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 export const ensureStatic = 'navigation'
 
@@ -104,9 +103,9 @@ export default function Page() {
               )}
             >
               {item.url ? (
-                <Link href={item.url} target="_blank" rel="noopener noreferrer" className="outline-none">
+                <a href={item.url} target="_blank" rel="noopener noreferrer" className="outline-none">
                   <WorkItem key={i} date={item.date} description={item.description} title={item.title} role={item.role} />
-                </Link>
+                </a>
               ) : (
                 <WorkItem key={i} date={item.date} description={item.description} title={item.title} role={item.role} />
               )}

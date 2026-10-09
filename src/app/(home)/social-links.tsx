@@ -1,18 +1,17 @@
 import { ExternalIcon } from '@/components/icons/external-icon'
 import { getGithubUserDataCached } from '@/server/github'
 import { getXUserData } from '@/server/x'
-import Link from 'next/link'
 
 export const SocialLinks = async () => {
   const xUser = await getXUserData()
   const githubUser = await getGithubUserDataCached()
   return (
     <>
-      <Link
+      <a
         rel="noopener noreferer"
         target="_blank"
         href={xUser.data.url}
-        className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%] dark:border-[#1F1F1F] dark:bg-black dark:text-neutral-200 dark:hover:ring-offset-black dark:focus-visible:ring-offset-black"
+        className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-white px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%] dark:border-[#1F1F1F] dark:bg-black dark:text-neutral-200 dark:hover:ring-offset-black dark:focus-visible:ring-offset-black"
       >
         <div className="flex items-center gap-4">
           <svg width="33" height="33" viewBox="0 0 33 33" className="fill-label dark:fill-neutral-200" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +19,7 @@ export const SocialLinks = async () => {
           </svg>
           <div className="flex flex-col justify-center gap-1 leading-none">
             <span className="font-semibold">@{xUser.data.username}</span>
-            <div className="flex gap-2 leading-[0px]">
+            <div className="flex gap-2 leading-0">
               <span className="text-sm text-neutral-600 dark:text-neutral-400">
                 <span className="text-label dark:text-neutral-200">{xUser.data.public_metrics.followers_count} </span>
                 Followers
@@ -34,13 +33,13 @@ export const SocialLinks = async () => {
         </div>
 
         <ExternalIcon className="-mt-1 size-6 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </Link>
+      </a>
 
-      <Link
+      <a
         rel="noopener noreferer"
         target="_blank"
         href={githubUser.user.url}
-        className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-[#FFF] px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%] dark:border-[#1F1F1F] dark:bg-black dark:text-neutral-200 dark:hover:ring-offset-black dark:focus-visible:ring-offset-black"
+        className="group text-label border-stroke focus-visible:ring-echo hover:ring-echo relative z-20 mx-auto flex w-full items-center justify-between rounded-3xl border bg-white px-6 py-4 transition-all hover:ring-2 hover:ring-offset-2 hover:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[98%] dark:border-[#1F1F1F] dark:bg-black dark:text-neutral-200 dark:hover:ring-offset-black dark:focus-visible:ring-offset-black"
       >
         <div className="flex items-center gap-4">
           <svg width="33" height="33" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" className="fill-label dark:fill-neutral-200">
@@ -52,7 +51,7 @@ export const SocialLinks = async () => {
           </svg>
           <div className="flex flex-col justify-center gap-1 leading-none">
             <span className="font-semibold">{githubUser.user.login}</span>
-            <div className="flex gap-2 leading-[0px]">
+            <div className="flex gap-2 leading-0">
               <span className="text-sm text-neutral-600 dark:text-neutral-400">
                 <span className="text-label dark:text-neutral-200">{githubUser.user.repositories.totalCount} </span>
                 Repositories
@@ -68,7 +67,7 @@ export const SocialLinks = async () => {
         </div>
 
         <ExternalIcon className="-mt-1 size-6 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </Link>
+      </a>
     </>
   )
 }
