@@ -19,7 +19,7 @@ async function initialize() {
 
   const result = await oauth.init()
 
-  return { oauth, writer: result ? new Client(result.session) : undefined }
+  return { oauth, session: result?.session, writer: result ? new Client(result.session) : undefined }
 }
 
 export function getAuth() {

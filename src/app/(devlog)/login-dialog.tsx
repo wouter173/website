@@ -1,13 +1,12 @@
 import { Button } from '@/components/ui/button'
 import { Dialog } from 'radix-ui'
 import { useEffect, useState } from 'react'
-import { login } from './devlog-atproto-oauth'
+import { login } from './devlog-atproto-auth'
 
 export function LoginDialog() {
   const [open, setOpen] = useState<boolean>(false)
 
   const onKeyDown = (ev: KeyboardEvent) => {
-    console.log(ev)
     if (ev.key === 'l') setOpen((open) => !open)
   }
 
