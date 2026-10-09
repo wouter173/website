@@ -1,10 +1,10 @@
 import { ExternalIcon } from '@/components/icons/external-icon'
 import { highlighter } from '@/lib/highlighter'
 
-import Link from 'next/link'
+import NextImage from 'next/image'
+
 import { Children, type ComponentProps } from 'react'
-import { Video } from './video'
-import { Image } from './image'
+import { Video } from '../video'
 
 const Code = ({ children }: ComponentProps<'code'>) => (
   <code className="text-label dark:bg-graphite rounded-lg border border-neutral-200 bg-neutral-100 px-1 py-0.5 before:content-none after:content-none dark:border-[#1f1f1f] dark:text-neutral-400">
@@ -18,16 +18,16 @@ const Anchor = ({ href, ...props }: ComponentProps<'a'>) => {
 
   if (href?.startsWith('/'))
     return (
-      <Link href={href} className={className} {...props}>
+      <a href={href} className={className} {...props}>
         {props.children}
-      </Link>
+      </a>
     )
   else
     return (
-      <Link rel="noreferrer noopener" target="_blank" href={href ?? ''} className={className} {...props}>
+      <a rel="noreferrer noopener" target="_blank" href={href ?? ''} className={className} {...props}>
         {props.children}
-        <ExternalIcon className="-mt-2.5 -ml-0 inline size-3 transition-transform group-hover:translate-x-px group-hover:-translate-y-px" />
-      </Link>
+        <ExternalIcon className="-mt-2.5 ml-0 inline size-3 transition-transform group-hover:translate-x-px group-hover:-translate-y-px" />
+      </a>
     )
 }
 
@@ -61,12 +61,31 @@ export const CodeBlock = async ({ children }: ComponentProps<'pre'>) => {
   )
 }
 
+const VideoBlock = (props: ComponentProps<typeof Video>) => {
+  return <Video {...props} className="rounded-xl" />
+}
+
+export const Image = ({ src, alt, bg, width, height }: { src: string; alt: string; bg: `#${number}`; width: number; height: number }) => {
+  return (
+    <div className="relative">
+      <NextImage
+        src={src}
+        width={width}
+        height={height}
+        alt={alt}
+        className="dark:bg-graphite block w-full overflow-hidden rounded-lg border border-neutral-200 bg-white dark:border-transparent"
+        style={{ background: bg }}
+      />
+    </div>
+  )
+}
+
 export const mdxComponents = {
   code: Code,
   a: Anchor,
   pre: CodeBlock,
   Image,
-  Video,
+  Video: VideoBlock,
 }
 
 export type MDXProvidedComponents = typeof mdxComponents

@@ -2,8 +2,8 @@
 import { cn } from '@/lib/utils'
 import { useAnimate } from 'motion/react'
 import { useTheme } from 'next-themes'
-import { useEffect, useRef, useState, type ComponentProps } from 'react'
-import { useIsMounted } from '../use-is-mounted'
+import { useEffect, useRef, type ComponentProps } from 'react'
+import { useIsMounted } from './use-is-mounted'
 
 export function Video({
   darkSrc,
@@ -11,6 +11,7 @@ export function Video({
   width,
   height,
   className = '',
+  mimeType = 'video/webm',
   autoPlay = true,
   muted = true,
   loop = true,
@@ -18,9 +19,10 @@ export function Video({
 }: {
   darkSrc: string
   lightSrc: string
-  width: string
-  height: string
+  width?: string
+  height?: string
   className?: string
+  mimeType?: string
   autoPlay?: boolean
   muted?: boolean
   loop?: boolean
@@ -31,12 +33,12 @@ export function Video({
 
   return (
     <div
-      className={cn('relative aspect-video w-full overflow-hidden rounded-xl border border-neutral-200 dark:border-[#1f1f1f]', className)}
+      className={cn('relative aspect-video w-full overflow-hidden border border-neutral-200 dark:border-[#1f1f1f]', className)}
       style={{ aspectRatio: `${width} / ${height}` }}
     >
       <VideoChrome
         className={cn(
-          'absolute inset-0 h-full w-full rounded-xl bg-white object-cover',
+          'absolute inset-0 h-full w-full bg-white object-cover',
           isMounted && resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0',
         )}
         autoPlay={autoPlay}
@@ -44,7 +46,7 @@ export function Video({
         loop={loop}
         playsInline={playsInline}
       >
-        <source src={lightSrc} type="video/webm" />
+        <source src={lightSrc} type={mimeType} />
       </VideoChrome>
       <VideoChrome
         className={cn(
@@ -56,7 +58,7 @@ export function Video({
         loop={loop}
         playsInline={playsInline}
       >
-        <source src={darkSrc} type="video/webm" />
+        <source src={darkSrc} type={mimeType} />
       </VideoChrome>
     </div>
   )
