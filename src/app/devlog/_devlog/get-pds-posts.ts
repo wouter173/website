@@ -24,8 +24,9 @@ function toAttachment(embed: app.bsky.feed.post.Main['embed']): (typeof postSche
   }
 }
 
-export async function getPdsPosts({ limit, rkey, reverse }: { limit: number; rkey?: string; reverse?: boolean }) {
+export async function getPdsPosts({ limit = 10, rkey, reverse = false }: { limit?: number; rkey?: string; reverse?: boolean } = {}) {
   const reader = new Client(CONSTANTS.devlogUrl)
+
   const result = await reader.list(app.bsky.feed.post, { repo: CONSTANTS.did, limit, cursor: rkey, reverse })
 
   return result.records
@@ -55,8 +56,8 @@ export async function getPdsPost(rkey: string) {
 export async function getPdsWindow(rkey: string) {
   const [target, newer, older] = await Promise.all([
     getPdsPost(rkey),
-    getPdsPosts({ limit: 10, rkey, reverse: true }),
-    getPdsPosts({ limit: 10, rkey, reverse: false }),
+    getPdsPosts({ rkey, reverse: true }),
+    getPdsPosts({ rkey, reverse: false }),
   ])
 
   return [...newer.toReversed(), target, ...older]
