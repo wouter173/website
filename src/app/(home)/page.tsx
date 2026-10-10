@@ -19,21 +19,21 @@ export default async function Page() {
     <div className="min-h-screen w-full">
       <div className="absolute inset-x-0 top-132">
         <Image
-        loading='eager'
+          loading="eager"
           width={1262}
           height={594}
           alt="clouds bg"
           src="/clouds.png"
-          className="w-full [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)] object-contain object-bottom opacity-10 mix-blend-lighten"
+          className="w-full mask-[linear-gradient(to_bottom,black_0%,transparent_100%)] object-contain object-bottom opacity-10 mix-blend-lighten"
         />
       </div>
-      <div className="relative h-[60vh] max-h-[1000px] lg:h-[80vh] lg:min-h-[80vh]">
+      <div className="relative h-[60vh] max-h-250 lg:h-[80vh] lg:min-h-[80vh]">
         <Header />
       </div>
 
       <main className="relative z-10 flex flex-col gap-20 lg:gap-40">
         <div className="flex flex-col gap-8 px-4 text-center">
-          <div className="border-stroke relative z-20 mx-auto w-full max-w-4xl rounded-3xl border bg-[#FFF] py-8 dark:border-[#1F1F1F] dark:bg-black">
+          <div className="border-stroke relative z-20 mx-auto w-full max-w-4xl rounded-3xl border bg-white py-8 dark:border-[#1F1F1F] dark:bg-black">
             <div className="flex flex-col gap-6 px-8">
               <div className="grid w-full gap-10 text-left lg:grid-cols-[1fr_1fr]">
                 <p className="mt-0.5 text-neutral-600 dark:text-neutral-400">
