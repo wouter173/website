@@ -21,7 +21,7 @@ export default async function Page() {
 
   return (
     <>
-      <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-0">
+      <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
         <Header />
 
         <Suspense>
