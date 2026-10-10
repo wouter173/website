@@ -3,8 +3,7 @@
 import { isOnScreen } from '@/lib/is-on-screen'
 import { motion, useAnimationControls } from 'motion/react'
 import Image from 'next/image'
-import { Tooltip } from 'radix-ui'
-import { useEffect, useRef, useState, type JSX, type PropsWithChildren } from 'react'
+import { useEffect, useRef, useState, type JSX } from 'react'
 
 export type Tool = {
   name: string
@@ -142,9 +141,9 @@ const Bauble = ({ tool }: { tool: Tool; mobile?: boolean }) => {
       initial={{ scale: 0, opacity: 0.9 }}
       whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: false }}
-      className="border-stroke dark:bg-graphite grid size-14 snap-center place-items-center rounded-xl border bg-[#FFF] px-2.5 shadow-xs hover:bg-neutral-50 dark:border-[#1F1F1F]"
+      className="border-stroke dark:bg-graphite grid size-14 snap-center place-items-center rounded-xl border bg-white px-2.5 shadow-xs hover:bg-neutral-50 dark:border-[#1F1F1F]"
     >
-      <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-[0%]" />
+      <Image src={tool.thumbnail} alt={tool.name} width={32} height={32} className="size-8 grayscale-0" />
     </motion.div>
   )
 }
