@@ -5,14 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build",
+    "build": "pnpm run build:lexicons && pnpm run build:next",
+    "build:next": "next build",
+    "build:lexicons": "pnpm exec lex build --index-file --clear --import-ext '' --out src/lexicons.generated",
     "start": "next start",
     "lint": "next lint",
     "prepare": "ts-patch install -s"
   },
   "dependencies": {
+    "@atproto/identity": "^0.5.16",
     "@atproto/lex": "^0.3.14",
     "@atproto/oauth-client-browser": "^0.5.9",
+    "@atproto/xrpc-server": "^0.13.4",
     "@hookform/resolvers": "^5.9.1",
     "@t3-oss/env-nextjs": "^0.13.4",
     "@tailwindcss/typography": "^0.5.16",
