@@ -1,7 +1,7 @@
 import { Nav } from '@/components/nav'
 import type { Metadata, Viewport } from 'next'
 
-import { Inter, Frank_Ruhl_Libre } from 'next/font/google'
+import { Frank_Ruhl_Libre, Inter } from 'next/font/google'
 import Script from 'next/script'
 import { type PropsWithChildren } from 'react'
 import { CONSTANTS } from './constants'

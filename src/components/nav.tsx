@@ -11,15 +11,21 @@ import { useTheme } from 'next-themes'
 import { InstantLink } from './instant-link'
 import { Kbd } from './kbd'
 import { useIsMounted } from './use-is-mounted'
+import { useDevlogScrollVisibility } from '@/app/devlog/_devlog/scroll-context'
 
 export function Nav() {
+  const { pending } = useDevlogScrollVisibility()
   const pathname = usePathname()
   const router = useRouter()
   const { resolvedTheme, setTheme } = useTheme()
   const isMounted = useIsMounted()
 
   return (
-    <motion.nav layoutRoot className="relative z-10 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16">
+    <motion.nav
+      data-site-nav
+      style={{ visibility: pending ? 'hidden' : undefined }}
+      className="relative z-10 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16"
+    >
       <div className="flex w-full items-center gap-0.5 rounded-full contain-layout">
         <InstantLink href="/" className="relative -ml-1 pr-2">
           <Logo className="relative" />

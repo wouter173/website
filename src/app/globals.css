@@ -5,6 +5,11 @@
 @plugin 'tailwind-scrollbar';
 @plugin 'tailwindcss-animate';
 
+body:has([data-devlog-near-top='true']:not([style*='display: none'], [style*='display: none'] *))
+  :is([data-site-nav], [data-devlog-header]) {
+  visibility: visible !important;
+}
+
 @theme {
   --color-label: #28292a;
   --color-stroke: #ededed;

@@ -8,13 +8,15 @@ import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { ChevronDownIcon, PlusIcon } from 'lucide-react'
 import { motion } from 'motion/react'
+import { useDevlogScrollVisibility } from './scroll-context'
 
-export function Header() {
+export function Header({ hideUntilPositioned = true }: { hideUntilPositioned?: boolean }) {
+  const { pending } = useDevlogScrollVisibility()
   const { data } = useQuery(atprotoAuthQueryOptions)
   const [visible, setVisible] = useState<boolean>()
 
   return (
-    <div>
+    <div data-devlog-header data-devlog-near-top={!hideUntilPositioned || undefined} style={{ visibility: pending ? 'hidden' : undefined }}>
       <div className="mx-auto flex max-w-xl items-center justify-between gap-3">
         <h1 className="text-label font-serif text-4xl font-bold dark:text-neutral-200">Devlog</h1>
         {data?.writer ? (

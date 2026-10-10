@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider, useTheme } from 'next-themes'
 import { useEffect, useState, type PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
+import { DevlogScrollProvider } from './devlog/_devlog/scroll-context'
 
 declare global {
   interface Window {
@@ -21,7 +22,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
     <QueryClientProvider client={qc}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <ThemeColor />
-        {children}
+        <DevlogScrollProvider>{children}</DevlogScrollProvider>
       </ThemeProvider>
     </QueryClientProvider>
   )

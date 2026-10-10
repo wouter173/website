@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import type { postSchema } from './schema'
 import { formatDistanceToNow } from 'date-fns'
@@ -8,27 +9,24 @@ import { Video } from '@/components/video'
 import { LinkEmbed } from './composer/composer-link-embed'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { getPdsPosts, getPdsWindow } from './get-pds-posts'
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { startTransition, useLayoutEffect, useRef, type PropsWithChildren } from 'react'
 import Link from 'next/link'
+import { Observer } from '@/components/intersection-observer'
+import { useDevlogScrollVisibility } from './scroll-context'
+
+type PageParam = { mode: 'around'; rkey: string } | { mode: 'page'; rkey?: string; reverse: boolean }
 
 export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?: ReadonlyArray<typeof postSchema.Type> }) {
-  type PageParam = { mode: 'around'; rkey: string } | { mode: 'page'; rkey?: string; reverse: boolean }
-  const initialPageParam: PageParam = props.highlighted ? { mode: 'around', rkey: props.highlighted } : { mode: 'page', reverse: false }
+  const initialPageParam: PageParam = props.highlighted
+    ? { mode: 'around', rkey: props.highlighted } //
+    : { mode: 'page', reverse: false }
 
-  const { data, fetchNextPage, fetchPreviousPage, hasNextPage, hasPreviousPage, isFetching, isFetchingNextPage, isFetchingPreviousPage } =
+  const { data, fetchNextPage, fetchPreviousPage, hasNextPage, hasPreviousPage, isFetchingNextPage, isFetchingPreviousPage } =
     useInfiniteQuery({
       queryKey: ['pds', 'posts', props.highlighted ?? null],
       queryFn: async ({ pageParam }) => {
-        if (pageParam.mode === 'around') {
-          return getPdsWindow(pageParam.rkey)
-        }
-
-        const posts = await getPdsPosts({
-          limit: 4,
-          rkey: pageParam.rkey,
-          reverse: pageParam.reverse,
-        })
-
+        if (pageParam.mode === 'around') return getPdsWindow(pageParam.rkey)
+        const posts = await getPdsPosts({ rkey: pageParam.rkey, reverse: pageParam.reverse })
         return pageParam.reverse ? posts.toReversed() : posts
       },
 
@@ -54,28 +52,43 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
       },
     })
 
-  const highlighted = props.highlighted ?? data?.pages.at(0)?.at(0)?.rkey ?? ''
+  const { pending, markReady } = useDevlogScrollVisibility()
+
+  const pathname = usePathname()
+  const posts = data?.pages.flat() ?? []
+  const highlighted = pathname.startsWith('/devlog/') ? decodeURIComponent(pathname.slice('/devlog/'.length)) : posts[0]?.rkey
 
   const targetRef = useRef<HTMLLIElement>(null)
   const scrolledTo = useRef<string | undefined>(undefined)
+  const listRef = useRef<HTMLUListElement>(null)
 
   useLayoutEffect(() => {
     const id = props.highlighted
-    if (!id || scrolledTo.current === id || !targetRef.current) return
+    const initialPath = id ? `/devlog/${encodeURIComponent(id)}` : '/devlog'
 
-    targetRef.current.scrollIntoView({ block: 'center', behavior: 'instant' })
+    if (pathname !== initialPath) return
+    if (!data || !targetRef.current) return
+    if (!id) return markReady(pathname)
 
-    scrolledTo.current = id
-  }, [props.highlighted, data])
+    if (scrolledTo.current !== id) {
+      if (data.pages.flat()[0]?.rkey === id) {
+        window.scrollTo({ top: 0, behavior: 'instant' })
+      } else {
+        targetRef.current.scrollIntoView({ block: 'center', behavior: 'instant' })
+      }
 
-  const listRef = useRef<HTMLUListElement>(null)
+      scrolledTo.current = id
+    }
+
+    markReady(pathname)
+  }, [props.highlighted, data, pathname, markReady])
+
   const heightBeforePrepend = useRef<number | null>(null)
 
   async function loadNewer() {
-    if (!hasPreviousPage || isFetching || !listRef.current || heightBeforePrepend.current !== null) return
+    if (!listRef.current || heightBeforePrepend.current !== null) return
 
     heightBeforePrepend.current = listRef.current.getBoundingClientRect().height
-
     const result = await fetchPreviousPage()
 
     if (result.isError) heightBeforePrepend.current = null
@@ -92,11 +105,11 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
   }, [data])
 
   return (
-    <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center">
+    <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center" style={{ visibility: pending ? 'hidden' : undefined }}>
       <Observer
         rootMargin="300px 0px 0px 0px"
         callback={() => {
-          if (hasPreviousPage && !isFetchingPreviousPage) loadNewer()
+          if (!pending && hasPreviousPage && !isFetchingPreviousPage) loadNewer()
         }}
       />
       <ul
@@ -111,6 +124,7 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
             <li
               ref={post.rkey === props.highlighted ? targetRef : undefined}
               key={post.rkey}
+              data-devlog-rkey={post.rkey}
               className={cn(
                 'relative my-4 border-neutral-200 p-2 first:mt-0 last:mb-0 dark:border-neutral-800',
                 highlighted === post.rkey ? '-mx-px rounded-2xl border bg-white dark:bg-black' : 'border-y',
@@ -123,33 +137,11 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
       <Observer
         rootMargin="0px 0px 500px 0px"
         callback={() => {
-          if (hasNextPage && !isFetchingNextPage) fetchNextPage()
+          if (!pending && hasNextPage && !isFetchingNextPage) fetchNextPage()
         }}
       />
     </div>
   )
-}
-
-function Observer({ callback, rootMargin }: { callback: () => void; rootMargin?: string }) {
-  const elementRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!elementRef.current) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) callback()
-      },
-      { rootMargin, threshold: 0 },
-    )
-    observer.observe(elementRef.current)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [callback, rootMargin])
-
-  return <div ref={elementRef}></div>
 }
 
 function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
@@ -159,9 +151,9 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
         <h2 className="text-label font-semibold dark:text-neutral-100">Me</h2>
         <div className="block size-1 bg-neutral-400"></div>
         <div>
-          <Link href={`/devlog/${post.rkey}`} scroll={false}>
+          <DevlogPostLink rkey={post.rkey}>
             <time>{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}</time>
-          </Link>
+          </DevlogPostLink>
         </div>
       </div>
       <p className="text-label text-sm dark:text-neutral-100">{post.content.text}</p>
@@ -224,5 +216,28 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
         </div>
       )}
     </article>
+  )
+}
+
+export function DevlogPostLink({ rkey, children }: PropsWithChildren<{ rkey: string }>) {
+  const { markReady } = useDevlogScrollVisibility()
+  const href = `/devlog/${encodeURIComponent(rkey)}` as const
+
+  return (
+    <Link
+      href={href}
+      prefetch={false}
+      scroll={false}
+      onNavigate={(event) => {
+        event.preventDefault()
+
+        startTransition(() => {
+          markReady(href)
+          window.history.pushState({ devlogShallow: true }, '', href)
+        })
+      }}
+    >
+      {children}
+    </Link>
   )
 }

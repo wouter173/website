@@ -1,11 +1,10 @@
+import { CONSTANTS } from '@/app/constants'
 import type { Metadata } from 'next'
-import { DevlogEntryList } from './_devlog/entry-list'
+import { cacheTag } from 'next/cache'
 import { Suspense } from 'react'
 import { Header } from './_devlog/header'
-import { cacheTag } from 'next/cache'
-import { CONSTANTS } from '@/app/constants'
-
 import { getPdsPosts } from './_devlog/get-pds-posts'
+import { DevlogEntryList } from './_devlog/entry-list'
 
 export const metadata: Metadata = {
   title: 'Devlog',
@@ -18,15 +17,17 @@ export default async function Page() {
   'use cache'
   cacheTag(CONSTANTS.cacheTags.devlog)
 
-  const posts = await getPdsPosts({ limit: 10 })
+  const posts = await getPdsPosts()
 
   return (
-    <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-0">
-      <Header />
+    <>
+      <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-0">
+        <Header />
 
-      <Suspense>
-        <DevlogEntryList prefetchedPosts={posts} />
-      </Suspense>
-    </main>
+        <Suspense>
+          <DevlogEntryList prefetchedPosts={posts} />
+        </Suspense>
+      </main>
+    </>
   )
 }
