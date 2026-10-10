@@ -1,5 +1,5 @@
 import type { Client, LexMap } from '@atproto/lex'
-import type { attachmentSchema } from './schema'
+import type { attachmentSchema } from '../schema'
 import { uploadVideo } from './composer-video-upload'
 
 export const MAX_IMAGES = 4

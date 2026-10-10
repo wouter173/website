@@ -16,6 +16,7 @@ export const aspectRatioSchema = Schema.Struct({
 })
 
 export const postSchema = Schema.Struct({
+  rkey: Schema.String,
   topic: Schema.String,
   content: Schema.Struct({ text: Schema.String, attachments: Schema.optional(Schema.Array(attachmentSchema)) }),
   createdAt: Schema.String,

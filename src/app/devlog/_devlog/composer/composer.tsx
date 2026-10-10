@@ -1,6 +1,11 @@
 'use client'
 
-import { createLinkEmbed, getLinkEmbedUrlFromText, LinkEmbedPreview, linkEmbedQueryOptions } from '@/app/(devlog)/composer-link-embed'
+import {
+  createLinkEmbed,
+  getLinkEmbedUrlFromText,
+  LinkEmbedPreview,
+  linkEmbedQueryOptions,
+} from '@/app/devlog/_devlog/composer/composer-link-embed'
 import { Button } from '@/components/ui/button'
 import { useDebounce } from '@/components/use-debounce'
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema'
@@ -12,8 +17,9 @@ import { useForm, useWatch } from 'react-hook-form'
 import { toast } from 'sonner'
 import { createPostEmbed, getMediaError, MAX_IMAGES } from './composer-attachments'
 
-import { atprotoAuthQueryOptions } from './devlog-atproto-auth'
-import { attachmentSchema, mediaSchema } from './schema'
+import { atprotoAuthQueryOptions, getToken } from '../atproto/atproto-client'
+import { attachmentSchema, mediaSchema } from '../schema'
+import { invalidateDevlogAction } from '../revalidate-path'
 
 const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' })
 
@@ -124,6 +130,14 @@ export function Composer() {
     clearErrors(['attachments'])
   }
 
+  async function invalidate() {
+    if (!data?.writer) return null
+    const writer = data.writer
+
+    const token = await getToken(writer)
+    await invalidateDevlogAction({ token })
+  }
+
   const media = attachments?.type === 'image' ? attachments.images : attachments?.type === 'video' ? [attachments.video] : []
 
   const writer = data?.writer
@@ -138,7 +152,9 @@ export function Composer() {
 
         try {
           await postDevlog({ fields })
+          await invalidate()
           reset()
+
           toast.success('Devlog posted.')
         } catch (error) {
           setError('root', { message: error instanceof Error ? error.message : 'Could not publish your post. Please try again.' })

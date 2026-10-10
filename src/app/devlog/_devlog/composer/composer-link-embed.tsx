@@ -35,12 +35,7 @@ export async function createLinkEmbed(writer: Client, embed: LinkEmbed) {
 
   return {
     $type: 'app.bsky.embed.external',
-    external: {
-      uri: embed.url,
-      title: embed.title,
-      description: embed.description,
-      ...(thumb ? { thumb } : {}),
-    },
+    external: { uri: embed.url, title: embed.title, description: embed.description, ...(thumb ? { thumb } : {}) },
   }
 }
 

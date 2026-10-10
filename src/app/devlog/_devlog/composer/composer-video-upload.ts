@@ -1,37 +1,7 @@
-import { l, lexParse, type Client } from '@atproto/lex'
+import { lexParse, type Client } from '@atproto/lex'
+import { errorSchema, getServiceAuth, jobResponseSchema, limitsSchema } from '../atproto/atproto-client'
 
 const VIDEO_SERVICE = 'https://video.bsky.app/xrpc/'
-
-const getServiceAuth = l.query(
-  'com.atproto.server.getServiceAuth',
-  l.params({
-    aud: l.string(),
-    lxm: l.string({ format: 'nsid' }),
-    exp: l.integer(),
-  }),
-  l.jsonPayload({ token: l.string() }),
-)
-
-const jobSchema = l.object({
-  jobId: l.string(),
-  state: l.string(),
-  blob: l.optional(l.blob({ accept: ['video/mp4'] })),
-  error: l.optional(l.string()),
-  message: l.optional(l.string()),
-})
-
-const jobResponseSchema = l.union([l.object({ jobStatus: jobSchema }), jobSchema])
-
-const limitsSchema = l.object({
-  canUpload: l.boolean(),
-  message: l.optional(l.string()),
-  error: l.optional(l.string()),
-})
-
-const errorSchema = l.object({
-  message: l.optional(l.string()),
-  error: l.optional(l.string()),
-})
 
 async function request(path: string, init?: RequestInit) {
   const response = await fetch(VIDEO_SERVICE + path, init)
@@ -63,11 +33,7 @@ export async function uploadVideo(writer: Client, file: File, pdsUrl: string) {
   if (!did) throw new Error('Please sign in before uploading a video.')
 
   async function authorize(aud: string, lxm: 'app.bsky.video.getUploadLimits' | 'com.atproto.repo.uploadBlob', lifetime: number) {
-    const { token } = await writer.call(getServiceAuth, {
-      aud,
-      lxm,
-      exp: Math.floor(Date.now() / 1000) + lifetime,
-    })
+    const { token } = await writer.call(getServiceAuth, { aud, lxm, exp: Math.floor(Date.now() / 1000) + lifetime })
     return { Authorization: `Bearer ${token}` }
   }
 

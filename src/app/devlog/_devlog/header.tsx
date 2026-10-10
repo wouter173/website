@@ -1,8 +1,8 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { Composer } from './composer'
-import { atprotoAuthQueryOptions } from './devlog-atproto-auth'
+import { Composer } from './composer/composer'
+import { atprotoAuthQueryOptions } from './atproto/atproto-client'
 import { LoginDialog } from './login-dialog'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'

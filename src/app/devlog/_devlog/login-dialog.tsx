@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Dialog } from 'radix-ui'
 import { useEffect, useState } from 'react'
-import { login } from './devlog-atproto-auth'
+import { login } from './atproto/atproto-client'
 
 export function LoginDialog() {
   const [open, setOpen] = useState<boolean>(false)
