@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next'
 
 import { Inter, Frank_Ruhl_Libre } from 'next/font/google'
 import Script from 'next/script'
-import { Suspense, type PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 import { CONSTANTS } from './constants'
 import './globals.css'
 import { Providers } from './providers'
@@ -66,9 +66,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         className={`${inter.className} ${frankRuhlLibre.variable} dark:bg-graphite relative bg-white text-neutral-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/noise.png')] before:bg-repeat before:opacity-5 dark:text-neutral-400 dark:before:opacity-3`}
       >
         <Providers>
-          <Suspense>
-            <Nav />
-          </Suspense>
+          <Nav />
           <div>{children}</div>
         </Providers>
       </body>
