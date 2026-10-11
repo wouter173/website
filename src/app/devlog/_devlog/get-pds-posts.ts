@@ -20,7 +20,8 @@ function toAttachment(embed: app.bsky.feed.post.Main['embed']): (typeof postSche
   }
 
   if (app.bsky.embed.external.$isTypeOf(embed)) {
-    return { type: 'embed', ...embed.external, imageUrl: embed.external.thumb ? toMedia(embed.external.thumb).url : '' }
+    const { uri, title, description, thumb } = embed.external
+    return { type: 'embed', uri, title, description, imageUrl: thumb ? toMedia(thumb).url : '' }
   }
 }
 

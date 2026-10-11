@@ -1,3 +1,5 @@
+import createWithVercelToolbar from '@vercel/toolbar/plugins/next'
+
 import type { NextConfig } from 'next'
 import './src/env.ts'
 
@@ -16,4 +18,6 @@ const nextConfig: NextConfig = {
   ],
 }
 
-export default nextConfig
+const withVercelToolbar = createWithVercelToolbar()
+
+export default withVercelToolbar(nextConfig)

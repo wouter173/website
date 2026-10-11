@@ -1,12 +1,16 @@
 import { Nav } from '@/components/nav'
 import type { Metadata, Viewport } from 'next'
 
-import { Frank_Ruhl_Libre, Inter } from 'next/font/google'
+import { Frank_Ruhl_Libre } from 'next/font/google'
+import localFont from 'next/font/local'
 import Script from 'next/script'
 import { type PropsWithChildren } from 'react'
 import { CONSTANTS } from './constants'
 import './globals.css'
 import { Providers } from './providers'
+import { VercelToolbar } from '@vercel/toolbar/next'
+
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 export const viewport: Viewport = {
   initialScale: 1,
@@ -15,7 +19,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(CONSTANTS.canonicalUrl),
+  metadataBase: isDevelopment ? 'http://localhost:3000' : new URL(CONSTANTS.canonicalUrl),
+  robots: { index: true },
   title: {
     template: '%s | Wouter de Bruijn',
     default: 'Wouter de Bruijn',
@@ -25,18 +30,23 @@ export const metadata: Metadata = {
     title: 'Wouter de Bruijn',
     description: 'Portfolio of Wouter de Bruijn. A Fullstack Developer, largely self taught, and excited to learn new things.',
     card: 'summary_large_image',
+    site: '@wouterdebruijn',
     creator: '@wouterdebruijn',
     images: [{ url: '/opengraph-image' }],
   },
   openGraph: {
+    type: 'website',
+    url: '/',
     siteName: 'Wouter de Bruijn',
     images: [{ url: '/opengraph-image' }],
   },
 }
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+const inter = localFont({
+  src: '../../public/fonts/Inter/Inter-VariableFont_opsz,wght.ttf',
+  weight: '100 900',
+  style: 'normal',
+  display: 'swap',
 })
 
 const frankRuhlLibre = Frank_Ruhl_Libre({
@@ -69,6 +79,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           <Nav />
           <div>{children}</div>
         </Providers>
+        {isDevelopment ? <VercelToolbar /> : null}
       </body>
     </html>
   )

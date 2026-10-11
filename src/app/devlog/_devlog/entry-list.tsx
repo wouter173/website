@@ -232,7 +232,7 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
               title: post.attachments.title,
               description: post.attachments.description,
               siteName: post.attachments.uri,
-              image: undefined,
+              image: { url: post.attachments.imageUrl },
             }}
           />
         </div>
