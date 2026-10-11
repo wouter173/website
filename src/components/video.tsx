@@ -2,13 +2,12 @@
 import { cn } from '@/lib/utils'
 import { useAnimate } from 'motion/react'
 import { useTheme } from 'next-themes'
-import { Activity, useRef, type ComponentProps } from 'react'
+import { Activity, useRef, type ComponentProps, type CSSProperties } from 'react'
 import { Observer } from './intersection-observer'
 import { useIsMounted } from './use-is-mounted'
 
 export function Video({
-  darkSrc,
-  lightSrc,
+  srcSet,
   width,
   height,
   className = '',
@@ -17,9 +16,9 @@ export function Video({
   muted = true,
   loop = true,
   playsInline = true,
+  style,
 }: {
-  darkSrc: string
-  lightSrc: string
+  srcSet: { dark: string; light: string } | string
   width?: string
   height?: string
   className?: string
@@ -28,14 +27,34 @@ export function Video({
   muted?: boolean
   loop?: boolean
   playsInline?: boolean
+  style?: CSSProperties
 }) {
   const { resolvedTheme } = useTheme()
   const isMounted = useIsMounted()
 
+  if (typeof srcSet === 'string') {
+    return (
+      <div
+        className={cn('relative aspect-video w-full overflow-hidden border border-neutral-200 dark:border-[#1f1f1f]', className)}
+        style={{ aspectRatio: `${width} / ${height}`, ...style }}
+      >
+        <VideoChrome
+          className={cn('absolute inset-0 h-full w-full bg-white object-cover dark:bg-black')}
+          autoPlay={autoPlay}
+          muted={muted}
+          loop={loop}
+          playsInline={playsInline}
+        >
+          <source src={srcSet} type={mimeType} />
+        </VideoChrome>
+      </div>
+    )
+  }
+
   return (
     <div
       className={cn('relative aspect-video w-full overflow-hidden border border-neutral-200 dark:border-[#1f1f1f]', className)}
-      style={{ aspectRatio: `${width} / ${height}` }}
+      style={{ aspectRatio: `${width} / ${height}`, ...style }}
     >
       <Activity mode={isMounted && resolvedTheme === 'light' ? 'visible' : 'hidden'}>
         <VideoChrome
@@ -45,7 +64,7 @@ export function Video({
           loop={loop}
           playsInline={playsInline}
         >
-          <source src={lightSrc} type={mimeType} />
+          <source src={srcSet.light} type={mimeType} />
         </VideoChrome>
       </Activity>
       <Activity mode={isMounted && resolvedTheme === 'dark' ? 'visible' : 'hidden'}>
@@ -56,7 +75,7 @@ export function Video({
           loop={loop}
           playsInline={playsInline}
         >
-          <source src={darkSrc} type={mimeType} />
+          <source src={srcSet.dark} type={mimeType} />
         </VideoChrome>
       </Activity>
     </div>

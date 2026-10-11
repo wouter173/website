@@ -24,7 +24,7 @@ export function useZoom() {
   return context
 }
 
-function Root({ children }: PropsWithChildren) {
+function Root({ children, snapshot }: PropsWithChildren & { snapshot: 'trigger' | 'content' }) {
   const [open, setOpen] = useState(false)
 
   const name = useId()
@@ -64,6 +64,7 @@ function Root({ children }: PropsWithChildren) {
         onOpenChange={(next) =>
           startTransition(() => {
             addTransitionType(next ? 'zoom-open' : 'zoom-close')
+            if (next) addTransitionType(snapshot === 'content' ? 'zoom-snapshot-content' : 'zoom-snapshot-trigger')
             setOpen(next)
           })
         }

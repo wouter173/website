@@ -25,6 +25,14 @@
   display: none;
 }
 
+:root:active-view-transition-type(zoom-snapshot-trigger)::view-transition-old(.zoom) {
+  display: block;
+}
+
+:root:active-view-transition-type(zoom-snapshot-trigger)::view-transition-new(.zoom) {
+  display: none;
+}
+
 :root:active-view-transition-type(zoom-open),
 :root:active-view-transition-type(zoom-close) {
   &::view-transition-group(root) {

@@ -169,7 +169,7 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
         >
           {post.attachments.images.map((image, index) => (
             <div key={index} style={{ gridArea: ['a', 'b', 'c', 'd'][index] }}>
-              <ZoomIn.Root>
+              <ZoomIn.Root snapshot="content">
                 <ZoomIn.Trigger className="h-full w-full">
                   <img //eslint-disable-line
                     src={image.url}
@@ -193,14 +193,36 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
         </div>
       )}
       {post.attachments?.type === 'video' && (
-        <Video
-          lightSrc={post.attachments.url}
-          darkSrc={post.attachments.url}
-          mimeType={post.attachments.mimeType}
-          width={post.attachments.aspectRatio?.width + ''}
-          height={post.attachments.aspectRatio?.height + ''}
-          className="rounded-md"
-        />
+        <ZoomIn.Root snapshot="trigger">
+          <ZoomIn.Trigger className="h-full w-full">
+            <Video
+              srcSet={post.attachments.url}
+              mimeType={post.attachments.mimeType}
+              width={post.attachments.aspectRatio?.width + ''}
+              height={post.attachments.aspectRatio?.height + ''}
+              className="rounded-md"
+            />
+          </ZoomIn.Trigger>
+          <ZoomIn.Content>
+            <Video
+              srcSet={post.attachments.url}
+              mimeType={post.attachments.mimeType}
+              width={post.attachments.aspectRatio?.width + ''}
+              height={post.attachments.aspectRatio?.height + ''}
+              style={{
+                width: `min(64rem, 100dvw, calc((100dvh - 200px) * ${
+                  post.attachments?.type === 'video' && post.attachments.aspectRatio
+                    ? post.attachments.aspectRatio.width / post.attachments.aspectRatio.height
+                    : 16 / 9
+                }))`,
+              }}
+              className="h-auto rounded-xl bg-white dark:bg-black"
+
+              //TODO: h, w
+              // style={{ aspectRatio: `${image.aspectRatio?.width} / ${image.aspectRatio?.height}` }}
+            />
+          </ZoomIn.Content>
+        </ZoomIn.Root>
       )}
       {post.attachments?.type === 'embed' && (
         <div className="bg-white dark:bg-black">

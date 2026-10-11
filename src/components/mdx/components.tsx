@@ -61,8 +61,8 @@ export const CodeBlock = async ({ children }: ComponentProps<'pre'>) => {
   )
 }
 
-const VideoBlock = (props: ComponentProps<typeof Video>) => {
-  return <Video {...props} className="rounded-xl" />
+const VideoBlock = (props: Omit<ComponentProps<typeof Video>, 'srcSet'> & { darkSrc: string; lightSrc: string }) => {
+  return <Video {...props} srcSet={{ dark: props.darkSrc, light: props.lightSrc }} className="rounded-xl" />
 }
 
 export const Image = ({ src, alt, bg, width, height }: { src: string; alt: string; bg: `#${number}`; width: number; height: number }) => {
