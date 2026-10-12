@@ -25,6 +25,14 @@ export function Header({ hideUntilPositioned = true }: { hideUntilPositioned?: b
       <div className="mx-auto flex max-w-xl items-center gap-1.5">
         <h1 className="text-label mr-auto font-serif text-4xl font-bold dark:text-neutral-200">Devlog</h1>
 
+        {data?.writer ? (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <Button className="mt-1 size-7 p-1.25" onClick={() => setVisible(!visible)}>
+              {visible ? <ChevronDownIcon /> : <PlusIcon />}
+            </Button>
+          </motion.div>
+        ) : null}
+
         <Button className="size-7 p-1.5" asChild>
           <a href={RSS_URL} rel="noopener noreferrer" target="_blank">
             <RssIcon />
@@ -41,14 +49,6 @@ export function Header({ hideUntilPositioned = true }: { hideUntilPositioned?: b
             </svg>
           </a>
         </Button>
-
-        {data?.writer ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <Button className="mt-1 size-7 p-1.25" onClick={() => setVisible(!visible)}>
-              {visible ? <ChevronDownIcon /> : <PlusIcon />}
-            </Button>
-          </motion.div>
-        ) : null}
       </div>
 
       {visible ? (
