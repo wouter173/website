@@ -22,7 +22,12 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Devlog',
     description,
-    alternates: { canonical: '/devlog' },
+    alternates: {
+      canonical: '/devlog',
+      types: {
+        'application/rss+xml': `${CONSTANTS.canonicalUrl}/devlog/rss.xml`,
+      },
+    },
     openGraph: {
       title: 'Devlog | Wouter de Bruijn',
       description,

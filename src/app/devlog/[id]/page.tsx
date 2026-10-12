@@ -21,7 +21,10 @@ export async function generateMetadata({ params }: PageProps<'/devlog/[id]'>): P
   return {
     title: 'Devlog',
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      types: { 'application/rss+xml': `${CONSTANTS.canonicalUrl}/devlog/rss.xml` },
+    },
     openGraph: {
       title: 'Devlog | Wouter de Bruijn',
       description,
