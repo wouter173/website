@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const imageUrl = post ? `/devlog/${encodeURIComponent(post?.rkey)}/opengraph-image` : null
   const text = post?.content.text.slice(0, 160)
-  const description = `New Post:  ${text ?? `\"${text}\"`}`
+  const description = `Devlog: ${text ?? `\"${text}\"`}`
 
   return {
     title: 'Devlog',
