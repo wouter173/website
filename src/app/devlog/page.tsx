@@ -1,16 +1,42 @@
 import { CONSTANTS } from '@/app/constants'
 import type { Metadata } from 'next'
 import { cacheTag } from 'next/cache'
-import { Suspense } from 'react'
+import { cache, Suspense } from 'react'
 import { Header } from './_devlog/header'
 import { getPdsPosts } from './_devlog/get-pds-posts'
 import { DevlogEntryList } from './_devlog/entry-list'
 
-export const metadata: Metadata = {
-  title: 'Devlog',
-  alternates: {
-    canonical: '/devlog',
-  },
+const cachedGetPdsPosts = cache(getPdsPosts)
+
+export async function generateMetadata(): Promise<Metadata> {
+  'use cache'
+  cacheTag(CONSTANTS.cacheTags.devlog)
+
+  const posts = await cachedGetPdsPosts()
+  const post = posts.at(0)
+
+  const imageUrl = post ? `/devlog/${encodeURIComponent(post?.rkey)}/opengraph-image` : null
+  const text = post?.content.text.slice(0, 160)
+  const description = `New Post:  ${text ?? `\"${text}\"`}`
+
+  return {
+    title: 'Devlog',
+    description,
+    alternates: { canonical: '/devlog' },
+    openGraph: {
+      title: 'Devlog | Wouter de Bruijn',
+      description,
+      url: '/devlog',
+      siteName: 'Wouter de Bruijn',
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Devlog | Wouter de Bruijn',
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  }
 }
 
 export default async function Page() {

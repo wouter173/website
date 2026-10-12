@@ -14,7 +14,7 @@ export type LinkEmbed = {
   title: string
   description: string
   siteName: string
-  image?: { url: string; alt: string }
+  image?: { url: string }
 }
 
 export async function createLinkEmbed(writer: Client, embed: LinkEmbed) {
@@ -75,7 +75,7 @@ export async function getLinkEmbed(url: string, signal?: AbortSignal): Promise<L
     title,
     description: metadata.description || '',
     siteName: hostname,
-    ...(metadata.image ? { image: { url: metadata.image, alt: title } } : {}),
+    ...(metadata.image ? { image: { url: metadata.image } } : {}),
   }
 }
 
@@ -106,7 +106,7 @@ export function LinkEmbed({ embed }: { embed: LinkEmbed }) {
     >
       {embed?.image && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={embed.image.url} alt={embed.image.alt} className="aspect-[1.90476/1] w-full object-cover" />
+        <img src={embed.image.url} alt={embed.title} className="aspect-[1.90476/1] w-full object-cover" />
       )}
 
       <div className="min-w-0 p-3">

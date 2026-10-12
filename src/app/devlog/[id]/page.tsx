@@ -15,7 +15,8 @@ export async function generateMetadata({ params }: PageProps<'/devlog/[id]'>): P
   const post = await getPdsPost(id)
 
   const url = `/devlog/${encodeURIComponent(id)}`
-  const description = post.content.text.slice(0, 160)
+  const text = post.content.text.slice(0, 160)
+  const description = `New Post:  ${text ?? `\"${text}\"`}`
 
   return {
     title: 'Devlog',

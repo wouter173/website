@@ -24,8 +24,6 @@ const decodeThumbnailResponse = Schema.decodeUnknownSync(
   }),
 )
 
-const noiseData = readFile(join(process.cwd(), 'public/noise.png')).then((file) => `data:image/png;base64,${file.toString('base64')}`)
-
 const interFonts = Promise.all([
   readFile(join(process.cwd(), 'public/fonts/Inter/static/Inter_24pt-Regular.ttf')),
   readFile(join(process.cwd(), 'public/fonts/Inter/static/Inter_24pt-SemiBold.ttf')),
@@ -37,9 +35,9 @@ const interFonts = Promise.all([
 export default async function Image({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const post = await getPdsPost(id)
-  const [media, noise, fonts] = await Promise.all([getMedia(post), noiseData, interFonts])
+  const [media, fonts] = await Promise.all([getMedia(post), interFonts])
 
-  return new ImageResponse(<DevlogOgCard post={post} media={media} noise={noise} />, { ...size, fonts })
+  return new ImageResponse(<DevlogOgCard post={post} media={media} />, { ...size, fonts })
 }
 
 async function getMedia(post: Post): Promise<Media[]> {
@@ -80,7 +78,7 @@ async function getVideoThumbnail(rkey: string): Promise<string | undefined> {
   }
 }
 
-function DevlogOgCard({ post, media, noise }: { post: Post; media: Media[]; noise: string }) {
+function DevlogOgCard({ post, media }: { post: Post; media: Media[] }) {
   const hasMedia = media.length > 0
   const columns =
     media.length === 3
@@ -101,17 +99,10 @@ function DevlogOgCard({ post, media, noise }: { post: Post; media: Media[]; nois
 
   return (
     <div
-      tw="relative flex h-full w-full flex-col bg-[#0d0d0d] text-neutral-100"
+      tw="relative flex h-full w-full flex-col bg-black text-neutral-100"
       style={{ padding: '48px 56px 0px', fontFamily: 'Inter', justifyContent: hasMedia ? 'flex-start' : 'center' }}
     >
-      <div tw="absolute inset-0 flex" style={{ backgroundImage: `url(${noise})`, backgroundRepeat: 'repeat', opacity: 0.035 }} />
-      <div tw="flex mb-8 ml-1">
-        <span tw="text-[#777]" style={{ fontSize: 22 }}>
-          wouterdb.com/devlog
-        </span>
-      </div>
-
-      <div tw="flex rounded-[32px] border bg-black flex-col p-8 border-neutral-800" style={{ height: hasMedia ? '100%' : 'fit' }}>
+      <div tw="flex rounded-[32px] bg-black flex-col p-8" style={{ height: hasMedia ? '100%' : 'fit' }}>
         <div tw="flex items-center justify-between" style={{ flexShrink: 0 }}>
           <div tw="flex items-center" style={{ gap: 14, fontSize: 25 }}>
             <span tw="font-semibold">Me</span>
@@ -143,7 +134,7 @@ function DevlogOgCard({ post, media, noise }: { post: Post; media: Media[]; nois
           </div>
         )}
         {hasMedia && (
-          <div tw="mt-6 flex" style={{ flex: 1, minHeight: 0, gap: 12, marginBottom: -20 }}>
+          <div tw="mt-6 flex" style={{ flex: 1, minHeight: 0, gap: 12, marginBottom: -80 }}>
             {columns.map((column, index) => (
               <div key={index} tw="flex flex-col" style={{ flex: 1, minWidth: 0, minHeight: 0, gap: 12 }}>
                 {column.map((item, index) => (
@@ -164,7 +155,13 @@ function MediaTile({ item }: { item: Media }) {
       tw="relative flex items-center justify-center overflow-hidden border border-[#303030] bg-[#080808]"
       style={{ flex: 1, minHeight: 0, borderRadius: 20 }}
     >
-      {item.src && <img src={item.src} alt="" style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }} />}
+      {item.src && (
+        <img
+          src={item.src}
+          alt=""
+          style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+        />
+      )}
       {item.video && (
         <div
           style={{
