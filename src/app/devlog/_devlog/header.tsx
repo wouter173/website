@@ -14,6 +14,7 @@ export function Header({ hideUntilPositioned = true }: { hideUntilPositioned?: b
   const { pending } = useDevlogScrollVisibility()
   const { data } = useQuery(atprotoAuthQueryOptions)
   const [visible, setVisible] = useState<boolean>()
+  const [composerKey, setComposerKey] = useState(0)
 
   return (
     <div data-devlog-header data-devlog-near-top={!hideUntilPositioned || undefined} style={{ visibility: pending ? 'hidden' : undefined }}>
@@ -30,7 +31,7 @@ export function Header({ hideUntilPositioned = true }: { hideUntilPositioned?: b
 
       {visible ? (
         <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center">
-          <Composer />
+          <Composer key={composerKey} onSuccess={() => setComposerKey((k) => k + 1)} />
         </div>
       ) : null}
 

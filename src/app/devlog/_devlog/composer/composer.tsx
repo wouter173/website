@@ -1,5 +1,3 @@
-'use client'
-
 import {
   createLinkEmbed,
   getLinkEmbedUrlFromText,
@@ -30,7 +28,7 @@ const formSchema = Schema.Union([
   Schema.Struct({ text: textSchema, attachments: attachmentSchema }),
 ])
 
-export function Composer() {
+export function Composer({ onSuccess }: { onSuccess: () => void }) {
   const queryClient = useQueryClient()
 
   const { data } = useQuery(atprotoAuthQueryOptions)
@@ -154,6 +152,9 @@ export function Composer() {
           await postDevlog({ fields })
           await invalidate()
           reset()
+
+          await queryClient.invalidateQueries({ queryKey: ['pds', 'posts'] })
+          onSuccess()
 
           toast.success('Devlog posted.')
         } catch (error) {
