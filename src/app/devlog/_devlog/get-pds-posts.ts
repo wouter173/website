@@ -25,7 +25,7 @@ function toAttachment(embed: app.bsky.feed.post.Main['embed']): (typeof postSche
   }
 }
 
-export async function getPdsPosts({ limit = 10, rkey, reverse = false }: { limit?: number; rkey?: string; reverse?: boolean } = {}) {
+export async function getPdsPosts({ limit = 50, rkey, reverse = false }: { limit?: number; rkey?: string; reverse?: boolean } = {}) {
   const reader = new Client(CONSTANTS.devlogUrl)
 
   const result = await reader.list(app.bsky.feed.post, { repo: CONSTANTS.did, limit, cursor: rkey, reverse })
