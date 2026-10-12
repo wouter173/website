@@ -11,15 +11,21 @@ import { useTheme } from 'next-themes'
 import { InstantLink } from './instant-link'
 import { Kbd } from './kbd'
 import { useIsMounted } from './use-is-mounted'
+import { useDevlogScrollVisibility } from '@/app/devlog/_devlog/scroll-context'
 
 export function Nav() {
+  const { pending } = useDevlogScrollVisibility()
   const pathname = usePathname()
   const router = useRouter()
   const { resolvedTheme, setTheme } = useTheme()
   const isMounted = useIsMounted()
 
   return (
-    <motion.nav layoutRoot className="relative z-20 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16">
+    <motion.nav
+      data-site-nav
+      style={{ visibility: pending ? 'hidden' : undefined }}
+      className="relative z-10 mx-auto max-w-4xl px-6 pt-6 lg:px-0 lg:pt-16"
+    >
       <div className="flex w-full items-center gap-0.5 rounded-full contain-layout">
         <InstantLink href="/" className="relative -ml-1 pr-2">
           <Logo className="relative" />
@@ -87,7 +93,28 @@ export function Nav() {
             </span>
           </div>
         </InstantLink>
-        
+
+        <InstantLink href={'/devlog'} className="group relative px-3 sm:px-2">
+          {pathname.startsWith('/devlog') && (
+            <motion.div
+              transition={{ duration: 0.15, ease: 'circOut' }}
+              layoutId="active-tab"
+              className="dark:outline-echo absolute inset-x-0 top-1/2 -z-10 h-7 -translate-y-1/2 rounded-full border border-neutral-200 bg-neutral-100 dark:-inset-x-0.5 dark:h-8 dark:border-[#2d2d2d] dark:bg-[#171717] dark:text-neutral-200"
+            />
+          )}
+          <div className="flex gap-1.5 sm:pr-1">
+            <Kbd keybind="4" onPress={() => router.push('/devlog')} className="max-sm:hidden" />
+
+            <span
+              className={cn(
+                'relative z-20 text-sm font-medium transition-all group-hover:opacity-70 dark:text-neutral-300',
+                pathname.startsWith('/devlog') && 'dark:text-white',
+              )}
+            >
+              Devlog
+            </span>
+          </div>
+        </InstantLink>
 
         {isMounted ? (
           <motion.button

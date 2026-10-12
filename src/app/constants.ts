@@ -1,3 +1,8 @@
 export const CONSTANTS = {
-  canonicalUrl: 'https://wouterdb.nl',
+  canonicalUrl: 'https://wouterdb.com',
+  devlogUrl: 'https://devlog.wouterdb.com',
+  did: 'did:plc:jql2nwuaopzkdn7jycwgeoov',
+  cacheTags: {
+    devlog: 'devlog',
+  },
 } as const

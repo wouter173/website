@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        cta: `bg-[#1E1D1F] border-1 border-black pr-1.5 text-white outline-black shadow-[0px_4px_4px_0px_rgba(156,156,156,0.25),0px_0px_0px_1px_rgba(255,255,255,0.20)_inset]
+        cta: `bg-[#1E1D1F] border border-black pr-1.5 text-white outline-black shadow-[0px_4px_4px_0px_rgba(156,156,156,0.25),0px_0px_0px_1px_rgba(255,255,255,0.20)_inset]
           active:scale-95 transition-all active:translate-y-[1px]
           hover:border-white hover:outline-2
           focus-visible:border-white focus-visible:outline-2

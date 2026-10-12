@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function Blog() {
+export default async function Page() {
   'use cache'
   cacheLife('max')
 

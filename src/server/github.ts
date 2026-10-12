@@ -1,7 +1,7 @@
-import { cacheLife, unstable_cache } from 'next/cache'
+import { cacheLife } from 'next/cache'
 
-import { FetchHttpClient, HttpBody, HttpClient, HttpClientRequest, HttpClientResponse } from '@effect/platform'
 import { Config, Effect, Schema } from 'effect'
+import { FetchHttpClient, HttpBody, HttpClient, HttpClientRequest, HttpClientResponse } from 'effect/http'
 
 const baseUrl = 'https://api.github.com/graphql'
 const query = `#graphql
@@ -41,7 +41,7 @@ const payloadSchema = Schema.Struct({
 const fetchGithubUserDataEffect = Effect.gen(function* () {
   const httpClient = yield* HttpClient.HttpClient
 
-  const githubToken = yield* Config.string('GITHUB_BEARER_TOKEN')
+  const githubToken = yield* Config.String('GITHUB_BEARER_TOKEN')
   const body = yield* HttpBody.json({ query }).pipe(Effect.catchTag('HttpBodyError', () => Effect.succeed(HttpBody.empty)))
 
   const payload = yield* HttpClientRequest.post(baseUrl, { body, acceptJson: true }).pipe(
