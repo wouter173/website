@@ -20,9 +20,11 @@ export function DevlogEntryList(props: {
   highlighted?: string
   prefetchedPosts: { posts: ReadonlyArray<typeof postSchema.Type>; at: Date }
 }) {
-  const initialPageParam: PageParam = props.highlighted
-    ? { mode: 'around', rkey: props.highlighted } //
-    : { mode: 'page', reverse: false }
+  const hasPrefetchedTarget = props.prefetchedPosts.posts.some((post) => post.rkey === props.highlighted)
+  const isTopPost = !!props.highlighted && props.prefetchedPosts.posts.at(0)?.rkey === props.highlighted
+
+  const initialPageParam: PageParam =
+    props.highlighted && !hasPrefetchedTarget ? { mode: 'around', rkey: props.highlighted } : { mode: 'page', reverse: false }
 
   const { data, fetchNextPage, fetchPreviousPage, hasNextPage, hasPreviousPage, isFetchingNextPage, isFetchingPreviousPage } =
     useInfiniteQuery({
@@ -37,8 +39,7 @@ export function DevlogEntryList(props: {
         return pageParam.reverse ? posts.toReversed() : posts
       },
 
-      initialData:
-        props.prefetchedPosts && !props.highlighted ? { pages: [props.prefetchedPosts.posts], pageParams: [initialPageParam] } : undefined,
+      initialData: { pages: [props.prefetchedPosts.posts], pageParams: [initialPageParam] },
       initialPageParam,
 
       getNextPageParam: (lastPage): PageParam | undefined => {
@@ -112,7 +113,10 @@ export function DevlogEntryList(props: {
   }, [data])
 
   return (
-    <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center" style={{ visibility: pending ? 'hidden' : undefined }}>
+    <div
+      className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center"
+      style={{ visibility: pending && !isTopPost ? 'hidden' : undefined }}
+    >
       <Observer
         rootMargin="300px 0px 0px 0px"
         callback={() => {
@@ -152,7 +156,7 @@ export function DevlogEntryList(props: {
 }
 
 function RelativeTime({ date }: { date: string }) {
-  return <time>{formatDistanceToNow(new Date(date), { addSuffix: true })}</time>
+  return <time>{formatDistanceToNow(date, { addSuffix: true })}</time>
 }
 
 function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
@@ -163,7 +167,7 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
         <div className="block size-1 bg-neutral-400"></div>
         <div>
           <DevlogPostLink rkey={post.rkey}>
-            <Suspense fallback={<div></div>}>
+            <Suspense>
               <RelativeTime date={post.createdAt} />
             </Suspense>
           </DevlogPostLink>
@@ -230,9 +234,6 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
                 }))`,
               }}
               className="h-auto rounded-xl bg-white dark:bg-black"
-
-              //TODO: h, w
-              // style={{ aspectRatio: `${image.aspectRatio?.width} / ${image.aspectRatio?.height}` }}
             />
           </ZoomIn.Content>
         </ZoomIn.Root>

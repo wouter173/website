@@ -3,7 +3,7 @@ import { tools } from '@/components/tools'
 import type { Metadata } from 'next'
 import { Footer } from '../../components/footer'
 import { Contact } from './_contact/contact'
-import { MobileToolbelt, Toolbelt } from './tool-belt'
+import { Toolbelt } from './tool-belt'
 import { Suspense } from 'react'
 import { SocialLinks } from './social-links'
 import Image from 'next/image'
@@ -54,11 +54,16 @@ export default async function Page() {
 
             <div className="hidden lg:block">
               <hr className="border-stroke my-6 dark:border-[#1F1F1F]" />
+              <ul className="sr-only" aria-label="Technologies I use">
+                {tools.map((tool) => (
+                  <li key={tool.name}>{tool.name}</li>
+                ))}
+              </ul>
               <Toolbelt tools={tools} />
             </div>
           </div>
           <div className="lg:hidden">
-            <MobileToolbelt tools={tools} />
+            <Toolbelt tools={tools} />
           </div>
         </div>
         <div className="flex flex-col gap-8 lg:pb-24" id="contact">

@@ -58,7 +58,7 @@ const ContactForm = () => {
         <Textarea
           label="Message"
           className="w-full max-w-full resize-none"
-          rows={8}
+          rows={4}
           {...form.register('message')}
           errorLine={form.formState.errors.message?.message}
         />

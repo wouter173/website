@@ -47,13 +47,13 @@ export default async function Page({ params }: PageProps<'/devlog/[id]'>) {
   const { id } = await params
 
   const topPosts = await getPdsPosts()
-  const nearTop = topPosts.slice(0, 3).some((post) => post.rkey === id)
+  const isTopPost = topPosts.at(0)?.rkey === id
   const prefetchedAt = new Date()
 
   return (
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
-        <Header hideUntilPositioned={!nearTop} />
+        <Header hideUntilPositioned={!isTopPost} />
         <DevlogEntryList highlighted={id} prefetchedPosts={{ posts: topPosts, at: prefetchedAt }} />
       </main>
     </>

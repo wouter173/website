@@ -1,4 +1,4 @@
-import { postSchema } from './schema'
+import type { postSchema } from './schema'
 import { Client, getBlobCid, type BlobRef } from '@atproto/lex'
 import { CONSTANTS } from '@/app/constants'
 import { app } from '@/lexicons.generated'
