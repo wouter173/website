@@ -1,7 +1,7 @@
 import { CONSTANTS } from '@/app/constants'
 import type { Metadata } from 'next'
 import { cacheTag } from 'next/cache'
-import { cache, Suspense } from 'react'
+import { cache } from 'react'
 import { Header } from './_devlog/header'
 import { getPdsPosts } from './_devlog/get-pds-posts'
 import { DevlogEntryList } from './_devlog/entry-list'
@@ -54,10 +54,7 @@ export default async function Page() {
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
         <Header />
-
-        <Suspense>
-          <DevlogEntryList prefetchedPosts={posts} />
-        </Suspense>
+        <DevlogEntryList prefetchedPosts={posts} />
       </main>
     </>
   )
