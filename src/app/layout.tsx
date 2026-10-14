@@ -1,8 +1,8 @@
 import { Nav } from '@/components/nav'
 import type { Metadata, Viewport } from 'next'
 
-import { Frank_Ruhl_Libre } from 'next/font/google'
-import localFont from 'next/font/local'
+import { Frank_Ruhl_Libre, Inter } from 'next/font/google'
+
 import Script from 'next/script'
 import { type PropsWithChildren } from 'react'
 import { CONSTANTS } from './constants'
@@ -42,11 +42,9 @@ export const metadata: Metadata = {
   },
 }
 
-const inter = localFont({
-  src: '../../public/fonts/Inter/Inter-VariableFont_opsz,wght.ttf',
-  weight: '100 900',
-  style: 'normal',
-  display: 'swap',
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 const frankRuhlLibre = Frank_Ruhl_Libre({
