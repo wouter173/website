@@ -49,12 +49,13 @@ export default async function Page() {
   cacheTag(CONSTANTS.cacheTags.devlog)
 
   const posts = await getPdsPosts()
+  const prefetchedAt = new Date()
 
   return (
     <>
       <main className="relative z-10 mx-auto min-h-[calc(100vh-var(--spacing)*24)] w-full max-w-4xl p-24 px-6 lg:px-0">
         <Header />
-        <DevlogEntryList prefetchedPosts={posts} />
+        <DevlogEntryList prefetchedPosts={{ posts, at: prefetchedAt }} />
       </main>
     </>
   )

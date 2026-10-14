@@ -7,16 +7,19 @@ import { formatDistanceToNow } from 'date-fns'
 import { ZoomIn } from '@/components/zoom-in'
 import { Video } from '@/components/video'
 import { LinkEmbed } from './composer/composer-link-embed'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { environmentManager, useInfiniteQuery } from '@tanstack/react-query'
 import { getPdsPosts, getPdsWindow } from './get-pds-posts'
-import { startTransition, useLayoutEffect, useRef, type PropsWithChildren } from 'react'
+import { startTransition, Suspense, useLayoutEffect, useRef, type PropsWithChildren } from 'react'
 import Link from 'next/link'
 import { Observer } from '@/components/intersection-observer'
 import { useDevlogScrollVisibility } from './scroll-context'
 
 type PageParam = { mode: 'around'; rkey: string } | { mode: 'page'; rkey?: string; reverse: boolean }
 
-export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?: ReadonlyArray<typeof postSchema.Type> }) {
+export function DevlogEntryList(props: {
+  highlighted?: string
+  prefetchedPosts: { posts: ReadonlyArray<typeof postSchema.Type>; at: Date }
+}) {
   const initialPageParam: PageParam = props.highlighted
     ? { mode: 'around', rkey: props.highlighted } //
     : { mode: 'page', reverse: false }
@@ -24,6 +27,10 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
   const { data, fetchNextPage, fetchPreviousPage, hasNextPage, hasPreviousPage, isFetchingNextPage, isFetchingPreviousPage } =
     useInfiniteQuery({
       queryKey: ['pds', 'posts', props.highlighted ?? null],
+
+      initialDataUpdatedAt: props.prefetchedPosts.at.getTime(),
+      staleTime: environmentManager.isServer() ? 'static' : 60_000,
+
       queryFn: async ({ pageParam }) => {
         if (pageParam.mode === 'around') return getPdsWindow(pageParam.rkey)
         const posts = await getPdsPosts({ rkey: pageParam.rkey, reverse: pageParam.reverse })
@@ -31,7 +38,7 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
       },
 
       initialData:
-        props.prefetchedPosts && !props.highlighted ? { pages: [props.prefetchedPosts], pageParams: [initialPageParam] } : undefined,
+        props.prefetchedPosts && !props.highlighted ? { pages: [props.prefetchedPosts.posts], pageParams: [initialPageParam] } : undefined,
       initialPageParam,
 
       getNextPageParam: (lastPage): PageParam | undefined => {
@@ -44,7 +51,7 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
         }
 
         const rkey = firstPage.at(0)?.rkey
-        const newestRkey = props.prefetchedPosts?.at(0)?.rkey
+        const newestRkey = props.prefetchedPosts?.posts.at(0)?.rkey
 
         if (!rkey || rkey === newestRkey) return undefined
 
@@ -144,6 +151,10 @@ export function DevlogEntryList(props: { highlighted?: string; prefetchedPosts?:
   )
 }
 
+function RelativeTime({ date }: { date: string }) {
+  return <time>{formatDistanceToNow(new Date(date), { addSuffix: true })}</time>
+}
+
 function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
   return (
     <article className="flex flex-col gap-2 p-2">
@@ -152,7 +163,9 @@ function DevlogEntry({ post }: { post: typeof postSchema.Type }) {
         <div className="block size-1 bg-neutral-400"></div>
         <div>
           <DevlogPostLink rkey={post.rkey}>
-            <time>{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}</time>
+            <Suspense fallback={<div></div>}>
+              <RelativeTime date={post.createdAt} />
+            </Suspense>
           </DevlogPostLink>
         </div>
       </div>
