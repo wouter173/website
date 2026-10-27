@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
   rewrites: () => [
     { source: '/x/js/script.js', destination: 'https://plausible.wouterdb.com/js/pa-5BXxZKR9w5nLeGIxFaAXM.js' },
     { source: '/x/api/event', destination: 'https://plausible.wouterdb.com/api/event' },
+    { source: '/y/:match*', destination: 'https://umami.wouterdb.com/:match*' },
   ],
 }
 
