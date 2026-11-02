@@ -86,13 +86,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 function Analytics() {
   return (
     <>
-      <Script async src="/x/js/script.js" />
-      <Script
-        id="inline-plausible"
-        dangerouslySetInnerHTML={{
-          __html: `window.plausible=window.plausible||function(){(plausible.q = plausible.q || []).push(arguments)},plausible.init=plausible.init||function(i){(plausible.o = i || {})}; plausible.init();plausible.init({endpoint: "/x/api/event"})`,
-        }}
-      />
        <Script async src="/y/script.js" data-website-id="2b110fa8-a9bd-48a7-9e1a-8db686aa56bf" />
     </>
   )
